@@ -5,20 +5,19 @@ import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 
+// ignore: must_be_immutable
 class OTPView extends StatelessWidget {
    OTPView({super.key});
-  final CountdownController _controller = CountdownController();
-   bool isButtonEnabled = false;
+  bool isButtonEnabled = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: green,
+      backgroundColor: white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -30,7 +29,7 @@ class OTPView extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 "أدخل رمز التحقق",
-                style: TextStyle(color: white, fontSize: 25),
+                style: TextStyle(color: green, fontSize: 25),
               ),
             ),
             height20,
@@ -59,18 +58,18 @@ class OTPView extends StatelessWidget {
                 TextButton(
                   onPressed: isButtonEnabled
                       ? () {
-                          // Your button's onPressed logic here
+                          //TODO
                           print('');
                         }
                       : null,
-                  child: Text('أعد الارسال', style: TextStyle(fontSize: 18, color: pureWhite,),
+                  child: Text('أعد الارسال', style: TextStyle(fontSize: 18, color: green,),
                   ),
                 ),
                  Countdown(
                   seconds: 60,
                   build: (BuildContext context, double time) => Text(
                     'إعادة رمز التحقق بعد ${time.toInt()} ثانية',
-                    style: TextStyle(fontSize: 18,color: pureWhite),
+                    style: TextStyle(fontSize: 18,color: green),
                   ),
                   interval: Duration(seconds: 1),
                   onFinished: () {
