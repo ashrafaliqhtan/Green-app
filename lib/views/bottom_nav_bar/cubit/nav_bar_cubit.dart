@@ -11,7 +11,7 @@ part 'nav_bar_state.dart';
 class NavBarCubit extends Cubit<NavBarState> {
   List<Widget> pages = <Widget>[
     const HomeView(),
-    const EventView(),
+     EventView(),
     const RewardView(),
     const HistoryEventView(),
   ];

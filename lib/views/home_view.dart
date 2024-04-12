@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
@@ -85,7 +84,7 @@ class HomeView extends StatelessWidget {
               SliderWidget(),
               height20,
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/about-sgi-bg-web.jpg'),
                     fit: BoxFit.cover,
