@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
@@ -33,6 +31,7 @@ class OTPView extends StatelessWidget {
               ),
             ),
             height20,
+            // Custom widget
             OtpTextField(
               numberOfFields: 6,
               showCursor: true,
@@ -58,7 +57,7 @@ class OTPView extends StatelessWidget {
                 TextButton(
                   onPressed: isButtonEnabled
                       ? () {
-                          //TODO
+                          //TODO: resend OTP again
                           print('');
                         }
                       : null,
@@ -76,14 +75,15 @@ class OTPView extends StatelessWidget {
                     // Set the state to enable the button when countdown finishes
                     (context as Element).markNeedsBuild();
                     isButtonEnabled = true;
-                    print('Countdown finished');
                   },
                 ),
                ],
              ),
              height40,
              ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                //TODO: Check OTP
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: greenDark,
                   minimumSize: Size(context.getWidth(), 50)),

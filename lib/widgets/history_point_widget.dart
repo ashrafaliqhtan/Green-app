@@ -10,7 +10,8 @@ class PointWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Container(
             width: context.getWidth(),
             height: context.getHeight() * .1,
@@ -30,19 +31,29 @@ class PointWidget extends StatelessWidget {
                           style: TextStyle(fontSize: 20),
                         )),
                     width24,
-                    Container(
-                      width: 3,
-                      height: context.getHeight() * .07,
-                      color: green,
+                    Column(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: context.getHeight() * .07,
+                          color: green,
+                        ),
+                      ],
                     ),
                     width24,
                   ],
                 ),
                 const Row(
                   children: [
-                    Text("10/04/2024"),
+                    Text(
+                      "10/04/2024",
+                      style: TextStyle(height: 0.1),
+                    ),
                     width4,
-                    Text("5:04 PM"),
+                    Text(
+                      "5:04 PM",
+                      style: TextStyle(height: 0.1),
+                    ),
                   ],
                 )
               ],

@@ -9,13 +9,13 @@ class EventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Container(
         width: context.getWidth(),
         height: context.getHeight() * .155,
-        margin: EdgeInsets.only(bottom: 50, top: 20),
-        decoration:
-            BoxDecoration(color: green, borderRadius: BorderRadius.circular(40)),
+        margin: const EdgeInsets.only(bottom: 50, top: 20, right: 16, left: 16),
+        decoration: BoxDecoration(
+            color: green, borderRadius: BorderRadius.circular(40)),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -26,7 +26,7 @@ class EventWidget extends StatelessWidget {
                 width: context.getWidth() * .640,
                 height: context.getHeight() * .058,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage('assets/images/Rectangle 104.jpg'),
                       fit: BoxFit.fitWidth,
                     ),

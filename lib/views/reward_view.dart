@@ -24,7 +24,9 @@ class RewardView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //TODO: Drawer
+                      },
                       icon: const Icon(Icons.menu),
                     ),
                     IconButton(
@@ -33,6 +35,7 @@ class RewardView extends StatelessWidget {
                     ),
                   ],
                 ),
+                // Point Container
                 const HeaderPoint(),
                 height10,
                 TabBar(
@@ -51,29 +54,28 @@ class RewardView extends StatelessWidget {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(
-            left: 30,
-            right: 30,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    ListView.builder(
+        body: Column(
+          children: [
+            Expanded(
+              child: TabBarView(
+                children: [
+                  // History Point
+                  Scrollbar(
+                    thickness: 4,
+                    child: ListView.builder(
                         itemCount: 10,
                         itemBuilder: (context, index) {
                           return PointWidget();
                         }),
-                    const Center(
-                      child: Text('العروض'),
-                    ),
-                  ],
-                ),
+                  ),
+                  // Offers
+                  const Center(
+                    child: Text('العروض'),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -11,6 +11,8 @@ import 'package:green_saudi_app/widgets/regions_widget.dart';
 class EventView extends StatelessWidget {
   EventView({super.key});
   final TextEditingController controller = TextEditingController();
+
+  // All 13 Regions
   final List<String> regionsList = [
     'الرياض',
     'مكة المكرمة',
@@ -34,7 +36,7 @@ class EventView extends StatelessWidget {
         backgroundColor: white,
         leading: IconButton(
           onPressed: () {
-            Scaffold.of(context).openDrawer();
+            //TODO: Drawer
           },
           icon: const Icon(Icons.menu),
         ),
@@ -104,6 +106,7 @@ class EventView extends StatelessWidget {
               ],
             ),
           ),
+          // Regions ListView
           SizedBox(
             width: context.getWidth(),
             height: context.getHeight() * .044,
@@ -118,9 +121,10 @@ class EventView extends StatelessWidget {
                 }),
           ),
           height32,
+          // Event ListView
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Scrollbar(
+              thickness: 7,
               child: ListView.builder(
                   itemCount: 4,
                   shrinkWrap: true,
