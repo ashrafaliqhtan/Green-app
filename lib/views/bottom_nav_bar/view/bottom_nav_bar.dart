@@ -13,7 +13,7 @@ class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});
 
  
-   List<Map<String, dynamic>> navItems = [
+   final List<Map<String, dynamic>> navItems = [
     {"icon": 'assets/icons/home1.svg', "label": "Home"},
     {"icon": 'assets/icons/event.svg', "label": "Event"},
     {"icon": 'assets/icons/reward.svg', "label": "Reward"},

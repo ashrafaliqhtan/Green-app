@@ -19,7 +19,6 @@ class NavBarCubit extends Cubit<NavBarState> {
   int selectIndex = 0;
   NavBarCubit() : super(NavBarInitial());
 
-  @override // Added @override annotation
   void ChangeNavItem(int index) {
     selectIndex = index;
     emit(SuccessChangeIndex());
