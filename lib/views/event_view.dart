@@ -64,11 +64,11 @@ class EventView extends StatelessWidget {
                   width: 68,
                   height: 58,
                   decoration: BoxDecoration(
-                      color: pureWhite,
-                      borderRadius: BorderRadius.circular(20)),
+                      color: green, borderRadius: BorderRadius.circular(20)),
                   child: Center(
                     child: SvgPicture.asset(
                       'assets/icons/search.svg',
+                      color: white,
                     ),
                   ),
                 ),

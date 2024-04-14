@@ -5,7 +5,11 @@ import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 
 class GoalsWidget extends StatelessWidget {
-  const GoalsWidget({super.key, required this.img, required this.text, this.isDivider = true});
+  const GoalsWidget(
+      {super.key,
+      required this.img,
+      required this.text,
+      this.isDivider = true});
 
   final String img;
   final String text;
@@ -15,7 +19,7 @@ class GoalsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.getWidth(),
-      height: context.getHeight() * 0.14,
+      height: context.getHeight() * 0.183,
       margin: EdgeInsets.all(20),
       decoration: BoxDecoration(
           color: Colors.transparent, borderRadius: BorderRadius.circular(20)),
@@ -38,8 +42,7 @@ class GoalsWidget extends StatelessWidget {
               ),
             ],
           ),
-          (isDivider) ?
-          Divider() : SizedBox()
+          (isDivider) ? Divider() : SizedBox()
         ],
       ),
     );

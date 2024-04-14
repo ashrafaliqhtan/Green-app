@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/views/details_event_view.dart';
 
 class EventWidget extends StatelessWidget {
   const EventWidget({super.key});
@@ -9,7 +10,9 @@ class EventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.push(view: Screen2(), isPush: true);
+      },
       child: Container(
         width: context.getWidth(),
         height: context.getHeight() * .155,
@@ -27,7 +30,7 @@ class EventWidget extends StatelessWidget {
                 height: context.getHeight() * .058,
                 decoration: BoxDecoration(
                     image: const DecorationImage(
-                      image: AssetImage('assets/images/Rectangle 104.jpg'),
+                      image: AssetImage('assets/images/Rectangle 104.jpg'), 
                       fit: BoxFit.fitWidth,
                     ),
                     color: pureWhite,
@@ -54,7 +57,7 @@ class EventWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 50,
+              top: 30,
               right: 50,
               left: 50,
               child: Center(
