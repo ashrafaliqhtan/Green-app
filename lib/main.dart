@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/views/login_view.dart';
-import 'package:green_saudi_app/views/reset_password_view.dart';
 
 void main() {
   runApp(
@@ -14,7 +13,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginView(),
     );
