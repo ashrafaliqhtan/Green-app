@@ -10,11 +10,11 @@ class DBServices {
     required String password,
   }) async {
     final signedInUser = await supabase.auth
-        .signUp(email: email, password: password, phone: phone);
+        .signUp(email: email, password: password);
 
     await supabase
         .from("user_green_sa_app")
-        .insert({'id_user': signedInUser.user!.id, 'name': name});
+        .insert({'id_user': signedInUser.user!.id, 'name': name , 'phone': phone});
   }
 
   Future login({required String email, required String password}) async {
