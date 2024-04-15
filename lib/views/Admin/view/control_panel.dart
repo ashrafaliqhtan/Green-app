@@ -13,6 +13,7 @@ class ControlPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         backgroundColor: green,
         title: const Row(
@@ -28,7 +29,7 @@ class ControlPanel extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: greyLight,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

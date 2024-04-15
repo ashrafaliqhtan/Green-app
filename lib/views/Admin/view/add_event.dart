@@ -10,7 +10,7 @@ class AddEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: pureWhite),
         backgroundColor: green,
