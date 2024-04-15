@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/views/home_view.dart';
-
+import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 void main() {
   runApp(const MainApp());
 }
@@ -11,7 +10,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeView()
+      debugShowCheckedModeBanner: false,
+      home: ControlPanel()
     );
   }
 }
