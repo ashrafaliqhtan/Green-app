@@ -1,8 +1,12 @@
+
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/views/home_view.dart';
+import 'package:green_saudi_app/views/login_view.dart';
+import 'package:green_saudi_app/views/reset_password_view.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    const MainApp(), 
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -10,8 +14,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeView()
+    return  MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginView(),
     );
   }
 }
