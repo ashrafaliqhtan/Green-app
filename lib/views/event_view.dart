@@ -29,9 +29,9 @@ class EventView extends StatelessWidget {
       'القصيم',
     ];
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         leading: IconButton(
           onPressed: () {
             //TODO: Drawer
@@ -76,7 +76,7 @@ class EventView extends StatelessWidget {
                     controller: controller,
                     textDirection: TextDirection.rtl,
                     decoration: InputDecoration(
-                      fillColor: pureWhite,
+                      fillColor: Theme.of(context).colorScheme.background,
                       filled: true,
                       hintText: "أكتشف أهم الأحداث",
                       hintTextDirection: TextDirection.rtl,

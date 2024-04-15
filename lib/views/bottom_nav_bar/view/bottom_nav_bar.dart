@@ -29,7 +29,7 @@ class BottomNavBar extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             height: context.getHeight() * .100,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.primary,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(.15),

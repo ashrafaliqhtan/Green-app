@@ -17,7 +17,7 @@ class PointWidget extends StatelessWidget {
             height: context.getHeight() * .1,
             margin: const EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
-                color: grey, borderRadius: BorderRadius.circular(20)),
+                color:Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(20)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,18 +43,21 @@ class PointWidget extends StatelessWidget {
                     width24,
                   ],
                 ),
-                const Row(
-                  children: [
-                    Text(
-                      "10/04/2024",
-                      style: TextStyle(height: 0.1),
-                    ),
-                    width4,
-                    Text(
-                      "5:04 PM",
-                      style: TextStyle(height: 0.1),
-                    ),
-                  ],
+                const Padding(
+                  padding: EdgeInsets.only(left: 12,bottom: 2),
+                  child: Row(
+                    children: [
+                      Text(
+                        "10/04/2024",
+                        style: TextStyle(height: 0.1),
+                      ),
+                      width4,
+                      Text(
+                        "5:04 PM",
+                        style: TextStyle(height: 0.1),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

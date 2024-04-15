@@ -17,7 +17,7 @@ class EditProfileUser extends StatelessWidget {
     return BlocProvider(
       create: (context) => ImagePicBloc(),
       child: Scaffold(
-        backgroundColor: greyLight,
+      backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           actions: const [Text("تعديل البيانات")],
           backgroundColor: green,

@@ -13,7 +13,7 @@ class SettingsUser extends StatelessWidget {
   Widget build(BuildContext context) {
     textDirectionToAxisDirection(TextDirection.rtl);
     return Scaffold(
-      backgroundColor: greyLight,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         actions: const [Text("الإعدادات")],
         backgroundColor: green,
@@ -31,7 +31,7 @@ class SettingsUser extends StatelessWidget {
                 height: 100,
                 width: 430,
                 decoration: BoxDecoration(
-                    color: pureWhite,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(14),
                         bottomRight: Radius.circular(14))),

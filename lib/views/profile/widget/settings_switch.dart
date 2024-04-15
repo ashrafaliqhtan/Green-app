@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/theme/theme_provider.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:provider/provider.dart';
 
 class settingsSwitch extends StatelessWidget {
   String title;
@@ -17,7 +19,7 @@ class settingsSwitch extends StatelessWidget {
       height: 65,
       width: 345,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(30)), color: green),
+          borderRadius: const BorderRadius.all(Radius.circular(30)), color: green),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
@@ -28,7 +30,9 @@ class settingsSwitch extends StatelessWidget {
             Text(title),
             width130,
             width16,
-            Switch(value: true, onChanged: (value) {})
+            Switch(value: true, onChanged: (value) {
+              Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
+            })
           ],
         ),
       ),
