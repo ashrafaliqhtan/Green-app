@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
-import 'package:green_saudi_app/views/otp_view.dart';
+import 'package:green_saudi_app/views/Authentication/view/otp_view.dart';
 import 'package:green_saudi_app/widgets/golas_widget.dart';
 import 'package:green_saudi_app/widgets/slider_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';

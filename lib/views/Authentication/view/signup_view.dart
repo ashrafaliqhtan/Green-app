@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
-import 'package:green_saudi_app/views/login_view.dart';
-import 'package:green_saudi_app/widgets/custom_button.dart';
-import 'package:green_saudi_app/widgets/input_text_felid.dart';
+import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
+import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
+import 'package:green_saudi_app/views/Authentication/widget/input_text_felid.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
