@@ -19,7 +19,7 @@ class EditProfileUser extends StatelessWidget {
       child: Scaffold(
         backgroundColor: greyLight,
         appBar: AppBar(
-          actions: const [Text("تعديل البيانات")],
+          actions:  [Text("تعديل البيانات",style: TextStyle(color: pureWhite, fontSize: 25),)],
           backgroundColor: green,
           automaticallyImplyLeading: true,
         ),

@@ -6,6 +6,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 
+// ignore: must_be_immutable
 class OTPView extends StatelessWidget {
     OTPView({super.key});
    bool isButtonEnabled = false;
@@ -45,7 +46,6 @@ class OTPView extends StatelessWidget {
               textStyle: TextStyle(fontSize: 25, color: green, fontWeight: FontWeight.bold),
               cursorColor: green,
               focusedBorderColor: pureWhite,
-              // clearText: true,
               onCodeChanged: (String code) {
               },
             ),

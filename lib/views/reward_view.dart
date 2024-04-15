@@ -20,21 +20,7 @@ class RewardView extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        //TODO: Drawer
-                      },
-                      icon: const Icon(Icons.menu),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset('assets/images/logo.jpg'),
-                    ),
-                  ],
-                ),
+                height32,
                 // Point Container
                 const HeaderPoint(),
                 height10,

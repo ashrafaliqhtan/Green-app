@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/views/home_view.dart';
 import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
 
@@ -14,14 +15,26 @@ class ProfileUser extends StatelessWidget {
     return Scaffold(
       backgroundColor: greyLight,
       appBar: AppBar(
-        actions: const [Text("الحساب")],
+        leading: IconButton(
+            onPressed: () {
+              context.push(view: HomeView(), isPush: false);
+            },
+            icon: Icon(Icons.arrow_back, color: pureWhite,)),
+        actions: [
+          Text(
+            "الحساب",
+            style: TextStyle(color: pureWhite, fontSize: 25),
+          )
+        ],
         backgroundColor: green,
         automaticallyImplyLeading: true,
         title: IconButton(
             onPressed: () {
               context.push(view: const SettingsUser(), isPush: true);
             },
-            icon: const Icon(Icons.settings)),
+            icon:  Icon(Icons.settings,
+              color: pureWhite,
+            )),
       ),
       body: Center(
         child: Column(
@@ -61,4 +74,3 @@ class ProfileUser extends StatelessWidget {
     );
   }
 }
-

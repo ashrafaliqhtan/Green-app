@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
 
 class HistoryEventView extends StatelessWidget {
@@ -13,12 +14,6 @@ class HistoryEventView extends StatelessWidget {
       backgroundColor: white,
       appBar: AppBar(
         backgroundColor: white,
-        leading: IconButton(
-          onPressed: () {
-            //TODO: Drawer
-          },
-          icon: const Icon(Icons.menu),
-        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -26,6 +21,7 @@ class HistoryEventView extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const DrawerScreen(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
 import 'package:green_saudi_app/widgets/regions_widget.dart';
 
@@ -32,12 +33,7 @@ class EventView extends StatelessWidget {
       backgroundColor: white,
       appBar: AppBar(
         backgroundColor: white,
-        leading: IconButton(
-          onPressed: () {
-            //TODO: Drawer
-          },
-          icon: const Icon(Icons.menu),
-        ),
+       
         title: Text(
           "الاحداث القادمة",
           style: TextStyle(
@@ -51,6 +47,7 @@ class EventView extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const DrawerScreen(),
       body: Column(
         children: [
           height10,

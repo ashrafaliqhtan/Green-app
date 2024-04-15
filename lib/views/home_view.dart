@@ -2,24 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/views/otp_view.dart';
 import 'package:green_saudi_app/widgets/golas_widget.dart';
 import 'package:green_saudi_app/widgets/slider_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key});
+   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          icon: const Icon(Icons.menu),
-        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -29,41 +24,7 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: green, 
-              ),
-              child: const Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white, 
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Option 1'),
-              onTap: () {
-                // Handle option 1 tap
-              },
-            ),
-            const Divider(
-              height: 4,
-              thickness: 0.3,
-            ),
-            ListTile(
-              title: const Text('Option 2'),
-              onTap: () {
-                // Handle option 2 tap
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const DrawerScreen(),
       body: ListView(
         children: [
           Column(

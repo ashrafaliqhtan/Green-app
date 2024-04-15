@@ -9,7 +9,7 @@ part 'nav_bar_state.dart';
 
 class NavBarCubit extends Cubit<NavBarState> {
   List<Widget> pages = <Widget>[
-    const HomeView(),
+     const HomeView(),
     const EventView(),
     const RewardView(),
     const HistoryEventView(),
