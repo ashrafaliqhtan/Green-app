@@ -7,8 +7,22 @@ import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
 
 import '../widget/input_text_felid.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +59,14 @@ class LoginView extends StatelessWidget {
                 style: TextStyle(
                     color: white, fontWeight: FontWeight.bold, fontSize: 48),
               ),
-              const InputTextFelid(
+              InputTextFelid(
+                controller: emailController,
                 title: "البريد الإلكتروني",
                 icon: Icons.email,
                 isPassword: false,
               ),
-              const InputTextFelid(
+              InputTextFelid(
+                controller: passwordController,
                 title: "كلمة المرور",
                 icon: Icons.lock,
                 isPassword: true,
@@ -62,7 +78,8 @@ class LoginView extends StatelessWidget {
                   width30,
                   InkWell(
                     onTap: () {
-                      context.push(view: const ValidationEmailView(), isPush: true);
+                      context.push(
+                          view: const ValidationEmailView(), isPush: true);
                     },
                     child: Text(
                       "هل نسيت كلمة المرور ؟",
@@ -87,4 +104,3 @@ class LoginView extends StatelessWidget {
     ));
   }
 }
-

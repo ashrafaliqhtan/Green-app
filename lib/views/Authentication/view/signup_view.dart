@@ -6,8 +6,28 @@ import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
 import 'package:green_saudi_app/views/Authentication/widget/input_text_felid.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
+
+  @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController conformPasswordController = TextEditingController();
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    conformPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,27 +64,32 @@ class SignUpView extends StatelessWidget {
                   style: TextStyle(
                       color: white, fontWeight: FontWeight.bold, fontSize: 48),
                 ),
-                const InputTextFelid(
+                InputTextFelid(
+                  controller: nameController,
                   title: "الاسم",
                   icon: Icons.person_outline,
                   isPassword: false,
                 ),
-                const InputTextFelid(
+                InputTextFelid(
+                  controller: emailController,
                   title: "البريد الإلكتروني",
                   icon: Icons.email,
                   isPassword: false,
                 ),
-                const InputTextFelid(
+                InputTextFelid(
+                  controller: phoneController,
                   title: "رقم الجوال",
                   icon: Icons.phone_outlined,
                   isPassword: false,
                 ),
-                const InputTextFelid(
+                InputTextFelid(
+                  controller: passwordController,
                   title: "كلمة المرور",
                   icon: Icons.lock,
                   isPassword: true,
                 ),
-                const InputTextFelid(
+                InputTextFelid(
+                  controller: conformPasswordController,
                   title: "تأكيد كلمة المرور",
                   icon: Icons.lock,
                   isPassword: true,
@@ -75,7 +100,7 @@ class SignUpView extends StatelessWidget {
                     width42,
                     InkWell(
                       onTap: () {
-                        context.push(view: LoginView(), isPush: false);
+                        context.push(view: const LoginView(), isPush: false);
                       },
                       child: Text(
                         "هل لديك حساب؟",

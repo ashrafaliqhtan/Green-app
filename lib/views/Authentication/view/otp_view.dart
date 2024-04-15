@@ -5,10 +5,9 @@ import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
-
 class OTPView extends StatelessWidget {
-    OTPView({super.key});
-   bool isButtonEnabled = false;
+   OTPView({super.key});
+  bool isButtonEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +41,17 @@ class OTPView extends StatelessWidget {
               fillColor: pureWhite,
               filled: true,
               borderRadius: BorderRadius.circular(20),
-              textStyle: TextStyle(fontSize: 25, color: green, fontWeight: FontWeight.bold),
+              textStyle: TextStyle(
+                  fontSize: 25, color: green, fontWeight: FontWeight.bold),
               cursorColor: green,
               focusedBorderColor: pureWhite,
               // clearText: true,
-              onCodeChanged: (String code) {
-              },
+              onCodeChanged: (String code) {},
             ),
             height20,
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-               children: [
+              children: [
                 TextButton(
                   onPressed: isButtonEnabled
                       ? () {
@@ -60,14 +59,19 @@ class OTPView extends StatelessWidget {
                           print('');
                         }
                       : null,
-                  child: Text('أعد الارسال', style: TextStyle(fontSize: 18, color: green,),
+                  child: Text(
+                    'أعد الارسال',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: green,
+                    ),
                   ),
                 ),
-                 Countdown(
+                Countdown(
                   seconds: 60,
                   build: (BuildContext context, double time) => Text(
                     'إعادة رمز التحقق بعد ${time.toInt()} ثانية',
-                    style: TextStyle(fontSize: 18,color: green),
+                    style: TextStyle(fontSize: 18, color: green),
                   ),
                   interval: const Duration(seconds: 1),
                   onFinished: () {
@@ -75,10 +79,10 @@ class OTPView extends StatelessWidget {
                     isButtonEnabled = true;
                   },
                 ),
-               ],
-             ),
-             height40,
-             ElevatedButton(
+              ],
+            ),
+            height40,
+            ElevatedButton(
               onPressed: () {
                 //TODO: Check OTP
               },

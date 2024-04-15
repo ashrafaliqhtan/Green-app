@@ -3,21 +3,23 @@ import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 
+// ignore: must_be_immutable
 class InputTextFelid extends StatelessWidget {
-  const InputTextFelid({
+  InputTextFelid({
     super.key,
     required this.title,
     required this.isPassword,
     this.icon,
+    required this.controller,
   });
   final String title;
   final IconData? icon;
   final bool isPassword;
+  TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     bool isObscureText = true;
-
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -47,6 +49,7 @@ class InputTextFelid extends StatelessWidget {
               ],
             ),
             child: TextField(
+              controller: controller,
               obscureText: isPassword,
               decoration: InputDecoration(
                 prefixIcon: isPassword
