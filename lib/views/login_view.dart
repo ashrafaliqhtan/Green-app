@@ -62,7 +62,7 @@ class LoginView extends StatelessWidget {
                   width30,
                   InkWell(
                     onTap: () {
-                      context.push(view: ValidationEmailView(), isPush: true);
+                      context.push(view: const ValidationEmailView(), isPush: true);
                     },
                     child: Text(
                       "هل نسيت كلمة المرور ؟",

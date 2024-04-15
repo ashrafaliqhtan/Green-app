@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/views/login_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/cubit/nav_bar_cubit.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
+
 
 void main() {
   runApp(
@@ -13,9 +16,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginView(),
+    return BlocProvider(
+      create: (context) => NavBarCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: BottomNavBar(),
+      ),
     );
   }
 }
