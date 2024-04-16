@@ -28,6 +28,7 @@ class settingsButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             textDirection: TextDirection.rtl,
             children: [
               Icon(icons),

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green_saudi_app/theme/theme_provider.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:green_saudi_app/data_layer/data_layer.dart';
+import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'package:green_saudi_app/views/profile/view/profile_user.dart';
-import 'package:provider/provider.dart';
-
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(create:(context) => ThemeProvider(),
-    child: const MainApp(),
-    )
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+
+  GetStorage.init();
+  DataInjection().setUp();
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -20,12 +19,25 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NavBarCubit(),
-      child: MaterialApp(
-        theme: Provider.of<ThemeProvider>(context).themeData,
-        debugShowCheckedModeBanner: false,
-        home: BottomNavBar(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NavBarCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ThemeBloc()..add(GetThemeEvent()),
+        ),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          final bloc = context.read<ThemeBloc>();
+
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: bloc.themeInfo,
+            home: BottomNavBar(),
+          );
+        },
       ),
     );
   }

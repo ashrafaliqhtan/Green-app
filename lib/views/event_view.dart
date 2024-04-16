@@ -29,9 +29,7 @@ class EventView extends StatelessWidget {
       'القصيم',
     ];
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
         leading: IconButton(
           onPressed: () {
             //TODO: Drawer

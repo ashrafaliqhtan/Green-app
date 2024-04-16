@@ -1,27 +1,28 @@
+
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 
-class CustomSwitch extends StatefulWidget {
+class CustomSwitchNotfcation extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
 
-  const CustomSwitch({
+  const CustomSwitchNotfcation({
     Key? key,
     required this.value,
     this.onChanged,
   }) : super(key: key);
 
   @override
-  CustomSwitchState createState() => CustomSwitchState();
+  CustomSwitchNotfcationState createState() => CustomSwitchNotfcationState();
 }
 
-class CustomSwitchState extends State<CustomSwitch> {
+class CustomSwitchNotfcationState extends State<CustomSwitchNotfcation> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         if (widget.onChanged != null) {
-          widget.onChanged!(!widget.value); // Flip the value correctly
+          widget.onChanged!(!widget.value); 
         }
       },
       child: Container(
@@ -29,7 +30,7 @@ class CustomSwitchState extends State<CustomSwitch> {
         height: 34,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: widget.value ?  const Color(0xFF73C0FC) : Color.fromARGB(255, 19, 38, 64),
+          color: widget.value ?  white : white,
         ),
         child: Stack(
           children: [
@@ -42,7 +43,7 @@ class CustomSwitchState extends State<CustomSwitch> {
                 height: 30,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color:  Theme.of(context).colorScheme.onPrimaryContainer,
+                  color:  white
                 ),
               ),
             ),
@@ -53,9 +54,9 @@ class CustomSwitchState extends State<CustomSwitch> {
                 opacity: widget.value ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 400),
                 child: const Icon(
-                  Icons.wb_sunny,
+                  Icons.notifications_off,
                   size: 24,
-                  color: Colors.amber,
+                  color: Colors.red,
                 ),
               ),
             ),
@@ -66,9 +67,9 @@ class CustomSwitchState extends State<CustomSwitch> {
                 opacity: widget.value ? 0.0 : 1.0,
                 duration: const Duration(milliseconds: 400),
                 child:  Icon(
-                  Icons.nightlight_round,
+                  Icons.notifications_on,
                   size: 24,
-                  color: grey,
+                  color: green,
                 ),
               ),
             ),
