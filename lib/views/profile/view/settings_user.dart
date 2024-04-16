@@ -13,8 +13,6 @@ class SettingsUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<ThemeBloc>();
-
     textDirectionToAxisDirection(TextDirection.rtl);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
