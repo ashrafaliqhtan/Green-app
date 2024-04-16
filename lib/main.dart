@@ -15,20 +15,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => NavBarCubit(),
-        ),
-        BlocProvider(
-          create: (context) => OnboardingBloc(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: OnboardingView(),
-        //BottomNavBar(),
-      ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: OnboardingView(),
     );
   }
 }

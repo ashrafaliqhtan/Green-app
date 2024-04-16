@@ -7,7 +7,7 @@ import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/bloc/onboarding_bloc.dart';
 
 class OnboardingView extends StatelessWidget {
-  const OnboardingView({Key? key}) : super(key: key);
+  const OnboardingView({super.key});
 
   @override
   Widget build(BuildContext context) {
