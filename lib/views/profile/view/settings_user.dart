@@ -31,7 +31,7 @@ class SettingsUser extends StatelessWidget {
                 height: 100,
                 width: 430,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    color: Theme.of(context).colorScheme.background,
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(14),
                         bottomRight: Radius.circular(14))),
@@ -59,9 +59,9 @@ class SettingsUser extends StatelessWidget {
             height16,
             settingsButton(title: "تعديل الايميل", icons: Icons.email_outlined),
             height16,
-            settingsSwitch(title: "الاشعارات", icons: Icons.notifications),
+            SettingsSwitch(title: "الاشعارات", icon: Icons.notifications),
             height16,
-            settingsSwitch(title: "الوضع الداكن", icons: Icons.sunny),
+            SettingsSwitch(title: "الوضع الداكن", icon: Icons.sunny),
             height16,
             settingsButton(title: "اللغة", icons: Icons.language),
             Container(
@@ -74,3 +74,5 @@ class SettingsUser extends StatelessWidget {
     );
   }
 }
+
+

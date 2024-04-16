@@ -80,7 +80,7 @@ class BottomNavBar extends StatelessWidget {
                       height: context.getWidth() * .056,
                       color: index == navCubit.selectIndex
                           ? green
-                          : Colors.black38,
+                          : Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
                     Text(
                       navItems[index]['label'],
@@ -88,7 +88,7 @@ class BottomNavBar extends StatelessWidget {
                         fontSize: 12,
                         color: index == navCubit.selectIndex
                             ? green
-                            : Colors.black38,
+                          : Theme.of(context).colorScheme.onSecondaryContainer,
                       ),
                     ),
                     height10,
