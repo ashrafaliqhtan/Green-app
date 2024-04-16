@@ -30,7 +30,7 @@ class BottomNavBar extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 height: context.getHeight() * .100,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(.15),
@@ -81,7 +81,7 @@ class BottomNavBar extends StatelessWidget {
                           height: context.getWidth() * .056,
                           color: index == navCubit.selectIndex
                               ? green
-                              : Colors.black38,
+                              : Theme.of(context).colorScheme.onSecondaryContainer,
                         ),
                         Text(
                           navItems[index]['label'],
@@ -89,7 +89,7 @@ class BottomNavBar extends StatelessWidget {
                             fontSize: 12,
                             color: index == navCubit.selectIndex
                                 ? green
-                                : Colors.black38,
+                                : Theme.of(context).colorScheme.onSecondaryContainer,
                           ),
                         ),
                         height10,

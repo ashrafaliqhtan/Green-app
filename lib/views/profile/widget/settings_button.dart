@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({
@@ -13,7 +15,9 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.push(view:  BottomNavBar(), isPush: true);
+      },
       child: Container(
         height: 65,
         width: 345,
@@ -23,6 +27,7 @@ class SettingsButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             textDirection: TextDirection.rtl,
             children: [
               Icon(icons),

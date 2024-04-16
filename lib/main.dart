@@ -8,7 +8,7 @@ import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await databaseConfiguration();
-  DataInjection().setup();
+  DataInjection().setUp();
   runApp(const MainApp());
 }
 

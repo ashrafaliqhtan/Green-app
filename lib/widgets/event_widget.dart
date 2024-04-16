@@ -44,7 +44,7 @@ class EventWidget extends StatelessWidget {
                 width: context.getWidth() * .490,
                 height: context.getHeight() * .048,
                 decoration: BoxDecoration(
-                    color: pureWhite, borderRadius: BorderRadius.circular(40)),
+                    color: pureWhite ,borderRadius: BorderRadius.circular(40)),
                 child: Center(
                     child: Text(
                   "الرياض",

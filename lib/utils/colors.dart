@@ -6,6 +6,9 @@ Color greenLight2 = const Color(0xff35E1AB);
 Color greenDark = const Color(0xff0C5034);
 Color greenCalm = const Color(0xff003a49);
 Color grey = const Color(0xffE8E8E8);
+Color darkBackground = const Color(0xff333333);
+Color lightBackground = const Color(0xffF6F6F6);
+Color darkTextF = const Color(0xff7D7C7C);
  
 
 //////////////////////////////////////////

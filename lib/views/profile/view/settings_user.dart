@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/profile/view/edit_profile_user.dart';
@@ -11,9 +13,11 @@ class SettingsUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ThemeBloc>();
+
     textDirectionToAxisDirection(TextDirection.rtl);
     return Scaffold(
-      backgroundColor: greyLight,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         actions: const [Text("الإعدادات")],
         backgroundColor: green,
@@ -25,13 +29,13 @@ class SettingsUser extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-               context.push(view: const EditProfileUser(), isPush: true);
+                context.push(view: const EditProfileUser(), isPush: true);
               },
               child: Container(
                 height: 100,
                 width: 430,
                 decoration: BoxDecoration(
-                    color: pureWhite,
+                    color: Theme.of(context).colorScheme.background,
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(14),
                         bottomRight: Radius.circular(14))),
@@ -59,15 +63,21 @@ class SettingsUser extends StatelessWidget {
             height16,
             const SettingsButton(title: "تعديل الايميل", icons: Icons.email_outlined),
             height16,
-            const SettingsSwitch(title: "الاشعارات", icons: Icons.notifications),
+            SettingsSwitch(title: "الاشعارات", icon: Icons.notifications, isDarkMode: false,),
             height16,
-            const SettingsSwitch(title: "الوضع الداكن", icons: Icons.sunny),
+            SettingsSwitch(title: "الوضع الداكن", icon: Icons.sunny, isDarkMode: true,),
             height16,
             const SettingsButton(title: "اللغة", icons: Icons.language),
             Container(
               color: green,
               child: const Text("تسجيل الخروج"),
-            )
+            ),
+            IconButton(
+                onPressed: () {
+                  bloc.add(UpdateThemeEvent());
+                  bloc.add(GetThemeEvent());
+                },
+                icon: Icon(Icons.abc))
           ],
         ),
       ),
