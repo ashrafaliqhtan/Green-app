@@ -19,7 +19,7 @@ class TextProfile extends StatelessWidget {
         width: 350,
         height: 80,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(40)),
+            color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(40)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

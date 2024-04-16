@@ -11,15 +11,9 @@ class HistoryEventView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            //TODO: Drawer
-          },
-          icon: const Icon(Icons.menu),
-        ),
         actions: [
           IconButton(
             onPressed: () {},

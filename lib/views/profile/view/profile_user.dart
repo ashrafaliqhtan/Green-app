@@ -14,7 +14,7 @@ class ProfileUser extends StatelessWidget {
   Widget build(BuildContext context) {
     textDirectionToAxisDirection(TextDirection.rtl);
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {

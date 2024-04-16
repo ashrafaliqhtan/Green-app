@@ -31,12 +31,7 @@ class EventView extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            //TODO: Drawer
-          },
-          icon: const Icon(Icons.menu),
-        ),
+        backgroundColor: Colors.transparent,
         title: Text(
           "الاحداث القادمة",
           style: TextStyle(
@@ -76,7 +71,7 @@ class EventView extends StatelessWidget {
                     controller: controller,
                     textDirection: TextDirection.rtl,
                     decoration: InputDecoration(
-                      fillColor: Theme.of(context).colorScheme.background,
+                      fillColor: Theme.of(context).scaffoldBackgroundColor,
                       filled: true,
                       hintText: "أكتشف أهم الأحداث",
                       hintTextDirection: TextDirection.rtl,

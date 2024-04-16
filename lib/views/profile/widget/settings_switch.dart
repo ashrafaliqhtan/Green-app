@@ -20,10 +20,10 @@ class SettingsSwitch extends StatefulWidget {
   @override
   State<SettingsSwitch> createState() => _SettingsSwitchState();
 }
+    bool isSwitched = true;
+
 
 class _SettingsSwitchState extends State<SettingsSwitch> {
-  bool isSwitched = true;
-
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ThemeBloc>();
