@@ -8,10 +8,10 @@ class DrawerItem extends StatelessWidget {
   final Function()? onTap;
 
   const DrawerItem({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title, this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
