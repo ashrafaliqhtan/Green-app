@@ -11,10 +11,12 @@ class InputTextFelid extends StatelessWidget {
     required this.isPassword,
     this.icon,
     required this.controller,
+    this.hintText,
   });
   final String title;
   final IconData? icon;
   final bool isPassword;
+  String? hintText;
   TextEditingController controller;
 
   @override
@@ -52,6 +54,7 @@ class InputTextFelid extends StatelessWidget {
               controller: controller,
               obscureText: isPassword,
               decoration: InputDecoration(
+                hintText: hintText,
                 prefixIcon: isPassword
                     ? IconButton(
                         onPressed: () {

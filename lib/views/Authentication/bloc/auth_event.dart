@@ -17,3 +17,9 @@ final class SignUpEvent extends AuthEvent {
     required this.confirmPassword,
   });
 }
+
+final class LoginEvent extends AuthEvent {
+  final String email;
+  final String password;
+  LoginEvent({required this.email, required this.password});
+}

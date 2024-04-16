@@ -8,29 +8,44 @@ import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
 import 'package:green_saudi_app/views/Authentication/widget/input_text_felid.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
+  @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+  @override
+  void dispose() {
+    // TODO: implement
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: Builder(builder: (context) {
         final bloc = context.read<AuthBloc>();
-        TextEditingController nameController = TextEditingController();
-        TextEditingController emailController = TextEditingController();
-        TextEditingController phoneController = TextEditingController();
-        TextEditingController passwordController = TextEditingController();
-        TextEditingController confirmPasswordController =
-            TextEditingController();
         return Scaffold(
           body: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthSignUpSuccessState) {
-                context.getMessages(msg: state.message, color: green);
+                context.getMessagesBar(msg: state.message, color: green);
                 context.push(view: const LoginView(), isPush: false);
               } else if (state is AuthSignUpErrorState) {
-                context.getMessages(msg: state.message, color: red);
+                context.getMessagesBar(msg: state.message, color: red);
               }
             },
             builder: (context, state) {
@@ -72,18 +87,21 @@ class SignUpView extends StatelessWidget {
                           InputTextFelid(
                             controller: nameController,
                             title: "الاسم",
+                            hintText: "اسم",
                             icon: Icons.person_outline,
                             isPassword: false,
                           ),
                           InputTextFelid(
                             controller: emailController,
                             title: "البريد الإلكتروني",
+                            hintText: "example@email.com",
                             icon: Icons.email,
                             isPassword: false,
                           ),
                           InputTextFelid(
                             controller: phoneController,
                             title: "رقم الجوال",
+                            hintText: "0555555555",
                             icon: Icons.phone_outlined,
                             isPassword: false,
                           ),

@@ -16,3 +16,14 @@ final class AuthSignUpErrorState extends AuthState {
   final String message;
   AuthSignUpErrorState({required this.message});
 }
+
+final class AuthLoginSuccessState extends AuthState {
+  final String message;
+  AuthLoginSuccessState({required this.message});
+}
+
+final class AuthLoginErrorState extends AuthState {
+  final String message;
+  AuthLoginErrorState({required this.message});
+}
+ 
