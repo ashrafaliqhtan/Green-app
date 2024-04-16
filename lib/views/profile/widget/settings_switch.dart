@@ -39,7 +39,6 @@ class _SettingsSwitchState extends State<SettingsSwitch> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          textDirection: TextDirection.rtl,
           children: [
             Icon(widget.icon),
             const SizedBox(width: 8),

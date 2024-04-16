@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/profile/bloc/image_pic_bloc.dart';
@@ -13,19 +15,17 @@ class EditProfileUser extends StatelessWidget {
     TextEditingController nameController = TextEditingController();
     TextEditingController phoneController = TextEditingController();
 
-    textDirectionToAxisDirection(TextDirection.rtl);
     return BlocProvider(
       create: (context) => ImagePicBloc(),
       child: Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          actions:  [Text("تعديل البيانات",style: TextStyle(color: pureWhite, fontSize: 25),)],
+          actions:  [Text( AppLocale.editTitle.getString(context),style: TextStyle(color: pureWhite, fontSize: 25),)],
           backgroundColor: green,
           automaticallyImplyLeading: true,
         ),
         body: Center(
           child: Column(
-            textDirection: TextDirection.rtl,
             children: [
               InkWell(
                 onTap: () {
@@ -64,7 +64,6 @@ class EditProfileUser extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      textDirection: TextDirection.rtl,
                       children: [
                         Icon(
                           Icons.man_outlined,
@@ -74,7 +73,6 @@ class EditProfileUser extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
-                            textDirection: TextDirection.rtl,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -82,10 +80,9 @@ class EditProfileUser extends StatelessWidget {
                                 width: 250,
                                 height: 50,
                                 child: TextField(
-                                    textDirection: TextDirection.rtl,
                                     controller: nameController,
-                                    decoration: const InputDecoration(
-                                      hintText: "اسم المستخدم",
+                                    decoration:  InputDecoration(
+                                      hintText:  AppLocale.userName.getString(context),
                                     )),
                               ),
                             ],
@@ -107,7 +104,6 @@ class EditProfileUser extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      textDirection: TextDirection.rtl,
                       children: [
                         Icon(
                           Icons.man_outlined,
@@ -117,7 +113,6 @@ class EditProfileUser extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
-                            textDirection: TextDirection.rtl,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -125,10 +120,9 @@ class EditProfileUser extends StatelessWidget {
                                 width: 250,
                                 height: 50,
                                 child: TextField(
-                                    textDirection: TextDirection.rtl,
                                     controller: phoneController,
-                                    decoration: const InputDecoration(
-                                      hintText: "رقم الجوال",
+                                    decoration:  InputDecoration(
+                                      hintText:  AppLocale.phoneNumber.getString(context),
                                     )),
                               )
                             ],
