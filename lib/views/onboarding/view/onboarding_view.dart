@@ -12,7 +12,7 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OnboardingBloc(), 
+      create: (context) => OnboardingBloc(),
       child: BlocBuilder<OnboardingBloc, OnboardingState>(
         builder: (context, state) {
           final onboardingBloc = BlocProvider.of<OnboardingBloc>(context);
@@ -20,8 +20,7 @@ class OnboardingView extends StatelessWidget {
             body: PageView.builder(
               onPageChanged: (index) {
                 if (state is! OnboardingLoadedState) {
-                  onboardingBloc.add(
-                      NextViewEvent()); 
+                  onboardingBloc.add(NextViewEvent());
                 }
               },
               itemCount: onboardingBloc.items.length,
@@ -57,7 +56,6 @@ class OnboardingView extends StatelessWidget {
                               child: TextButton(
                                 onPressed: () {
                                   if (currentIndex == 0) {
-                                    print(currentIndex);
                                     context.push(
                                         view: BottomNavBar(), isPush: false);
                                   } else {

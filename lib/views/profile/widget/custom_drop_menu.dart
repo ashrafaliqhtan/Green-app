@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get_it/get_it.dart';
-import 'package:green_saudi_app/utils/colors.dart';
 
 class DropMenu extends StatefulWidget {
   const DropMenu({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   _DropMenuState createState() => _DropMenuState();
 }

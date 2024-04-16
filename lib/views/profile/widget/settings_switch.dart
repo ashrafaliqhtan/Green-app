@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 
-class settingsSwitch extends StatelessWidget {
-  String title;
-  IconData icons;
-  settingsSwitch({
+class SettingsSwitch extends StatelessWidget {
+  const SettingsSwitch({
     super.key,
     required this.title,
     required this.icons,
   });
+  final String title;
+  final IconData icons;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class settingsSwitch extends StatelessWidget {
       height: 65,
       width: 345,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(30)), color: green),
+          borderRadius: const BorderRadius.all(Radius.circular(30)), color: green),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(

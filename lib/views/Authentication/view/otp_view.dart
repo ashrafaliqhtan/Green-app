@@ -5,8 +5,9 @@ import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
+// ignore: must_be_immutable
 class OTPView extends StatelessWidget {
-   OTPView({super.key});
+  OTPView({super.key});
   bool isButtonEnabled = false;
 
   @override

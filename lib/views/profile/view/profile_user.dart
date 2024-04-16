@@ -4,7 +4,6 @@ import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/views/Hours%20History/view/history_point_view.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'package:green_saudi_app/views/home_view.dart';
 import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
 
