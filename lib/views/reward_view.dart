@@ -14,8 +14,9 @@ class RewardView extends StatelessWidget {
       length: 2,
       initialIndex: 1,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: PreferredSize(
+          
           preferredSize: Size(context.getWidth(), context.getHeight() / 2.7),
           child: SafeArea(
             child: Column(
