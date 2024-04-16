@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
-import 'package:green_saudi_app/views/otp_view.dart';
 import 'package:green_saudi_app/widgets/golas_widget.dart';
 import 'package:green_saudi_app/widgets/slider_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class HomeView extends StatelessWidget {
-   const HomeView({super.key});
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +15,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              context.push(view: OTPView(), isPush: true);
-            },
+            onPressed: () {},
             icon: Image.asset('assets/images/logo.jpg'),
           ),
         ],

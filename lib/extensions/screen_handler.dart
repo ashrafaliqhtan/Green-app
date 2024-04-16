@@ -35,7 +35,7 @@ extension Screen on BuildContext {
     );
   }
 
-  getMessages({required String msg, required Color color, int duration = 3}) {
+  getMessages({required String msg, required Color color, int duration = 2}) {
     showDialog(
       context: this,
       builder: (BuildContext context) {

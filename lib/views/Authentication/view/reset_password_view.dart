@@ -2,11 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
-import 'package:green_saudi_app/widgets/custom_button.dart';
-import 'package:green_saudi_app/widgets/input_text_felid.dart';
+import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
+import 'package:green_saudi_app/views/Authentication/widget/input_text_felid.dart';
 
-class ResetPasswordView extends StatelessWidget {
+class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});
+
+  @override
+  State<ResetPasswordView> createState() => _ResetPasswordViewState();
+}
+
+class _ResetPasswordViewState extends State<ResetPasswordView> {
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController conformPasswordController = TextEditingController();
+  @override
+  void dispose() {
+    passwordController.dispose();
+    conformPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +45,14 @@ class ResetPasswordView extends StatelessWidget {
                 ),
               ),
               height10,
-              const InputTextFelid(
+              InputTextFelid(
+                controller: passwordController,
                 title: "كلمة المرور الجديده",
                 icon: Icons.lock,
                 isPassword: true,
               ),
-              const InputTextFelid(
+              InputTextFelid(
+                controller: conformPasswordController,
                 title: "تأكيد كلمة المرور",
                 icon: Icons.lock,
                 isPassword: true,

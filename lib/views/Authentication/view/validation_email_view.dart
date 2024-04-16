@@ -2,11 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
-import 'package:green_saudi_app/widgets/custom_button.dart';
-import 'package:green_saudi_app/widgets/input_text_felid.dart';
+import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
+import 'package:green_saudi_app/views/Authentication/widget/input_text_felid.dart';
 
-class ValidationEmailView extends StatelessWidget {
+class ValidationEmailView extends StatefulWidget {
   const ValidationEmailView({super.key});
+
+  @override
+  State<ValidationEmailView> createState() => _ValidationEmailViewState();
+}
+
+class _ValidationEmailViewState extends State<ValidationEmailView> {
+  TextEditingController emailController = TextEditingController();
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +51,8 @@ class ValidationEmailView extends StatelessWidget {
                       color: white, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 height10,
-                const InputTextFelid(
+                InputTextFelid(
+                  controller: emailController,
                   title: "البريد الإلكتروني",
                   icon: Icons.email,
                   isPassword: false,
