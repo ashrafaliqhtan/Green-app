@@ -23,3 +23,7 @@ final class LoginEvent extends AuthEvent {
   final String password;
   LoginEvent({required this.email, required this.password});
 }
+
+class CheckSessionAvailability extends AuthEvent {}
+
+class LogoutEvent extends AuthEvent {}

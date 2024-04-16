@@ -26,4 +26,18 @@ final class AuthLoginErrorState extends AuthState {
   final String message;
   AuthLoginErrorState({required this.message});
 }
- 
+
+final class AuthLogoutSuccessState extends AuthState {
+  final String message;
+  AuthLogoutSuccessState({required this.message});
+}
+
+final class AuthLogoutErrorState extends AuthState {
+  final String message;
+  AuthLogoutErrorState({required this.message});
+}
+
+final class SessionAvailabilityState extends AuthState {
+  final dynamic isAvailable;
+  SessionAvailabilityState({required this.isAvailable});
+}

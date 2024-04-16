@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DBServices {
   final supabase = Supabase.instance.client;
+  String userRole = '';
 
   Future signUp({
     required String name,
@@ -9,12 +10,11 @@ class DBServices {
     required String phone,
     required String password,
   }) async {
-    final signedInUser = await supabase.auth
-        .signUp(email: email, password: password);
+    final signedInUser =
+        await supabase.auth.signUp(email: email, password: password);
 
-    await supabase
-        .from("user_green_sa_app")
-        .insert({'id_user': signedInUser.user!.id, 'name': name , 'phone': phone});
+    await supabase.from("user_green_sa_app").insert(
+        {'id_user': signedInUser.user!.id, 'name': name, 'phone': phone});
   }
 
   Future login({required String email, required String password}) async {
@@ -29,6 +29,14 @@ class DBServices {
     final currentSession = supabase.auth.currentSession;
 
     return currentSession;
+  }
+
+  Future getUserRole({required String id}) async {
+    var userInfo = await supabase
+        .from('user_green_sa_app')
+        .select('*')
+        .match({'id_user': id}).single();
+    userRole = userInfo['type_role'];
   }
 
   Future<String> getCurrentUserId() async {

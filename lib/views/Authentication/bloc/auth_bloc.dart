@@ -16,6 +16,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) {});
     on<SignUpEvent>(signUpNewUser);
     on<LoginEvent>(login);
+    on<CheckSessionAvailability>(getSession);
+    on<LogoutEvent>(logout);
   }
 
   FutureOr<void> signUpNewUser(
@@ -88,6 +90,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } else {
       emit(AuthLoginErrorState(
           message: "يرجى ملء كل من حقل البريد الإلكتروني وكلمة المرور."));
+    }
+  }
+
+  FutureOr<void> getSession(
+      CheckSessionAvailability event, Emitter<AuthState> emit) async {
+    await Future.delayed(const Duration(seconds: 2));
+    try {
+      final sessionData = await serviceLocator.getCurrentSession();
+      emit(SessionAvailabilityState(isAvailable: sessionData));
+      final userId = await serviceLocator.getCurrentUserId();
+      await serviceLocator.getUserRole(id: userId);
+      emit(SessionAvailabilityState(isAvailable: sessionData));
+    } catch (e) {}
+  }
+
+  FutureOr<void> logout(LogoutEvent event, Emitter<AuthState> emit) async {
+    try {
+      await serviceLocator.signOut();
+      emit(AuthLogoutSuccessState(message: "تم تسجيل الخروج بنجاح"));
+    } catch (e) {
+      emit(AuthLogoutErrorState(message: "حدث خطأ أثناء عملية تسجيل الخروج"));
     }
   }
 }
