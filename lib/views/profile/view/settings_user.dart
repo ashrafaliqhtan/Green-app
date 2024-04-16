@@ -59,25 +59,30 @@ class SettingsUser extends StatelessWidget {
               ),
             ),
             height16,
-            const SettingsButton(title: "تغير كلمة السر", icons: Icons.password),
+            const SettingsButton(
+                title: "تغير كلمة السر", icons: Icons.password),
             height16,
-            const SettingsButton(title: "تعديل الايميل", icons: Icons.email_outlined),
+            const SettingsButton(
+                title: "تعديل الايميل", icons: Icons.email_outlined),
             height16,
-            const SettingsSwitch(title: "الاشعارات", icon: Icons.notifications, isDarkMode: false,),
+            const SettingsSwitch(
+              title: "الاشعارات",
+              icon: Icons.notifications,
+              isDarkMode: false,
+            ),
             height16,
-            const SettingsSwitch(title: "الوضع الداكن", icon: Icons.sunny, isDarkMode: true,),
+            const SettingsSwitch(
+              title: "الوضع الداكن",
+              icon: Icons.sunny,
+              isDarkMode: true,
+            ),
             height16,
             const SettingsButton(title: "اللغة", icons: Icons.language),
+            height16,
             Container(
               color: green,
               child: const Text("تسجيل الخروج"),
             ),
-            IconButton(
-                onPressed: () {
-                  bloc.add(UpdateThemeEvent());
-                  bloc.add(GetThemeEvent());
-                },
-                icon: const Icon(Icons.abc))
           ],
         ),
       ),
