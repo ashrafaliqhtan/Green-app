@@ -4,8 +4,9 @@ part of 'theme_bloc.dart';
 sealed class ThemeState {}
 
 final class ThemeInitial extends ThemeState {}
-class ShowThemeState extends ThemeState{
-  ThemeData themeData;
-  String currentTheme;
-  ShowThemeState(this.currentTheme,this.themeData);
+
+class ShowThemeState extends ThemeState {
+  final ThemeData themeData;
+  final String currentTheme;
+  ShowThemeState(this.currentTheme, this.themeData);
 }

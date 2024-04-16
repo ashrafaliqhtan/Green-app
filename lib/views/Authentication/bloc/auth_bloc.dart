@@ -76,6 +76,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
           emit(AuthLoginSuccessState(message: "تم تسجيل الدخول بنجاح"));
         } on AuthException catch (e) {
+          print(e);
           emit(AuthLoginErrorState(
               message:
                   "البريد الإلكتروني أو كلمة المرور غير صحيحة: ${e.statusCode}. يرجى التحقق من بيانات الاعتماد الخاصة بك والمحاولة مرة أخرى"));

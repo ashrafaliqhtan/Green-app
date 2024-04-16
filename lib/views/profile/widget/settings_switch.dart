@@ -7,7 +7,7 @@ import 'package:green_saudi_app/views/profile/widget/custom_switch_darkmode.dart
 import 'package:green_saudi_app/views/profile/widget/custom_switch_notfcation.dart';
 
 class SettingsSwitch extends StatefulWidget {
-  SettingsSwitch({
+  const SettingsSwitch({
     super.key,
     required this.title,
     required this.icon,
@@ -15,7 +15,7 @@ class SettingsSwitch extends StatefulWidget {
   });
   final String title;
   final IconData icon;
-  bool isDarkMode = false;
+  final bool isDarkMode;
 
   @override
   State<SettingsSwitch> createState() => _SettingsSwitchState();
