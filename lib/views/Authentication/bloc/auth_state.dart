@@ -38,6 +38,6 @@ final class AuthLogoutErrorState extends AuthState {
 }
 
 final class SessionAvailabilityState extends AuthState {
-  final dynamic isAvailable;
-  SessionAvailabilityState({required this.isAvailable});
+  final Widget page;
+  SessionAvailabilityState({required this.page});
 }
