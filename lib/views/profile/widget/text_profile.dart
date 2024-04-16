@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/utils/spacing.dart';
 
 class TextProfile extends StatelessWidget {
-  String title;
-  String data;
-  TextProfile({
+  final String title;
+  final String data;
+  final IconData? icon;
+  const TextProfile({
     required this.title,
     required this.data,
-    super.key,
+    super.key, this.icon,
   });
   @override
   Widget build(BuildContext context) {
@@ -30,11 +32,21 @@ class TextProfile extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  textDirection: TextDirection.rtl,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text(title), Text(data)],
+                child: Row(
+                  children: [
+                    Icon(
+                      icon,
+                      color: green,
+                    ),
+                    width150,
+                    width24,
+                    Column(
+                      textDirection: TextDirection.rtl,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text(title), Text(data)],
+                    ),
+                  ],
                 ),
               )
             ],

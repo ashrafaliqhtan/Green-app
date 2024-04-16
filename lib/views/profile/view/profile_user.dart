@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/views/Hours%20History/view/history_point_view.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/home_view.dart';
 import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
@@ -17,9 +19,12 @@ class ProfileUser extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              context.push(view: HomeView(), isPush: false);
+              context.push(view: BottomNavBar(), isPush: false);
             },
-            icon: Icon(Icons.arrow_back, color: pureWhite,)),
+            icon: Icon(
+              Icons.arrow_back,
+              color: pureWhite,
+            )),
         actions: [
           Text(
             "الحساب",
@@ -32,7 +37,8 @@ class ProfileUser extends StatelessWidget {
             onPressed: () {
               context.push(view: const SettingsUser(), isPush: true);
             },
-            icon:  Icon(Icons.settings,
+            icon: Icon(
+              Icons.settings,
               color: pureWhite,
             )),
       ),
@@ -52,19 +58,25 @@ class ProfileUser extends StatelessWidget {
               ),
             ),
             const Text("أحمد موسى"),
-            TextProfile(
-              title: "ساعات التطوع",
-              data: "ساعة100",
+            InkWell(
+              onTap: () {
+                context.push(view: const HoursHistoryView(), isPush: false);
+              },
+              child: const TextProfile(
+                title: "ساعات التطوع",
+                data: "ساعة100",
+                icon: Icons.arrow_back_ios_new,
+              ),
             ),
-            TextProfile(
+            const TextProfile(
               title: "الايميل",
               data: "ex@gmail.com",
             ),
-            TextProfile(
+            const TextProfile(
               title: "المدينة",
               data: "المدينة المنورة",
             ),
-            TextProfile(
+            const TextProfile(
               title: "رقم الجوال",
               data: "0591234567",
             ),

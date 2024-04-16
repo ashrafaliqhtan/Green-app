@@ -20,7 +20,7 @@ dependencies:
   timer_count_down: ^2.2.2
   flutter_animate: ^4.5.0
   font_awesome_flutter: ^10.7.0
-  flutter_widget_hover: ^1.0.1
+
 
   image_picker: ^1.0.8
 

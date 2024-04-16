@@ -31,14 +31,14 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     on<NextViewEvent>(
       (event, emit) {
         if (state is OnboardingInitial) {
-          emit(OnboardingLoadedState(currentIndex: 0));
+          emit(OnboardingLoadedState(currentIndex: 1));
         } else if (state is OnboardingLoadedState) {
           final currentIndex = (state as OnboardingLoadedState).currentIndex;
           if (currentIndex < items.length - 1) {
             emit(OnboardingLoadedState(currentIndex: currentIndex + 1));
           }
         }
-            },
+      },
     );
   }
 }
