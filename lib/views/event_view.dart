@@ -31,12 +31,6 @@ class EventView extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            //TODO: Drawer
-          },
-          icon: const Icon(Icons.menu),
-        ),
         title: Text(
           "الاحداث القادمة",
           style: TextStyle(

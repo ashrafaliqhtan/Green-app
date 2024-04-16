@@ -12,7 +12,7 @@ dependencies:
   get_it: ^7.6.7
   flutter_bloc: ^8.1.4
   flutter_dotenv: ^5.1.0
-  supabase_flutter: ^2.5.1
+  supabase_flutter: ^2.3.4
   flutter:
     sdk: flutter
   carousel_slider: ^4.2.1

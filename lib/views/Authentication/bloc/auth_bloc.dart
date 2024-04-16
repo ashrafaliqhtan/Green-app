@@ -43,8 +43,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                   message: "تم إكمال عملية التسجيل بنجاح"));
             } on AuthException catch (e) {
               emit(AuthSignUpErrorState(
-                  message:
-                      "فشل في عملية التسجيل: ${e.statusCode}. يرجى التحقق من بريدك الإلكتروني وكلمة المرور"));
+                message:
+                    "فشل في عملية التسجيل: ${e.statusCode}. يرجى التحقق من بريدك الإلكتروني وكلمة المرور",
+              ));
             } on Exception catch (e) {
               emit(AuthSignUpErrorState(
                   message: "حدث خطأ أثناء عملية التسجيل: $e"));
@@ -55,11 +56,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           }
         } else {
           emit(AuthSignUpErrorState(
-              message: "برجاء التحقق من صحة البريد الإلكتروني المُدخل."));
+              message: "يبدو أن هناك خطأ في رقم الهاتف المُدخل"));
         }
       } else {
         emit(AuthSignUpErrorState(
-            message: "يبدو أن هناك خطأ في رقم الهاتف المُدخل"));
+            message: "برجاء التحقق من صحة البريد الإلكتروني المُدخل."));
       }
     } else {
       emit(AuthSignUpErrorState(message: "يرجى ملء جميع الحقول المطلوبة"));
