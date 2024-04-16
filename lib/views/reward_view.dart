@@ -14,8 +14,9 @@ class RewardView extends StatelessWidget {
       length: 2,
       initialIndex: 1,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: PreferredSize(
+          
           preferredSize: Size(context.getWidth(), context.getHeight() / 2.7),
           child: SafeArea(
             child: Column(
@@ -30,7 +31,7 @@ class RewardView extends StatelessWidget {
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicatorWeight: 3,
                   labelStyle: const TextStyle(fontSize: 20),
-                  unselectedLabelColor: Theme.of(context).colorScheme.onSecondary,
+                  unselectedLabelColor: Theme.of(context).unselectedWidgetColor,
                   tabs: const [
                     Tab(text: 'تاريخ النقاط'),
                     Tab(text: 'العروض'),

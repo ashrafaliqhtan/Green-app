@@ -38,7 +38,7 @@ class _DropMenuState extends State<DropMenu> {
           borderRadius: BorderRadius.circular(20),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).primaryColor,
       ),
       value: selectedValue,
       onChanged: (String? newValue) {

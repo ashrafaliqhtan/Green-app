@@ -17,7 +17,8 @@ class EditProfileUser extends StatelessWidget {
     return BlocProvider(
       create: (context) => ImagePicBloc(),
       child: Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
         appBar: AppBar(
           actions:  [Text("تعديل البيانات",style: TextStyle(color: pureWhite, fontSize: 25),)],
           backgroundColor: green,
@@ -59,7 +60,7 @@ class EditProfileUser extends StatelessWidget {
                   width: 350,
                   height: 82,
                   decoration: BoxDecoration(
-                      color: pureWhite,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(40)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -102,7 +103,7 @@ class EditProfileUser extends StatelessWidget {
                   width: 350,
                   height: 82,
                   decoration: BoxDecoration(
-                      color: pureWhite,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(40)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

@@ -7,6 +7,7 @@ import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Drawer/widget/drawer_widget.dart';
 import 'package:green_saudi_app/views/profile/view/profile_user.dart';
+import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({super.key});
@@ -80,10 +81,15 @@ class DrawerScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.settings, color: pureWhite),
                     width8,
-                    Text(
-                      'الاعدادات',
-                      style: TextStyle(
-                          color: pureWhite, fontWeight: FontWeight.bold),
+                    InkWell(
+                      onTap: () {
+                        context.push(view: const SettingsUser(), isPush: true);
+                      },
+                      child: Text(
+                        'الاعدادات',
+                        style: TextStyle(
+                            color: pureWhite, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     width8,
                     Container(width: 2, height: 20, color: pureWhite),

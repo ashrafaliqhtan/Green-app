@@ -9,6 +9,7 @@ class EventDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme .of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           Positioned.fill(
@@ -21,7 +22,7 @@ class EventDetailsView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    color: Colors.white,
+                    color: Theme .of(context).scaffoldBackgroundColor,
                   ),
                 )
               ],
@@ -85,7 +86,6 @@ class EventDetailsView extends StatelessWidget {
                     Text(
                       "زراعة الاشجار",
                       style: TextStyle(
-                        color: pureWhite,
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
@@ -157,7 +157,6 @@ class EventDetailsView extends StatelessWidget {
                 child: Text(
                   "زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.",
                   style: TextStyle(
-                    color: Colors.blueGrey[300],
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -171,7 +170,7 @@ class EventDetailsView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               height: 120,
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Theme .of(context).primaryColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),

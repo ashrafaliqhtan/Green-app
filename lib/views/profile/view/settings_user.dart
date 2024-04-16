@@ -63,9 +63,9 @@ class SettingsUser extends StatelessWidget {
             height16,
             const SettingsButton(title: "تعديل الايميل", icons: Icons.email_outlined),
             height16,
-            SettingsSwitch(title: "الاشعارات", icon: Icons.notifications, isDarkMode: false,),
+            const SettingsSwitch(title: "الاشعارات", icon: Icons.notifications, isDarkMode: false,),
             height16,
-            SettingsSwitch(title: "الوضع الداكن", icon: Icons.sunny, isDarkMode: true,),
+            const SettingsSwitch(title: "الوضع الداكن", icon: Icons.sunny, isDarkMode: true,),
             height16,
             const SettingsButton(title: "اللغة", icons: Icons.language),
             Container(
@@ -77,7 +77,7 @@ class SettingsUser extends StatelessWidget {
                   bloc.add(UpdateThemeEvent());
                   bloc.add(GetThemeEvent());
                 },
-                icon: Icon(Icons.abc))
+                icon: const Icon(Icons.abc))
           ],
         ),
       ),

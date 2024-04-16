@@ -10,9 +10,9 @@ class HoursHistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: white,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: () {
               context.push(view: const ProfileUser(), isPush: false);

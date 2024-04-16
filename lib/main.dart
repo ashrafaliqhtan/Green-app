@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
+import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
 
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 
@@ -17,9 +19,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardingView(),
+    return BlocProvider(
+      create: (context) => ThemeBloc()..add(GetThemeEvent()),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          final bloc = context.read<ThemeBloc>();
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: bloc.themeInfo,
+            home: const OnboardingView(),
+          );
+        },
+      ),
     );
   }
 }
