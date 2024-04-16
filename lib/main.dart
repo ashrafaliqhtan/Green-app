@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 
@@ -27,7 +28,7 @@ class MainApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: bloc.themeInfo,
-            home: const OnboardingView(),
+            home: BottomNavBar(),
           );
         },
       ),
