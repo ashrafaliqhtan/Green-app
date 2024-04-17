@@ -9,10 +9,9 @@ class NameRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 20, top: 10),
+          padding: const EdgeInsets.only(right: 20, top: 10,left: 20),
           child: Text(rowName,
               style: TextStyle(
                 fontSize: 24,

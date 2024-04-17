@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/view/rewards_page.dart';
@@ -16,12 +18,12 @@ class AddReword extends StatelessWidget {
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: pureWhite),
         backgroundColor: green,
-        title: const Row(
+        title:  Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              " إضافة حدث",
-              style: TextStyle(
+              AppLocale.addEvent.getString(context),
+              style:const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
@@ -39,7 +41,7 @@ class AddReword extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("أضف صورة الغلاف",
+                  Text(AppLocale.addImageEvent.getString(context),
                       style: TextStyle(
                         fontSize: 24,
                         color: black,
@@ -59,14 +61,14 @@ class AddReword extends StatelessWidget {
               ),
             ),
             // Second row
-            const NameRow(rowName: "إسم المكآفأة"),
+             NameRow(rowName: AppLocale.eventName.getString(context),),
             height16,
             const Padding(
               padding: EdgeInsets.only(left: 20, right: 20),
               child: TextfieldContainer(),
             ),
             height26,
-            const NameRow(rowName: " أضف وصف المكآفأة"),
+             NameRow(rowName: AppLocale.addDescription.getString(context),),
             height16,
             Container(
               width: 350,
@@ -99,7 +101,7 @@ class AddReword extends StatelessWidget {
                       context.push(view:const RewardsPage(), isPush: false);
                     },
                     child: Text(
-                      "إلغاء",
+                      AppLocale.cancel.getString(context),
                       style: TextStyle(
                           color: pureWhite,
                           fontWeight: FontWeight.bold,
@@ -115,7 +117,7 @@ class AddReword extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {},
                     child: Text(
-                      "إضافة",
+                      AppLocale.addIt.getString(context),
                       style: TextStyle(
                           color: pureWhite,
                           fontWeight: FontWeight.bold,

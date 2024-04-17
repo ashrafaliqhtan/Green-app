@@ -43,7 +43,6 @@ class _MainAppState extends State<MainApp> {
 
 // the setState function here is a must to add
   void _onTranslatedLanguage(Locale? locale) {
-    setState(() {});
   }
 
   @override

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
-import 'package:green_saudi_app/utils/spacing.dart';
-import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'dart:math' as math;
 
 class SettingsButton extends StatelessWidget {
    SettingsButton({
@@ -30,15 +26,9 @@ class SettingsButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Icon(icons),
-              width8,
-              Text(title),
-              width150,
-              width30,
-               Transform.rotate(
-                angle: math.pi,
-                child: const Icon(Icons.arrow_back_ios),
-              )
+              Icon(icons,color: pureWhite,),
+              Text(title,style: TextStyle(color: pureWhite,fontWeight: FontWeight.bold,fontSize: 24),),
+               const Icon(Icons.arrow_forward_ios,color: Colors.white,),
             ],
           ),
         ),
