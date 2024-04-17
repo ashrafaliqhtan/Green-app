@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
-import 'package:green_saudi_app/model/onboarding_model.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
@@ -81,6 +80,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
           emit(AuthLoginSuccessState(message: "تم تسجيل الدخول بنجاح"));
         } on AuthException catch (e) {
+          print("----------------");
+          print(e.message);
+          print(e.statusCode);
+          print("----------------");
           emit(AuthLoginErrorState(
               message:
                   "البريد الإلكتروني أو كلمة المرور غير صحيحة: ${e.statusCode}. يرجى التحقق من بيانات الاعتماد الخاصة بك والمحاولة مرة أخرى"));
@@ -102,11 +105,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       CheckSessionAvailability event, Emitter<AuthState> emit) async {
     await Future.delayed(const Duration(seconds: 2));
     try {
+      print("1");
       final sessionData = await serviceLocator.getCurrentSession();
       if (sessionData != null) {
         final userId = await serviceLocator.getCurrentUserId();
-        await serviceLocator.getUserRole(id: userId);
+        print("2");
 
+        await serviceLocator.getUserRole(id: userId);
+        print("3");
         if (serviceLocator.userRole == 'admin') {
           emit(SessionAvailabilityState(page: const ControlPanel()));
         } else {
@@ -115,7 +121,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } else {
         emit(SessionAvailabilityState(page: const OnboardingView()));
       }
-    } catch (e) {}
+    } catch (e) {
+
+    }
   }
 
   FutureOr<void> logout(LogoutEvent event, Emitter<AuthState> emit) async {

@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
-
-import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
+import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
+import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,15 +19,22 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeBloc()..add(GetThemeEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ThemeBloc()..add(GetThemeEvent()),
+        ),
+        BlocProvider(
+          create: (context) => AuthBloc()..add(CheckSessionAvailability()),
+        ),
+      ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           final bloc = context.read<ThemeBloc>();
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: bloc.themeInfo,
-            home: const OnboardingView(),
+            home: const SplashView(),
           );
         },
       ),

@@ -9,27 +9,24 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc()..add(CheckSessionAvailability()),
-      child: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is SessionAvailabilityState) {
-            context.push(view: state.page, isPush: false);
-          }
-        },
-        child: Scaffold(
-          backgroundColor: green,
-          body: SafeArea(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Image.asset("assets/images/splash_logo.png"),
-                  ],
-                ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is SessionAvailabilityState) {
+          context.push(view: state.page, isPush: false);
+        }
+      },
+      child: Scaffold(
+        backgroundColor: green,
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Image.asset("assets/images/splash_logo.png"),
+                ],
               ),
             ),
           ),
