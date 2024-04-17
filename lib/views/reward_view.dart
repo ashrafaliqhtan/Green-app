@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
@@ -32,9 +34,9 @@ class RewardView extends StatelessWidget {
                   indicatorWeight: 3,
                   labelStyle: const TextStyle(fontSize: 20),
                   unselectedLabelColor: Theme.of(context).unselectedWidgetColor,
-                  tabs: const [
-                    Tab(text: 'تاريخ النقاط'),
-                    Tab(text: 'العروض'),
+                  tabs: [
+                    Tab(text: AppLocale.offers.getString(context)),
+                    Tab(text: AppLocale.historyPoint.getString(context)),
                   ],
                 ),
               ],
@@ -46,15 +48,6 @@ class RewardView extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  // History Point
-                  Scrollbar(
-                    thickness: 4,
-                    child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return PointWidget();
-                        }),
-                  ),
                   // Offers
                   GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -68,6 +61,12 @@ class RewardView extends StatelessWidget {
                       return OfferWidget();
                     },
                   ),
+                  // History Point
+                  ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return PointWidget();
+                      }),
                 ],
               ),
             ),

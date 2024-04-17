@@ -74,7 +74,6 @@ class AddEvent extends StatelessWidget {
               child: const TextField(
                 maxLines: 5,
                 maxLength: 250,
-                textDirection: TextDirection.rtl,
                 decoration: InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(borderSide: BorderSide.none),

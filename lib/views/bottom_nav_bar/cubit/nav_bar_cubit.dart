@@ -8,7 +8,7 @@ import 'package:green_saudi_app/views/reward_view.dart';
 part 'nav_bar_state.dart';
 
 class NavBarCubit extends Cubit<NavBarState> {
-  List<Widget> pages = <Widget>[
+  List pages = [
      const HomeView(),
     const EventView(),
     const RewardView(),

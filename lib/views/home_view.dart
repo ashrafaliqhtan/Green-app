@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
@@ -29,12 +31,12 @@ class HomeView extends StatelessWidget {
       body: ListView(
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'المبادرات الجارية',
+                  AppLocale.currentEvent.getString(context),
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     fontSize: 20,
@@ -53,7 +55,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: AnimateList(
                     interval: 400.ms,
                     effects: [FadeEffect(duration: 300.ms)],
@@ -68,8 +70,8 @@ class HomeView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          "أهداف المبادرة",
-                          textAlign: TextAlign.right,
+                          AppLocale.dutiesInitiatives.getString(context),
+                          // textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: 30,
                             color: green,
@@ -77,31 +79,31 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const GoalsWidget(
+                      GoalsWidget(
                         img: 'assets/images/one-removebg-preview.png',
                         text:
-                            'الإشراف على جميع جهود المملكة وتوحيدها لمكافحة تغير المناخ تحت مظلة واحدة وفق أهداف واضحة',
+                            AppLocale.dutiesInitiatives1.getString(context),
                       ),
-                      const GoalsWidget(
+                      GoalsWidget(
                         img: 'assets/images/spinner-removebg-preview.png',
                         text:
-                            'توحيد جهود القطاعين الحكومي والخاص لتحديد ودعم فرص التعاون والابتكار',
+                            AppLocale.dutiesInitiatives2.getString(context),
                       ),
-                      const GoalsWidget(
+                      GoalsWidget(
                         img: 'assets/images/Growth-removebg-preview.png',
                         text:
-                            'تعزيز الاقتصاد الأخضر – تم إطلاق أكثر من 80 مبادرة تمثل استثماراً مهماً تتجاوز قيمته 705 مليار ريال سعودي',
+                            AppLocale.dutiesInitiatives3.getString(context),
                       ),
-                      const GoalsWidget(
+                      GoalsWidget(
                         img: 'assets/images/Plant-removebg-preview.png',
                         text:
-                            'تسريع الانتقال الأخضر والاضطلاع بدور رائد عالمياً في تطبيق نموذج الاقتصاد الدائري للكربون',
+                            AppLocale.dutiesInitiatives4.getString(context),
                       ),
-                      const GoalsWidget(
+                      GoalsWidget(
                         img:
                             'assets/images/Screenshot_2024-04-11_224327-removebg-preview.png',
                         text:
-                            'رفع مستوى جودة الحياة وحماية البيئة للأجيال القادمة في المملكة العربية السعودية',
+                           AppLocale.dutiesInitiatives5.getString(context),
                         isDivider: false,
                       ),
                     ],

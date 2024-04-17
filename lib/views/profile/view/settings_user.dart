@@ -6,6 +6,7 @@ import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 import 'package:green_saudi_app/views/profile/view/edit_profile_user.dart';
 import 'package:green_saudi_app/views/profile/widget/settings_button.dart';
@@ -16,13 +17,18 @@ class SettingsUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit=context.read<LanguageCubit>();
+    final cubit = context.read<LanguageCubit>();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        actions:  [Text(AppLocale.SettingsTitle.getString(context))],
+        actions: [Text(AppLocale.SettingsTitle.getString(context))],
         backgroundColor: green,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              context.push(view: BottomNavBar(), isPush: false);
+            },
+            icon: Icon(Icons.arrow_back)),
       ),
       body: Center(
         child: Column(
@@ -50,42 +56,67 @@ class SettingsUser extends StatelessWidget {
                             "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
                       ),
                     ),
-                     Column(
-                      children: [Text("أحمد موسى"), Text(AppLocale.editProfile.getString(context))],
+                    Column(
+                      children: [
+                        Text("أحمد موسى"),
+                        Text(AppLocale.editProfile.getString(context))
+                      ],
                     )
                   ],
                 ),
               ),
             ),
             height16,
-             SettingsButton(title: AppLocale.changePassword.getString(context), icons: Icons.password,onTap: (){context.push(view: OnboardingView(), isPush: true);},),
-            height16,
-             SettingsButton(title: AppLocale.email.getString(context), icons: Icons.email_outlined,onTap: (){}),
-            height16,
-            SettingsSwitch(title: AppLocale.notification.getString(context), icon: Icons.notifications, isDarkMode: false,),
-            height16,
-            SettingsSwitch(title: AppLocale.darkMode.getString(context), icon: Icons.sunny, isDarkMode: true,),
-            height16,
-             SettingsButton(title: AppLocale.languageButton.getString(context), icons: Icons.language,onTap: (){showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: const Text('AlertDialog description'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => cubit.changeLanguage("ar"),
-              child: const Text('العربية'),
+            SettingsButton(
+              title: AppLocale.changePassword.getString(context),
+              icons: Icons.password,
+              onTap: () {
+                context.push(view: OnboardingView(), isPush: true);
+              },
             ),
-            TextButton(
-              onPressed: () => cubit.changeLanguage("en"),
-              child: const Text('english'),
+            height16,
+            SettingsButton(
+                title: AppLocale.email.getString(context),
+                icons: Icons.email_outlined,
+                onTap: () {}),
+            height16,
+            SettingsSwitch(
+              title: AppLocale.notification.getString(context),
+              icon: Icons.notifications,
+              isDarkMode: false,
             ),
-          ],
-        ),
-      );}),
+            height16,
+            SettingsSwitch(
+              title: AppLocale.darkMode.getString(context),
+              icon: Icons.sunny,
+              isDarkMode: true,
+            ),
+            height16,
+            SettingsButton(
+                title: AppLocale.languageButton.getString(context),
+                icons: Icons.language,
+                onTap: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('AlertDialog Title'),
+                      content: const Text('AlertDialog description'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => cubit.changeLanguage("ar"),
+                          child: const Text('العربية'),
+                        ),
+                        TextButton(
+                          onPressed: () => cubit.changeLanguage("en"),
+                          child: const Text('english'),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
             Container(
               color: green,
-              child:  Text(AppLocale.logoutButton.getString(context)),
+              child: Text(AppLocale.logoutButton.getString(context)),
             ),
           ],
         ),

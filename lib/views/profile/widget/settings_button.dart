@@ -5,6 +5,7 @@ import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'dart:math' as math;
 
+// ignore: must_be_immutable
 class SettingsButton extends StatelessWidget {
    SettingsButton({
     super.key,

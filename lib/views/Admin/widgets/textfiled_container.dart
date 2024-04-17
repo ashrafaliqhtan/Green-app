@@ -13,7 +13,6 @@ class TextfieldContainer extends StatelessWidget {
       width: 350,
       height: 60,
       child: TextField(
-        textDirection: TextDirection.rtl,
         decoration: InputDecoration(
             filled: true,
             fillColor: pureWhite,

@@ -4,6 +4,7 @@ import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
+import 'package:green_saudi_app/views/Authentication/view/signup_view.dart';
 import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
@@ -122,7 +123,20 @@ class _LoginViewState extends State<LoginView> {
                               password: passwordController.text));
                         },
                         backgroundColor: green,
-                      )
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.push(
+                              view: const SignUpView(), isPush: true);
+                        },
+                        child: Text(
+                          "ليس لديك حساب سجل معنا",
+                          style: TextStyle(
+                            color: white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/cubit/nav_bar_cubit.dart';
@@ -9,15 +11,26 @@ import 'package:flutter_svg/flutter_svg.dart';
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});
 
-  final List<Map<String, dynamic>> navItems = [
-    {"icon": 'assets/icons/home1.svg', "label": "Home"},
-    {"icon": 'assets/icons/event.svg', "label": "Event"},
-    {"icon": 'assets/icons/reward.svg', "label": "Reward"},
-    {"icon": 'assets/icons/history.svg', "label": "MyEvent"},
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> navItems = [
+      {
+        "icon": 'assets/icons/home1.svg',
+        "label": AppLocale.homePage.getString(context)
+      },
+      {
+        "icon": 'assets/icons/event.svg',
+        "label": AppLocale.eventPage.getString(context)
+      },
+      {
+        "icon": 'assets/icons/reward.svg',
+        "label": AppLocale.pointPage.getString(context)
+      },
+      {
+        "icon": 'assets/icons/history.svg',
+        "label": AppLocale.myEventPage.getString(context)
+      },
+    ];
     return BlocProvider(
       create: (context) => NavBarCubit(),
       child: BlocBuilder<NavBarCubit, NavBarState>(

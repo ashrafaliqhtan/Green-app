@@ -35,16 +35,14 @@ class _MainAppState extends State<MainApp> {
         const MapLocale('en', AppLocale.EN),
         const MapLocale('ar', AppLocale.AR)
       ],
-      initLanguageCode: 'ar',
+      initLanguageCode: 'en',
     );
     localization.onTranslatedLanguage = _onTranslatedLanguage;
     super.initState();
   }
 
 // the setState function here is a must to add
-  void _onTranslatedLanguage(Locale? locale) {
-    setState(() {});
-  }
+  void _onTranslatedLanguage(Locale? locale) {}
 
   @override
   Widget build(BuildContext context) {
