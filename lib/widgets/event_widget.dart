@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/views/details_event_view.dart';
@@ -55,10 +56,8 @@ class EventWidget extends StatelessWidget {
                 )),
               ),
             ),
-            Positioned(
-              top: 30,
-              right: 50,
-              left: 50,
+            Align(
+              alignment: Alignment.center,
               child: Center(
                   child: Text(
                 "تحويل إدارة النفايات",

@@ -17,7 +17,10 @@ class HistoryEventView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Image.asset('assets/images/logo.jpg'),
+            icon: const CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/images/logo.jpg'),
+            ),
           ),
         ],
       ),
@@ -34,7 +37,7 @@ class HistoryEventView extends StatelessWidget {
               child: Text(
                 "أحداثي",
                 style: TextStyle(
-                    color: green, fontSize: 25, fontWeight: FontWeight.bold),
+                    color: green, fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           ),

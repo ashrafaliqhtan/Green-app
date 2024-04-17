@@ -17,6 +17,11 @@ class OnboardingView extends StatelessWidget {
       child: BlocBuilder<OnboardingBloc, OnboardingState>(
         builder: (context, state) {
           final onboardingBloc = BlocProvider.of<OnboardingBloc>(context);
+
+          // ** Preload all images for smooth transaction ** \\
+          for (final item in onboardingBloc.items) {
+            precacheImage(AssetImage(item.image), context);
+          }
           return Scaffold(
             body: PageView.builder(
               onPageChanged: (index) {
@@ -28,119 +33,117 @@ class OnboardingView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final currentIndex =
                     state is OnboardingLoadedState ? state.currentIndex : 0;
-                return SafeArea(
-                  child: Container(
-                    width: context.getWidth(),
-                    height: context.getHeight(),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image:
-                            AssetImage(onboardingBloc.items[currentIndex].image),
-                        fit: BoxFit.cover,
-                      ),
+                return Container(
+                  width: context.getWidth(),
+                  height: context.getHeight(),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          AssetImage(onboardingBloc.items[currentIndex].image),
+                      fit: BoxFit.cover,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: context.getWidth() * .3,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.transparent,
-                                  border: Border.all(width: 2, color: grey),
-                                ),
-                                child: TextButton(
-                                  onPressed: () {
-                                    if (currentIndex == 0) {
-                                      context.push(
-                                          view: BottomNavBar(), isPush: false);
-                                    } else {
-                                      onboardingBloc.add(NextViewEvent());
-                                    }
-                                  },
-                                  child: Text(
-                                    "تخطي",
-                                    style: TextStyle(color: white),
-                                  ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: context.getWidth() * .3,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.transparent,
+                                border: Border.all(width: 2, color: grey),
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  context.push(
+                                      view: BottomNavBar(), isPush: false);
+                                },
+                                child: Text(
+                                  "تخطي",
+                                  style: TextStyle(color: white),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        height100,
-                        //Titles
-                        Text(
-                          onboardingBloc.items[currentIndex].title,
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
+                      ),
+                      height100,
+                      //Titles
+                      Text(
+                        onboardingBloc.items[currentIndex].title,
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: green,
+                          fontWeight: FontWeight.bold,
                         ),
-                        height100,
-                        //Description
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                        textAlign: TextAlign.center,
+                      ),
+                      height100,
+                      //Description
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: SizedBox(
+                          width: context.getWidth(),
+                          height: context.getHeight() * .16,
                           child: Text(
                             onboardingBloc.items[currentIndex].description,
                             style: TextStyle(color: grey, fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        height100,
-                        // dots
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            onboardingBloc.items.length,
-                            (index) => AnimatedContainer(
-                              margin: const EdgeInsets.symmetric(horizontal: 2),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: currentIndex == index ? green : grey,
-                              ),
-                              height: 7,
-                              width: currentIndex == index ? 30 : 7,
-                              duration: const Duration(milliseconds: 100),
+                      ),
+                      height100,
+                      // dots
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          onboardingBloc.items.length,
+                          (index) => AnimatedContainer(
+                            margin: const EdgeInsets.symmetric(horizontal: 2),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: currentIndex == index ? green : grey,
                             ),
+                            height: 7,
+                            width: currentIndex == index ? 30 : 7,
+                            duration: const Duration(milliseconds: 1000),
+                          ),
+                        ).reversed.toList(),
+                      ),
+                      height40,
+                      // button
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 20),
+                        width: context.getWidth() * .9,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: green,
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            if (currentIndex ==
+                                onboardingBloc.items.length - 1) {
+                              context.push(view: BottomNavBar(), isPush: false);
+                            } else {
+                              onboardingBloc.add(NextViewEvent());
+                            }
+                          },
+                          child: Text(
+                            currentIndex == onboardingBloc.items.length - 1
+                                ? "لنبدأ"
+                                : "استمر",
+                            style: TextStyle(color: pureWhite, fontSize: 24),
                           ),
                         ),
-                        height40,
-                        // button
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 20),
-                          width: context.getWidth() * .9,
-                          height: 55,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: green,
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              if (currentIndex ==
-                                  onboardingBloc.items.length - 1) {
-                                context.push(view: const SignUpView(), isPush: false);
-                              } else {
-                                onboardingBloc.add(NextViewEvent());
-                              }
-                            },
-                            child: Text(
-                              currentIndex == onboardingBloc.items.length - 1
-                                  ? "لنبدأ"
-                                  : "استمر",
-                              style: TextStyle(color: pureWhite, fontSize: 24),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               },

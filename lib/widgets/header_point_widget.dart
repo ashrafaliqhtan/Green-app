@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/utils/spacing.dart';
 
 class HeaderPoint extends StatelessWidget {
   const HeaderPoint({super.key});
@@ -38,32 +39,29 @@ class HeaderPoint extends StatelessWidget {
                 )),
               ),
             ),
-            Positioned(
-              top: 30,
-              right: 100,
-              left: 100,
-              child: Center(
-                child: Text(
-                  "نقاطك الحالية",
-                  style: TextStyle(
-                    color: pureWhite,
-                    fontSize: 25,
+            Positioned.fill(
+              child: Column(
+                children: [
+                  height20,
+                  Center(
+                    child: Text(
+                      "نقاطك الحالية",
+                      style: TextStyle(
+                        color: pureWhite,
+                        fontSize: 25,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 60,
-              right: 100,
-              left: 100,
-              child: Center(
-                child: Text(
-                  "123",
-                  style: TextStyle(
-                    color: pureWhite,
-                    fontSize: 25,
+                  Center(
+                    child: Text(
+                      "123",
+                      style: TextStyle(
+                        color: pureWhite,
+                        fontSize: 25,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ],
