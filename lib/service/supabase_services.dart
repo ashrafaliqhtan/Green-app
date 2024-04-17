@@ -1,11 +1,13 @@
+import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DBServices {
   final supabase = Supabase.instance.client;
   String userRole = '';
   String email = "";
+  String userID = "";
   String otpToken = '';
-
+  GSIUser user = GSIUser();
 
   //----------------------------- Auth --------------------------------
   Future signUp({
@@ -35,15 +37,13 @@ class DBServices {
     return currentSession;
   }
 
-  Future getUserRole({required String id}) async {
-    var userInfo = await supabase
+  Future<GSIUser> getUser({required String id}) async {
+    final userInfo = await supabase
         .from('user_green_sa_app')
         .select('*')
         .match({'id_user': id}).single();
-    userRole = userInfo['type_role'];
-    print("---------------");
-    print(userRole);
-    print("---------------");
+    email = supabase.auth.currentUser!.email!;
+    return GSIUser.fromJson(userInfo);
   }
 
   Future<String> getCurrentUserId() async {

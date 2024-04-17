@@ -113,9 +113,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       final sessionData = await serviceLocator.getCurrentSession();
       if (sessionData != null) {
-        final userId = await serviceLocator.getCurrentUserId();
-        await serviceLocator.getUserRole(id: userId);
-        if (serviceLocator.userRole == 'admin') {
+        serviceLocator.userID = await serviceLocator.getCurrentUserId();
+        serviceLocator.user =
+            await serviceLocator.getUser(id: serviceLocator.userID);
+        print("------------------");
+        print(serviceLocator.user.typeRole);
+        print("------------------");
+        if (serviceLocator.user.typeRole == 'admin') {
           emit(SessionAvailabilityState(page: const ControlPanel()));
         } else {
           emit(SessionAvailabilityState(page: BottomNavBar()));
@@ -144,7 +148,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthCheckEmailVerificationState(
             message: "تم إرسال رمز التحقق إلى بريدك الإلكتروني"));
       } catch (e) {
-        emit(AuthCheckEmailVerificationErrorState(message: "الإيميل غير معروف"));
+        emit(
+            AuthCheckEmailVerificationErrorState(message: "الإيميل غير معروف"));
       }
     } else {
       emit(AuthCheckEmailVerificationErrorState(
@@ -193,7 +198,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(AuthChangePasswordState(message: "تم تغيير كلمة المرور بنجاح"));
           await serviceLocator.signOut();
         } on AuthException catch (_) {
-          emit(AuthChangePasswordErrorState(message: "غير مسموح لك بتغيير كلمة المرور"));
+          emit(AuthChangePasswordErrorState(
+              message: "غير مسموح لك بتغيير كلمة المرور"));
         } on Exception catch (_) {
           emit(AuthChangePasswordErrorState(
               message:

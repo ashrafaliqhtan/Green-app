@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/data_layer/data_layer.dart';
 
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/views/Hours%20History/view/Hours_history.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
@@ -14,6 +16,8 @@ class ProfileUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+    final user = serviceLocator.user;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -58,28 +62,28 @@ class ProfileUser extends StatelessWidget {
                 ),
               ),
             ),
-            Text("أحمد موسى"),
+            Text(user.name ?? "Name"),
             InkWell(
               onTap: () {
                 context.push(view: HoursHistoryView(), isPush: false);
               },
               child: TextProfile(
                 title: AppLocale.volunteerHours.getString(context),
-                data: "ساعة100",
+                data: "ساعة${user.volunteerHours ?? "0"}",
                 icon: Icons.arrow_back_ios_new,
               ),
             ),
             TextProfile(
               title: AppLocale.email.getString(context),
-              data: "ex@gmail.com",
+              data: serviceLocator.email,
             ),
             TextProfile(
               title: AppLocale.city.getString(context),
-              data: "المدينة المنورة",
+              data: serviceLocator.user.city ?? "الرياض",
             ),
             TextProfile(
               title: AppLocale.phoneNumber.getString(context),
-              data: "0591234567",
+              data: serviceLocator.user.phoneNumber ?? "0500500505",
             ),
           ],
         ),

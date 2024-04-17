@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
@@ -15,6 +17,8 @@ class DrawerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+    final user = serviceLocator.user;
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
@@ -43,7 +47,7 @@ class DrawerScreen extends StatelessWidget {
                     const CircleAvatar(),
                     width16,
                     Text(
-                      'Sultan Alotaibi',
+                      user.name ?? "مرحبا بك",
                       style: TextStyle(
                         color: pureWhite,
                         fontWeight: FontWeight.bold,
