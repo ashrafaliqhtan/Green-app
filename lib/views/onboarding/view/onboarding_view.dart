@@ -16,6 +16,11 @@ class OnboardingView extends StatelessWidget {
       child: BlocBuilder<OnboardingBloc, OnboardingState>(
         builder: (context, state) {
           final onboardingBloc = BlocProvider.of<OnboardingBloc>(context);
+
+          // ** Preload all images for smooth transaction ** \\
+          for (final item in onboardingBloc.items) {
+            precacheImage(AssetImage(item.image), context);
+          }
           return Scaffold(
             body: PageView.builder(
               onPageChanged: (index) {
@@ -55,12 +60,8 @@ class OnboardingView extends StatelessWidget {
                               ),
                               child: TextButton(
                                 onPressed: () {
-                                  if (currentIndex == 0) {
-                                    context.push(
-                                        view: BottomNavBar(), isPush: false);
-                                  } else {
-                                    onboardingBloc.add(NextViewEvent());
-                                  }
+                                  context.push(
+                                      view: BottomNavBar(), isPush: false);
                                 },
                                 child: Text(
                                   "تخطي",
@@ -86,10 +87,14 @@ class OnboardingView extends StatelessWidget {
                       //Description
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Text(
-                          onboardingBloc.items[currentIndex].description,
-                          style: TextStyle(color: grey, fontSize: 16),
-                          textAlign: TextAlign.center,
+                        child: SizedBox(
+                          width: context.getWidth(),
+                          height: context.getHeight() * .16,
+                          child: Text(
+                            onboardingBloc.items[currentIndex].description,
+                            style: TextStyle(color: grey, fontSize: 16),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                       height100,
@@ -106,9 +111,9 @@ class OnboardingView extends StatelessWidget {
                             ),
                             height: 7,
                             width: currentIndex == index ? 30 : 7,
-                            duration: const Duration(milliseconds: 100),
+                            duration: const Duration(milliseconds: 1000),
                           ),
-                        ),
+                        ).reversed.toList(),
                       ),
                       height40,
                       // button

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
@@ -10,7 +11,7 @@ class HistoryHoursWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.getWidth(),
-      height: context.getHeight() * .16,
+      height: context.getHeight() * .20,
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -82,10 +83,10 @@ class HistoryHoursWidget extends StatelessWidget {
                   ),
                 ),
                 width16,
-                const Icon(
-                  Icons.star,
-                  color: Colors.yellow,
+                 Icon(
+                  FontAwesomeIcons.clock, color: green,
                 ),
+                width4,
               ],
             ),
           ),

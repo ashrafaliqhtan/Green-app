@@ -43,7 +43,10 @@ class EventView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Image.asset('assets/images/logo.jpg'),
+            icon: const CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/images/logo.jpg'),
+            ),
           ),
         ],
       ),
