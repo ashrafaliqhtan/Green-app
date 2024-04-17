@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/views/Admin/view/add_event.dart';
+import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 
 class EditEventsPage extends StatelessWidget {
   const EditEventsPage({super.key});
@@ -11,29 +12,36 @@ class EditEventsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        actionsIconTheme: IconThemeData(color: pureWhite),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push(view: const AddEvent(), isPush: false);
+            },
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              context.push(view: const ControlPanel(), isPush: false);
+            },
+            icon: const Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+            ),
+          ),
+        ],
         backgroundColor: green,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            IconButton(
-                onPressed: () {
-                  context.push(view: const AddEvent(), isPush: true);
-                },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                )),
-            const Padding(
-              padding: EdgeInsets.only(left: 170),
-              child: Text(
-                "الأحداث",
-                style: TextStyle(
+            Text(
+              "الأحداث",
+              style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
+                  color: Colors.white),
             ),
           ],
         ),

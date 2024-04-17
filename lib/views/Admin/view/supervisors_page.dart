@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 
 class SupervisorsPage extends StatelessWidget {
   const SupervisorsPage({super.key});
@@ -10,18 +11,27 @@ class SupervisorsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        actionsIconTheme: IconThemeData(color: pureWhite),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push(view: const ControlPanel(), isPush: false);
+            },
+            icon: const Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+            ),
+          ),
+        ],
         backgroundColor: green,
         title: const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               "المشرفون",
               style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ],
         ),
