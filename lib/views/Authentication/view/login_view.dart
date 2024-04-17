@@ -6,7 +6,6 @@ import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
-import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 
 import '../widget/input_text_felid.dart';
 
@@ -39,7 +38,9 @@ class _LoginViewState extends State<LoginView> {
           listener: (context, state) {
             if (state is AuthLoginSuccessState) {
               context.getMessagesBar(msg: state.message, color: green);
-              context.push(view: BottomNavBar(), isPush: false);
+              bloc.add(CheckSessionAvailability());
+            } else if (state is SessionAvailabilityState) {
+              context.push(view: state.page, isPush: false);
             } else if (state is AuthLoginErrorState) {
               context.getMessagesBar(msg: state.message, color: red);
             }

@@ -105,14 +105,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       CheckSessionAvailability event, Emitter<AuthState> emit) async {
     await Future.delayed(const Duration(seconds: 2));
     try {
-      print("1");
       final sessionData = await serviceLocator.getCurrentSession();
       if (sessionData != null) {
         final userId = await serviceLocator.getCurrentUserId();
-        print("2");
-
         await serviceLocator.getUserRole(id: userId);
-        print("3");
         if (serviceLocator.userRole == 'admin') {
           emit(SessionAvailabilityState(page: const ControlPanel()));
         } else {

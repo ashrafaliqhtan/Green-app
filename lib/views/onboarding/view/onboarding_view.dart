@@ -130,7 +130,7 @@ class OnboardingView extends StatelessWidget {
                           onPressed: () {
                             if (currentIndex ==
                                 onboardingBloc.items.length - 1) {
-                              context.push(view: BottomNavBar(), isPush: false);
+                              context.push(view: const SignUpView(), isPush: false);
                             } else {
                               onboardingBloc.add(NextViewEvent());
                             }
