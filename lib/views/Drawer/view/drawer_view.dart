@@ -125,9 +125,7 @@ class DrawerScreen extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                        onPressed: () {
-                          context.push(view: BottomNavBarAdmin(), isPush: false);
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.facebook_outlined,
                           color: pureWhite,
