@@ -3,21 +3,22 @@ import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'dart:math' as math;
 
 class SettingsButton extends StatelessWidget {
-  const SettingsButton({
+   SettingsButton({
     super.key,
     required this.title,
     required this.icons,
+    required this.onTap
   });
   final String title;
   final IconData icons;
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.push(view:  BottomNavBar(), isPush: true);
-      },
+      onTap: onTap,
       child: Container(
         height: 65,
         width: 345,
@@ -28,14 +29,16 @@ class SettingsButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            textDirection: TextDirection.rtl,
             children: [
               Icon(icons),
               width8,
               Text(title),
               width150,
               width30,
-              const Icon(Icons.arrow_back_ios),
+               Transform.rotate(
+                angle: math.pi,
+                child: Icon(Icons.arrow_back_ios),
+              )
             ],
           ),
         ),
