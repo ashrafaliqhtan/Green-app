@@ -4,6 +4,7 @@ import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
 import 'package:green_saudi_app/widgets/history_point_widget.dart';
+import 'package:green_saudi_app/widgets/offers_widget.dart';
 
 class RewardView extends StatelessWidget {
   const RewardView({super.key});
@@ -16,8 +17,7 @@ class RewardView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: PreferredSize(
-          
-          preferredSize: Size(context.getWidth(), context.getHeight() / 2.7),
+          preferredSize: Size(context.getWidth(), context.getHeight() / 3.2),
           child: SafeArea(
             child: Column(
               children: [
@@ -56,8 +56,17 @@ class RewardView extends StatelessWidget {
                         }),
                   ),
                   // Offers
-                  const Center(
-                    child: Text('العروض'),
+                  GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 5,
+                      childAspectRatio: 1,
+                    ),
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return OfferWidget();
+                    },
                   ),
                 ],
               ),

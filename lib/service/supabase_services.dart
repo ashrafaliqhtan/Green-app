@@ -37,6 +37,9 @@ class DBServices {
         .select('*')
         .match({'id_user': id}).single();
     userRole = userInfo['type_role'];
+    print("---------------");
+    print(userRole);
+    print("---------------");
   }
 
   Future<String> getCurrentUserId() async {

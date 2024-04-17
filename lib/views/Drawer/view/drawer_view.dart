@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
@@ -52,6 +53,25 @@ class DrawerScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
+                    DrawerItem(
+                      icon: Icons.person,
+                      title: 'الحساب',
+                      onTap: () {
+                        context.push(view: ProfileUser(), isPush: false);
+                      },
+                    ),
+                    const DrawerItem(
+                      icon: Icons.info,
+                      title: 'من نحن',
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Divider(
+                        color: pureWhite,
+                        thickness: 0.2,
+                        height: 0.2,
+                      ),
+                    ),
                     const DrawerItem(
                       icon: Icons.eco,
                       title: 'Sustainability',
@@ -60,23 +80,17 @@ class DrawerScreen extends StatelessWidget {
                       icon: Icons.nature,
                       title: 'Nature',
                     ),
-                    const DrawerItem(
-                      icon: Icons.waves,
-                      title: 'Water Conservation',
-                    ),
-                    const DrawerItem(
-                      icon: Icons.info,
-                      title: 'من نحن',
-                    ),
-                    DrawerItem(
-                      icon: Icons.person,
-                      title: 'الحساب',
-                      onTap: () {
-                        context.push(view: const ProfileUser(), isPush: false);
-                      },
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Divider(
+                        color: pureWhite,
+                        thickness: 0.2,
+                        height: 0.2,
+                      ),
                     ),
                   ],
                 ),
+                height20,
                 Row(
                   children: [
                     Icon(Icons.settings, color: pureWhite),
@@ -104,6 +118,35 @@ class DrawerScreen extends StatelessWidget {
                             color: pureWhite, fontWeight: FontWeight.bold),
                       ),
                     )
+                  ],
+                ),
+                height20,
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.facebook_outlined,
+                          color: pureWhite,
+                        )),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.instagram,
+                          color: pureWhite,
+                        )),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.youtube,
+                          color: pureWhite,
+                        )),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.twitter,
+                          color: pureWhite,
+                        )),
                   ],
                 )
               ],

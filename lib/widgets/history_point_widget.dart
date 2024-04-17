@@ -15,7 +15,7 @@ class PointWidget extends StatelessWidget {
           child: Container(
             width: context.getWidth(),
             height: context.getHeight() * .1,
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
                 color:Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(20)),
             child: Column(
