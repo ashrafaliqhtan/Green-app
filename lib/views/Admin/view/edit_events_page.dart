@@ -3,8 +3,8 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/add_event.dart';
-import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 
 class EditEventsPage extends StatelessWidget {
   const EditEventsPage({super.key});
@@ -26,7 +26,7 @@ class EditEventsPage extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              context.push(view: const ControlPanel(), isPush: false);
+              context.push(view:  BottomNavBarAdmin(), isPush: false);
             },
             icon: const Icon(
               Icons.arrow_forward,

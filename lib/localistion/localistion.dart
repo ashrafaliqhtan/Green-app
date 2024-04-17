@@ -29,7 +29,7 @@ mixin AppLocale {
   static const String addImageEvent = 'AddImage';
   static const String eventName = 'EventName';
   static const String addDescription = 'AddDescription';
-  static const String dateTime = 'DateTime';
+  static const String date = 'Date';
   static const String from = 'From';
   static const String to = 'To';
   static const String location = 'location';
@@ -39,6 +39,7 @@ mixin AppLocale {
   static const String delete = 'Delete';
   static const String rewordName = 'RewordName';
   static const String supervisorsCity = 'City';
+  static const String time = 'Time';
 
   //profile
   static const String userName = 'jj';
@@ -91,7 +92,8 @@ mixin AppLocale {
     eventName: 'Event Name',
     rewordName: 'Event Name',
     addDescription: 'Add Description',
-    dateTime: 'DateTime',
+    date: 'Date',
+    time: 'Time',
     from: 'From',
     to: 'To',
     location: 'location',
@@ -104,8 +106,9 @@ mixin AppLocale {
   };
   static const Map<String, dynamic> AR = {
     chooseLanguage: 'اختر اللغة',
+    time: 'الوقت',
     userName: "اسم المستخدم",
-    rewordName:'إسم المكآفأة',
+    rewordName: 'إسم المكآفأة',
     account: 'حساب',
     volunteerHours: 'ساعات التطوع',
     hours: 'ساعات',
@@ -132,7 +135,7 @@ mixin AppLocale {
     addImageEvent: 'أضف صورة الغلاف',
     eventName: 'إسم الحدث',
     addDescription: 'أضف وصف',
-    dateTime: 'التاريخ',
+    date: 'التاريخ',
     from: 'من',
     to: 'الى',
     location: 'الموقع',

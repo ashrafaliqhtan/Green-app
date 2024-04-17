@@ -8,7 +8,6 @@ import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
-import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

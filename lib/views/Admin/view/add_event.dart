@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
 
@@ -10,19 +14,19 @@ class AddEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: pureWhite),
         backgroundColor: green,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              " إضافة حدث",
-              style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+              AppLocale.addEvent.getString(context),
+              style: const TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
@@ -45,24 +49,25 @@ class AddEvent extends StatelessWidget {
                     width: 100,
                     child: const Icon(Icons.add),
                   ),
-                  const Spacer(),
-                  Text("أضف صورة الغلاف",
-                      style: TextStyle(
+                  Text(AppLocale.addImageEvent.getString(context),
+                      style: const TextStyle(
                         fontSize: 24,
-                        color: black,
                       )),
                 ],
               ),
             ),
-            // Second row
-            const NameRow(rowName: "إسم الحدث"),
+            NameRow(
+              rowName: AppLocale.eventName.getString(context),
+            ),
             height16,
             const Padding(
               padding: EdgeInsets.only(left: 20, right: 20),
               child: TextfieldContainer(),
             ),
             height26,
-            const NameRow(rowName: " أضف وصف الحدث"),
+            NameRow(
+              rowName: AppLocale.addDescription.getString(context),
+            ),
             height16,
             Container(
               width: 350,
@@ -74,7 +79,6 @@ class AddEvent extends StatelessWidget {
               child: const TextField(
                 maxLines: 5,
                 maxLength: 250,
-                textDirection: TextDirection.rtl,
                 decoration: InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -82,24 +86,25 @@ class AddEvent extends StatelessWidget {
               ),
             ),
             height26,
-            const NameRow(rowName: "تاريخ الحدث"),
+            NameRow(
+              rowName: AppLocale.date.getString(context),
+            ),
             height16,
             SizedBox(
+              
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Container(
-                      width: 150,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: black),
-                          color: pureWhite,
-                          borderRadius: BorderRadius.circular(40)),
-                    ),
+                  Container(
+                    width: 150,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: black),
+                        color: pureWhite,
+                        borderRadius: BorderRadius.circular(40)),
                   ),
-                  const Text("الى", style: TextStyle(fontSize: 20)),
+                  Text(AppLocale.to.getString(context),
+                      style: const TextStyle(fontSize: 20)),
                   Container(
                     width: 155,
                     height: 60,
@@ -108,32 +113,33 @@ class AddEvent extends StatelessWidget {
                         color: pureWhite,
                         borderRadius: BorderRadius.circular(40)),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Text("من", style: TextStyle(fontSize: 24)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Text(AppLocale.from.getString(context),
+                        style: const TextStyle(fontSize: 20)),
                   )
                 ],
               ),
             ),
             height48,
-            const NameRow(rowName: "وقت الحدث"),
+            NameRow(
+              rowName: AppLocale.time.getString(context),
+            ),
             height16,
             SizedBox(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Container(
-                      width: 150,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: black),
-                          color: pureWhite,
-                          borderRadius: BorderRadius.circular(40)),
-                    ),
+                  Container(
+                    width: 150,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: black),
+                        color: pureWhite,
+                        borderRadius: BorderRadius.circular(40)),
                   ),
-                  const Text("الى", style: TextStyle(fontSize: 20)),
+                  Text(AppLocale.to.getString(context),
+                      style: const TextStyle(fontSize: 20)),
                   Container(
                     width: 155,
                     height: 60,
@@ -142,19 +148,24 @@ class AddEvent extends StatelessWidget {
                         color: pureWhite,
                         borderRadius: BorderRadius.circular(40)),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20),
-                    child: Text("من", style: TextStyle(fontSize: 24)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Text(AppLocale.from.getString(context),
+                        style: const TextStyle(fontSize: 20)),
                   )
                 ],
               ),
             ),
             height48,
-            const NameRow(rowName: "الموقع"),
+            NameRow(
+              rowName: AppLocale.location.getString(context),
+            ),
             height16,
             const TextfieldContainer(),
             height26,
-            const NameRow(rowName: "القدرة الإستيعابية"),
+            NameRow(
+              rowName: AppLocale.maximumCapacity.getString(context),
+            ),
             height16,
             const TextfieldContainer(),
             height70,
@@ -167,9 +178,11 @@ class AddEvent extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(view: BottomNavBarAdmin(), isPush: false);
+                    },
                     child: Text(
-                      "إلغاء",
+                      AppLocale.cancel.getString(context),
                       style: TextStyle(
                           color: pureWhite,
                           fontWeight: FontWeight.bold,
@@ -185,7 +198,7 @@ class AddEvent extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {},
                     child: Text(
-                      "إضافة",
+                      AppLocale.addIt.getString(context),
                       style: TextStyle(
                           color: pureWhite,
                           fontWeight: FontWeight.bold,
