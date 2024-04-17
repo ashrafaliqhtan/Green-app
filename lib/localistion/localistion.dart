@@ -40,6 +40,8 @@ mixin AppLocale {
   static const String rewordName = 'RewordName';
   static const String supervisorsCity = 'City';
   static const String time = 'Time';
+    static const String addReword = 'addReword';
+
 
   //profile
   static const String userName = 'jj';
@@ -103,6 +105,7 @@ mixin AppLocale {
     delete: 'Delete',
     supervisorsCity: 'City',
     addEvent: "Add Event",
+    addReword : 'add Reword',
   };
   static const Map<String, dynamic> AR = {
     chooseLanguage: 'اختر اللغة',
@@ -144,6 +147,8 @@ mixin AppLocale {
     cancel: 'إلغاء',
     delete: 'حذف',
     addEvent: "أضف حدث",
+        addReword : 'أضف مكآفأة',
+
   };
   translatorFunction(String input) {
     String statement = "";

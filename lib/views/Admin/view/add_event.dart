@@ -23,7 +23,8 @@ class AddEvent extends StatelessWidget {
           children: [
             Text(
               AppLocale.addEvent.getString(context),
-              style: const TextStyle(
+              style: TextStyle(
+                color: pureWhite,
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
@@ -91,7 +92,7 @@ class AddEvent extends StatelessWidget {
             ),
             height16,
             SizedBox(
-              
+
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

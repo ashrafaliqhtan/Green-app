@@ -22,7 +22,7 @@ class AddReword extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              AppLocale.addEvent.getString(context),
+              AppLocale.addReword.getString(context),
               style:const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
