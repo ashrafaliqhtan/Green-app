@@ -10,7 +10,7 @@ import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
 
 class ProfileUser extends StatelessWidget {
-   ProfileUser({super.key});
+  const ProfileUser({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ProfileUser extends StatelessWidget {
         automaticallyImplyLeading: true,
         title: IconButton(
             onPressed: () {
-              context.push(view:  SettingsUser(), isPush: true);
+              context.push(view: SettingsUser(), isPush: true);
             },
             icon: Icon(
               Icons.settings,
@@ -52,31 +52,33 @@ class ProfileUser extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: Image.network(
-                      "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-             Text("أحمد موسى"),
+            Text("أحمد موسى"),
             InkWell(
               onTap: () {
-                context.push(view:  HoursHistoryView(), isPush: false);
+                context.push(view: HoursHistoryView(), isPush: false);
               },
-              child:  TextProfile(
+              child: TextProfile(
                 title: AppLocale.volunteerHours.getString(context),
                 data: "ساعة100",
                 icon: Icons.arrow_back_ios_new,
               ),
             ),
-             TextProfile(
-              title:AppLocale.email.getString(context),
+            TextProfile(
+              title: AppLocale.email.getString(context),
               data: "ex@gmail.com",
             ),
-             TextProfile(
-              title:  AppLocale.city.getString(context),
+            TextProfile(
+              title: AppLocale.city.getString(context),
               data: "المدينة المنورة",
             ),
-             TextProfile(
-              title:  AppLocale.phoneNumber.getString(context),
+            TextProfile(
+              title: AppLocale.phoneNumber.getString(context),
               data: "0591234567",
             ),
           ],

@@ -3,7 +3,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class DBServices {
   final supabase = Supabase.instance.client;
   String userRole = '';
+  String email = "";
+  String otpToken = '';
 
+
+  //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
     required String email,
@@ -57,7 +61,8 @@ class DBServices {
         .verifyOTP(token: otpToken, type: OtpType.email, email: email);
   }
 
-  Future resendOtp({required String email}) async {
+  Future resendOtp() async {
+    email = supabase.auth.currentSession!.user.email!;
     await supabase.auth
         .resend(type: OtpType.magiclink, email: "flutterg73@gmail.com");
   }
