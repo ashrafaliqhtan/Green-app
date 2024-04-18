@@ -13,17 +13,18 @@ class AddReword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController eventNameController = TextEditingController();
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: pureWhite),
         backgroundColor: green,
-        title:  Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               AppLocale.addReword.getString(context),
-              style:const TextStyle(
+              style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
@@ -46,7 +47,7 @@ class AddReword extends StatelessWidget {
                         fontSize: 24,
                         color: black,
                       )),
-                      const Spacer(),
+                  const Spacer(),
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: black),
@@ -61,14 +62,22 @@ class AddReword extends StatelessWidget {
               ),
             ),
             // Second row
-             NameRow(rowName: AppLocale.eventName.getString(context),),
+            NameRow(
+              rowName: AppLocale.eventName.getString(context),
+            ),
             height16,
-            const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: TextfieldContainer(),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: TextfieldContainer(
+                hintText: "",
+                controller: eventNameController,
+                keyboardType: TextInputType.text,
+              ),
             ),
             height26,
-             NameRow(rowName: AppLocale.addDescription.getString(context),),
+            NameRow(
+              rowName: AppLocale.addDescription.getString(context),
+            ),
             height16,
             Container(
               width: 350,
@@ -98,7 +107,7 @@ class AddReword extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () {
-                      context.push(view:const RewardsPage(), isPush: false);
+                      context.push(view: const RewardsPage(), isPush: false);
                     },
                     child: Text(
                       AppLocale.cancel.getString(context),

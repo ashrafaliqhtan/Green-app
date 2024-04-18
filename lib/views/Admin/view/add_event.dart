@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/model/event_model.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
+import 'package:green_saudi_app/views/Admin/widgets/date_pic.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
+import 'package:green_saudi_app/views/Admin/widgets/time_pic.dart';
 
 class AddEvent extends StatelessWidget {
   const AddEvent({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameEventController = TextEditingController();
+    TextEditingController descriptionEventController = TextEditingController();
+        TextEditingController locationEventController = TextEditingController();
+        TimeOfDay startTimeEvent=TimeOfDay.now();
+        DateTime startDateEvent=DateTime.now();
+        TimeOfDay endTimeEvent=TimeOfDay.now();
+        DateTime endDateEvent=DateTime.now();
+
+    TextEditingController capacityEventController = TextEditingController();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -61,9 +75,9 @@ class AddEvent extends StatelessWidget {
               rowName: AppLocale.eventName.getString(context),
             ),
             height16,
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(left: 20, right: 20),
-              child: TextfieldContainer(),
+              child: TextfieldContainer(hintText: "إسم الحدث",controller:nameEventController,keyboardType: TextInputType.text,),
             ),
             height26,
             NameRow(
@@ -77,10 +91,10 @@ class AddEvent extends StatelessWidget {
                   border: Border.all(color: black),
                   color: pureWhite,
                   borderRadius: BorderRadius.circular(40)),
-              child: const TextField(
+              child: TextField(controller: descriptionEventController,
                 maxLines: 5,
                 maxLength: 250,
-                decoration: InputDecoration(
+                decoration: InputDecoration(hintText: " أضف وصف الحدث",
                   counterText: "",
                   border: OutlineInputBorder(borderSide: BorderSide.none),
                 ),
@@ -92,21 +106,22 @@ class AddEvent extends StatelessWidget {
             ),
             height16,
             SizedBox(
-
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    width: 150,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: black),
-                        color: pureWhite,
-                        borderRadius: BorderRadius.circular(40)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Container(child: DatePickerWidget(),
+                      width: 150,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: black),
+                          color: pureWhite,
+                          borderRadius: BorderRadius.circular(40)),
+                    ),
                   ),
-                  Text(AppLocale.to.getString(context),
-                      style: const TextStyle(fontSize: 20)),
-                  Container(
+                  const Text("الى", style: TextStyle(fontSize: 20)),
+                  Container(child: DatePickerWidget(),
                     width: 155,
                     height: 60,
                     decoration: BoxDecoration(
@@ -131,17 +146,19 @@ class AddEvent extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    width: 150,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: black),
-                        color: pureWhite,
-                        borderRadius: BorderRadius.circular(40)),
+                  Padding(
+                    padding: EdgeInsets.only(left: 30),
+                    child: Container(child: TimePickerWidget(time: startTimeEvent,),
+                      width: 150,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: black),
+                          color: pureWhite,
+                          borderRadius: BorderRadius.circular(40)),
+                    ),
                   ),
-                  Text(AppLocale.to.getString(context),
-                      style: const TextStyle(fontSize: 20)),
-                  Container(
+                  const Text("الى", style: TextStyle(fontSize: 20)),
+                  Container(child: TimePickerWidget(time: endTimeEvent,),
                     width: 155,
                     height: 60,
                     decoration: BoxDecoration(
@@ -162,13 +179,13 @@ class AddEvent extends StatelessWidget {
               rowName: AppLocale.location.getString(context),
             ),
             height16,
-            const TextfieldContainer(),
+             TextfieldContainer(hintText: "الموقع",controller: locationEventController,keyboardType: TextInputType.text,),
             height26,
             NameRow(
               rowName: AppLocale.maximumCapacity.getString(context),
             ),
             height16,
-            const TextfieldContainer(),
+             TextfieldContainer(hintText:"القدرة الإستيعابية" ,controller:capacityEventController ,keyboardType: TextInputType.number,),
             height70,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -197,7 +214,18 @@ class AddEvent extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () async{EventModel event = EventModel(
+                      title: nameEventController.text,
+                      description: descriptionEventController.text,
+                      startDate: startDateEvent.toString(),
+                      startTime:startTimeEvent.toString(),
+                      endDate: endDateEvent.toString(),endTime:endTimeEvent.toString(),
+                      location: locationEventController.text,
+                      maximumCapacity: int.parse(capacityEventController.text),
+                      imageUrl: "assets/images/event.png",
+                    );
+                    await GetIt.I.get<DBServices>().createEvent(event: event);
+                    },
                     child: Text(
                       AppLocale.addIt.getString(context),
                       style: TextStyle(

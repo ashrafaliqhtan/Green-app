@@ -49,7 +49,7 @@ class OnboardingView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
                               width: context.getWidth() * .3,
