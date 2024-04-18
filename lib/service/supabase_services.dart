@@ -47,7 +47,6 @@ class DBServices {
         .match({'id_user': id}).single();
     email = supabase.auth.currentUser!.email!;
     return GSIUser.fromJson(userInfo);
-    userRole = userInfo['type_role'];
   }
 
   Future<String> getCurrentUserId() async {

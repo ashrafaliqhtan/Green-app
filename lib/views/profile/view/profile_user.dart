@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
-
 import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/localization/localization.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
