@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:get_it/get_it.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
@@ -16,6 +15,7 @@ import 'views/disconnect.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   await databaseConfiguration();
   DataInjection().setupAppearance();
   DataInjection().setupDatabase();

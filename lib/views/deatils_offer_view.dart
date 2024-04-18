@@ -33,7 +33,7 @@ class DetailsOfferView extends StatelessWidget {
                 // Image
                 Container(
                   height: 200,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
                         'assets/images/HalfMillionLogo-Black-croppped-extras.jpg',
@@ -43,8 +43,8 @@ class DetailsOfferView extends StatelessWidget {
                   ),
                 ),
                 // Title
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
                     'هاف مليون',
                     style: TextStyle(
@@ -62,8 +62,8 @@ class DetailsOfferView extends StatelessWidget {
                   endIndent: 16,
                 ),
                 // Description
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
                     "تفاصيل العرض",
                     style: TextStyle(

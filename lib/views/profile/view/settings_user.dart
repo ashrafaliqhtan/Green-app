@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
+import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
+import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 import 'package:green_saudi_app/views/profile/view/edit_profile_user.dart';
 import 'package:green_saudi_app/views/profile/widget/settings_button.dart';
 import 'package:green_saudi_app/views/profile/widget/settings_switch.dart';
@@ -17,6 +21,8 @@ class SettingsUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+    final user = serviceLocator.user;
     final cubit = context.read<LanguageCubit>();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -33,7 +39,7 @@ class SettingsUser extends StatelessWidget {
             onPressed: () {
               context.push(view: BottomNavBar(), isPush: false);
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: Center(
         child: Column(
@@ -66,9 +72,9 @@ class SettingsUser extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "أحمد موسى",
-                          style: TextStyle(
+                        Text(
+                          user.name ?? "Name",
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 22),
                         ),
                         Text(
@@ -87,14 +93,16 @@ class SettingsUser extends StatelessWidget {
               title: AppLocale.changePassword.getString(context),
               icons: Icons.password,
               onTap: () {
-                context.push(view: const OnboardingView(), isPush: true);
+                context.push(view: const ValidationEmailView(), isPush: true);
               },
             ),
             height16,
             SettingsButton(
                 title: AppLocale.email.getString(context),
                 icons: Icons.email_outlined,
-                onTap: () {}),
+                onTap: () {
+                  context.push(view: const ValidationEmailView(), isPush: true);
+                }),
             height16,
             SettingsSwitch(
               title: AppLocale.notification.getString(context),
@@ -131,19 +139,25 @@ class SettingsUser extends StatelessWidget {
                   );
                 }),
             height60,
-            Container(
-              height: 60,
-              width: 345,
-              decoration: BoxDecoration(
-                  color: green, borderRadius: BorderRadius.circular(30)),
-              child: Center(
-                  child: Text(
-                AppLocale.logoutButton.getString(context),
-                style: TextStyle(
-                    color: pureWhite,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24),
-              )),
+            InkWell(
+              onTap: () {
+                context.read<AuthBloc>().add(LogoutEvent());
+                context.push(view: const LoginView(), isPush: false);
+              },
+              child: Container(
+                height: 60,
+                width: 345,
+                decoration: BoxDecoration(
+                    color: green, borderRadius: BorderRadius.circular(30)),
+                child: Center(
+                    child: Text(
+                  AppLocale.logoutButton.getString(context),
+                  style: TextStyle(
+                      color: pureWhite,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24),
+                )),
+              ),
             ),
           ],
         ),
