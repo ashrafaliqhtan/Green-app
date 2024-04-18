@@ -20,11 +20,11 @@ class AddEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController nameEventController = TextEditingController();
     TextEditingController descriptionEventController = TextEditingController();
-        TextEditingController locationEventController = TextEditingController();
-        TimeOfDay startTimeEvent=TimeOfDay.now();
-        DateTime startDateEvent=DateTime.now();
-        TimeOfDay endTimeEvent=TimeOfDay.now();
-        DateTime endDateEvent=DateTime.now();
+    TextEditingController locationEventController = TextEditingController();
+    TimeOfDay startTimeEvent = TimeOfDay.now();
+    DateTime startDateEvent = DateTime.now();
+    TimeOfDay endTimeEvent = TimeOfDay.now();
+    DateTime endDateEvent = DateTime.now();
 
     TextEditingController capacityEventController = TextEditingController();
     return Scaffold(
@@ -75,9 +75,13 @@ class AddEvent extends StatelessWidget {
               rowName: AppLocale.eventName.getString(context),
             ),
             height16,
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextfieldContainer(hintText: AppLocale.eventName.getString(context),controller:nameEventController,keyboardType: TextInputType.text,),//
+              child: TextfieldContainer(
+                hintText: AppLocale.eventName.getString(context),
+                controller: nameEventController,
+                keyboardType: TextInputType.text,
+              ), //
             ),
             height26,
             NameRow(
@@ -91,10 +95,12 @@ class AddEvent extends StatelessWidget {
                   border: Border.all(color: black),
                   color: pureWhite,
                   borderRadius: BorderRadius.circular(40)),
-              child: TextField(controller: descriptionEventController,
+              child: TextField(
+                controller: descriptionEventController,
                 maxLines: 5,
                 maxLength: 250,
-                decoration:  InputDecoration(hintText: AppLocale.addDescription.getString(context),
+                decoration: InputDecoration(
+                  hintText: AppLocale.addDescription.getString(context),
                   counterText: "",
                   border: const OutlineInputBorder(borderSide: BorderSide.none),
                 ),
@@ -105,33 +111,40 @@ class AddEvent extends StatelessWidget {
               rowName: AppLocale.date.getString(context),
             ),
             height16,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(AppLocale.from.getString(context),
+                    style: const TextStyle(fontSize: 20)),
+                Text(AppLocale.to.getString(context),
+                    style: const TextStyle(fontSize: 20)),
+              ],
+            ),
             SizedBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: Container(width: 150,
+                    child: Container(
+                      width: 150,
                       height: 60,
                       decoration: BoxDecoration(
                           border: Border.all(color: black),
                           color: pureWhite,
-                          borderRadius: BorderRadius.circular(40)),child: const DatePickerWidget(),
+                          borderRadius: BorderRadius.circular(40)),
+                      child: const DatePickerWidget(),
                     ),
                   ),
-                   Text(AppLocale.to.getString(context), style: const TextStyle(fontSize: 20)),
-                  Container(width: 155,
+                  Container(
+                    width: 155,
                     height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(color: black),
                         color: pureWhite,
-                        borderRadius: BorderRadius.circular(40)),child: const DatePickerWidget(),
+                        borderRadius: BorderRadius.circular(40)),
+                    child: const DatePickerWidget(),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Text(AppLocale.from.getString(context),
-                        style: const TextStyle(fontSize: 20)),
-                  )
                 ],
               ),
             ),
@@ -140,33 +153,44 @@ class AddEvent extends StatelessWidget {
               rowName: AppLocale.time.getString(context),
             ),
             height16,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(AppLocale.from.getString(context),
+                    style: const TextStyle(fontSize: 20)),
+                Text(AppLocale.to.getString(context),
+                    style: const TextStyle(fontSize: 20)),
+              ],
+            ),
             SizedBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: Container(width: 150,
+                    child: Container(
+                      width: 150,
                       height: 60,
                       decoration: BoxDecoration(
                           border: Border.all(color: black),
                           color: pureWhite,
-                          borderRadius: BorderRadius.circular(40)),child: TimePickerWidget(time: startTimeEvent,),
+                          borderRadius: BorderRadius.circular(40)),
+                      child: TimePickerWidget(
+                        time: startTimeEvent,
+                      ),
                     ),
                   ),
-                   Text(AppLocale.from.getString(context), style: const TextStyle(fontSize: 20)),
-                  Container(width: 155,
+                  Container(
+                    width: 155,
                     height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(color: black),
                         color: pureWhite,
-                        borderRadius: BorderRadius.circular(40)),child: TimePickerWidget(time: endTimeEvent,),
+                        borderRadius: BorderRadius.circular(40)),
+                    child: TimePickerWidget(
+                      time: endTimeEvent,
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Text(AppLocale.from.getString(context),
-                        style: const TextStyle(fontSize: 20)),
-                  )
                 ],
               ),
             ),
@@ -175,13 +199,21 @@ class AddEvent extends StatelessWidget {
               rowName: AppLocale.location.getString(context),
             ),
             height16,
-             TextfieldContainer(hintText: AppLocale.location.getString(context),controller: locationEventController,keyboardType: TextInputType.text,),
+            TextfieldContainer(
+              hintText: AppLocale.location.getString(context),
+              controller: locationEventController,
+              keyboardType: TextInputType.text,
+            ),
             height26,
             NameRow(
               rowName: AppLocale.maximumCapacity.getString(context),
             ),
             height16,
-             TextfieldContainer(hintText:AppLocale.maximumCapacity.getString(context),controller:capacityEventController ,keyboardType: TextInputType.number,),
+            TextfieldContainer(
+              hintText: AppLocale.maximumCapacity.getString(context),
+              controller: capacityEventController,
+              keyboardType: TextInputType.number,
+            ),
             height70,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -210,17 +242,20 @@ class AddEvent extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
-                    onPressed: () async{EventModel event = EventModel(
-                      title: nameEventController.text,
-                      description: descriptionEventController.text,
-                      startDate: startDateEvent.toString(),
-                      startTime:startTimeEvent.toString(),
-                      endDate: endDateEvent.toString(),endTime:endTimeEvent.toString(),
-                      location: locationEventController.text,
-                      maximumCapacity: int.parse(capacityEventController.text),
-                      imageUrl: "assets/images/event.png",
-                    );
-                    await GetIt.I.get<DBServices>().createEvent(event: event);
+                    onPressed: () async {
+                      EventModel event = EventModel(
+                        title: nameEventController.text,
+                        description: descriptionEventController.text,
+                        startDate: startDateEvent.toString(),
+                        startTime: startTimeEvent.toString(),
+                        endDate: endDateEvent.toString(),
+                        endTime: endTimeEvent.toString(),
+                        location: locationEventController.text,
+                        maximumCapacity:
+                            int.parse(capacityEventController.text),
+                        imageUrl: "assets/images/event.png",
+                      );
+                      await GetIt.I.get<DBServices>().createEvent(event: event);
                     },
                     child: Text(
                       AppLocale.addIt.getString(context),

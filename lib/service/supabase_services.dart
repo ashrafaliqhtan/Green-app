@@ -9,7 +9,6 @@ class DBServices {
   String userID = "";
   String otpToken = '';
   GSIUser user = GSIUser();
-  bool isInitializeSupabase=false;
 
 
   //----------------------------- Auth --------------------------------

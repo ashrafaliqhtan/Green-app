@@ -18,11 +18,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await databaseConfiguration();
   DataInjection().setupAppearance();
+        DataInjection().setupGetit();
   InternetConnection().onStatusChange.listen((status) async {
     if (status == InternetStatus.connected) {
-      if (GetIt.I.get<DBServices>().isInitializeSupabase == false) {
-        DataInjection().setupDatabase();
-      }
       runApp(const MainApp());
     } else {
       runApp(const Disconnect());
