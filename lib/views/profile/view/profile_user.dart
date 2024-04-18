@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 
@@ -35,7 +36,7 @@ class ProfileUser extends StatelessWidget {
         automaticallyImplyLeading: true,
         title: IconButton(
             onPressed: () {
-              context.push(view:  SettingsUser(), isPush: true);
+              context.push(view:  const SettingsUser(), isPush: true);
             },
             icon: Icon(
               Icons.settings,
@@ -45,21 +46,37 @@ class ProfileUser extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
-              height: 125,
-              width: 125,
-              child: Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(200),
-                  child: Image.network(
-                      "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
-                ),
+            Container(
+              decoration: BoxDecoration(
+                color: green,
+                borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
               ),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+              Positioned(
+                left: 40,
+                right: 40,
+                bottom: -20,
+                child: SizedBox(
+                      height: 125,
+                      width: 125,
+                      child: Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(200),
+                          child: Image.network(
+                              "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
+                        ),
+                      ),
+                    ),
+              ),
+              ],),
             ),
-             Text("أحمد موسى"),
+            
+             const Text("أحمد موسى"),
             InkWell(
               onTap: () {
-                context.push(view:  HoursHistoryView(), isPush: false);
+                context.push(view:  const HoursHistoryView(), isPush: false);
               },
               child:  TextProfile(
                 title: AppLocale.volunteerHours.getString(context),
