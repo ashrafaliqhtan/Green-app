@@ -1,44 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
-import 'package:green_saudi_app/views/bottom_nav_bar/cubit/nav_bar_cubit.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/cubit/nav_bar_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BottomNavBar extends StatelessWidget {
-  BottomNavBar({super.key});
+class BottomNavBarAdmin extends StatelessWidget {
+  BottomNavBarAdmin({super.key});
+
+  final List<Map<String, dynamic>> navItems = [
+    {"icon": 'assets/icons/home1.svg', "label": "Home"},
+    {"icon": 'assets/icons/event.svg', "label": "Event"},
+    {"icon": 'assets/icons/reward.svg', "label": "Reward"},
+    {"icon": 'assets/icons/history.svg', "label": "supervisors"},
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> navItems = [
-      {
-        "icon": 'assets/icons/home1.svg',
-        "label": AppLocale.homePage.getString(context)
-      },
-      {
-        "icon": 'assets/icons/event.svg',
-        "label": AppLocale.eventPage.getString(context)
-      },
-      {
-        "icon": 'assets/icons/reward.svg',
-        "label": AppLocale.pointPage.getString(context)
-      },
-      {
-        "icon": 'assets/icons/history.svg',
-        "label": AppLocale.myEventPage.getString(context)
-      },
-    ];
     return BlocProvider(
-      create: (context) => NavBarCubit(),
-      child: BlocBuilder<NavBarCubit, NavBarState>(
+      create: (context) => NavBarAdminCubit(),
+      child: BlocBuilder<NavBarAdminCubit, NavBarAdminState>(
         builder: (context, state) {
           return Builder(builder: (context) {
-            final navCubit = context.read<NavBarCubit>();
+            final navAdminCubit = context.read<NavBarAdminCubit>();
             return Scaffold(
-              body: navCubit.pages[navCubit.selectIndex],
+              body: navAdminCubit.pages[navAdminCubit.selectIndex],
               bottomNavigationBar: Container(
                 margin: const EdgeInsets.all(10),
                 height: context.getHeight() * .100,
@@ -60,7 +47,7 @@ class BottomNavBar extends StatelessWidget {
                       horizontal: context.getWidth() * .024),
                   itemBuilder: (context, index) => InkWell(
                     onTap: () {
-                      navCubit.changeNavItem(index);
+                      navAdminCubit.changeNavItem(index);
                     },
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -71,14 +58,14 @@ class BottomNavBar extends StatelessWidget {
                           duration: const Duration(milliseconds: 1500),
                           curve: Curves.fastLinearToSlowEaseIn,
                           margin: EdgeInsets.only(
-                            bottom: index == navCubit.selectIndex
+                            bottom: index == navAdminCubit.selectIndex
                                 ? 0
                                 : context.getWidth() * .029,
                             right: context.getWidth() * .0422,
                             left: context.getWidth() * .0422,
                           ),
                           width: context.getWidth() * .128,
-                          height: index == navCubit.selectIndex
+                          height: index == navAdminCubit.selectIndex
                               ? context.getWidth() * .014
                               : 0,
                           decoration: BoxDecoration(
@@ -92,7 +79,7 @@ class BottomNavBar extends StatelessWidget {
                           navItems[index]['icon'],
                           width: context.getWidth() * .056,
                           height: context.getWidth() * .056,
-                          color: index == navCubit.selectIndex
+                          color: index == navAdminCubit.selectIndex
                               ? green
                               : Theme.of(context).colorScheme.onSecondaryContainer,
                         ),
@@ -100,7 +87,7 @@ class BottomNavBar extends StatelessWidget {
                           navItems[index]['label'],
                           style: TextStyle(
                             fontSize: 12,
-                            color: index == navCubit.selectIndex
+                            color: index == navAdminCubit.selectIndex
                                 ? green
                                 : Theme.of(context).colorScheme.onSecondaryContainer,
                           ),

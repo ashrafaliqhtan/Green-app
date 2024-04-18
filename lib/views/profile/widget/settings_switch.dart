@@ -21,6 +21,7 @@ class SettingsSwitch extends StatefulWidget {
   State<SettingsSwitch> createState() => _SettingsSwitchState();
 }
     bool isSwitched = true;
+    bool isSwitchedTo = true;
 
 
 class _SettingsSwitchState extends State<SettingsSwitch> {
@@ -29,21 +30,19 @@ class _SettingsSwitchState extends State<SettingsSwitch> {
     final bloc = context.read<ThemeBloc>();
 
     return Container(
-      height: 65,
+      height: 60,
       width: 345,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(30)),
         color: green,
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(widget.icon),
-            const SizedBox(width: 8),
-            Text(widget.title),
-            const Spacer(),
+            Icon(widget.icon,color: pureWhite,),
+            Text(widget.title,style: TextStyle(color: pureWhite,fontWeight: FontWeight.bold,fontSize: 24),),
             widget.isDarkMode
                 ? CustomSwitchDarkMode(
                     value: isSwitched,
@@ -56,10 +55,10 @@ class _SettingsSwitchState extends State<SettingsSwitch> {
                     },
                   )
                 : CustomSwitchNotification(
-                    value: isSwitched,
+                    value: isSwitchedTo,
                     onChanged: (value) {
                       setState(() {
-                        isSwitched = value;
+                        isSwitchedTo = value;
                       });
                     },
                   )

@@ -1,20 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/data_layer/data_layer.dart';
 
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Hours%20History/view/Hours_history.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ProfileUser extends StatelessWidget {
-   ProfileUser({super.key});
+  const ProfileUser({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+    final user = serviceLocator.user;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -36,7 +42,7 @@ class ProfileUser extends StatelessWidget {
         automaticallyImplyLeading: true,
         title: IconButton(
             onPressed: () {
-              context.push(view:  const SettingsUser(), isPush: true);
+              context.push(view:  SettingsUser(), isPush: true);
             },
             icon: Icon(
               Icons.settings,
@@ -46,55 +52,45 @@ class ProfileUser extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: green,
-                borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
+            SizedBox(
+              height: 125,
+              width: 125,
+              child: Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: Image.network(
+                      "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
+                ),
               ),
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-              Positioned(
-                left: 40,
-                right: 40,
-                bottom: -20,
-                child: SizedBox(
-                      height: 125,
-                      width: 125,
-                      child: Center(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: Image.network(
-                              "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
-                        ),
-                      ),
-                    ),
-              ),
-              ],),
             ),
-            
-             const Text("أحمد موسى"),
+             Text("أحمد موسى"),
             InkWell(
               onTap: () {
-                context.push(view:  const HoursHistoryView(), isPush: false);
+                context.push(view:  HoursHistoryView(), isPush: false);
               },
-              child:  TextProfile(
+              child: TextProfile(
                 title: AppLocale.volunteerHours.getString(context),
-                data: "ساعة100",
+                data: "ساعة${user.volunteerHours ?? "0"}",
                 icon: Icons.arrow_back_ios_new,
               ),
             ),
-             TextProfile(
-              title:AppLocale.email.getString(context),
-              data: "ex@gmail.com",
+            TextProfile(
+              title: AppLocale.email.getString(context),
+              data: "",
+              // data: serviceLocator.email,
             ),
-             TextProfile(
-              title:  AppLocale.city.getString(context),
-              data: "المدينة المنورة",
+            TextProfile(
+              title: AppLocale.city.getString(context),
+              data: serviceLocator.user.city ?? "الرياض",
             ),
-             TextProfile(
-              title:  AppLocale.phoneNumber.getString(context),
-              data: "0591234567",
+            TextProfile(
+              title: AppLocale.phoneNumber.getString(context),
+              data: serviceLocator.user.phoneNumber ?? "0500500505",
+            ),
+            height26,
+            QrImageView(
+              data: serviceLocator.userID,
+              size: 200,
             ),
           ],
         ),

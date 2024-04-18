@@ -25,7 +25,14 @@ class GoalsWidget extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+               Image.asset(
+                img,
+                width: 100,
+                height: 100,
+              ),
+                width16,
               Expanded(
                 child: Text(
                   text,
@@ -33,15 +40,9 @@ class GoalsWidget extends StatelessWidget {
                   style: TextStyle(color: pureWhite),
                 ),
               ),
-              width16,
-              Image.asset(
-                img,
-                width: 100,
-                height: 100,
-              ),
             ],
           ),
-          (isDivider) ? Divider() : SizedBox()
+          (isDivider) ? const Divider() : const SizedBox()
         ],
       ),
     );

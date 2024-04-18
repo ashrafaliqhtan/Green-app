@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/utils/colors.dart';
 
 class NameRow extends StatelessWidget {
   const NameRow({super.key, required this.rowName});
@@ -9,14 +8,12 @@ class NameRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 20, top: 10),
+          padding: const EdgeInsets.only(right: 20, top: 10,left: 20),
           child: Text(rowName,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
-                color: black,
               )),
         ),
       ],

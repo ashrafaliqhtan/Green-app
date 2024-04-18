@@ -7,6 +7,11 @@ final class AuthInitial extends AuthState {}
 
 final class AuthLoadingState extends AuthState {}
 
+final class SessionAvailabilityState extends AuthState {
+  final Widget page;
+  SessionAvailabilityState({required this.page});
+}
+
 final class AuthSignUpSuccessState extends AuthState {
   final String message;
   AuthSignUpSuccessState({required this.message});
@@ -15,6 +20,26 @@ final class AuthSignUpSuccessState extends AuthState {
 final class AuthSignUpErrorState extends AuthState {
   final String message;
   AuthSignUpErrorState({required this.message});
+}
+
+final class AuthCheckOTPVerificationErrorState extends AuthState {
+  final String message;
+  AuthCheckOTPVerificationErrorState({required this.message});
+}
+
+final class AuthResendOTPErrorState extends AuthState {
+  final String message;
+  AuthResendOTPErrorState({required this.message});
+}
+
+final class AuthChangePasswordErrorState extends AuthState {
+  final String message;
+  AuthChangePasswordErrorState({required this.message});
+}
+
+final class AuthCheckEmailVerificationErrorState extends AuthState {
+  final String message;
+  AuthCheckEmailVerificationErrorState({required this.message});
 }
 
 final class AuthLoginSuccessState extends AuthState {
@@ -37,7 +62,27 @@ final class AuthLogoutErrorState extends AuthState {
   AuthLogoutErrorState({required this.message});
 }
 
-final class SessionAvailabilityState extends AuthState {
-  final Widget page;
-  SessionAvailabilityState({required this.page});
+final class AuthCheckEmailVerificationState extends AuthState {
+  final String message;
+  AuthCheckEmailVerificationState({required this.message});
+}
+
+final class AuthSendOTPState extends AuthState {
+  final String message;
+  AuthSendOTPState({required this.message});
+}
+
+final class AuthResendOTPState extends AuthState {
+  final String message;
+  AuthResendOTPState({required this.message});
+}
+
+final class AuthCheckOTPVerificationState extends AuthState {
+  final String message;
+  AuthCheckOTPVerificationState({required this.message});
+}
+
+final class AuthChangePasswordState extends AuthState {
+  final String message;
+  AuthChangePasswordState({required this.message});
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
@@ -62,8 +64,9 @@ class _SignUpViewState extends State<SignUpView> {
                   child: SingleChildScrollView(
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
+                      margin: const EdgeInsets.symmetric(vertical: 20),
                       width: context.getWidth() * 0.80,
-                      height: context.getHeight() * 0.90,
+                      height: context.getHeight() * 1.20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40),
                         gradient: LinearGradient(
@@ -78,7 +81,7 @@ class _SignUpViewState extends State<SignUpView> {
                       child: Column(
                         children: [
                           Text(
-                            "مرحبا بك",
+                            AppLocale.welcome.getString(context),
                             style: TextStyle(
                                 color: white,
                                 fontWeight: FontWeight.bold,
@@ -86,34 +89,36 @@ class _SignUpViewState extends State<SignUpView> {
                           ),
                           InputTextFelid(
                             controller: nameController,
-                            title: "الاسم",
-                            hintText: "اسم",
+                            title: AppLocale.nameTitle.getString(context),
+                            hintText: AppLocale.nameHint.getString(context),
                             icon: Icons.person_outline,
                             isPassword: false,
                           ),
                           InputTextFelid(
                             controller: emailController,
-                            title: "البريد الإلكتروني",
+                            title: AppLocale.emailTitle.getString(context),
                             hintText: "example@email.com",
                             icon: Icons.email,
                             isPassword: false,
                           ),
                           InputTextFelid(
                             controller: phoneController,
-                            title: "رقم الجوال",
+                            title: AppLocale.phoneNumber.getString(context),
                             hintText: "0555555555",
                             icon: Icons.phone_outlined,
                             isPassword: false,
                           ),
                           InputTextFelid(
                             controller: passwordController,
-                            title: "كلمة المرور",
+                            title: AppLocale.passwordTitle.getString(context),
+                            hintText: AppLocale.passwordHint.getString(context),
                             icon: Icons.lock,
                             isPassword: true,
                           ),
                           InputTextFelid(
                             controller: confirmPasswordController,
-                            title: "تأكيد كلمة المرور",
+                            title: AppLocale.confirmTitle.getString(context),
+                            hintText: AppLocale.confirmTitle.getString(context),
                             icon: Icons.lock,
                             isPassword: true,
                           ),
@@ -127,7 +132,7 @@ class _SignUpViewState extends State<SignUpView> {
                                       view: const LoginView(), isPush: false);
                                 },
                                 child: Text(
-                                  "هل لديك حساب؟",
+                                  AppLocale.haveAccountAlready.getString(context),
                                   style: TextStyle(
                                     color: white,
                                     fontSize: 20,
@@ -138,7 +143,7 @@ class _SignUpViewState extends State<SignUpView> {
                           ),
                           height20,
                           CustomButton(
-                            title: "إنشاء الحساب",
+                            title: AppLocale.signUp.getString(context),
                             onPressed: () {
                               bloc.add(SignUpEvent(
                                 name: nameController.text,

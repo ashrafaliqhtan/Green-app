@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
+import 'package:green_saudi_app/views/Authentication/view/signup_view.dart';
 import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
-import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 
 import '../widget/input_text_felid.dart';
 
@@ -39,7 +41,9 @@ class _LoginViewState extends State<LoginView> {
           listener: (context, state) {
             if (state is AuthLoginSuccessState) {
               context.getMessagesBar(msg: state.message, color: green);
-              context.push(view: BottomNavBar(), isPush: false);
+              bloc.add(CheckSessionAvailability());
+            } else if (state is SessionAvailabilityState) {
+              context.push(view: state.page, isPush: false);
             } else if (state is AuthLoginErrorState) {
               context.getMessagesBar(msg: state.message, color: red);
             }
@@ -58,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   width: context.getWidth() * 0.80,
-                  height: context.getHeight() * 0.50,
+                  height: context.getHeight() * 0.70,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
                     gradient: LinearGradient(
@@ -73,30 +77,30 @@ class _LoginViewState extends State<LoginView> {
                   child: Column(
                     children: [
                       Text(
-                        "مرحبا بك",
+                        AppLocale.welcome.getString(context),
                         style: TextStyle(
-                            color: white,
+                            color: pureWhite,
                             fontWeight: FontWeight.bold,
                             fontSize: 48),
                       ),
                       InputTextFelid(
                         controller: emailController,
-                        title: "البريد الإلكتروني",
-                        hintText: "ادخل البريد الإلكتروني",
+                        title: AppLocale.emailTitle.getString(context),
+                        hintText: AppLocale.emailHint.getString(context),
                         icon: Icons.email,
                         isPassword: false,
                       ),
                       InputTextFelid(
                         controller: passwordController,
-                        title: "كلمة المرور",
+                        title: AppLocale.passwordTitle.getString(context),
+                        hintText: AppLocale.passwordHint.getString(context),
                         icon: Icons.lock,
                         isPassword: true,
                       ),
-                      height8,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          width30,
+                          width16,
                           InkWell(
                             onTap: () {
                               context.push(
@@ -104,10 +108,11 @@ class _LoginViewState extends State<LoginView> {
                                   isPush: true);
                             },
                             child: Text(
-                              "هل نسيت كلمة المرور ؟",
+                              AppLocale.forgatPasswordTitle.getString(context),
                               style: TextStyle(
-                                color: white,
-                                fontSize: 20,
+                                color: pureWhite,
+                                fontSize: 17,
+                                height: 0.9,
                               ),
                             ),
                           ),
@@ -115,14 +120,38 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       height26,
                       CustomButton(
-                        title: "تسجيل الدخول",
+                        title: AppLocale.login.getString(context),
                         onPressed: () {
                           bloc.add(LoginEvent(
                               email: emailController.text,
                               password: passwordController.text));
                         },
                         backgroundColor: green,
-                      )
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.push(
+                              view: const SignUpView(), isPush: true);
+                        },
+                        child: RichText(
+                            text:  TextSpan(
+                              text: AppLocale.haveAccount.getString(context),
+                              style: TextStyle(
+                                color: pureWhite,
+                                fontSize: 20,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: AppLocale.richText.getString(context),
+                                  style: TextStyle(
+                                    color: green,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                      ),
                     ],
                   ),
                 ),

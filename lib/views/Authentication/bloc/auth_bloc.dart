@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
@@ -21,6 +22,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginEvent>(login);
     on<CheckSessionAvailability>(getSession);
     on<LogoutEvent>(logout);
+    on<SendOtpEvent>(sendOTP);
+    on<VerifyOtpEvent>(verifyOTP);
+    on<ResendOtpEvent>(resendOTP);
+    on<ChangePasswordEvent>(updatePassword);
   }
 
   FutureOr<void> signUpNewUser(
@@ -43,8 +48,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 phone: event.phone,
               );
               emit(AuthSignUpSuccessState(
-                  message: "تم إكمال عملية التسجيل بنجاح"));
+                  message:
+                      "تم إنشاء الحساب بنجاح، الرجاء تأكيد الحساب عبر الإيميل الخاص بك"));
             } on AuthException catch (e) {
+              print(e);
               emit(AuthSignUpErrorState(
                 message:
                     "فشل في عملية التسجيل: ${e.statusCode}. يرجى التحقق من بريدك الإلكتروني وكلمة المرور",
@@ -105,15 +112,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       CheckSessionAvailability event, Emitter<AuthState> emit) async {
     await Future.delayed(const Duration(seconds: 2));
     try {
-      print("1");
       final sessionData = await serviceLocator.getCurrentSession();
       if (sessionData != null) {
-        final userId = await serviceLocator.getCurrentUserId();
-        print("2");
-
-        await serviceLocator.getUserRole(id: userId);
-        print("3");
-        if (serviceLocator.userRole == 'admin') {
+        serviceLocator.userID = await serviceLocator.getCurrentUserId();
+        serviceLocator.user =
+            await serviceLocator.getUser(id: serviceLocator.userID);
+        print("------------------");
+        print(serviceLocator.user.typeRole);
+        print("------------------");
+        if (serviceLocator.user.typeRole == 'admin') {
           emit(SessionAvailabilityState(page: const ControlPanel()));
         } else {
           emit(SessionAvailabilityState(page: BottomNavBar()));
@@ -121,9 +128,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } else {
         emit(SessionAvailabilityState(page: const OnboardingView()));
       }
-    } catch (e) {
-
-    }
+    } catch (_) {}
   }
 
   FutureOr<void> logout(LogoutEvent event, Emitter<AuthState> emit) async {
@@ -132,6 +137,83 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLogoutSuccessState(message: "تم تسجيل الخروج بنجاح"));
     } catch (e) {
       emit(AuthLogoutErrorState(message: "حدث خطأ أثناء عملية تسجيل الخروج"));
+    }
+  }
+
+  FutureOr<void> sendOTP(SendOtpEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    if (event.email.trim().isNotEmpty) {
+      try {
+        await serviceLocator.sendOtp(email: event.email);
+        serviceLocator.email = event.email;
+        emit(AuthCheckEmailVerificationState(
+            message: "تم إرسال رمز التحقق إلى بريدك الإلكتروني"));
+      } catch (e) {
+        emit(
+            AuthCheckEmailVerificationErrorState(message: "الإيميل غير معروف"));
+      }
+    } else {
+      emit(AuthCheckEmailVerificationErrorState(
+          message: "الرجاء تعبئة حقل الإيميل لتغيير كلمة المرور"));
+    }
+  }
+
+  FutureOr<void> verifyOTP(
+      VerifyOtpEvent event, Emitter<AuthState> emit) async {
+    if (event.otpToken.trim().isNotEmpty && event.otpToken.length == 6) {
+      try {
+        await serviceLocator.verifyOtp(
+            email: serviceLocator.email, otpToken: event.otpToken);
+        emit(AuthCheckOTPVerificationState(
+            message: "تم تأكيد رمز OTP، يرجى إدخال كلمة المرور الجديدة"));
+      } on AuthException catch (_) {
+        emit(AuthCheckOTPVerificationErrorState(
+            message: "رمز OTP غير صالح، يرجى المحاولة مرة أخرى"));
+      } on Exception catch (_) {
+        emit(AuthCheckOTPVerificationErrorState(
+            message:
+                "هناك مشكلة في خوادمنا، يرجى المحاولة مرة أخرى في وقت لاحق"));
+      }
+    } else {
+      emit(AuthCheckOTPVerificationErrorState(message: "يرجى إدخال رمز OTP"));
+    }
+  }
+
+  FutureOr<void> resendOTP(
+      ResendOtpEvent event, Emitter<AuthState> emit) async {
+    try {
+      await serviceLocator.resendOtp();
+      emit(AuthResendOTPState(
+          message: "تم إعادة إرسال رمز OTP إلى ${serviceLocator.email}"));
+    } catch (e) {
+      emit(AuthResendOTPErrorState(message: "تعذر إرسال رمز OTP..."));
+    }
+  }
+
+  FutureOr<void> updatePassword(
+      ChangePasswordEvent event, Emitter<AuthState> emit) async {
+    if (event.password == event.password) {
+      if (event.password.trim().isNotEmpty && event.password.length >= 6) {
+        try {
+          await serviceLocator.resetPassword(newPassword: event.password);
+          emit(AuthChangePasswordState(message: "تم تغيير كلمة المرور بنجاح"));
+          await serviceLocator.signOut();
+        } on AuthException catch (_) {
+          emit(AuthChangePasswordErrorState(
+              message: "غير مسموح لك بتغيير كلمة المرور"));
+        } on Exception catch (_) {
+          emit(AuthChangePasswordErrorState(
+              message:
+                  "هناك مشكلة في خوادمنا، يرجى المحاولة مرة أخرى في وقت لاحق"));
+        }
+      } else {
+        emit(AuthChangePasswordErrorState(
+            message: "الرجاء إدخال كلمة مرور صالحة (6 أحرف على الأقل)"));
+      }
+    } else {
+      emit(AuthChangePasswordErrorState(
+          message:
+              "كلمات المرور غير متطابقة. يرجى التأكد من تطابق كلمات المرور"));
     }
   }
 }
