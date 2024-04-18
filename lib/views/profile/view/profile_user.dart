@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
@@ -57,10 +58,13 @@ class ProfileUser extends StatelessWidget {
               child: Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(200),
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
-                    fit: BoxFit.cover,
-                  ),
+                  child:CachedNetworkImage(
+       imageUrl: "https://epsnmxxdpoeljecxghat.supabase.co/storage/v1/object/public/asd/user_image",
+       progressIndicatorBuilder: (context, url, downloadProgress) => 
+               CircularProgressIndicator(value: downloadProgress.progress),
+       errorWidget: (context, url, error) => Icon(Icons.error),
+    ),
+
                 ),
               ),
             ),
