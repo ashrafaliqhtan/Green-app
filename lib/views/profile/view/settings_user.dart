@@ -95,27 +95,13 @@ class SettingsUser extends StatelessWidget {
                 title: AppLocale.email.getString(context),
                 icons: Icons.email_outlined,
                 onTap: () {}),
-            SettingsButton(
-                title: AppLocale.email.getString(context),
-                icons: Icons.email_outlined,
-                onTap: () {}),
             height16,
             SettingsSwitch(
               title: AppLocale.notification.getString(context),
               icon: Icons.notifications,
               isDarkMode: false,
             ),
-            SettingsSwitch(
-              title: AppLocale.notification.getString(context),
-              icon: Icons.notifications,
-              isDarkMode: false,
-            ),
             height16,
-            SettingsSwitch(
-              title: AppLocale.darkMode.getString(context),
-              icon: Icons.sunny,
-              isDarkMode: true,
-            ),
             SettingsSwitch(
               title: AppLocale.darkMode.getString(context),
               icon: Icons.sunny,
