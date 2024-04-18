@@ -1,4 +1,4 @@
-  import 'package:translator/translator.dart';
+import 'package:translator/translator.dart';
 
 mixin AppLocale {
   static const String title = 'title';
@@ -18,7 +18,29 @@ mixin AppLocale {
   static const String usedPoint = 'usedPoint';
   static const String registerWithUs = 'registerWithUs';
   static const String login = 'login';
-  static const String signup = 'signup';
+
+  //Admin
+  static const String controlPanel = 'ControlPanel';
+  static const String eventsAdmin = 'Events';
+  static const String supervisors = 'Supervisors';
+  static const String rewardsPageAdmin = 'Rewards';
+  static const String addressAdminEvent = 'Address';
+  static const String supervisorsName = 'Name';
+  static const String addImageEvent = 'AddImage';
+  static const String eventName = 'EventName';
+  static const String addDescription = 'AddDescription';
+  static const String date = 'Date';
+  static const String from = 'From';
+  static const String to = 'To';
+  static const String location = 'location';
+  static const String maximumCapacity = 'maximumCapacity';
+  static const String addIt = 'Add';
+  static const String cancel = 'Cancel';
+  static const String delete = 'Delete';
+  static const String rewordName = 'RewordName';
+  static const String supervisorsCity = 'City';
+  static const String time = 'Time';
+    static const String addReword = 'addReword';
 
 
   //profile
@@ -40,11 +62,12 @@ mixin AppLocale {
   static const String logoutButton = 'logout';
   static const String editProfile = 'editProfile';
   static const String chooseLanguage = 'chooseLanguage';
-static const String listCity="listCity";
+  static const String listCity = "listCity";
+  static const String addEvent = "AddEvent";
 
   static const Map<String, dynamic> EN = {
-    chooseLanguage:"choose Language",
-    userName:"user name",
+    chooseLanguage: "choose Language",
+    userName: "user name",
     account: 'account',
     volunteerHours: 'volunteer Hours',
     hours: 'hours',
@@ -61,24 +84,34 @@ static const String listCity="listCity";
     languageButton: 'language',
     logoutButton: 'logout',
     editProfile: 'edit Profile',
-    listCity:[
-     "Eastern",
-     "Riyadh",
-     "Makkah",
-     "AL Madinah AL Munawwarah",
-     "Al-Qassim",
-     "Asir",
-     "Tabuk",
-     "Hail",
-     "Northern borders",
-     "Najran",
-     "Al Baha",
-     "Al-Jawf"
-   ]
+    controlPanel: 'Control Panel',
+    eventsAdmin: 'Events',
+    supervisors: 'Supervisors',
+    rewardsPageAdmin: 'Rewards',
+    addressAdminEvent: 'Address',
+    supervisorsName: 'Name',
+    addImageEvent: 'Add Image',
+    eventName: 'Event Name',
+    rewordName: 'Event Name',
+    addDescription: 'Add Description',
+    date: 'Date',
+    time: 'Time',
+    from: 'From',
+    to: 'To',
+    location: 'location',
+    maximumCapacity: 'maximumCapacity',
+    addIt: 'Add',
+    cancel: 'Cancel',
+    delete: 'Delete',
+    supervisorsCity: 'City',
+    addEvent: "Add Event",
+    addReword : 'add Reword',
   };
   static const Map<String, dynamic> AR = {
     chooseLanguage: 'اختر اللغة',
-    userName:"اسم المستخدم",
+    time: 'الوقت',
+    userName: "اسم المستخدم",
+    rewordName: 'إسم المكآفأة',
     account: 'حساب',
     volunteerHours: 'ساعات التطوع',
     hours: 'ساعات',
@@ -95,28 +128,34 @@ static const String listCity="listCity";
     languageButton: 'اللغة',
     logoutButton: 'تسجيل الخروج',
     editProfile: 'تعديل الملف الشخصي',
-    listCity:[
-    "الشرقية",
-    "الرياض",
-    "مكة المكرمة",
-    "المدينة المنورة",
-    "القصيم",
-    "عسير",
-    "تبوك",
-    "حائل",
-    "الحدود الشمالية",
-    "نجران",
-    "الباحة",
-    "الجوف"
-  ]
+    controlPanel: 'لوحة التحكم',
+    supervisorsCity: 'المدينة',
+    eventsAdmin: 'الأحداث',
+    supervisors: 'المشرفون',
+    rewardsPageAdmin: 'المكافآت',
+    addressAdminEvent: 'العنوان',
+    supervisorsName: 'الإسم',
+    addImageEvent: 'أضف صورة الغلاف',
+    eventName: 'إسم الحدث',
+    addDescription: 'أضف وصف',
+    date: 'التاريخ',
+    from: 'من',
+    to: 'الى',
+    location: 'الموقع',
+    maximumCapacity: 'القدرة الإستيعابية',
+    addIt: 'أضف',
+    cancel: 'إلغاء',
+    delete: 'حذف',
+    addEvent: "أضف حدث",
+        addReword : 'أضف مكآفأة',
+
   };
   translatorFunction(String input) {
-  String statement="";
-  final translator = GoogleTranslator();
-  translator.translate(input, to: 'en').then((result) => statement=result.text);
-  return statement;
+    String statement = "";
+    final translator = GoogleTranslator();
+    translator
+        .translate(input, to: 'en')
+        .then((result) => statement = result.text);
+    return statement;
   }
-
-
 }
-

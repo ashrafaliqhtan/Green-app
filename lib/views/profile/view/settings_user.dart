@@ -18,13 +18,16 @@ class SettingsUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final serviceLocator = DataInjection().locator.get<DBServices>();
-    final user = serviceLocator.user;
     final cubit = context.read<LanguageCubit>();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        actions: [Text(AppLocale.SettingsTitle.getString(context))],
+        title: Text(
+          AppLocale.SettingsTitle.getString(context),
+          style: const TextStyle(
+              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
         backgroundColor: green,
         automaticallyImplyLeading: true,
       ),
@@ -51,13 +54,24 @@ class SettingsUser extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(200),
                         child: Image.network(
-                            "https://image.movieglu.com/7772/GBR_007772h0.jpg"),
+                          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(user.name ?? "Name"),
-                        Text(AppLocale.editProfile.getString(context))
+                        const Text(
+                          "أحمد موسى",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 22),
+                        ),
+                        Text(
+                          AppLocale.editProfile.getString(context),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        )
                       ],
                     )
                   ],
@@ -112,9 +126,20 @@ class SettingsUser extends StatelessWidget {
                     ),
                   );
                 }),
+            height60,
             Container(
-              color: green,
-              child: Text(AppLocale.logoutButton.getString(context)),
+              height: 60,
+              width: 345,
+              decoration: BoxDecoration(
+                  color: green, borderRadius: BorderRadius.circular(30)),
+              child: Center(
+                  child: Text(
+                AppLocale.logoutButton.getString(context),
+                style: TextStyle(
+                    color: pureWhite,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24),
+              )),
             ),
           ],
         ),

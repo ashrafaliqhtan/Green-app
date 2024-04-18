@@ -32,6 +32,8 @@ class OTPView extends StatelessWidget {
           );
         } else if (state is AuthResendOTPErrorState) {
           context.getMessagesBar(msg: state.message, color: red);
+        } else if (state is AuthCheckOTPVerificationErrorState) {
+          context.getMessagesBar(msg: state.message, color: red);
         }
       },
       builder: (context, state) {

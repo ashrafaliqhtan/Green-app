@@ -8,6 +8,5 @@ class DataInjection {
   setUp() {
     locator.registerSingleton<DBServices>(DBServices());
     locator.registerSingleton<AppearanceServices>(AppearanceServices());
-
   }
 }

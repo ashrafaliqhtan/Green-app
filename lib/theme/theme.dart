@@ -5,7 +5,7 @@ Map<String, ThemeData> appThemes={
   'Light': ThemeData(
     scaffoldBackgroundColor: lightBackground,
     textTheme: const TextTheme().apply(
-      bodyColor: pureWhite,),
+      bodyColor: black,),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
     ),
