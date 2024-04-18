@@ -9,8 +9,6 @@ class DBServices {
   String userID = "";
   String otpToken = '';
   GSIUser user = GSIUser();
-  bool isInitializeSupabase=false;
-
 
   //----------------------------- Auth --------------------------------
   Future signUp({
@@ -47,7 +45,6 @@ class DBServices {
         .match({'id_user': id}).single();
     email = supabase.auth.currentUser!.email!;
     return GSIUser.fromJson(userInfo);
-    userRole = userInfo['type_role'];
   }
 
   Future<String> getCurrentUserId() async {
@@ -74,19 +71,19 @@ class DBServices {
   Future resetPassword({required String newPassword}) async {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
+
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
-    var newEvent = await supabase
-        .from('org_event').insert({
-  "name": event.title,
-  "content": event.description,
-  "location": event.location,
-  "date_start": event.startDate,
-  "time_start": event.startTime,
-  "end_date": event.endDate,
-  "time_end": event.endTime,
-  "maximam_number_of": event.maximumCapacity,
-});
-print("done");
+    var newEvent = await supabase.from('org_event').insert({
+      "name": event.title,
+      "content": event.description,
+      "location": event.location,
+      "date_start": event.startDate,
+      "time_start": event.startTime,
+      "end_date": event.endDate,
+      "time_end": event.endTime,
+      "maximam_number_of": event.maximumCapacity,
+    });
+    print("done");
   }
 }

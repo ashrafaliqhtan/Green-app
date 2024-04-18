@@ -4,11 +4,12 @@ import 'package:green_saudi_app/theme/appearence%20manager/appearence_service.da
 
 class DataInjection {
   final locator = GetIt.I;
-  setupDatabase(){locator.registerSingleton<DBServices>(DBServices());
-      GetIt.I.get<DBServices>().isInitializeSupabase=true;
-}
+
+  setupDatabase() {
+    GetIt.I.registerSingleton<DBServices>(DBServices());
+  }
 
   setupAppearance() {
-    locator.registerSingleton<AppearanceServices>(AppearanceServices());
+    GetIt.I.registerSingleton<AppearanceServices>(AppearanceServices());
   }
 }

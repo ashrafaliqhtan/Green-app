@@ -18,11 +18,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await databaseConfiguration();
   DataInjection().setupAppearance();
+  DataInjection().setupDatabase();
+
   InternetConnection().onStatusChange.listen((status) async {
     if (status == InternetStatus.connected) {
-      if (GetIt.I.get<DBServices>().isInitializeSupabase == false) {
-        DataInjection().setupDatabase();
-      }
       runApp(const MainApp());
     } else {
       runApp(const Disconnect());
@@ -46,8 +45,8 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     localization.init(
       mapLocales: [
-         MapLocale('ar', AppLocale.AR),
-         MapLocale('en', AppLocale.EN),
+        MapLocale('ar', AppLocale.AR),
+        MapLocale('en', AppLocale.EN),
       ],
       initLanguageCode: 'en',
     );
