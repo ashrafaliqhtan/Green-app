@@ -10,3 +10,8 @@ class ShowThemeState extends ThemeState {
   final String currentTheme;
   ShowThemeState(this.currentTheme, this.themeData);
 }
+
+
+class UpdateState extends ThemeState {
+
+}
