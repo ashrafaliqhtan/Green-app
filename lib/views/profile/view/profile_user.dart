@@ -6,10 +6,12 @@ import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Hours%20History/view/Hours_history.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ProfileUser extends StatelessWidget {
   const ProfileUser({super.key});
@@ -75,7 +77,8 @@ class ProfileUser extends StatelessWidget {
             ),
             TextProfile(
               title: AppLocale.email.getString(context),
-              data: serviceLocator.email,
+              data: "",
+              // data: serviceLocator.email,
             ),
             TextProfile(
               title: AppLocale.city.getString(context),
@@ -84,6 +87,11 @@ class ProfileUser extends StatelessWidget {
             TextProfile(
               title: AppLocale.phoneNumber.getString(context),
               data: serviceLocator.user.phoneNumber ?? "0500500505",
+            ),
+            height26,
+            QrImageView(
+              data: serviceLocator.userID,
+              size: 200,
             ),
           ],
         ),
