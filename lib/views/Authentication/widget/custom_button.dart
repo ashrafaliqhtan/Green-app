@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -8,17 +9,21 @@ class CustomButton extends StatelessWidget {
   final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: backgroundColor,
-      ),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: white,
-          fontWeight: FontWeight.bold,
-          fontSize: 32,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          minimumSize: Size(context.getWidth(), 55)
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: pureWhite,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
         ),
       ),
     );

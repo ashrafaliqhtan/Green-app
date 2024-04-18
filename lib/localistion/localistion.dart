@@ -1,7 +1,7 @@
 mixin AppLocale {
   static const String title = 'title';
 
-  // Auth and Onboarding
+  // Onboarding
   static const String onBoardingTitle1 = 'onBoardingTitle1';
   static const String onBoardingTitle2 = 'onBoardingTitle2';
   static const String onBoardingTitle3 = 'onBoardingTitle3';
@@ -13,10 +13,34 @@ mixin AppLocale {
   static const String start = 'start';
   static const String profile = 'profile';
   static const String aboutUS = 'aboutUS';
-
+  // Auth
+  static const String welcome = 'welcome';
+  static const String emailTitle = 'emailTitle';
+  static const String nameTitle = 'nameTitle';
+  static const String phoneTitle = 'phoneTitle';
+  static const String passwordTitle = 'Password';
+  static const String confirmTitle = 'confirmTitle';
+  static const String emailHint = 'emailHint';
+  static const String passwordHint = 'passwordHint';
+  static const String nameHint = 'nameHint';
+  static const String confirmPasswordHint = 'confirmPasswordHint';
+  static const String forgatPasswordTitle = 'forgatPasswordTitle';
+  static const String login = 'login';
+  static const String signUp = 'signUp';
+  static const String haveAccount = 'haveAccount';
+  static const String haveAccountAlready = 'haveAccountAlready';
+  static const String richText = 'richText';
+  static const String instruction = 'instruction';
+  static const String verification = 'verification';
+  static const String newPassword = 'newPassword';
+  static const String confirmEmail = 'confirmEmail';
+  static const String timer = 'timer';
+  static const String second = 'second';
+  static const String resend = 'resend';
+  static const String sendOTP = 'sendOTP';
   //sultan
   static const String homePage = 'homePage';
-  static const String pointPage = 'pointPage'; 
+  static const String pointPage = 'pointPage';
   static const String eventPage = 'eventPage';
   static const String myEventPage = 'myEventPage';
   static const String initiativesTitle = 'initiativesTitle';
@@ -41,8 +65,6 @@ mixin AppLocale {
   static const String getPoint = 'getPoint';
   static const String usedPoint = 'usedPoint';
   static const String registerWithUs = 'registerWithUs';
-  static const String login = 'login';
-  static const String signUp = 'signUp';
   static const String signEvent = 'signEvent';
   static const String region1 = 'region1';
   static const String region2 = 'region2';
@@ -79,22 +101,50 @@ mixin AppLocale {
   static const String listCity = "listCity";
 
   static const Map<String, dynamic> EN = {
-    // Onboarding and Auth
+    // Onboarding
     onBoardingTitle1: 'gGreening Saudi',
     onBoardingTitle2: 'Reducing Emissions',
     onBoardingTitle3: 'Protecting Land and Sea',
-    onBoardingText1: 'A commitment to rehabilitate 40 million hectares of land and restore Saudi Arabia’s natural greenery.',
-    onBoardingText2: 'A mission to accelerate Saudi Arabia’s green energy transition and mitigate the impacts of climate change.',
-    onBoardingText3: 'Providing habitats for indigenous flora and fauna and ensuring that humanity continues to thrive in harmony with nature.',
+    onBoardingText1:
+        'A commitment to rehabilitate 40 million hectares of land and restore Saudi Arabia’s natural greenery.',
+    onBoardingText2:
+        'A mission to accelerate Saudi Arabia’s green energy transition and mitigate the impacts of climate change.',
+    onBoardingText3:
+        'Providing habitats for indigenous flora and fauna and ensuring that humanity continues to thrive in harmony with nature.',
     skip: 'Skip',
     move: 'Continue',
     start: "Let's Start",
     profile: 'Profile',
     aboutUS: 'About Us',
 
+    // Auth
+    welcome: 'Welcome',
+    emailTitle: 'Email',
+    passwordTitle: 'Password',
+    passwordHint: 'Enter your password',
+    emailHint: 'Enter your Email',
+    forgatPasswordTitle: 'Forgat Password?',
+    signUp: 'Sing Up',
+    login: 'Login',
+    haveAccount: 'Create Account?',
+    richText: 'Register',
+    nameTitle: 'Name',
+    nameHint: 'Enter your name',
+    phoneTitle: 'Phone Number',
+    confirmTitle: 'Confirm Password',
+    confirmPasswordHint: 'Confirm Password',
+    haveAccountAlready: 'Have Account Already?',
+    instruction: 'Check your email and follow the required steps.',
+    verification: 'Verification',
+    newPassword: 'New Password',
+    confirmEmail: 'Confirm',
+    timer: 'Resend the verification code',
+    second: 'second',
+    resend: 'Resend',
+    sendOTP: 'Enter Verification Code',
     // Profile
-    chooseLanguage: "Choose Language",
-    userName: "User name",
+    chooseLanguage: 'Choose Language',
+    userName: 'User name',
     account: 'Account',
     volunteerHours: 'Volunteer Hours',
     hours: 'Hours',
@@ -111,7 +161,6 @@ mixin AppLocale {
     languageButton: 'Language',
     logoutButton: 'Logout',
     editProfile: 'Edit Profile',
-
 
     // USER
     homePage: 'Home',
@@ -183,7 +232,31 @@ mixin AppLocale {
     profile: 'الحساب',
     aboutUS: 'من نحن',
 
-
+    // Auth
+    welcome: 'مرحبا بك',
+    emailTitle: 'البريد الالكتروني',
+    passwordTitle: 'كلمة المرور',
+    emailHint: 'ادخل البريد الالكتروني',
+    forgatPasswordTitle: 'هل نسيت كلمة المرور',
+    signUp: 'تسجيل',
+    login: 'تسجيل الدخول',
+    haveAccount: 'ليس لديك حساب؟',
+    richText: 'سجل معنا',
+    nameTitle: 'الاسم',
+    nameHint: 'ادخل الاسم',
+    passwordHint: 'ادخل كلمة المرور',
+    phoneTitle: 'رقم الجوال',
+    confirmTitle: 'تأكيد كلمة المرور',
+    confirmPasswordHint: 'تأكيد كلمة المرور',
+    haveAccountAlready: 'هل لديك حساب؟',
+    instruction: 'تحقق من بريدك الإلكتروني واتبع الخطوات المطلوبة',
+    verification: 'تحقق',
+    newPassword: 'كلمة المرور الجديدة',
+    confirmEmail: 'تأكيد',
+    timer: 'إعادة رمز التحقق بعد',
+    second: 'ثانية',
+    resend: 'أعد الارسال',
+    sendOTP: 'أدخل رمز التحقق',
 
     // Profile
     chooseLanguage: 'اختر اللغة',
@@ -204,7 +277,6 @@ mixin AppLocale {
     languageButton: 'اللغة',
     logoutButton: 'تسجيل الخروج',
     editProfile: 'تعديل الملف الشخصي',
-
 
     // User
     homePage: 'الرئيسية',
