@@ -43,9 +43,8 @@ class AddReword extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(AppLocale.addImageEvent.getString(context),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 24,
-                        color: black,
                       )),
                   const Spacer(),
                   Container(

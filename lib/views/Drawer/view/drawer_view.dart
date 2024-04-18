@@ -67,7 +67,7 @@ class DrawerScreen extends StatelessWidget {
                         context.push(view: ProfileUser(), isPush: false);
                       },
                     ),
-                     DrawerItem(
+                    DrawerItem(
                       icon: Icons.info,
                       title: AppLocale.aboutUS.getString(context),
                     ),
@@ -100,17 +100,17 @@ class DrawerScreen extends StatelessWidget {
                 height20,
                 Row(
                   children: [
-                    Icon(Icons.settings, color: pureWhite),
-                    width8,
-                    InkWell(
-                      onTap: () {
+                    IconButton(
+                      onPressed: () {
                         context.push(view: const SettingsUser(), isPush: true);
                       },
-                      child: Text(
-                        AppLocale.SettingsTitle.getString(context),
-                        style: TextStyle(
-                            color: pureWhite, fontWeight: FontWeight.bold),
-                      ),
+                      icon: Icon(Icons.settings, color: pureWhite),
+                    ),
+                    width8,
+                    Text(
+                      AppLocale.SettingsTitle.getString(context),
+                      style: TextStyle(
+                          color: pureWhite, fontWeight: FontWeight.bold),
                     ),
                     width8,
                     Container(width: 2, height: 20, color: pureWhite),
@@ -124,16 +124,38 @@ class DrawerScreen extends StatelessWidget {
                         style: TextStyle(
                             color: pureWhite, fontWeight: FontWeight.bold),
                       ),
-                    )
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    user.typeRole == "admin"
+                        ? IconButton(
+                            onPressed: () {
+                              context.push(
+                                  view: BottomNavBarAdmin(), isPush: false);
+                            },
+                            icon: Icon(
+                              Icons.border_color_rounded,
+                              color: pureWhite,
+                            ),
+                          )
+                        : const SizedBox(),
+                         width8,
+                   user.typeRole == "admin"
+                        ?  Text(
+                      "back to Control Panel",
+                      style: TextStyle(
+                          color: pureWhite, fontWeight: FontWeight.bold),
+                    ): const SizedBox(),
                   ],
                 ),
                 height20,
                 Row(
                   children: [
                     IconButton(
-                        onPressed: () {
-                          context.push(view: BottomNavBarAdmin(), isPush: false);
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.facebook_outlined,
                           color: pureWhite,

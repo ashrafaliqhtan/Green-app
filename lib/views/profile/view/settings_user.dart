@@ -26,14 +26,13 @@ class SettingsUser extends StatelessWidget {
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        centerTitle: true,
         backgroundColor: green,
         automaticallyImplyLeading: false,
         leading: IconButton(
             onPressed: () {
-              context.push(view: BottomNavBar(), isPush: false);
+              context.push(view: const BottomNavBar(), isPush: false);
             },
-            icon: const Icon(Icons.arrow_back)),
+            icon:  Icon(Icons.arrow_back,color: pureWhite,)),
       ),
       body: Center(
         child: Column(
