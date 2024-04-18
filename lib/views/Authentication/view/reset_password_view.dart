@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
@@ -38,11 +40,12 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
       },
       builder: (context, state) {
         return Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
-            backgroundColor: green,
+            backgroundColor: Colors.transparent,
             actionsIconTheme: IconThemeData(color: white),
           ),
-          backgroundColor: green,
+          backgroundColor: white,
           body: SingleChildScrollView(
             child: SafeArea(
               child: Column(
@@ -60,19 +63,21 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   height10,
                   InputTextFelid(
                     controller: passwordController,
-                    title: "كلمة المرور الجديده",
+                    title: AppLocale.newPassword.getString(context),
                     icon: Icons.lock,
                     isPassword: true,
+                    isColorChange: true,
                   ),
                   InputTextFelid(
                     controller: confirmPasswordController,
-                    title: "تأكيد كلمة المرور",
+                    title: AppLocale.confirmTitle.getString(context),
                     icon: Icons.lock,
                     isPassword: true,
+                    isColorChange: true,
                   ),
                   height32,
                   CustomButton(
-                    title: "تأكيد",
+                    title: AppLocale.confirmEmail.getString(context),
                     backgroundColor: greenLight2,
                     onPressed: () {
                       context.read<AuthBloc>().add(ChangePasswordEvent(

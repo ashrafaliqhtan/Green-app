@@ -46,10 +46,10 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     localization.init(
       mapLocales: [
-        const MapLocale('ar', AppLocale.AR),
-        const MapLocale('en', AppLocale.EN),
+         MapLocale('ar', AppLocale.AR),
+         MapLocale('en', AppLocale.EN),
       ],
-      initLanguageCode: 'ar',
+      initLanguageCode: 'en',
     );
     super.initState();
   }

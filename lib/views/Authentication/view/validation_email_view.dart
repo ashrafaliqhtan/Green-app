@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
@@ -37,10 +39,10 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: green,
-            actionsIconTheme: IconThemeData(color: white),
+            backgroundColor: Colors.transparent,
+            actionsIconTheme: IconThemeData(color: green),
           ),
-          backgroundColor: green,
+          backgroundColor: pureWhite,
           body: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
@@ -59,7 +61,7 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
                     ),
                     height8,
                     Text(
-                      "تحقق من بريدك الإلكتروني واتبع الخطوات المطلوبة",
+                      AppLocale.instruction.getString(context),
                       style: TextStyle(
                           color: white,
                           fontSize: 18,
@@ -68,15 +70,16 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
                     height10,
                     InputTextFelid(
                       controller: emailController,
-                      title: "البريد الإلكتروني",
+                      title: AppLocale.emailTitle.getString(context),
                       hintText: "example@gmail.com",
                       icon: Icons.email,
                       isPassword: false,
+                      isColorChange: true,
                     ),
                     height32,
                     CustomButton(
-                      title: "تحقق",
-                      backgroundColor: greenLight2,
+                      title: AppLocale.verification.getString(context),
+                      backgroundColor: green,
                       onPressed: () {
                         context
                             .read<AuthBloc>()

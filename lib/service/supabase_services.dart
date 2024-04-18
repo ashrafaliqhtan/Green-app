@@ -74,7 +74,7 @@ class DBServices {
   Future resetPassword({required String newPassword}) async {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
-  ///////////////////////////////////////////////////////////admin
+  //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
     var newEvent = await supabase
         .from('org_event').insert({

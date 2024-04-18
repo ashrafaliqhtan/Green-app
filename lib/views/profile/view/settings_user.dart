@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
 import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 import 'package:green_saudi_app/views/profile/view/edit_profile_user.dart';
 import 'package:green_saudi_app/views/profile/widget/settings_button.dart';
@@ -29,7 +28,12 @@ class SettingsUser extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: green,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              context.push(view: BottomNavBar(), isPush: false);
+            },
+            icon: Icon(Icons.arrow_back)),
       ),
       body: Center(
         child: Column(
@@ -91,13 +95,27 @@ class SettingsUser extends StatelessWidget {
                 title: AppLocale.email.getString(context),
                 icons: Icons.email_outlined,
                 onTap: () {}),
+            SettingsButton(
+                title: AppLocale.email.getString(context),
+                icons: Icons.email_outlined,
+                onTap: () {}),
             height16,
             SettingsSwitch(
               title: AppLocale.notification.getString(context),
               icon: Icons.notifications,
               isDarkMode: false,
             ),
+            SettingsSwitch(
+              title: AppLocale.notification.getString(context),
+              icon: Icons.notifications,
+              isDarkMode: false,
+            ),
             height16,
+            SettingsSwitch(
+              title: AppLocale.darkMode.getString(context),
+              icon: Icons.sunny,
+              isDarkMode: true,
+            ),
             SettingsSwitch(
               title: AppLocale.darkMode.getString(context),
               icon: Icons.sunny,

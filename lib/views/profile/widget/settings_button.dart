@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 
+// ignore: must_be_immutable
 class SettingsButton extends StatelessWidget {
    SettingsButton({
     super.key,

@@ -11,12 +11,13 @@ class InputTextFelid extends StatelessWidget {
     required this.isPassword,
     this.icon,
     required this.controller,
-    this.hintText,
+    this.hintText, this.isColorChange = false,
   });
   final String title;
   final IconData? icon;
   final bool isPassword;
   String? hintText;
+  final bool isColorChange;
   TextEditingController controller;
 
   @override
@@ -26,12 +27,12 @@ class InputTextFelid extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
             style: TextStyle(
-              color: white,
+              color: (isColorChange) ? green : white,
               fontSize: 24,
             ),
           ),
@@ -52,10 +53,11 @@ class InputTextFelid extends StatelessWidget {
             ),
             child: TextField(
               controller: controller,
+              cursorColor: green,
               obscureText: isPassword,
               decoration: InputDecoration(
                 hintText: hintText,
-                prefixIcon: isPassword
+                suffixIcon: isPassword
                     ? IconButton(
                         onPressed: () {
                           if (isObscureText) {
@@ -64,9 +66,9 @@ class InputTextFelid extends StatelessWidget {
                             isObscureText = true;
                           }
                         },
-                        icon: const Icon(
+                        icon:  Icon(
                           Icons.remove_red_eye_outlined,
-                          color: Colors.green,
+                          color: green,
                           size: 24,
                         ),
                       )
@@ -89,7 +91,7 @@ class InputTextFelid extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(40),
                 ),
-                suffixIcon: Icon(
+                prefixIcon: Icon(
                   icon,
                   color: green,
                   size: 24,

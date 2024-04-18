@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 
@@ -31,7 +33,7 @@ class HeaderPoint extends StatelessWidget {
                     color: pureWhite, borderRadius: BorderRadius.circular(40)),
                 child: Center(
                     child: Text(
-                  "المكأفات",
+                  AppLocale.rewards.getString(context),
                   style: TextStyle(
                     color: green,
                     fontSize: 22,
@@ -45,7 +47,7 @@ class HeaderPoint extends StatelessWidget {
                   height20,
                   Center(
                     child: Text(
-                      "نقاطك الحالية",
+                      AppLocale.rewardsPoint.getString(context),
                       style: TextStyle(
                         color: pureWhite,
                         fontSize: 25,

@@ -23,7 +23,6 @@ class TextProfile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            textDirection: TextDirection.rtl,
             children: [
               Icon(
                 Icons.man_outlined,
@@ -41,7 +40,6 @@ class TextProfile extends StatelessWidget {
                     width150,
                     width24,
                     Column(
-                      textDirection: TextDirection.rtl,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [Text(title), Text(data)],
