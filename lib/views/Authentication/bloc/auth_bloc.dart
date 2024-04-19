@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
+import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
@@ -25,6 +26,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<VerifyOtpEvent>(verifyOTP);
     on<ResendOtpEvent>(resendOTP);
     on<ChangePasswordEvent>(updatePassword);
+    on<UpdateProfileEvent>(updateProfile);
+    on<LoadProfileEvent>(loadProfile);
   }
 
   FutureOr<void> signUpNewUser(
@@ -214,5 +217,37 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           message:
               "كلمات المرور غير متطابقة. يرجى التأكد من تطابق كلمات المرور"));
     }
+  }
+
+  FutureOr<void> updateProfile(
+      UpdateProfileEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    print(event.name);
+    print(event.phone);
+    print(event.city);
+    if (event.city.trim().isNotEmpty &&
+        event.name.trim().isNotEmpty &&
+        event.phone.trim().isNotEmpty) {
+      try {
+        await serviceLocator.updateUser(
+            name: event.name, phone: event.phone, city: event.city);
+        emit(AuthUpdateProfileState(message: "تم تحديث معلومتك الشخصيه"));
+      } catch (e) {
+        AuthUpdateProfileErrorState(
+            message: "حدث خطأ في تعديل معلومتك الشخصيه");
+      }
+      emit(AuthChangePasswordErrorState(
+          message: "يرجى ملء جميع الحقول المطلوبة"));
+    }
+  }
+
+  FutureOr<void> loadProfile(
+      LoadProfileEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    try {
+      serviceLocator.user =
+          await serviceLocator.getUser(id: serviceLocator.userID);
+      emit(AuthLoadProfileState(user: serviceLocator.user));
+    } catch (_) {}
   }
 }

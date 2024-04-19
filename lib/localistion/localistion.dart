@@ -1,5 +1,3 @@
-import 'package:translator/translator.dart';
-
 mixin AppLocale {
   static const String title = 'title';
 

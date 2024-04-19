@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/data_layer/data_layer.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 
 class DropMenu extends StatefulWidget {
   const DropMenu({
@@ -9,7 +11,7 @@ class DropMenu extends StatefulWidget {
 }
 
 class _DropMenuState extends State<DropMenu> {
-  String selectedValue = "الشرقية";
+  final serviceLocator = DataInjection().locator.get<DBServices>();
 
   List<String> listCity = [
     "الشرقية",
@@ -27,6 +29,8 @@ class _DropMenuState extends State<DropMenu> {
   ];
   @override
   Widget build(BuildContext context) {
+    final user = serviceLocator.user;
+
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -40,10 +44,10 @@ class _DropMenuState extends State<DropMenu> {
         filled: true,
         fillColor: Theme.of(context).primaryColor,
       ),
-      value: selectedValue,
-      onChanged: (String? newValue) {
+      value: user.city,
+      onChanged: (newValue) {
         setState(() {
-          selectedValue = newValue!;
+          user.city = newValue;
         });
       },
       items: listCity.map<DropdownMenuItem<String>>((String value) {

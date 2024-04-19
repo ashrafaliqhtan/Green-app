@@ -7,13 +7,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DBServices {
   final supabase = Supabase.instance.client;
-  String userRole = '';
+  String userRole = "";
   String email = "";
   String userID = "";
-  String otpToken = '';
+  String otpToken = "";
+  String userImageUrl = "";
+  File userImageFile = File("");
   GSIUser user = GSIUser();
-  bool isInitializeSupabase=false;
-
 
   //----------------------------- Auth --------------------------------
   Future signUp({
@@ -50,7 +50,21 @@ class DBServices {
         .match({'id_user': id}).single();
     email = supabase.auth.currentUser!.email!;
     return GSIUser.fromJson(userInfo);
-    userRole = userInfo['type_role'];
+  }
+
+  Future updateUser(
+      {required String name,
+      required String phone,
+      required String city}) async {
+    try {
+    await supabase
+        .from('user_green_sa_app')
+        .update({'name': name, 'phone': phone, 'city': city})
+        .eq('id_user', userID)
+        .single();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<String> getCurrentUserId() async {
@@ -77,47 +91,41 @@ class DBServices {
   Future resetPassword({required String newPassword}) async {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
+
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
-    var newEvent = await supabase
-        .from('org_event').insert({
-  "name": event.title,
-  "content": event.description,
-  "location": event.location,
-  "date_start": event.startDate,
-  "time_start": event.startTime,
-  "end_date": event.endDate,
-  "time_end": event.endTime,
-  "maximam_number_of": event.maximumCapacity,
-});
-print("done");
+    await supabase.from('org_event').insert({
+      "name": event.title,
+      "content": event.description,
+      "location": event.location,
+      "date_start": event.startDate,
+      "time_start": event.startTime,
+      "end_date": event.endDate,
+      "time_end": event.endTime,
+      "maximam_number_of": event.maximumCapacity,
+    });
   }
 
   Future createReward({required RewardModel reward}) async {
-    var newReward = await supabase
-        .from('reward_table').insert({
-  "reward_name": reward.rewardName,
-  "reward_company_logo": reward.rewardCompanyLogo,
-  "reward_content": reward.rewardContent,
-  "reward_company_name": reward.rewardCompanyName,
-  "reward_id": reward.rewardId,
-  "reward_image": reward.rewardImage,
-});
-print("done");
+    await supabase.from('reward_table').insert({
+      "reward_name": reward.rewardName,
+      "reward_company_logo": reward.rewardCompanyLogo,
+      "reward_content": reward.rewardContent,
+      "reward_company_name": reward.rewardCompanyName,
+      "reward_id": reward.rewardId,
+      "reward_image": reward.rewardImage,
+    });
   }
-Future<void> uploadImage(File imageFile) async {
-  final response = await supabase.storage
-      .from('avatar') // Replace with your storage bucket name
-      .upload('user_image', imageFile);
-      UrlImage();
-print("done");
-}
 
+  Future<void> uploadImage(File imageFile) async {
+    await supabase.storage.from('avatar').upload(userID, imageFile);
+  }
 
-Future<void> UrlImage() async {
-  final response = await supabase.storage
-      .from('avatar') // Replace with your storage bucket name
-      .getPublicUrl('folder/avatar1.png');
-      print(response);
-}
+  Future<void> updateImage(File imageFile) async {
+    await supabase.storage.from('avatar').update(userID, imageFile);
+  }
+
+  urlImage() {
+    supabase.storage.from('avatar').getPublicUrl(userID);
+  }
 }

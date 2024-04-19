@@ -14,8 +14,9 @@ class Disconnect extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //TODO: fix offline-concept-illustration_114360-7063 add it in the image file
               Image.asset(
-                  "assets/images/offline-concept-illustration_114360-7063.jpg"),
+                  "assets/images/about-sgi-bg-web.jpg"),
               height16,
               Text(
                 'No internet connection',

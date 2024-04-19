@@ -86,3 +86,17 @@ final class AuthChangePasswordState extends AuthState {
   final String message;
   AuthChangePasswordState({required this.message});
 }
+
+final class AuthUpdateProfileState extends AuthState {
+  final String message;
+  AuthUpdateProfileState({required this.message});
+}
+
+final class AuthUpdateProfileErrorState extends AuthState {
+  final String message;
+  AuthUpdateProfileErrorState({required this.message});
+}
+final class AuthLoadProfileState extends AuthState{
+  final GSIUser user;
+  AuthLoadProfileState({required this.user});
+}

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
+import 'package:green_saudi_app/image_picker/bloc/image_pic_bloc.dart';
 import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
@@ -66,6 +67,9 @@ class _MainAppState extends State<MainApp> {
         ),
         BlocProvider(
           create: (context) => LanguageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ImagePicBloc(),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
