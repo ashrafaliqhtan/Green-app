@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/model/event_model.dart';
-import 'package:green_saudi_app/model/rewardModel.dart';
+import 'package:green_saudi_app/model/personal_event.dart';
+import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DBServices {
@@ -15,7 +16,7 @@ class DBServices {
   String userImageUrl = "";
   File userImageFile = File("");
   GSIUser user = GSIUser();
-
+  List<EventModel> listOfPersonalEvents = [];
   //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
@@ -92,15 +93,25 @@ class DBServices {
   Future resetPassword({required String newPassword}) async {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
+
   //-----------------------------User----------------------------------
   //signin event
+  Future participateEvent({required PersonalEvent event}) async {
+    await supabase.from('personal_event').insert({
+      "user_id": userID,
+      "name": event.event,
+      "event": event.event,
+      "stats": event.stats,
+      "days": event.days
+    });
+  }
   //display List Event history
 
   //points
   //balance
   //redeem
   //display List redeem history
-  
+
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
     await supabase.from('org_event').insert({
