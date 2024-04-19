@@ -29,7 +29,7 @@ class ControlPanel extends StatelessWidget {
               
               ),
               IconButton(onPressed: (){
-            context.push(view: BottomNavBar(), isPush: false);
+            context.push(view: const BottomNavBar(), isPush: false);
           }, icon: const Icon(Icons.remove_red_eye_outlined,color: Colors.white,),),
       ],
         
@@ -47,7 +47,7 @@ class ControlPanel extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

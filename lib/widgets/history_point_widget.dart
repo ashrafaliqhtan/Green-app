@@ -55,7 +55,7 @@ class PointWidget extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: Text(
                           pointsText,
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                       ),
                       width24,
@@ -68,12 +68,12 @@ class PointWidget extends StatelessWidget {
                       children: [
                         Text(
                           dateText,
-                          style: TextStyle(height: 0.1),
+                          style: const TextStyle(height: 0.1),
                         ),
                         width4,
                         Text(
                           timeText,
-                          style: TextStyle(height: 0.1),
+                          style: const TextStyle(height: 0.1),
                         ),
                       ],
                     ),

@@ -200,7 +200,7 @@ class EventDetailsView extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           AppLocale.signEvent.getString(context),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 24,
                           ),

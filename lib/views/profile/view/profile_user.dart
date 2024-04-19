@@ -24,7 +24,7 @@ class ProfileUser extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              context.push(view: BottomNavBar(), isPush: false);
+              context.push(view:const BottomNavBar(), isPush: false);
             },
             icon: Icon(
               Icons.arrow_back,
@@ -40,7 +40,7 @@ class ProfileUser extends StatelessWidget {
         automaticallyImplyLeading: true,
         title: IconButton(
             onPressed: () {
-              context.push(view: SettingsUser(), isPush: true);
+              context.push(view:const SettingsUser(), isPush: true);
             },
             icon: Icon(
               Icons.settings,
@@ -66,7 +66,7 @@ class ProfileUser extends StatelessWidget {
             Text(user.name ?? "Name"),
             InkWell(
               onTap: () {
-                context.push(view: HoursHistoryView(), isPush: false);
+                context.push(view: const HoursHistoryView(), isPush: false);
               },
               child: TextProfile(
                 title: AppLocale.volunteerHours.getString(context),

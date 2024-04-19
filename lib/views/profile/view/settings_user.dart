@@ -45,7 +45,7 @@ class SettingsUser extends StatelessWidget {
                 height: 100,
                 width: 430,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(14),
                         bottomRight: Radius.circular(14))),

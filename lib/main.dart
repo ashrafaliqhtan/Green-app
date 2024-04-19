@@ -72,7 +72,7 @@ class _MainAppState extends State<MainApp> {
       ],
       child: Builder(
         builder: (context) {
-                        final bloc = context.read<ThemeBloc>();
+                        context.read<ThemeBloc>();
 
           return BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, state) {

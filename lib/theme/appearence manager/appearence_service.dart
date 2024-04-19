@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:get_storage/get_storage.dart';
 
@@ -7,17 +6,13 @@ import 'package:get_storage/get_storage.dart';
   String currentTheme = 'Dark';
   final box = GetStorage();
 
-  AppearanceServices(){
-    // getTheme();
-      //  getMode();
-  }
 
  Future<void> changeTheme() async{
     if (currentTheme == 'Dark') {
-      await box.write('qq', 'Light');
+      await box.write('theme', 'Light');
       currentTheme = 'Light';
     } else {
-       await box.write('qq', 'Dark');
+       await box.write('theme', 'Dark');
       currentTheme = 'Dark';
     }
    box.save();

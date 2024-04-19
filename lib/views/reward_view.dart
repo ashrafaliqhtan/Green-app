@@ -50,7 +50,7 @@ class RewardView extends StatelessWidget {
                 children: [
                   // Offers
                   GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 5,
@@ -58,14 +58,14 @@ class RewardView extends StatelessWidget {
                     ),
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return OfferWidget();
+                      return const OfferWidget();
                     },
                   ),
                   // History Point
                   ListView.builder(
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return PointWidget();
+                        return const PointWidget();
                       }),
                 ],
               ),
