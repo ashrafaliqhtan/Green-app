@@ -108,8 +108,10 @@ class DBServices {
 
   //display List Event history
   Future<List<EventModel>> getUserEvent({required String id}) async {
-    final eventListData =
-        await supabase.from('personal_event').select('*').match({'user_id': id});
+    final eventListData = await supabase
+        .from('personal_event')
+        .select('*')
+        .match({'user_id': id});
     for (var element in eventListData) {
       listOfPersonalEvents.add(EventModel.fromJson(element));
     }
@@ -134,70 +136,69 @@ class DBServices {
       "maximam_number_of": event.maximumCapacity,
     });
   }
+
   Future createReward({required RewardModel reward}) async {
-    var newReward = await supabase
-        .from('reward_table').insert({
-  "reward_name": reward.rewardName,
-  "reward_company_logo": reward.rewardCompanyLogo,
-  "reward_content": reward.rewardContent,
-  "reward_company_name": reward.rewardCompanyName,
-  "reward_image": reward.rewardImage,
-});
-print("done");
+    var newReward = await supabase.from('reward_table').insert({
+      "reward_name": reward.rewardName,
+      "reward_company_logo": reward.rewardCompanyLogo,
+      "reward_content": reward.rewardContent,
+      "reward_company_name": reward.rewardCompanyName,
+      "reward_image": reward.rewardImage,
+    });
+    print("done");
   }
-    Future<List<EventModel>> getAllEvent() async {
-    final eventsListData = await supabase
-        .from('org_event')
-        .select('*');
+
+  Future<List<EventModel>> getAllEvent() async {
+    final eventsListData = await supabase.from('org_event').select('*');
     List<EventModel> listOfEvents = [];
     for (var element in eventsListData) {
       listOfEvents.add(EventModel.fromJson(element));
     }
-    return listOfEvents;}
-    
-        Future<List<RewardModel>> getAllReward() async {
-    final rewardListData = await supabase
-        .from('reward_table')
-        .select('*');
+    return listOfEvents;
+  }
+
+  Future<List<RewardModel>> getAllReward() async {
+    final rewardListData = await supabase.from('reward_table').select('*');
     List<RewardModel> listOfReward = [];
     for (var element in rewardListData) {
       listOfReward.add(RewardModel.fromJson(element));
     }
-    return listOfReward;}
-
-
+    return listOfReward;
+  }
 
   /////////////////file crud
-Future<void> uploadImage(File imageFile) async {
+  Future<void> uploadImage(File imageFile) async {
     print(userID);
 
-   await supabase.storage
-      .from('avatar') // Replace with your storage bucket name
-      .upload("${userID}", imageFile);
-      UrlImage();
-print("done");
-}
+    await supabase.storage
+        .from('avatar') // Replace with your storage bucket name
+        .upload("${userID}", imageFile);
+    UrlImage();
+    print("done");
+  }
 
-Future<void> updateImage(File imageFile) async {
+  Future<void> updateImage(File imageFile) async {
     print(userID);
 
-  await supabase.storage
-      .from('avatar') // Replace with your storage bucket name
-      .update("${userID}", imageFile);
-      UrlImage();
-print("done add");
-}
-Future<void> deleteImage() async {
-  print(userID);
-  await supabase.storage
-      .from('avatar') // Replace with your storage bucket name
-      .remove(["${userID}"]);
-print("done remove");
-}
-Future<String> UrlImage() async {
-  final response = await supabase.storage
-      .from('avatar') // Replace with your storage bucket name
-      .getPublicUrl("${userID}");
-      return response;
-}}
+    await supabase.storage
+        .from('avatar') // Replace with your storage bucket name
+        .update("${userID}", imageFile);
+    UrlImage();
+    print("done add");
+  }
 
+  Future<void> deleteImage() async {
+    print(userID);
+    await supabase.storage
+        .from('avatar') // Replace with your storage bucket name
+        .remove(["${userID}"]);
+    print("done remove");
+  }
+
+  Future<String> UrlImage() async {
+    final response = await supabase.storage
+        .from('avatar') // Replace with your storage bucket name
+        .getPublicUrl("${userID}");
+    return response;
+  }
+}
