@@ -47,7 +47,17 @@ class DrawerScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(),
+                    serviceLocator.userImageFile.path != ""
+                        ? CircleAvatar(
+                            radius: 25,
+                            backgroundImage:
+                                FileImage(serviceLocator.userImageFile),
+                          )
+                        : const CircleAvatar(
+                            radius: 25,
+                            backgroundImage: NetworkImage(
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                          ),
                     width16,
                     Text(
                       user.name ?? "مرحبا بك",
@@ -142,13 +152,14 @@ class DrawerScreen extends StatelessWidget {
                             ),
                           )
                         : const SizedBox(),
-                         width8,
-                   user.typeRole == "admin"
-                        ?  Text(
-                      "back to Control Panel",
-                      style: TextStyle(
-                          color: pureWhite, fontWeight: FontWeight.bold),
-                    ): const SizedBox(),
+                    width8,
+                    user.typeRole == "admin"
+                        ? Text(
+                            "back to Control Panel",
+                            style: TextStyle(
+                                color: pureWhite, fontWeight: FontWeight.bold),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
                 height20,

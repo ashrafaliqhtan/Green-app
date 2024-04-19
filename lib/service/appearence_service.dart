@@ -2,7 +2,7 @@ import 'package:get_storage/get_storage.dart';
 
 // Method to change the theme
 class AppearanceServices {
-  String currentTheme = 'Dark';
+  String currentTheme = 'Light';
   final box = GetStorage();
 
   Future<void> changeTheme() async {

@@ -52,7 +52,7 @@ class _MainAppState extends State<MainApp> {
         const MapLocale('ar', AppLocale.AR),
         const MapLocale('en', AppLocale.EN),
       ],
-      initLanguageCode: 'en',
+      initLanguageCode: 'ar',
     );
     super.initState();
   }

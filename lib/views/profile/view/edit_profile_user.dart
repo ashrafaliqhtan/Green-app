@@ -41,7 +41,7 @@ class _EditProfileUserState extends State<EditProfileUser> {
         if (state is AuthUpdateProfileState) {
           context.getMessagesBar(msg: state.message, color: green);
           context.read<AuthBloc>().add(LoadProfileEvent());
-          context.push(view:const ProfileUser() , isPush: false);
+          context.push(view: const ProfileUser(), isPush: false);
         }
       },
       child: Scaffold(
