@@ -105,7 +105,16 @@ class DBServices {
       "days": event.days
     });
   }
+
   //display List Event history
+  Future<List<EventModel>> getUserEvent({required String id}) async {
+    final eventListData =
+        await supabase.from('personal_event').select('*').match({'user_id': id});
+    for (var element in eventListData) {
+      listOfPersonalEvents.add(EventModel.fromJson(element));
+    }
+    return listOfPersonalEvents;
+  }
 
   //points
   //balance
