@@ -7,6 +7,6 @@ final class ImagePicInitial extends ImagePicState {}
 
 
 final class ImageState extends ImagePicState {
- final File fileImage1;
- ImageState({required this.fileImage1});
+ final File fileImage;
+ ImageState({required this.fileImage});
 }

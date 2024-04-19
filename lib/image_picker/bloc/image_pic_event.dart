@@ -4,3 +4,5 @@ part of 'image_pic_bloc.dart';
 sealed class ImagePicEvent {}
 
 class SelectImage extends ImagePicEvent {}
+
+class UpdateImageToDatabase extends ImagePicEvent{}

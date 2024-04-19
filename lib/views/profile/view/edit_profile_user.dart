@@ -187,6 +187,7 @@ class _EditProfileUserState extends State<EditProfileUser> {
                       city: user.city ?? "الرياض",
                       name: nameController.text,
                       phone: phoneController.text));
+                      context.read<ImagePicBloc>().add(UpdateImageToDatabase());
                 },
                 child: Container(
                   height: 60,

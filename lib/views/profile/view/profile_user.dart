@@ -69,7 +69,7 @@ class ProfileUser extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(200),
                         child: CachedNetworkImage(
-                          imageUrl:
+                          imageUrl:serviceLocator.userImageUrl ??
                               "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg",
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) =>
