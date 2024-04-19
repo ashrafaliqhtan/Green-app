@@ -55,7 +55,7 @@ class DrawerScreen extends StatelessWidget {
                           )
                         : const CircleAvatar(
                             radius: 25,
-                            backgroundImage: NetworkImage(
+                            backgroundImage: NetworkImage( 
                                 "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
                           ),
                     width16,

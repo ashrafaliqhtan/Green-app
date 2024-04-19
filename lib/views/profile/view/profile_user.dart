@@ -28,7 +28,7 @@ class ProfileUser extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              context.push(view:const BottomNavBar(), isPush: false);
+              context.push(view: const BottomNavBar(), isPush: false);
             },
             icon: Icon(
               Icons.arrow_back,
@@ -69,7 +69,7 @@ class ProfileUser extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(200),
                         child: CachedNetworkImage(
-                          imageUrl:
+                          imageUrl: 
                               "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg",
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) =>

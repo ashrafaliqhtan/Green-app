@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:green_saudi_app/model/gsi_user.dart';
@@ -57,11 +58,11 @@ class DBServices {
       required String phone,
       required String city}) async {
     try {
-    await supabase
-        .from('user_green_sa_app')
-        .update({'name': name, 'phone': phone, 'city': city})
-        .eq('id_user', userID)
-        .single();
+      await supabase
+          .from('user_green_sa_app')
+          .update({'name': name, 'phone': phone, 'city': city})
+          .eq('id_user', userID)
+          .single();
     } catch (e) {
       print(e);
     }
@@ -91,7 +92,15 @@ class DBServices {
   Future resetPassword({required String newPassword}) async {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
+  //-----------------------------User----------------------------------
+  //signin event
+  //display List Event history
 
+  //points
+  //balance
+  //redeem
+  //display List redeem history
+  
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
     await supabase.from('org_event').insert({
