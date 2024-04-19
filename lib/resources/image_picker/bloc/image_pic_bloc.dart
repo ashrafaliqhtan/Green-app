@@ -18,13 +18,13 @@ class ImagePicBloc extends Bloc<ImagePicEvent, ImagePicState> {
 
     on<SelectImage>((event, emit) async {
       serviceLocator.userImageFile = await imagePic();
-      emit(ImageState(fileImage1: serviceLocator.userImageFile));
+      emit(ImageState(fileImage: serviceLocator.userImageFile));
       try {
         await serviceLocator.uploadImage(serviceLocator.userImageFile);
-        emit(ImageState(fileImage1: serviceLocator.userImageFile));
+        emit(ImageState(fileImage: serviceLocator.userImageFile));
       } on StorageException catch (_) {
         await serviceLocator.updateImage(serviceLocator.userImageFile);
-        emit(ImageState(fileImage1: serviceLocator.userImageFile));
+        emit(ImageState(fileImage: serviceLocator.userImageFile));
       } catch (e) {
         print(e);
       }

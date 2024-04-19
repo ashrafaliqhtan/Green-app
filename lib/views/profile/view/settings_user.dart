@@ -62,7 +62,7 @@ class SettingsUser extends StatelessWidget {
                       width: 72,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(200),
-                        child: Image.network(
+                        child: Image.network(serviceLocator.userImageUrl??
                           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
                           fit: BoxFit.cover,
                         ),

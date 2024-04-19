@@ -7,6 +7,7 @@ class EventModel {
   String? startTime;
   String? endDate;
   String? endTime;
+  String? state;
   int? maximumCapacity;
   String? imageUrl;
 
@@ -19,20 +20,22 @@ class EventModel {
       this.startTime,
       this.endDate,
       this.endTime,
+      this.state,
       this.maximumCapacity,
       this.imageUrl
       });
 
   EventModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    description = json['description'];
+    id = json['event_id'];
+    title = json['name'];
+    description = json['content'];
     location = json['location'];
-    startDate = json['startDate'];
-    startTime = json['startTime'];
-    endDate = json['endDate'];
-    endTime = json['endTime'];
+    startDate = json['date_start'];
+    startTime = json['time_end'];
+    endDate = json['end_date'];
+    endTime = json['time_end'];
     imageUrl = json['imageUrl'];
+    state = json['state'];
     maximumCapacity=json["maximam_number_of"];
   }
 

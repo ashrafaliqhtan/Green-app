@@ -134,27 +134,70 @@ class DBServices {
       "maximam_number_of": event.maximumCapacity,
     });
   }
-
   Future createReward({required RewardModel reward}) async {
-    await supabase.from('reward_table').insert({
-      "reward_name": reward.rewardName,
-      "reward_company_logo": reward.rewardCompanyLogo,
-      "reward_content": reward.rewardContent,
-      "reward_company_name": reward.rewardCompanyName,
-      "reward_id": reward.rewardId,
-      "reward_image": reward.rewardImage,
-    });
+    var newReward = await supabase
+        .from('reward_table').insert({
+  "reward_name": reward.rewardName,
+  "reward_company_logo": reward.rewardCompanyLogo,
+  "reward_content": reward.rewardContent,
+  "reward_company_name": reward.rewardCompanyName,
+  "reward_image": reward.rewardImage,
+});
+print("done");
   }
+    Future<List<EventModel>> getAllEvent() async {
+    final eventsListData = await supabase
+        .from('org_event')
+        .select('*');
+    List<EventModel> listOfEvents = [];
+    for (var element in eventsListData) {
+      listOfEvents.add(EventModel.fromJson(element));
+    }
+    return listOfEvents;}
+    
+        Future<List<RewardModel>> getAllReward() async {
+    final rewardListData = await supabase
+        .from('reward_table')
+        .select('*');
+    List<RewardModel> listOfReward = [];
+    for (var element in rewardListData) {
+      listOfReward.add(RewardModel.fromJson(element));
+    }
+    return listOfReward;}
 
-  Future<void> uploadImage(File imageFile) async {
-    await supabase.storage.from('avatar').upload(userID, imageFile);
-  }
 
-  Future<void> updateImage(File imageFile) async {
-    await supabase.storage.from('avatar').update(userID, imageFile);
-  }
 
-  urlImage() {
-    supabase.storage.from('avatar').getPublicUrl(userID);
-  }
+  /////////////////file crud
+Future<void> uploadImage(File imageFile) async {
+    print(userID);
+
+   await supabase.storage
+      .from('avatar') // Replace with your storage bucket name
+      .upload("${userID}", imageFile);
+      UrlImage();
+print("done");
 }
+
+Future<void> updateImage(File imageFile) async {
+    print(userID);
+
+  await supabase.storage
+      .from('avatar') // Replace with your storage bucket name
+      .update("${userID}", imageFile);
+      UrlImage();
+print("done add");
+}
+Future<void> deleteImage() async {
+  print(userID);
+  await supabase.storage
+      .from('avatar') // Replace with your storage bucket name
+      .remove(["${userID}"]);
+print("done remove");
+}
+Future<String> UrlImage() async {
+  final response = await supabase.storage
+      .from('avatar') // Replace with your storage bucket name
+      .getPublicUrl("${userID}");
+      return response;
+}}
+
