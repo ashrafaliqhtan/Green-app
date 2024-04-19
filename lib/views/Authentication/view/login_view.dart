@@ -9,6 +9,7 @@ import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/signup_view.dart';
 import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
+import 'package:green_saudi_app/widgets/loading_widget.dart';
 
 import '../widget/input_text_felid.dart';
 
@@ -49,114 +50,130 @@ class _LoginViewState extends State<LoginView> {
             }
           },
           builder: (context, state) {
-            return Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/background_img_1.png",
-                  ),
-                  fit: BoxFit.cover,
+            if (state is AuthLoadingState) {
+              return Center(
+                child: SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: DotLoadingIndicator(),
                 ),
-              ),
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  width: context.getWidth() * 0.80,
-                  height: context.getHeight() * 0.70,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.black.withOpacity(0.6),
-                        Colors.black.withOpacity(0.21)
-                      ],
+              );
+            } else {
+              return Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/background_img_1.png",
                     ),
+                    fit: BoxFit.cover,
                   ),
-                  child: Column(
-                    children: [
-                      Text(
-                        AppLocale.welcome.getString(context),
-                        style: TextStyle(
-                            color: pureWhite,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 48),
-                      ),
-                      InputTextFelid(
-                        controller: emailController,
-                        title: AppLocale.emailTitle.getString(context),
-                        hintText: AppLocale.emailHint.getString(context),
-                        icon: Icons.email,
-                        isPassword: false,
-                      ),
-                      InputTextFelid(
-                        controller: passwordController,
-                        title: AppLocale.passwordTitle.getString(context),
-                        hintText: AppLocale.passwordHint.getString(context),
-                        icon: Icons.lock,
-                        isPassword: true,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          width16,
-                          InkWell(
-                            onTap: () {
-                              context.push(
-                                  view: const ValidationEmailView(),
-                                  isPush: true);
-                            },
-                            child: Text(
-                              AppLocale.forgatPasswordTitle.getString(context),
-                              style: TextStyle(
-                                color: pureWhite,
-                                fontSize: 17,
-                                height: 0.9,
-                              ),
-                            ),
-                          ),
+                ),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    width: context.getWidth() * 0.80,
+                    height: context.getHeight() * 0.70,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.6),
+                          Colors.black.withOpacity(0.21)
                         ],
                       ),
-                      height26,
-                      CustomButton(
-                        title: AppLocale.login.getString(context),
-                        onPressed: () {
-                          bloc.add(LoginEvent(
-                              email: emailController.text,
-                              password: passwordController.text));
-                        },
-                        backgroundColor: green,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          context.push(
-                              view: const SignUpView(), isPush: true);
-                        },
-                        child: RichText(
-                            text:  TextSpan(
-                              text: AppLocale.haveAccount.getString(context),
-                              style: TextStyle(
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppLocale.welcome.getString(context),
+                            style: TextStyle(
                                 color: pureWhite,
-                                fontSize: 20,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: AppLocale.richText.getString(context),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 48),
+                          ),
+                          height16,
+                          InputTextFelid(
+                            controller: emailController,
+                            title: AppLocale.emailTitle.getString(context),
+                            hintText: AppLocale.emailHint.getString(context),
+                            icon: Icons.email,
+                            isPassword: false,
+                          ),
+                          InputTextFelid(
+                            controller: passwordController,
+                            title: AppLocale.passwordTitle.getString(context),
+                            hintText: AppLocale.passwordHint.getString(context),
+                            icon: Icons.lock,
+                            isPassword: true,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              width16,
+                              InkWell(
+                                onTap: () {
+                                  context.push(
+                                      view: const ValidationEmailView(),
+                                      isPush: true);
+                                },
+                                child: Text(
+                                  AppLocale.forgatPasswordTitle
+                                      .getString(context),
                                   style: TextStyle(
-                                    color: green,
-                                    fontSize: 20,
+                                    color: pureWhite,
+                                    fontSize: 17,
+                                    height: 0.9,
                                   ),
                                 ),
-                              ],
-                            ),
-                          )
+                              ),
+                            ],
+                          ),
+                          height26,
+                          CustomButton(
+                            title: AppLocale.login.getString(context),
+                            onPressed: () {
+                              bloc.add(LoginEvent(
+                                  email: emailController.text,
+                                  password: passwordController.text));
+                            },
+                            backgroundColor: green,
+                          ),
+                          InkWell(
+                              onTap: () {
+                                context.push(
+                                    view: const SignUpView(), isPush: true);
+                              },
+                              child: RichText(
+                                text: TextSpan(
+                                  text:
+                                      AppLocale.haveAccount.getString(context),
+                                  style: TextStyle(
+                                    color: pureWhite,
+                                    fontSize: 20,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          AppLocale.richText.getString(context),
+                                      style: TextStyle(
+                                        color: green,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            );
+              );
+            }
           },
         ));
       }),

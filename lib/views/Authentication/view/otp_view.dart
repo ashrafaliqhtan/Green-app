@@ -40,7 +40,7 @@ class OTPView extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
           backgroundColor: white,
           body: SingleChildScrollView(
             child: Padding(

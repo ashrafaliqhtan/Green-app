@@ -17,7 +17,7 @@ class HoursHistoryView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: () {
-              context.push(view:  ProfileUser(), isPush: false);
+              context.push(view: ProfileView(), isPush: false);
             },
             icon: Icon(Icons.arrow_back, color: green,)),
         title: Text(

@@ -44,6 +44,14 @@ class HistoryEventView extends StatelessWidget {
             ),
           ),
           height20,
+          /*  Expanded(
+            child: ListView.builder(
+                itemCount: 4,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return buildShimmerEffect();
+                }),
+          ), */
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
