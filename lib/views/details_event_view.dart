@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localization/localization.dart';
+import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
-import 'package:green_saudi_app/utils/colors.dart';
-import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/spacing.dart';
 
 class EventDetailsView extends StatelessWidget {
   const EventDetailsView({super.key});

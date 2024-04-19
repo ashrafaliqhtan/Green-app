@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:green_saudi_app/theme/theme.dart';
+import 'package:green_saudi_app/resources/theme/theme.dart';
 import 'package:meta/meta.dart';
 
-import '../appearence manager/appearence_service.dart';
+import '../../../service/appearence_service.dart';
 
 part 'theme_event.dart';
 part 'theme_state.dart';

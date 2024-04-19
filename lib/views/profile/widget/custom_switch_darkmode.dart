@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
 
 class CustomSwitchDarkMode extends StatefulWidget {
   final bool value;

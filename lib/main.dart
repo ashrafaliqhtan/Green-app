@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:green_saudi_app/data_layer/data_layer.dart';
-import 'package:green_saudi_app/image_picker/bloc/image_pic_bloc.dart';
-import 'package:green_saudi_app/localization/cubit/language_cubit.dart';
-import 'package:green_saudi_app/localization/localization.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
+import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart';
+import 'package:green_saudi_app/resources/localization/cubit/language_cubit.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
+import 'package:green_saudi_app/resources/theme/bloc/theme_bloc.dart';
+import 'package:green_saudi_app/resources/theme/theme.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
-import 'package:green_saudi_app/theme/appearence%20manager/appearence_service.dart';
-import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
-import 'package:green_saudi_app/theme/theme.dart';
+import 'package:green_saudi_app/service/appearence_service.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -49,8 +49,8 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     localization.init(
       mapLocales: [
-        MapLocale('ar', AppLocale.AR),
-        MapLocale('en', AppLocale.EN),
+        const MapLocale('ar', AppLocale.AR),
+        const MapLocale('en', AppLocale.EN),
       ],
       initLanguageCode: 'en',
     );

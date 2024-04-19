@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:green_saudi_app/data_layer/data_layer.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localization/localization.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
+import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:green_saudi_app/utils/colors.dart';
-import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Drawer/widget/drawer_widget.dart';
-import 'package:green_saudi_app/views/profile/view/profile_user.dart';
-import 'package:green_saudi_app/views/profile/view/settings_user.dart';
+import 'package:green_saudi_app/views/Profile/view/profile_user.dart';
+import 'package:green_saudi_app/views/Profile/view/settings_user.dart';
 
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({super.key});

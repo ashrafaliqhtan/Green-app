@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
 
 class RegionsWidget extends StatelessWidget {
   const RegionsWidget({super.key, required this.text});

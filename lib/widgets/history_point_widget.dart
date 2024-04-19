@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
-import 'package:green_saudi_app/utils/colors.dart';
-import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/spacing.dart';
 
 class PointWidget extends StatelessWidget {
   const PointWidget({Key? key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.title, required this.onPressed, this.backgroundColor});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:green_saudi_app/data_layer/data_layer.dart';
-import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localization/localization.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
+import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:green_saudi_app/utils/colors.dart';
-import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/reset_password_view.dart';

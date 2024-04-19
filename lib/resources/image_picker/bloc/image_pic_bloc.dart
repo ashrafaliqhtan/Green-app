@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green_saudi_app/data_layer/data_layer.dart';
-import 'package:green_saudi_app/image_picker/image_pic.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
+import 'package:green_saudi_app/resources/image_picker/image_picker.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:green_saudi_app/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/colors.dart';
 
 class AdminPanel extends StatelessWidget {
   const AdminPanel({
