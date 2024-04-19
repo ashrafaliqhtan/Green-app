@@ -1,30 +1,42 @@
+
 import 'package:get_storage/get_storage.dart';
 
   // Method to change the theme
   class AppearanceServices {
-  String currentTheme = 'Light';
+  String currentTheme = 'Dark';
   final box = GetStorage();
 
-  AppearanceServices(){
-    getTheme();
-  }
 
  Future<void> changeTheme() async{
     if (currentTheme == 'Dark') {
-      await box.write('qq', 'Light');
+      await box.write('theme', 'Light');
       currentTheme = 'Light';
     } else {
-       await box.write('qq', 'Dark');
+       await box.write('theme', 'Dark');
       currentTheme = 'Dark';
     }
    box.save();
   }
   // Method to get the theme
-  getTheme()  {
-    if (box.read('qq') == null) {
-       box.write('qq', currentTheme);
-    } else {
-      currentTheme = box.read('qq');
+  isDark({required bool isDark})  async{
+    if( !isDark){
+     await box.write("mode", "Light");
+    }else{
+    await  box.write("mode", "Dark");
+
     }
+
+  }
+ Future  getMode()async  {
+  print("========= ${box.read('mode')}");
+    if( !box.hasData('mode')){
+     await box.write("mode", "Light");
+         currentTheme = 'Light';
+    }else{
+      String modeValue = box.read('mode');
+      currentTheme = modeValue;
+
+    }
+
   }
 }

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/image_picker/bloc/image_pic_bloc.dart';
-import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/localization/cubit/language_cubit.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
+import 'package:green_saudi_app/theme/appearence%20manager/appearence_service.dart';
 import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
+import 'package:green_saudi_app/theme/theme.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -72,23 +75,27 @@ class _MainAppState extends State<MainApp> {
           create: (context) => ImagePicBloc(),
         ),
       ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) {
-          return BlocBuilder<LanguageCubit, LanguageState>(
-            builder: (context, state) {
-              final bloc = context.read<ThemeBloc>();
-              return MaterialApp(
-                locale: localization.currentLocale,
-                debugShowCheckedModeBanner: false,
-                theme: bloc.themeInfo,
-                supportedLocales: localization.supportedLocales,
-                localizationsDelegates: localization.localizationsDelegates,
-                home: const SplashView(),
-              );
-            },
-          );
-        },
-      ),
+      child: Builder(builder: (context) {
+        context.read<ThemeBloc>();
+
+        return BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) {
+            return BlocBuilder<LanguageCubit, LanguageState>(
+              builder: (context, state) {
+                return MaterialApp(
+                  locale: localization.currentLocale,
+                  debugShowCheckedModeBanner: false,
+                  theme:
+                      appThemes[GetIt.I.get<AppearanceServices>().currentTheme],
+                  supportedLocales: localization.supportedLocales,
+                  localizationsDelegates: localization.localizationsDelegates,
+                  home: const SplashView(),
+                );
+              },
+            );
+          },
+        );
+      }),
     );
   }
 }

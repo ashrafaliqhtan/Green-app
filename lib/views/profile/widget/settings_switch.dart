@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/theme/appearence%20manager/appearence_service.dart';
 import 'package:green_saudi_app/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 
@@ -45,11 +47,13 @@ class _SettingsSwitchState extends State<SettingsSwitch> {
             Text(widget.title,style: TextStyle(color: pureWhite,fontWeight: FontWeight.bold,fontSize: 24),),
             widget.isDarkMode
                 ? CustomSwitchDarkMode(
-                    value: isSwitched,
+                    value:  GetIt.I.get<AppearanceServices>().currentTheme != 'Dark',
                     onChanged: (value) {
                       setState(() {
                         isSwitched = value;
-                        bloc.add(UpdateThemeEvent());
+                        bloc.add(UpdateThemeEvent(
+                          isDark: !value
+                        ));
                         bloc.add(GetThemeEvent());
                       });
                     },

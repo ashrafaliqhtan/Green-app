@@ -4,10 +4,11 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/localization/localization.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Drawer/widget/drawer_widget.dart';
@@ -66,7 +67,7 @@ class DrawerScreen extends StatelessWidget {
                         context.push(view: const ProfileUser(), isPush: false);
                       },
                     ),
-                     DrawerItem(
+                    DrawerItem(
                       icon: Icons.info,
                       title: AppLocale.aboutUS.getString(context),
                     ),
@@ -99,17 +100,17 @@ class DrawerScreen extends StatelessWidget {
                 height20,
                 Row(
                   children: [
-                    Icon(Icons.settings, color: pureWhite),
-                    width8,
-                    InkWell(
-                      onTap: () {
+                    IconButton(
+                      onPressed: () {
                         context.push(view: const SettingsUser(), isPush: true);
                       },
-                      child: Text(
-                        AppLocale.SettingsTitle.getString(context),
-                        style: TextStyle(
-                            color: pureWhite, fontWeight: FontWeight.bold),
-                      ),
+                      icon: Icon(Icons.settings, color: pureWhite),
+                    ),
+                    width8,
+                    Text(
+                      AppLocale.SettingsTitle.getString(context),
+                      style: TextStyle(
+                          color: pureWhite, fontWeight: FontWeight.bold),
                     ),
                     width8,
                     Container(width: 2, height: 20, color: pureWhite),
@@ -123,7 +124,31 @@ class DrawerScreen extends StatelessWidget {
                         style: TextStyle(
                             color: pureWhite, fontWeight: FontWeight.bold),
                       ),
-                    )
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    user.typeRole == "admin"
+                        ? IconButton(
+                            onPressed: () {
+                              context.push(
+                                  view: BottomNavBarAdmin(), isPush: false);
+                            },
+                            icon: Icon(
+                              Icons.border_color_rounded,
+                              color: pureWhite,
+                            ),
+                          )
+                        : const SizedBox(),
+                         width8,
+                   user.typeRole == "admin"
+                        ?  Text(
+                      "back to Control Panel",
+                      style: TextStyle(
+                          color: pureWhite, fontWeight: FontWeight.bold),
+                    ): const SizedBox(),
                   ],
                 ),
                 height20,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/localization/localization.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
@@ -200,7 +200,7 @@ class EventDetailsView extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           AppLocale.signEvent.getString(context),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 24,
                           ),

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localistion/cubit/language_cubit.dart';
 import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/localization/cubit/language_cubit.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
@@ -32,12 +32,11 @@ class SettingsUser extends StatelessWidget {
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        centerTitle: true,
         backgroundColor: green,
         automaticallyImplyLeading: false,
         leading: IconButton(
             onPressed: () {
-              context.push(view: BottomNavBar(), isPush: false);
+              context.push(view: const BottomNavBar(), isPush: false);
             },
             icon: const Icon(Icons.arrow_back)),
       ),
@@ -52,7 +51,7 @@ class SettingsUser extends StatelessWidget {
                 height: 100,
                 width: 430,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(14),
                         bottomRight: Radius.circular(14))),

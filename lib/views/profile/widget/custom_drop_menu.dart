@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/data_layer/data_layer.dart';
+import 'package:green_saudi_app/localization/localization.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 
 class DropMenu extends StatefulWidget {
@@ -7,30 +9,31 @@ class DropMenu extends StatefulWidget {
     super.key,
   });
   @override
-  _DropMenuState createState() => _DropMenuState();
+  DropMenuState createState() => DropMenuState();
 }
 
-class _DropMenuState extends State<DropMenu> {
-  final serviceLocator = DataInjection().locator.get<DBServices>();
+class DropMenuState extends State<DropMenu> {
+  String selectedValue = "الشرقية";
 
-  List<String> listCity = [
-    "الشرقية",
-    "الرياض",
-    "مكة المكرمة",
-    "المدينة المنورة",
-    "القصيم",
-    "عسير",
-    "تبوك",
-    "حائل",
-    "الحدود الشمالية",
-    "نجران",
-    "الباحة",
-    "الجوف"
-  ];
   @override
   Widget build(BuildContext context) {
-    final user = serviceLocator.user;
+    final user = DataInjection().locator.get<DBServices>().user;
 
+    List<String> listCity = [
+      AppLocale.region1.getString(context),
+      AppLocale.region2.getString(context),
+      AppLocale.region3.getString(context),
+      AppLocale.region4.getString(context),
+      AppLocale.region5.getString(context),
+      AppLocale.region6.getString(context),
+      AppLocale.region7.getString(context),
+      AppLocale.region8.getString(context),
+      AppLocale.region9.getString(context),
+      AppLocale.region10.getString(context),
+      AppLocale.region11.getString(context),
+      AppLocale.region12.getString(context),
+      AppLocale.region13.getString(context),
+    ];
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(

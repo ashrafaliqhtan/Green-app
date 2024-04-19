@@ -4,15 +4,16 @@ import 'package:green_saudi_app/theme/theme.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 
 
+// ignore: must_be_immutable
 class TimePickerWidget extends StatefulWidget {
   TimePickerWidget({required this.time, super.key});
   late TimeOfDay time;
 
   @override
-  _TimePickerWidgetState createState() => _TimePickerWidgetState();
+  TimePickerWidgetState createState() => TimePickerWidgetState();
 }
 
-class _TimePickerWidgetState extends State<TimePickerWidget> {
+class TimePickerWidgetState extends State<TimePickerWidget> {
   late TimeOfDay selectedTime;
 
   @override

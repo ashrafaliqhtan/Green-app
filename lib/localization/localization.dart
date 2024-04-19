@@ -1,3 +1,4 @@
+
 mixin AppLocale {
   static const String title = 'title';
 
@@ -225,20 +226,7 @@ mixin AppLocale {
     region11: 'Al-Baha',
     region12: 'Al-Jawf',
     region13: 'Jazan',
-    listCity: [
-      "Eastern",
-      "Riyadh",
-      "Makkah",
-      "AL Madinah",
-      "Al-Qassim",
-      "Asir",
-      "Tabuk",
-      "Hail",
-      "Northern borders",
-      "Najran",
-      "Al Baha",
-      "Al-Jawf"
-    ],
+  
     controlPanel: 'Control Panel',
     eventsAdmin: 'Events',
     supervisors: 'Supervisors',
@@ -365,20 +353,6 @@ mixin AppLocale {
     region11: 'الباحة',
     region12: 'الجوف',
     region13: 'جازان',
-    listCity: [
-      "الشرقية",
-      "الرياض",
-      "مكة المكرمة",
-      "المدينة المنورة",
-      "القصيم",
-      "عسير",
-      "تبوك",
-      "حائل",
-      "الحدود الشمالية",
-      "نجران",
-      "الباحة",
-      "الجوف"
-    ],
     controlPanel: 'لوحة التحكم',
     supervisorsCity: 'المدينة',
     eventsAdmin: 'الأحداث',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/extensions/screen_handler.dart';
-import 'package:green_saudi_app/localistion/localistion.dart';
+import 'package:green_saudi_app/localization/localization.dart';
 import 'package:green_saudi_app/utils/colors.dart';
 import 'package:green_saudi_app/utils/spacing.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
@@ -50,7 +50,7 @@ class RewardView extends StatelessWidget {
                 children: [
                   // Offers
                   GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 5,
@@ -58,14 +58,14 @@ class RewardView extends StatelessWidget {
                     ),
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return OfferWidget();
+                      return const OfferWidget();
                     },
                   ),
                   // History Point
                   ListView.builder(
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return PointWidget();
+                        return const PointWidget();
                       }),
                 ],
               ),
