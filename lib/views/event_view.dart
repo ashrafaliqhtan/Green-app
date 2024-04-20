@@ -9,6 +9,7 @@ import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
 import 'package:green_saudi_app/widgets/regions_widget.dart';
+import 'package:green_saudi_app/widgets/shimmer_widget.dart';
 
 class EventView extends StatelessWidget {
   const EventView({super.key});
@@ -120,6 +121,15 @@ class EventView extends StatelessWidget {
                 }),
           ),
           height32,
+       /* Expanded(
+            child: ListView.builder(
+                itemCount: 4,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return buildShimmerEffect();
+                }),
+          ), */
+          
           // Event ListView
           Expanded(
             child: ListView.builder(
