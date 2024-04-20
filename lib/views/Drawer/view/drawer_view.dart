@@ -74,7 +74,7 @@ class DrawerScreen extends StatelessWidget {
                       icon: Icons.person,
                       title: AppLocale.profile.getString(context),
                       onTap: () {
-                        context.push(view: const ProfileUser(), isPush: false);
+                        context.push(view: const ProfileView(), isPush: false);
                       },
                     ),
                     DrawerItem(

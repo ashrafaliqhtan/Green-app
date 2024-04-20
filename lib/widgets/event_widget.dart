@@ -3,6 +3,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/views/details_event_view.dart';
+import 'package:shimmer/shimmer.dart';
 
 class EventWidget extends StatelessWidget {
   const EventWidget({Key? key});
@@ -72,7 +73,7 @@ class EventWidget extends StatelessWidget {
                           location,
                           style: TextStyle(
                             color: green,
-                            fontSize: 22,
+                            fontSize: 17,
                           ),
                         ),
                       ),
