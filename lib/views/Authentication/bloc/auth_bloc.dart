@@ -6,7 +6,6 @@ import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
-import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 import 'package:green_saudi_app/widgets/loading_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -223,9 +222,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> updateProfile(
       UpdateProfileEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
-    print(event.name);
-    print(event.phone);
-    print(event.city);
+
     if (event.city.trim().isNotEmpty &&
         event.name.trim().isNotEmpty &&
         event.phone.trim().isNotEmpty) {
@@ -246,8 +243,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoadProfileEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     try {
-      serviceLocator.userImageUrl = await serviceLocator.urlImage("avatar",serviceLocator.userID);
-      serviceLocator.user = await serviceLocator.getUser(id: serviceLocator.userID);
+      serviceLocator.userImageUrl =
+          await serviceLocator.urlImage("avatar", serviceLocator.userID);
+      serviceLocator.user =
+          await serviceLocator.getUser(id: serviceLocator.userID);
       emit(AuthLoadProfileState(user: serviceLocator.user));
     } catch (_) {}
   }

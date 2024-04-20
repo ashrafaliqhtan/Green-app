@@ -98,7 +98,8 @@ class ProfileView extends StatelessWidget {
                               child: Center(
                                 child: CircleAvatar(
                                   radius: 140,
-                                  child: Image.network(serviceLocator.userImageUrl ??
+                                  child: Image.network(serviceLocator
+                                          .userImageUrl ??
                                       "https://image.movieglu.com/7772/GBR_007772h0.jpg"), // Image
                                 ),
                               ),
@@ -112,8 +113,8 @@ class ProfileView extends StatelessWidget {
                       child: Column(
                         children: [
                           height40,
-                           Text(
-                            user.name ?? "Name",
+                          Text(
+                            state.user.name ?? "Name",
                             style: TextStyle(height: 0.1, fontSize: 20),
                           ), // name
                           height16,
