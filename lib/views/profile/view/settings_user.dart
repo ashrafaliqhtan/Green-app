@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/cubit/language_cubit.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
+import 'package:green_saudi_app/service/appearence_service.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
@@ -110,8 +112,11 @@ class SettingsUser extends StatelessWidget {
             ),
             height16,
             SettingsSwitch(
-              title: AppLocale.darkMode.getString(context),
-              icon: Icons.sunny,
+              title: 
+              GetIt.I.get<AppearanceServices>().currentTheme == 'Light' ?AppLocale.lightMode.getString(context):
+              AppLocale.darkMode.getString(context),
+              
+              icon: GetIt.I.get<AppearanceServices>().currentTheme == 'Light' ?Icons.sunny:Icons.nightlight_round,
               isDarkMode: true,
             ),
             height16,

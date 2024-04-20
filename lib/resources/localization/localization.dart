@@ -1,4 +1,3 @@
-
 mixin AppLocale {
   static const String title = 'title';
 
@@ -84,6 +83,7 @@ mixin AppLocale {
   //Admin
   static const String controlPanel = 'ControlPanel';
   static const String eventsAdmin = 'Events';
+  static const String rewordAdmin = 'Reword';
   static const String supervisors = 'Supervisors';
   static const String rewardsPageAdmin = 'Rewards';
   static const String addressAdminEvent = 'Address';
@@ -100,9 +100,11 @@ mixin AppLocale {
   static const String cancel = 'Cancel';
   static const String delete = 'Delete';
   static const String rewordName = 'RewordName';
+  static const String companyName = 'companyName';
   static const String supervisorsCity = 'City';
   static const String time = 'Time';
   static const String addReword = 'addReword';
+  static const String ok ='ok';
 
   //profile
   static const String userName = 'jj';
@@ -119,6 +121,7 @@ mixin AppLocale {
   static const String changeEmail = 'changeEmail';
   static const String notification = 'notification';
   static const String darkMode = 'darkMode';
+  static const String lightMode = 'lightMode';
   static const String languageButton = 'language';
   static const String logoutButton = 'logout';
   static const String editProfile = 'editProfile';
@@ -226,7 +229,8 @@ mixin AppLocale {
     region11: 'Al-Baha',
     region12: 'Al-Jawf',
     region13: 'Jazan',
-  
+
+    //Admin
     controlPanel: 'Control Panel',
     eventsAdmin: 'Events',
     supervisors: 'Supervisors',
@@ -235,20 +239,24 @@ mixin AppLocale {
     supervisorsName: 'Name',
     addImageEvent: 'Add Image',
     eventName: 'Event Name',
-    rewordName: 'Event Name',
+    rewordName: 'Reword Name',
     addDescription: 'Add Description',
     date: 'Date',
     time: 'Time',
     from: 'From',
     to: 'To',
-    location: 'location',
-    maximumCapacity: 'maximumCapacity',
+    location: 'Location',
+    maximumCapacity: 'MaximumCapacity',
     addIt: 'Add',
     cancel: 'Cancel',
     delete: 'Delete',
     supervisorsCity: 'City',
     addEvent: "Add Event",
-    addReword: 'add Reword',
+    addReword: 'Add Reword',
+    rewordAdmin: 'Reword',
+    companyName: 'companyName',
+    ok :'Ok',
+    lightMode : 'Light Mode',
   };
   static const Map<String, dynamic> AR = {
     // Onboarding and Auth
@@ -363,6 +371,8 @@ mixin AppLocale {
     addImageEvent: 'أضف صورة الغلاف',
     eventName: 'إسم الحدث',
     addDescription: 'أضف وصف',
+    rewordAdmin: 'المكافآت',
+
     date: 'التاريخ',
     from: 'من',
     to: 'الى',
@@ -373,5 +383,8 @@ mixin AppLocale {
     delete: 'حذف',
     addEvent: "أضف حدث",
     addReword: 'أضف مكآفأة',
+    companyName: 'إسم الشركة',
+    ok :'تأكيد',
+    lightMode : 'الوضع الفاتح',
   };
 }
