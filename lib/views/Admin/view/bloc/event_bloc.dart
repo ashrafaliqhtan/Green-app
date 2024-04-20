@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/model/event_model.dart';
+import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:meta/meta.dart';
 
@@ -9,18 +12,22 @@ part 'event_state.dart';
 
 class EventBloc extends Bloc<EventEvent, EventState> {
   final locator = GetIt.I.get<DBServices>();
+  List<PersonalEvent> listOfPersonalEvents = [];
   List<EventModel> listOfEvent = [];
   EventBloc() : super(EventInitial()) {
     on<EventEvent>((event, emit) {});
     on<EventLoadEvent>(loadEventData);
     on<EventAdded>(addEvent);
-  //on<EventDeleted>(deleteEvent);
+    on<RegisterEvent>(registerEvent);
+    on<HistoryLoadEvent>(loadHistory);
+    //on<EventDeleted>(deleteEvent);
   }
   Future<void> loadEventData(
       EventLoadEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
     try {
       listOfEvent = await locator.getAllEvent();
+
       emit(EventLoadedState(list: listOfEvent));
     } catch (e) {
       emit(EventErrorState(
@@ -28,8 +35,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     }
   }
 
-  Future<void> addEvent(
-      EventAdded event, Emitter<EventState> emit) async {
+  Future<void> addEvent(EventAdded event, Emitter<EventState> emit) async {
     if (event.event.title!.trim().isNotEmpty) {
       try {
         await locator.createEvent(event: event.event);
@@ -53,4 +59,38 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الدواء"));
   //   }
   // }
+
+  FutureOr<void> registerEvent(
+      RegisterEvent event, Emitter<EventState> emit) async {
+    emit(EventLoadingState());
+    try {
+      await locator.participateEvent(event: event.personalEvent);
+      print("-----------------------------");
+      print("registerEvent");
+      print(event.personalEvent.eventId);
+      print(event.personalEvent.name);
+      print("-----------------------------");
+      emit(RegisterEventSuccessState(msg: "msg"));
+    } catch (e) {
+      print("-----------------------------");
+      print("Personal Event have this event");
+      print(event.personalEvent.eventId);
+      print("-----------------------------");
+      print(e);
+      emit(RegisterEventErrorState(msg: "msg"));
+    }
+  }
+
+  FutureOr<void> loadHistory(
+      HistoryLoadEvent event, Emitter<EventState> emit) async {
+    emit(EventLoadingState());
+    try {
+      listOfPersonalEvents =
+          await locator.getUserEvents(id: locator.userID);
+      emit(HistoryLoadedState(history: listOfPersonalEvents));
+    } catch (e) {
+      emit(EventErrorState(
+          msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
+    }
+  }
 }

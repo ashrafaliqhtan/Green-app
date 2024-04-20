@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/model/event_model.dart';
+import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 
 class EventDetailsView extends StatelessWidget {
-  const EventDetailsView({super.key});
-
+  const EventDetailsView({super.key, required this.event});
+  final EventModel event;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +28,7 @@ class EventDetailsView extends StatelessWidget {
             color: pureWhite,
           ),
           onPressed: () {
+            context.read<EventBloc>().add(EventLoadEvent());
             Navigator.pop(context);
           },
         ),
@@ -34,12 +39,13 @@ class EventDetailsView extends StatelessWidget {
           ),
         ],
       ),
+      //TODO: Time Format here
       body: FutureBuilder(
         future: Future.wait([
-          translatorFunction(
+          translatorFunction(event.description ??
               'زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.'),
-          translatorFunction('زراعة الاشجار'),
-          translatorFunction('الرياض - حي الرمال'),
+          translatorFunction(event.title ?? 'زراعة الاشجار'),
+          translatorFunction(event.location ?? 'الرياض - حي الرمال'),
           translatorFunction('١٢م الى ٤م'),
           translatorFunction('٤ أبريل ٢٠٢٤'),
         ]),
@@ -188,6 +194,11 @@ class EventDetailsView extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         //TODO: Register in Event for user
+                        context.read<EventBloc>().add(RegisterEvent(
+                            personalEvent: PersonalEvent(
+                                name: eventName,
+                                stats: event.state,
+                                eventId: event.id)));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: green,

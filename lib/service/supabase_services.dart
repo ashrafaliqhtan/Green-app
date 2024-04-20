@@ -16,7 +16,7 @@ class DBServices {
   String userImageUrl = "";
   File userImageFile = File("");
   GSIUser user = GSIUser();
-  List<EventModel> listOfPersonalEvents = [];
+
   //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
@@ -95,25 +95,26 @@ class DBServices {
   }
 
   //-----------------------------User----------------------------------
-  //signin event
+  //Register Event
   Future participateEvent({required PersonalEvent event}) async {
     await supabase.from('personal_event').insert({
       "user_id": userID,
-      "name": event.event,
-      "event": event.event,
+      "name": event.name,
+      "event_id": event.eventId,
       "stats": event.stats,
       "days": event.days
     });
   }
 
   //display List Event history
-  Future<List<EventModel>> getUserEvent({required String id}) async {
-    final eventListData = await supabase
+  Future<List<PersonalEvent>> getUserEvents({required String id}) async {
+    final personalEventListData = await supabase
         .from('personal_event')
         .select('*')
         .match({'user_id': id});
-    for (var element in eventListData) {
-      listOfPersonalEvents.add(EventModel.fromJson(element));
+    List<PersonalEvent> listOfPersonalEvents = [];
+    for (var element in personalEventListData) {
+      listOfPersonalEvents.add(PersonalEvent.fromJson(element));
     }
     return listOfPersonalEvents;
   }
@@ -138,14 +139,13 @@ class DBServices {
   }
 
   Future createReward({required RewardModel reward}) async {
-    var newReward = await supabase.from('reward_table').insert({
+    await supabase.from('reward_table').insert({
       "reward_name": reward.rewardName,
       "reward_company_logo": reward.rewardCompanyLogo,
       "reward_content": reward.rewardContent,
       "reward_company_name": reward.rewardCompanyName,
       "reward_image": reward.rewardImage,
     });
-    print("done");
   }
 
   Future<List<EventModel>> getAllEvent() async {

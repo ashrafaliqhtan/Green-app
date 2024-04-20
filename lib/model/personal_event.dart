@@ -1,15 +1,15 @@
 class PersonalEvent {
   String? name;
-  String? event;
+  String? eventId;
   String? stats;
   String? days;
 
-  PersonalEvent({this.name, this.event, this.stats, this.days});
+  PersonalEvent({this.name, this.eventId, this.stats, this.days});
 
   factory PersonalEvent.fromJson(Map<String, dynamic> json) {
     return PersonalEvent(
       name: json['name'],
-      event: json['event'],
+      eventId: json['event_id'],
       stats: json['stats'],
       days: json['days'],
     );
@@ -18,7 +18,7 @@ class PersonalEvent {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'event': event,
+      'event_id': eventId,
       'stats': stats,
       'days': days,
     };

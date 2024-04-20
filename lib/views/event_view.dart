@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
@@ -16,6 +18,7 @@ class EventView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<EventBloc>().add(EventLoadEvent());
     final TextEditingController controller = TextEditingController();
     // All 13 Regions
     final List<String> regionsList = [
@@ -121,7 +124,7 @@ class EventView extends StatelessWidget {
                 }),
           ),
           height32,
-       /* Expanded(
+          /* Expanded(
             child: ListView.builder(
                 itemCount: 4,
                 shrinkWrap: true,
@@ -129,15 +132,33 @@ class EventView extends StatelessWidget {
                   return buildShimmerEffect();
                 }),
           ), */
-          
+
           // Event ListView
           Expanded(
-            child: ListView.builder(
-                itemCount: 4,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return const EventWidget();
-                }),
+            child: BlocBuilder<EventBloc, EventState>(
+              builder: (context, state) {
+                if (state is EventLoadingState) {
+                  return ListView.builder(
+                      itemCount: 4,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return buildShimmerEffect();
+                      });
+                } else if (state is EventLoadedState) {
+                  return ListView.builder(
+                      itemCount: state.list.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return EventWidget(
+                          event: state.list[index],
+                        );
+                      });
+                }else{
+                  //TODO: NO Event img or messge
+                  return Text("No Event added");
+                }
+              },
+            ),
           ),
         ],
       ),

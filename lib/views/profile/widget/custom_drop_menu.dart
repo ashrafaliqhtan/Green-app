@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
+import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 
 class DropMenu extends StatefulWidget {
@@ -13,8 +14,6 @@ class DropMenu extends StatefulWidget {
 }
 
 class DropMenuState extends State<DropMenu> {
-  String selectedValue = "الشرقية";
-
   @override
   Widget build(BuildContext context) {
     final user = DataInjection().locator.get<DBServices>().user;
@@ -34,31 +33,37 @@ class DropMenuState extends State<DropMenu> {
       AppLocale.region12.getString(context),
       AppLocale.region13.getString(context),
     ];
-    return DropdownButtonFormField<String>(
-      decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white, width: 2),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white, width: 2),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        filled: true,
-        fillColor: Theme.of(context).primaryColor,
-      ),
-      value: user.city,
-      onChanged: (newValue) {
-        setState(() {
-          user.city = newValue;
-        });
-      },
-      items: listCity.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
+    return FutureBuilder(
+      future: Future(() => translatorFunction(user.city ?? "لايوجد محتوى")),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {}
+        return DropdownButtonFormField<String>(
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white, width: 2),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            border: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white, width: 2),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            filled: true,
+            fillColor: Theme.of(context).primaryColor,
+          ),
+          value: user.city,
+          onChanged: (newValue) {
+            setState(() {
+              user.city = newValue;
+            });
+          },
+          items: listCity.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
         );
-      }).toList(),
+      },
     );
   }
 }

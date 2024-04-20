@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/views/details_event_view.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 
 class EventWidget extends StatelessWidget {
-  const EventWidget({Key? key});
-
+  const EventWidget({super.key, required this.event});
+  final EventModel event;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        translatorFunction("تحويل إدارة النفايات"),
-        translatorFunction("منطقة الجوف"),
+        translatorFunction(event.title ?? "لايوجد محتوى"),
+        translatorFunction(event.location ?? "الرياض"),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(color: green));
+          return shimmerEffectPoint();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -26,7 +27,11 @@ class EventWidget extends StatelessWidget {
           final String location = translatedTexts[1];
           return InkWell(
             onTap: () {
-              context.push(view: const EventDetailsView(), isPush: true);
+              context.push(
+                  view: EventDetailsView(
+                    event: event,
+                  ),
+                  isPush: true);
             },
             child: Container(
               width: context.getWidth(),
@@ -49,6 +54,7 @@ class EventWidget extends StatelessWidget {
                       height: context.getHeight() * .058,
                       decoration: BoxDecoration(
                         image: const DecorationImage(
+                          //TODO: Event Image
                           image: AssetImage('assets/images/Rectangle 104.jpg'),
                           fit: BoxFit.fitWidth,
                         ),

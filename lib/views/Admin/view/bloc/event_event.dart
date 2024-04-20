@@ -4,6 +4,7 @@ part of 'event_bloc.dart';
 sealed class EventEvent {}
 
 class EventLoadEvent extends EventEvent {}
+class HistoryLoadEvent extends EventEvent {}
 
 class EventAdded extends EventEvent {
   final EventModel event;
@@ -21,4 +22,9 @@ class EventUpdated extends EventEvent {
   final EventModel event;
   final String id;
   EventUpdated({required this.event, required this.id});
+}
+
+class RegisterEvent extends EventEvent {
+  final PersonalEvent personalEvent;
+  RegisterEvent({required this.personalEvent});
 }
