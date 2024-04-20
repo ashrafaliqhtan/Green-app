@@ -28,7 +28,6 @@ class RewordContainer extends StatelessWidget {
                     crossAxisCount: 2),
                 itemCount: state.list.length,
                 itemBuilder: (context, index) {
-                  print(state.list[index].maximumCapacity);
                   return Container(
                     height: 140,
                     width: 125,

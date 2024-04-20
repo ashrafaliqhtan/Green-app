@@ -135,7 +135,14 @@ class EventView extends StatelessWidget {
 
           // Event ListView
           Expanded(
-            child: BlocBuilder<EventBloc, EventState>(
+            child: BlocConsumer<EventBloc, EventState>(
+              listener: (context, state) {
+                if (state is RegisterEventSuccessState) {
+              context.getMessagesBar(msg: state.msg, color: green);
+            }else if (state is RegisterEventErrorState ) {
+              context.getMessagesBar(msg: state.msg, color: red);
+            }
+              },
               builder: (context, state) {
                 if (state is EventLoadingState) {
                   return ListView.builder(

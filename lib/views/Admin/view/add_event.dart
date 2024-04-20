@@ -15,6 +15,7 @@ import 'package:green_saudi_app/views/Admin/widgets/date_pic.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
 import 'package:green_saudi_app/views/Admin/widgets/time_pic.dart';
+import 'package:uuid/uuid.dart';
 
 class AddEvent extends StatelessWidget {
   const AddEvent({super.key});
@@ -288,9 +289,11 @@ class AddEvent extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () async {
-                    //context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","ii"));
-                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","1234567890"));
+                      String imageId=Uuid().v4();
+                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster",imageId));
+                    String imageUrl=await serviceLocator.UrlImage("event_poster", imageId);
                       EventModel event = EventModel(
+                        id:imageId ,
                         title: nameEventController.text,
                         description: descriptionEventController.text,
                         startDate: startDateEvent.toString(),
@@ -300,8 +303,9 @@ class AddEvent extends StatelessWidget {
                         location: locationEventController.text,
                         maximumCapacity:
                             int.parse(capacityEventController.text),
-                        imageUrl: "assets/images/event.png",
+                        imageUrl: imageUrl,
                       );
+
                       await GetIt.I.get<DBServices>().createEvent(event: event);
                     },
                     child: Text(

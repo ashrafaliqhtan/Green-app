@@ -4,15 +4,13 @@ class RewardModel {
   String? rewardCompanyLogo;
   String? rewardContent;
   String? rewardCompanyName;
-  String? rewardImage;
 
   RewardModel(
       {this.rewardId,
       this.rewardName,
       this.rewardCompanyLogo,
       this.rewardContent,
-      this.rewardCompanyName,
-      this.rewardImage});
+      this.rewardCompanyName,});
 
   RewardModel.fromJson(Map<String, dynamic> json) {
     rewardId = json['reward_id'];
@@ -20,7 +18,6 @@ class RewardModel {
     rewardCompanyLogo = json['reward_company_logo'];
     rewardContent = json['reward_content'];
     rewardCompanyName = json['reward_company_name'];
-    rewardImage = json['reward_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,7 +27,6 @@ class RewardModel {
     data['reward_company_logo'] = this.rewardCompanyLogo;
     data['reward_content'] = this.rewardContent;
     data['reward_company_name'] = this.rewardCompanyName;
-    data['reward_image'] = this.rewardImage;
     return data;
   }
 }

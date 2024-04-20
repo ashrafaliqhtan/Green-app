@@ -40,9 +40,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       try {
         await locator.createEvent(event: event.event);
         emit(EventLoadedState(list: listOfEvent));
-        emit(EventSuccessState(msg: "تمت إضافة الدواء بنجاح"));
+        emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
       } catch (e) {
-        emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الدواء"));
+        emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
       }
     } else {
       emit(EventErrorState(msg: "يرجى ملء جميع الحقول المطلوبة."));
@@ -65,18 +65,10 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     emit(EventLoadingState());
     try {
       await locator.participateEvent(event: event.personalEvent);
-      print("-----------------------------");
-      print("registerEvent");
-      print(event.personalEvent.eventId);
-      print(event.personalEvent.name);
-      print("-----------------------------");
+
       emit(RegisterEventSuccessState(msg: "msg"));
     } catch (e) {
-      print("-----------------------------");
-      print("Personal Event have this event");
-      print(event.personalEvent.eventId);
-      print("-----------------------------");
-      print(e);
+
       emit(RegisterEventErrorState(msg: "msg"));
     }
   }

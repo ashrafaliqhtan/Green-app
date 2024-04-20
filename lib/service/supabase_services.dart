@@ -129,6 +129,7 @@ class DBServices {
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
     await supabase.from('org_event').insert({
+      "event_id":event.id,
       "name": event.title,
       "content": event.description,
       "location": event.location,
@@ -146,7 +147,6 @@ class DBServices {
       "reward_company_logo": reward.rewardCompanyLogo,
       "reward_content": reward.rewardContent,
       "reward_company_name": reward.rewardCompanyName,
-      "reward_image": reward.rewardImage,
     });
   }
 

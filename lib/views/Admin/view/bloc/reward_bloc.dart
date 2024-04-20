@@ -7,10 +7,10 @@ import 'package:meta/meta.dart';
 part 'reward_event.dart';
 part 'reward_state.dart';
 
-class EventBloc extends Bloc<RewardEvent, RewardState> {
+class RewardBloc extends Bloc<RewardEvent, RewardState> {
   final locator = GetIt.I.get<DBServices>();
   List<RewardModel> listOfReward = [];
-  EventBloc() : super(RewardInitial()) {
+  RewardBloc() : super(RewardInitial()) {
     on<RewardEvent>((event, emit) {});
     on<RewardLoadEvent>(loadEventData);
     on<RewardAdded>(addEvent);
