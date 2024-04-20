@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'package:lottie/lottie.dart';
 
-class DotLoadingIndicator extends StatefulWidget {
+
+
+class FutureDelayedWidget extends StatefulWidget {
   @override
-  _DotLoadingIndicatorState createState() => _DotLoadingIndicatorState();
+  _FutureDelayedWidgetState createState() => _FutureDelayedWidgetState();
 }
 
-class _DotLoadingIndicatorState extends State<DotLoadingIndicator> {
+class _FutureDelayedWidgetState extends State<FutureDelayedWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const BottomNavBar()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 5, 
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
-          child: Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: Colors.green, 
-              shape: BoxShape.circle,
-            ),
-          ),
-        );
-      },
+    return Scaffold(
+      body: Center(
+        child: Lottie.asset('assets/icons/Animation1713616803149.json')
+      ),
     );
   }
 }
