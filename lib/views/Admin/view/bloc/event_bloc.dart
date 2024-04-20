@@ -85,12 +85,8 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       HistoryLoadEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
     try {
-      listOfPersonalEvents =
-          await locator.getUserEvents(id: locator.userID);
+      listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
       emit(HistoryLoadedState(history: listOfPersonalEvents));
-    } catch (e) {
-      emit(EventErrorState(
-          msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
-    }
+    } catch (_) {}
   }
 }

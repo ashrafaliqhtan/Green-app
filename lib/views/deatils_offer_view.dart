@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 
 class DetailsOfferView extends StatelessWidget {
-  const DetailsOfferView({super.key});
+   const DetailsOfferView({super.key, required this.reward});
+  final RewardModel reward;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class DetailsOfferView extends StatelessWidget {
                   height: 200,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
+                      //TODO: fix Reward img
                       image: AssetImage(
                         'assets/images/HalfMillionLogo-Black-croppped-extras.jpg',
                       ),
@@ -43,10 +46,10 @@ class DetailsOfferView extends StatelessWidget {
                   ),
                 ),
                 // Title
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    'هاف مليون',
+                    reward.rewardCompanyName ?? "",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -62,10 +65,10 @@ class DetailsOfferView extends StatelessWidget {
                   endIndent: 16,
                 ),
                 // Description
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    "تفاصيل العرض",
+                    reward.rewardContent ?? "content",
                     style: TextStyle(
                       fontSize: 16,
                     ),

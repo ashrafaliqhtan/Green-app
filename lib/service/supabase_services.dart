@@ -173,7 +173,7 @@ class DBServices {
     await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .upload("${nameFile}", imageFile,fileOptions: FileOptions(upsert: true));
-    UrlImage(bucket,nameFile);
+    urlImage(bucket,nameFile);
     print("done");
   }
 
@@ -181,7 +181,7 @@ class DBServices {
     await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .update("${nameFile}", imageFile);
-    UrlImage(bucket, nameFile);
+    urlImage(bucket, nameFile);
     print("done add");
   }
 
@@ -192,7 +192,7 @@ class DBServices {
     print("done remove");
   }
 
-  Future<String> UrlImage(String bucket,String nameFile) async {
+  Future<String> urlImage(String bucket,String nameFile) async {
     final response = await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .getPublicUrl("${nameFile}");

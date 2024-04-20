@@ -59,7 +59,7 @@ class RewardsPage extends StatelessWidget {
                     ),
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return const OfferWidget();
+                      // return const OfferWidget();
                     },
                   ),
     );

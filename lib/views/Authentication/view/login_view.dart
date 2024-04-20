@@ -10,7 +10,6 @@ import 'package:green_saudi_app/views/Authentication/view/signup_view.dart';
 import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
 import 'package:green_saudi_app/widgets/loading_widget.dart';
-import 'package:lottie/lottie.dart';
 import '../widget/input_text_felid.dart';
 
 class LoginView extends StatefulWidget {

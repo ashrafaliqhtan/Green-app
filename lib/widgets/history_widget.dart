@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
-import 'package:green_saudi_app/views/details_event_view.dart';
 import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
-
+//TODO: Fix history page 
 class HistoryWidget extends StatelessWidget {
   const HistoryWidget({
     super.key,

@@ -6,10 +6,11 @@ class DataInjection {
   final locator = GetIt.I;
 
   setupDatabase() {
-    GetIt.I.registerSingleton<DBServices>(DBServices());
+    locator.registerSingleton<DBServices>(DBServices());
   }
 
   setupAppearance() {
-    GetIt.I.registerSingleton<AppearanceServices>(AppearanceServices());
+    locator.registerSingletonAsync<AppearanceServices>(
+        () async => AppearanceServices()..getMode());
   }
 }

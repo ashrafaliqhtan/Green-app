@@ -20,7 +20,6 @@ class AddReword extends StatelessWidget {
     TextEditingController rewordNameController = TextEditingController();
     TextEditingController rewordDescriptionController = TextEditingController();
     TextEditingController companyNameController = TextEditingController();
-    TextEditingController eventNameController = TextEditingController();
     final serviceLocator = DataInjection().locator.get<DBServices>();
 
     return Scaffold(
