@@ -19,7 +19,7 @@ class DropMenuState extends State<DropMenu> {
   Widget build(BuildContext context) {
     final user = DataInjection().locator.get<DBServices>().user;
 
-    List<String> listCity = [
+    List<String> listCityDropMenu = [
       AppLocale.region1.getString(context),
       AppLocale.region2.getString(context),
       AppLocale.region3.getString(context),
@@ -34,6 +34,7 @@ class DropMenuState extends State<DropMenu> {
       AppLocale.region12.getString(context),
       AppLocale.region13.getString(context),
     ];
+
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -53,7 +54,7 @@ class DropMenuState extends State<DropMenu> {
           user.city = newValue;
         });
       },
-      items: listCity.map<DropdownMenuItem<String>>((String value) {
+      items: listCityDropMenu.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),

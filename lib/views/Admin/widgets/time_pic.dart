@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/theme/theme.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
-
 
 // ignore: must_be_immutable
 class TimePickerWidget extends StatefulWidget {
@@ -31,23 +32,18 @@ class TimePickerWidgetState extends State<TimePickerWidget> {
       child: Container(
         width: context.getWidth(),
         height: 48,
-        decoration: BoxDecoration(
-          color: white,
-          borderRadius: const BorderRadius.all(Radius.circular(14)),
+        decoration: const BoxDecoration(
+          borderRadius:  BorderRadius.all(Radius.circular(14)),
         ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.notifications_sharp,
-                color: grey,
-              ),
-            ),
             const SizedBox(width: 8),
             Text(
               selectedTime.format(context),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+                color: black,
               ),
             ),
           ],
@@ -59,8 +55,8 @@ class TimePickerWidgetState extends State<TimePickerWidget> {
   Future<void> _selectTime(BuildContext context) async {
     final ThemeData theme = Theme.of(context);
     final TimeOfDay? picked = await showTimePicker(
-      cancelText:"خروج",
-      confirmText: "تأكيد",
+      cancelText: AppLocale.cancel.getString(context),
+      confirmText: AppLocale.ok.getString(context),
       initialTime: selectedTime,
       context: context,
       builder: (BuildContext context, Widget? child) {
@@ -75,8 +71,7 @@ class TimePickerWidgetState extends State<TimePickerWidget> {
     if (picked != null && picked != selectedTime) {
       setState(() {
         selectedTime = picked;
-        widget.time=selectedTime;
-
+        widget.time = selectedTime;
       });
     }
   }

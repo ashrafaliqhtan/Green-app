@@ -28,6 +28,7 @@ class AddEvent extends StatelessWidget {
 
     TextEditingController capacityEventController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: pureWhite),
@@ -54,7 +55,13 @@ class AddEvent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(30),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Text(AppLocale.addImageEvent.getString(context),
+                      style: const TextStyle(
+                        fontSize: 24,
+                      )),
+                  const Spacer(),
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: black),
@@ -64,10 +71,7 @@ class AddEvent extends StatelessWidget {
                     width: 100,
                     child: const Icon(Icons.add),
                   ),
-                  Text(AppLocale.addImageEvent.getString(context),
-                      style: const TextStyle(
-                        fontSize: 24,
-                      )),
+                  const Spacer(),
                 ],
               ),
             ),
@@ -133,7 +137,7 @@ class AddEvent extends StatelessWidget {
                           border: Border.all(color: black),
                           color: pureWhite,
                           borderRadius: BorderRadius.circular(40)),
-                      child: const DatePickerWidget(),
+                      child: const Center(child: DatePickerWidget(),) ,
                     ),
                   ),
                   Container(

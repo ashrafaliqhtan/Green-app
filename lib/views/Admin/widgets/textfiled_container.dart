@@ -20,10 +20,11 @@ TextInputType? keyboardType;
     return SizedBox(
       width: 350,
       height: 60,
-      child: TextField(controller: controller,keyboardType:keyboardType,
+      child: TextField(controller: controller,style: TextStyle(color: black),keyboardType:keyboardType,
         decoration: InputDecoration(hintText: hintText,
             filled: true,
             fillColor: pureWhite,
+            
             focusedBorder:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
             border:

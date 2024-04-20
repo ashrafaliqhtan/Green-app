@@ -41,7 +41,7 @@ class RewardsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              AppLocale.eventsAdmin.getString(context),
+              AppLocale.rewordAdmin.getString(context),
               style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,

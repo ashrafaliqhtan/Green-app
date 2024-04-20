@@ -13,8 +13,11 @@ class AddReword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController eventNameController = TextEditingController();
+    TextEditingController rewordNameController = TextEditingController();
+    TextEditingController rewordDescriptionController = TextEditingController();
+    TextEditingController companyNameController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         actionsIconTheme: IconThemeData(color: pureWhite),
@@ -60,17 +63,30 @@ class AddReword extends StatelessWidget {
                 ],
               ),
             ),
-            // Second row
             NameRow(
-              rowName: AppLocale.eventName.getString(context),
+              rowName: AppLocale.companyName.getString(context),
             ),
             height16,
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: TextfieldContainer(
                 hintText: "",
-                controller: eventNameController,
+                controller: companyNameController,
                 keyboardType: TextInputType.text,
+                
+              ),
+            ),
+            NameRow(
+              rowName: AppLocale.rewordName.getString(context),
+            ),
+            height16,
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: TextfieldContainer(
+                hintText: "",
+                controller: rewordNameController,
+                keyboardType: TextInputType.text,
+                
               ),
             ),
             height26,
@@ -85,13 +101,15 @@ class AddReword extends StatelessWidget {
                   border: Border.all(color: black),
                   color: pureWhite,
                   borderRadius: BorderRadius.circular(40)),
-              child: const TextField(
+              child:  TextField(
+                controller: rewordDescriptionController,
+                style: TextStyle(color: black),
                 maxLines: 5,
                 maxLength: 250,
-                textDirection: TextDirection.rtl,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(borderSide: BorderSide.none),
+                  
                 ),
               ),
             ),
