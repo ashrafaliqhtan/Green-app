@@ -10,6 +10,6 @@ class DataInjection {
   }
 
   setupAppearance() {
-    GetIt.I.registerSingleton<AppearanceServices>(AppearanceServices());
+    locator.registerSingletonAsync<AppearanceServices>(() async=> AppearanceServices()..getMode());
   }
 }

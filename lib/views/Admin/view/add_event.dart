@@ -30,7 +30,6 @@ class AddEvent extends StatelessWidget {
     DateTime endDateEvent = DateTime.now();
     final serviceLocator = DataInjection().locator.get<DBServices>();
 
-
     TextEditingController capacityEventController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -62,56 +61,51 @@ class AddEvent extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Text(AppLocale.addImageEvent.getString(context),
+                      style: const TextStyle(
+                        fontSize: 24,
+                      )),
+                  Spacer(),
                   InkWell(
-                onTap: () {
-                  context.read<ImagePicBloc>().add(SelectImage());
-                },
-                child: BlocBuilder<ImagePicBloc, ImagePicState>(
-                  builder: (context, state) {
-                    if (state is ImageState) {
-                      return SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: serviceLocator.ImageFileFromDatabase.path != ""
-                              ? CircleAvatar(
-                                  radius: 100,
-                                  backgroundImage:
-                                      FileImage(serviceLocator.ImageFileFromDatabase),
-                                )
-                              : const CircleAvatar(
-                                  radius: 100,
-                                  backgroundImage: NetworkImage(
-                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                                ));
-                    } else {
-                      return const CircleAvatar(
-                        radius: 100,
-                        backgroundImage: NetworkImage(
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                      );
-                    }
-                  },
-                ),
-              ),
-                  Text(AppLocale.addImageEvent.getString(context),
-                      style: const TextStyle(
-                        fontSize: 24,
-                      )),
-                  Text(AppLocale.addImageEvent.getString(context),
-                      style: const TextStyle(
-                        fontSize: 24,
-                      )),
-                  const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: black),
-                        borderRadius: BorderRadius.circular(20),
-                        color: pureWhite),
-                    height: 100,
-                    width: 100,
-                    child: const Icon(Icons.add),
+                    onTap: () {
+                      context.read<ImagePicBloc>().add(SelectImage());
+                    },
+                    child: BlocBuilder<ImagePicBloc, ImagePicState>(
+                      builder: (context, state) {
+                        if (state is ImageState) {
+                          return SizedBox(
+                            height: 150,
+                            width: 150,
+                            child: serviceLocator.ImageFileFromDatabase.path !=
+                                    ""
+                                ? Container(
+                                    child: Center(
+                                      child: Image.file(
+                                          serviceLocator.ImageFileFromDatabase),
+                                    ),
+                                  )
+                                : Container(
+                                    child: Center(
+                                      child: Image.network(
+                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                                    ),
+                                  ),
+                          );
+                        } else {
+                          return Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            child: Image.network(
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                          );
+                        }
+                      },
+                    ),
                   ),
-                  const Spacer(),
                 ],
               ),
             ),
@@ -178,7 +172,9 @@ class AddEvent extends StatelessWidget {
                           border: Border.all(color: black),
                           color: pureWhite,
                           borderRadius: BorderRadius.circular(40)),
-                      child: const Center(child: DatePickerWidget(),) ,
+                      child: const Center(
+                        child: DatePickerWidget(),
+                      ),
                     ),
                   ),
                   Container(
@@ -288,8 +284,9 @@ class AddEvent extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () async {
-                    //context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","ii"));
-                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","1234567890"));
+                      //context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","ii"));
+                      context.read<ImagePicBloc>().add(
+                          UpdateImageToDatabase("event_poster", "1234567890"));
                       EventModel event = EventModel(
                         title: nameEventController.text,
                         description: descriptionEventController.text,

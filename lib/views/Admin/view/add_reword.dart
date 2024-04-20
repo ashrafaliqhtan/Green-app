@@ -20,7 +20,6 @@ class AddReword extends StatelessWidget {
     TextEditingController rewordNameController = TextEditingController();
     TextEditingController rewordDescriptionController = TextEditingController();
     TextEditingController companyNameController = TextEditingController();
-    TextEditingController eventNameController = TextEditingController();
     final serviceLocator = DataInjection().locator.get<DBServices>();
 
     return Scaffold(
@@ -58,37 +57,45 @@ class AddReword extends StatelessWidget {
                       )),
                   const Spacer(),
                   InkWell(
-                onTap: () {
-                  context.read<ImagePicBloc>().add(SelectImage());
-                },
-                child: BlocBuilder<ImagePicBloc, ImagePicState>(
-                  builder: (context, state) {
-                    if (state is ImageState) {
-                      return SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: serviceLocator.ImageFileFromDatabase.path != ""
-                              ? CircleAvatar(
-                                  radius: 100,
-                                  backgroundImage:
-                                      FileImage(serviceLocator.ImageFileFromDatabase),
-                                )
-                              : const CircleAvatar(
-                                  radius: 100,
-                                  backgroundImage: NetworkImage(
-                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                                ));
-                    } else {
-                      return const CircleAvatar(
-                        radius: 100,
-                        backgroundImage: NetworkImage(
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                      );
-                    }
-                  },
-                ),
-              ),
-                  const Spacer(),
+                    onTap: () {
+                      context.read<ImagePicBloc>().add(SelectImage());
+                    },
+                    child: BlocBuilder<ImagePicBloc, ImagePicState>(
+                      builder: (context, state) {
+                        if (state is ImageState) {
+                          return SizedBox(
+                            height: 150,
+                            width: 150,
+                            child: serviceLocator.ImageFileFromDatabase.path !=
+                                    ""
+                                ? Container(
+                                    child: Center(
+                                      child: Image.file(
+                                          serviceLocator.ImageFileFromDatabase),
+                                    ),
+                                  )
+                                : Container(
+                                    child: Center(
+                                      child: Image.network(
+                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                                    ),
+                                  ),
+                          );
+                        } else {
+                          return Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            child: Image.network(
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -102,7 +109,6 @@ class AddReword extends StatelessWidget {
                 hintText: "",
                 controller: companyNameController,
                 keyboardType: TextInputType.text,
-                
               ),
             ),
             NameRow(
@@ -115,7 +121,6 @@ class AddReword extends StatelessWidget {
                 hintText: "",
                 controller: rewordNameController,
                 keyboardType: TextInputType.text,
-                
               ),
             ),
             height26,
@@ -130,7 +135,7 @@ class AddReword extends StatelessWidget {
                   border: Border.all(color: black),
                   color: pureWhite,
                   borderRadius: BorderRadius.circular(40)),
-              child:  TextField(
+              child: TextField(
                 controller: rewordDescriptionController,
                 style: TextStyle(color: black),
                 maxLines: 5,
@@ -138,7 +143,6 @@ class AddReword extends StatelessWidget {
                 decoration: const InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(borderSide: BorderSide.none),
-                  
                 ),
               ),
             ),

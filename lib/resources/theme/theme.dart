@@ -20,7 +20,7 @@ Map<String, ThemeData> appThemes={
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: darkTextF),
     brightness: Brightness.dark,
-    primaryColor:darkTextF ,
+    primaryColor:pureWhite ,
         unselectedWidgetColor: grey,
 
   ),

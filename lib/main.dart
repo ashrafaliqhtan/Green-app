@@ -79,7 +79,6 @@ class _MainAppState extends State<MainApp> {
       ],
       child: Builder(builder: (context) {
         context.read<ThemeBloc>();
-        final bloc = context.read<ThemeBloc>();
         return BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
             return BlocBuilder<LanguageCubit, LanguageState>(
@@ -87,8 +86,7 @@ class _MainAppState extends State<MainApp> {
                 return MaterialApp(
                   locale: localization.currentLocale,
                   debugShowCheckedModeBanner: false,
-                  theme:
-                      appThemes[GetIt.I.get<AppearanceServices>().currentTheme],
+                  theme: appThemes[ GetIt.I.get<AppearanceServices>().currentTheme],
                   supportedLocales: localization.supportedLocales,
                   localizationsDelegates: localization.localizationsDelegates,
                   home: const SplashView(),
