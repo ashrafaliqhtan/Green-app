@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/rewards_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
@@ -16,6 +20,9 @@ class AddReword extends StatelessWidget {
     TextEditingController rewordNameController = TextEditingController();
     TextEditingController rewordDescriptionController = TextEditingController();
     TextEditingController companyNameController = TextEditingController();
+    TextEditingController eventNameController = TextEditingController();
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -50,15 +57,37 @@ class AddReword extends StatelessWidget {
                         fontSize: 24,
                       )),
                   const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: black),
-                        borderRadius: BorderRadius.circular(20),
-                        color: pureWhite),
-                    height: 100,
-                    width: 100,
-                    child: const Icon(Icons.add),
-                  ),
+                  InkWell(
+                onTap: () {
+                  context.read<ImagePicBloc>().add(SelectImage());
+                },
+                child: BlocBuilder<ImagePicBloc, ImagePicState>(
+                  builder: (context, state) {
+                    if (state is ImageState) {
+                      return SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: serviceLocator.ImageFileFromDatabase.path != ""
+                              ? CircleAvatar(
+                                  radius: 100,
+                                  backgroundImage:
+                                      FileImage(serviceLocator.ImageFileFromDatabase),
+                                )
+                              : const CircleAvatar(
+                                  radius: 100,
+                                  backgroundImage: NetworkImage(
+                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                                ));
+                    } else {
+                      return const CircleAvatar(
+                        radius: 100,
+                        backgroundImage: NetworkImage(
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                      );
+                    }
+                  },
+                ),
+              ),
                   const Spacer(),
                 ],
               ),

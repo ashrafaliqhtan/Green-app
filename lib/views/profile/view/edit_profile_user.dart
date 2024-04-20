@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
@@ -187,7 +188,7 @@ class _EditProfileUserState extends State<EditProfileUser> {
                       city: user.city ?? "الرياض",
                       name: nameController.text,
                       phone: phoneController.text));
-                      context.read<ImagePicBloc>().add(UpdateImageToDatabase());
+                      context.read<ImagePicBloc>().add(UpdateImageToDatabase("avatar",GetIt.I.get<DBServices>().userID));
                 },
                 child: Container(
                   height: 60,

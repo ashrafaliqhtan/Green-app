@@ -15,6 +15,8 @@ class DBServices {
   String otpToken = "";
   String userImageUrl = "";
   File userImageFile = File("");
+  File ImageFileFromDatabase = File("");
+
   GSIUser user = GSIUser();
 
   //----------------------------- Auth --------------------------------
@@ -167,38 +169,33 @@ class DBServices {
   }
 
   /////////////////file crud
-  Future<void> uploadImage(File imageFile) async {
-    print(userID);
-
+  Future<void> uploadImage(File imageFile,String bucket,String nameFile) async {
     await supabase.storage
-        .from('avatar') // Replace with your storage bucket name
-        .upload("${userID}", imageFile);
-    UrlImage();
+        .from(bucket) // Replace with your storage bucket name
+        .upload("${nameFile}", imageFile,fileOptions: FileOptions(upsert: true));
+    UrlImage(bucket,nameFile);
     print("done");
   }
 
-  Future<void> updateImage(File imageFile) async {
-    print(userID);
-
+  Future<void> updateImage(File imageFile,String bucket,String nameFile) async {
     await supabase.storage
-        .from('avatar') // Replace with your storage bucket name
-        .update("${userID}", imageFile);
-    UrlImage();
+        .from(bucket) // Replace with your storage bucket name
+        .update("${nameFile}", imageFile);
+    UrlImage(bucket, nameFile);
     print("done add");
   }
 
-  Future<void> deleteImage() async {
-    print(userID);
+  Future<void> deleteImage(String bucket,String nameFile) async {
     await supabase.storage
-        .from('avatar') // Replace with your storage bucket name
-        .remove(["${userID}"]);
+        .from(bucket) // Replace with your storage bucket name
+        .remove(["${nameFile}"]);
     print("done remove");
   }
 
-  Future<String> UrlImage() async {
+  Future<String> UrlImage(String bucket,String nameFile) async {
     final response = await supabase.storage
-        .from('avatar') // Replace with your storage bucket name
-        .getPublicUrl("${userID}");
+        .from(bucket) // Replace with your storage bucket name
+        .getPublicUrl("${nameFile}");
     return response;
   }
 }
