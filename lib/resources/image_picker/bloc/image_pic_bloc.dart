@@ -19,12 +19,12 @@ class ImagePicBloc extends Bloc<ImagePicEvent, ImagePicState> {
   on<UpdateImageToDatabase>((event, emit) {
       GetIt.I.get<DBServices>().deleteImage(event.bucketName,event.fileName);
       GetIt.I.get<DBServices>().uploadImage(GetIt.I.get<DBServices>().ImageFileFromDatabase,event.bucketName,event.fileName);
-      emit(ImageState(fileImage:GetIt.I.get<DBServices>().ImageFileFromDatabase));
+      //emit(ImageState(fileImage:GetIt.I.get<DBServices>().ImageFileFromDatabase));
 },);
     on<SelectImage>((event, emit) async{
-      File avatar = await imagePic();
-      GetIt.I.get<DBServices>().ImageFileFromDatabase=avatar;
-      emit(ImageState(fileImage:avatar));
+      File avatar1 = await imagePic();
+      GetIt.I.get<DBServices>().ImageFileFromDatabase=avatar1;
+      emit(ImageState(fileImage:avatar1));
     });
   }
 }

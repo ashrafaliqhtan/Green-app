@@ -171,8 +171,8 @@ class DBServices {
   /////////////////file crud
   Future<void> uploadImage(File imageFile,String bucket,String nameFile) async {
     await supabase.storage
-        .from('avatar') // Replace with your storage bucket name
-        .upload("${userID}", imageFile);
+        .from(bucket) // Replace with your storage bucket name
+        .upload("${nameFile}", imageFile,fileOptions: FileOptions(upsert: true));
     UrlImage(bucket,nameFile);
     print("done");
   }

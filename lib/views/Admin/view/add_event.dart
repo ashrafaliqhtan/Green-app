@@ -271,7 +271,8 @@ class AddEvent extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () async {
-                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("1",GetIt.I.get<DBServices>().userID));
+                    //context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","ii"));
+                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("event_poster","1234567890"));
                       EventModel event = EventModel(
                         title: nameEventController.text,
                         description: descriptionEventController.text,
