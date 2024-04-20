@@ -17,6 +17,7 @@ class OfferWidget extends StatelessWidget {
           context.push(view: const DetailsOfferView(), isPush: true);
         },
         child: Card(
+          clipBehavior:Clip.antiAlias ,
           color: pureWhite,
           elevation: 8,
           shape: RoundedRectangleBorder(

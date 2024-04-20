@@ -121,6 +121,7 @@ mixin AppLocale {
   static const String changeEmail = 'changeEmail';
   static const String notification = 'notification';
   static const String darkMode = 'darkMode';
+  static const String lightMode = 'lightMode';
   static const String languageButton = 'language';
   static const String logoutButton = 'logout';
   static const String editProfile = 'editProfile';
@@ -255,6 +256,7 @@ mixin AppLocale {
     rewordAdmin: 'Reword',
     companyName: 'companyName',
     ok :'Ok',
+    lightMode : 'Light Mode',
   };
   static const Map<String, dynamic> AR = {
     // Onboarding and Auth
@@ -383,5 +385,6 @@ mixin AppLocale {
     addReword: 'أضف مكآفأة',
     companyName: 'إسم الشركة',
     ok :'تأكيد',
+    lightMode : 'الوضع الفاتح',
   };
 }

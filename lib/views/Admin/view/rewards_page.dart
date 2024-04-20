@@ -5,8 +5,8 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/add_reword.dart';
+import 'package:green_saudi_app/widgets/offers_widget.dart';
 
-import '../widgets/reword_container.dart';
 
 class RewardsPage extends StatelessWidget {
   const RewardsPage({super.key});
@@ -50,7 +50,18 @@ class RewardsPage extends StatelessWidget {
           ],
         ),
       ),
-      body: const RewordContainer(),
+      body:  GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 5,
+                      childAspectRatio: 1,
+                    ),
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return const OfferWidget();
+                    },
+                  ),
     );
   }
 }
