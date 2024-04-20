@@ -107,7 +107,7 @@ class DrawerScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                height20,
+                height10,
                 Row(
                   children: [
                     IconButton(
@@ -162,7 +162,7 @@ class DrawerScreen extends StatelessWidget {
                         : const SizedBox(),
                   ],
                 ),
-                height20,
+                height8,
                 Row(
                   children: [
                     IconButton(

@@ -8,6 +8,7 @@ import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
+import 'package:green_saudi_app/widgets/loading_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'auth_event.dart';
@@ -125,7 +126,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (serviceLocator.user.typeRole == 'admin') {
           emit(SessionAvailabilityState(page: const ControlPanel()));
         } else {
-          emit(SessionAvailabilityState(page: BottomNavBar()));
+          emit(SessionAvailabilityState(page: FutureDelayedWidget()));
         }
       } else {
         emit(SessionAvailabilityState(page: const OnboardingView()));
@@ -245,7 +246,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoadProfileEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     try {
-      serviceLocator.userImageUrl=await serviceLocator.UrlImage();
+      serviceLocator.userImageUrl = await serviceLocator.UrlImage();
       serviceLocator.user =
           await serviceLocator.getUser(id: serviceLocator.userID);
       emit(AuthLoadProfileState(user: serviceLocator.user));
