@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:green_saudi_app/views/Admin/view/control_panel.dart';
-import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 import 'package:green_saudi_app/widgets/loading_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -124,7 +123,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print(serviceLocator.user.typeRole);
         print("------------------");
         if (serviceLocator.user.typeRole == 'admin') {
-          emit(SessionAvailabilityState(page: const ControlPanel()));
+          emit(SessionAvailabilityState(page:  BottomNavBarAdmin()));
         } else {
           emit(SessionAvailabilityState(page: FutureDelayedWidget()));
         }

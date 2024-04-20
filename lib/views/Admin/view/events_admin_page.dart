@@ -6,8 +6,8 @@ import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/add_event.dart';
 
-class EditEventsPage extends StatelessWidget {
-  const EditEventsPage({super.key});
+class EventsAdminPage extends StatelessWidget {
+  const EventsAdminPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,22 +62,26 @@ class EditEventsPage extends StatelessWidget {
                 height: 60,
                 width: 356,
                 child:  Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Text(
-                        AppLocale.addressAdminEvent.getString(context),
-                        style: const TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                    ),
                     const Padding(
-                      padding: EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.all(10),
                       child: CircleAvatar(
                         backgroundImage:
                             AssetImage("assets/images/adminlogo.png"),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        AppLocale.addressAdminEvent.getString(context),
+                        style: const TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                    const Spacer(),
+                    //TODO Active Delete Event in Admin Event Page.
+                    IconButton(onPressed: (){
+                    }, icon: Icon(Icons.delete_forever_rounded,color: grey,))
                   ],
                 ),
               ),

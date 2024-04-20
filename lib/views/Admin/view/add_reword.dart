@@ -8,7 +8,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:green_saudi_app/views/Admin/view/rewards_page.dart';
+import 'package:green_saudi_app/views/Admin/view/rewards_admin_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
 
@@ -157,7 +157,7 @@ class AddReword extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () {
-                      context.push(view: const RewardsPage(), isPush: false);
+                      context.push(view: const RewardsAdminPage(), isPush: false);
                     },
                     child: Text(
                       AppLocale.cancel.getString(context),

@@ -5,8 +5,8 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/views/Admin/view/edit_events_page.dart';
-import 'package:green_saudi_app/views/Admin/view/rewards_page.dart';
+import 'package:green_saudi_app/views/Admin/view/events_admin_page.dart';
+import 'package:green_saudi_app/views/Admin/view/rewards_admin_page.dart';
 import 'package:green_saudi_app/views/Admin/view/supervisors_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/admin_panel.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
@@ -55,7 +55,7 @@ class ControlPanel extends StatelessWidget {
             address: AppLocale.eventsAdmin.getString(context),
             panelIcon: 'assets/icons/adminedit.svg',
             onTap: () {
-              context.push(view: const EditEventsPage(), isPush: false);
+              context.push(view: const EventsAdminPage(), isPush: false);
             },
           ),
           height16,
@@ -71,7 +71,7 @@ class ControlPanel extends StatelessWidget {
             address: AppLocale.rewardsPageAdmin.getString(context),
             panelIcon: 'assets/icons/adminreword.svg',
             onTap: () {
-              context.push(view: const RewardsPage(), isPush: false);
+              context.push(view: const RewardsAdminPage(), isPush: false);
             },
           ),
         ],
