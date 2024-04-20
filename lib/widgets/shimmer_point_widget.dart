@@ -16,6 +16,7 @@ Widget shimmerEffectPoint() {
       ),
       child: Container(
         alignment: Alignment.center,
+        margin: const EdgeInsets.all(10),
         color: grey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

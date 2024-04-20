@@ -3,6 +3,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 
 class PointWidget extends StatelessWidget {
   const PointWidget({Key? key});
@@ -17,7 +18,7 @@ class PointWidget extends StatelessWidget {
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(color: green));
+          return Center(child: shimmerEffectPoint());
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {

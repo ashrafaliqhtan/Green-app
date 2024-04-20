@@ -14,12 +14,23 @@ import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Drawer/widget/drawer_widget.dart';
 import 'package:green_saudi_app/views/Profile/view/profile_user.dart';
 import 'package:green_saudi_app/views/Profile/view/settings_user.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Uri url =
+        Uri.parse('https://www.greeninitiatives.gov.sa/ar-sa/sgi-initiatives/');
+    final Uri url1 =
+        Uri.parse('https://www.greeninitiatives.gov.sa/ar-sa/about-sgi/');
+    final Uri urlTwiter = Uri.parse('https://twitter.com/gi_saudi');
+    final Uri urlFacebook =
+        Uri.parse('https://www.facebook.com/SaudiGreenInitiative');
+    final Uri urlInstagram = Uri.parse('https://www.instagram.com/gi_saudi/');
+    final Uri urlYoutub =
+        Uri.parse('hhttps://www.greeninitiatives.gov.sa/ar-sa/about-sgi/#');
     final serviceLocator = DataInjection().locator.get<DBServices>();
     final user = serviceLocator.user;
     return BlocProvider(
@@ -37,10 +48,12 @@ class DrawerScreen extends StatelessWidget {
           return Container(
             width: context.getWidth() * .7,
             decoration: BoxDecoration(
-                color: green,
-                borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    bottomRight: Radius.circular(20))),
+              color: green,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+              ),
+            ),
             padding: const EdgeInsets.only(top: 50, bottom: 70, left: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +68,7 @@ class DrawerScreen extends StatelessWidget {
                           )
                         : const CircleAvatar(
                             radius: 25,
-                            backgroundImage: NetworkImage( 
+                            backgroundImage: NetworkImage(
                                 "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
                           ),
                     width16,
@@ -79,7 +92,7 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     DrawerItem(
                       icon: Icons.info,
-                      title: AppLocale.aboutUS.getString(context),
+                      title: AppLocale.aboutUS.getString(context),   
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -89,13 +102,23 @@ class DrawerScreen extends StatelessWidget {
                         height: 0.2,
                       ),
                     ),
-                    const DrawerItem(
+                    DrawerItem(
                       icon: Icons.eco,
-                      title: 'Sustainability',
+                      title: AppLocale.saudi.getString(context),
+                       onTap: () async {
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url, mode: LaunchMode.inAppWebView);
+                        }
+                      },
                     ),
-                    const DrawerItem(
+                    DrawerItem(
                       icon: Icons.nature,
-                      title: 'Nature',
+                      title: AppLocale.vision.getString(context),
+                       onTap: () async {
+                        if (await canLaunchUrl(url1)) {
+                          await launchUrl(url1, mode: LaunchMode.inAppWebView);
+                        }
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -107,7 +130,6 @@ class DrawerScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                height10,
                 Row(
                   children: [
                     IconButton(
@@ -162,29 +184,46 @@ class DrawerScreen extends StatelessWidget {
                         : const SizedBox(),
                   ],
                 ),
-                height8,
                 Row(
                   children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: ()async {  
+                    if (await canLaunchUrl(urlFacebook)) {
+                      await launchUrl(urlFacebook, mode: LaunchMode.inAppWebView);
+                    } 
+                      },
                         icon: Icon(
                           Icons.facebook_outlined,
                           color: pureWhite,
                         )),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () async{
+                          if (await canLaunchUrl(urlInstagram)) {
+                      await launchUrl(urlInstagram, mode: LaunchMode.inAppWebView);
+                    } 
+                        },
                         icon: Icon(
                           FontAwesomeIcons.instagram,
                           color: pureWhite,
                         )),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () async{
+                          if (await canLaunchUrl(urlYoutub)) {
+                            await launchUrl(urlYoutub,
+                                mode: LaunchMode.inAppWebView);
+                          } 
+                        },
                         icon: Icon(
                           FontAwesomeIcons.youtube,
                           color: pureWhite,
                         )),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: ()async {
+                           if (await canLaunchUrl(urlTwiter)) {
+                            await launchUrl(urlTwiter,
+                                mode: LaunchMode.inAppWebView);
+                          } 
+                        },
                         icon: Icon(
                           FontAwesomeIcons.twitter,
                           color: pureWhite,

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:green_saudi_app/model/event_model.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
-import 'package:green_saudi_app/widgets/event_widget.dart';
 import 'package:green_saudi_app/widgets/history_widget.dart';
 import 'package:green_saudi_app/widgets/shimmer_widget.dart';
 
@@ -50,14 +49,6 @@ class HistoryEventView extends StatelessWidget {
             ),
           ),
           height20,
-          /*  Expanded(
-            child: ListView.builder(
-                itemCount: 4,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return buildShimmerEffect();
-                }),
-          ), */
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -81,7 +72,21 @@ class HistoryEventView extends StatelessWidget {
                         });
                   } else {
                     //TODO: NO histroy img or messge
-                    return Text("No histroy added");
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                              "assets/icons/No data-pana.svg"),
+                          height16,
+                            Text('No histroy added',
+                            style: TextStyle(fontSize: 30, color: green),
+                          ),
+                        ],
+                      ),
+                    );
+
+                    //");
                   }
                 },
               ),

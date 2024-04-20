@@ -79,7 +79,8 @@ mixin AppLocale {
   static const String region11 = 'region11';
   static const String region12 = 'region12';
   static const String region13 = 'region13';
-
+  static const String vision = 'Our Vision';
+  static const String saudi = 'Green Saudi';
   //Admin
   static const String controlPanel = 'ControlPanel';
   static const String eventsAdmin = 'Events';
@@ -229,6 +230,8 @@ mixin AppLocale {
     region11: 'Al-Baha',
     region12: 'Al-Jawf',
     region13: 'Jazan',
+    vision :'Our Vision',
+    saudi :'Green Saudi',
 
     //Admin
     controlPanel: 'Control Panel',
@@ -372,6 +375,8 @@ mixin AppLocale {
     eventName: 'إسم الحدث',
     addDescription: 'أضف وصف',
     rewordAdmin: 'المكافآت',
+    vision: 'رؤيتنا',
+    saudi: 'السعودية الخضراء',
 
     date: 'التاريخ',
     from: 'من',

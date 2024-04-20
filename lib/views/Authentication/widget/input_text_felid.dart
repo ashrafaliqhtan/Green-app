@@ -11,7 +11,8 @@ class InputTextFelid extends StatelessWidget {
     required this.isPassword,
     this.icon,
     required this.controller,
-    this.hintText, this.isColorChange = false,
+    this.hintText,
+    this.isColorChange = false, this.type,
   });
   final String title;
   final IconData? icon;
@@ -19,13 +20,14 @@ class InputTextFelid extends StatelessWidget {
   String? hintText;
   final bool isColorChange;
   TextEditingController controller;
+  final TextInputType? type;
 
   @override
   Widget build(BuildContext context) {
     bool isObscureText = true;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,13 +41,13 @@ class InputTextFelid extends StatelessWidget {
           height8,
           Container(
             width: context.getWidth(),
-            height: 50,
+            height: 70,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40),
               boxShadow: [
                 BoxShadow(
-                  color: greenLight,
+                  color: greenCalm,
                   blurRadius: 4,
                   offset: const Offset(0, 4),
                 ),
@@ -55,6 +57,8 @@ class InputTextFelid extends StatelessWidget {
               controller: controller,
               cursorColor: green,
               obscureText: isPassword,
+              maxLines: 1,
+              keyboardType: type,
               decoration: InputDecoration(
                 hintText: hintText,
                 suffixIcon: isPassword
@@ -66,13 +70,13 @@ class InputTextFelid extends StatelessWidget {
                             isObscureText = true;
                           }
                         },
-                        icon:  Icon(
+                        icon: Icon(
                           Icons.remove_red_eye_outlined,
-                          color: green,
+                          color: black,
                           size: 24,
                         ),
                       )
-                    : const SizedBox(),
+                    : null,
                 filled: true,
                 fillColor: white,
                 focusedBorder: OutlineInputBorder(
