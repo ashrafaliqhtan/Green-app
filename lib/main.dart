@@ -15,7 +15,6 @@ import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:device_preview/device_preview.dart';
 import 'views/disconnect.dart';
 
 void main() async {
@@ -28,20 +27,12 @@ void main() async {
   InternetConnection().onStatusChange.listen((status) async {
     if (status == InternetStatus.connected) {
       runApp(
-        // DevicePreview(
-        //  // enabled: !kReleaseMode,
-        //   builder: (context) => const MainApp(), // Wrap your app
-        // ),
-      const MainApp(),
+        const MainApp(),
       );
-
     } else {
       runApp(const Disconnect());
     }
   });
-  runApp(
-    const MainApp(),
-  );
 }
 
 class MainApp extends StatefulWidget {
@@ -94,9 +85,6 @@ class _MainAppState extends State<MainApp> {
             return BlocBuilder<LanguageCubit, LanguageState>(
               builder: (context, state) {
                 return MaterialApp(
-                  //useInheritedMediaQuery: true,
-                  //locale: DevicePreview.locale(context),
-                  //builder: DevicePreview.appBuilder,
                   locale: localization.currentLocale,
                   debugShowCheckedModeBanner: false,
                   theme:
