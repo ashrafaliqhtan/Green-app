@@ -104,13 +104,10 @@ class EventsAdminPage extends StatelessWidget {
               ),
             ),
           );
-              
-
-
             }
           }
 
-        return Text("hi");
+        return AddEvent();
         },
       ),
     );

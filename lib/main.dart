@@ -7,6 +7,7 @@ import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart';
 import 'package:green_saudi_app/resources/localization/cubit/language_cubit.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
+import 'package:green_saudi_app/resources/qr_code_reader/qr_code_reader.dart';
 import 'package:green_saudi_app/resources/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/resources/theme/theme.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
@@ -89,7 +90,7 @@ class _MainAppState extends State<MainApp> {
                   theme: appThemes[ GetIt.I.get<AppearanceServices>().currentTheme],
                   supportedLocales: localization.supportedLocales,
                   localizationsDelegates: localization.localizationsDelegates,
-                  home: const SplashView(),
+                  home:  SplashView(),
                 );
               },
             );

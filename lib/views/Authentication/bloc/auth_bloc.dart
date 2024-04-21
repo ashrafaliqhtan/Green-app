@@ -119,9 +119,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         serviceLocator.userID = await serviceLocator.getCurrentUserId();
         serviceLocator.user =
             await serviceLocator.getUser(id: serviceLocator.userID);
-        print("------------------");
-        print(serviceLocator.user.typeRole);
-        print("------------------");
         if (serviceLocator.user.typeRole == 'admin') {
           emit(SessionAvailabilityState(page:  BottomNavBarAdmin()));
         } else {
