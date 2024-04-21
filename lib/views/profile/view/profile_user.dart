@@ -101,11 +101,17 @@ class ProfileView extends StatelessWidget {
                                       Border.all(width: 10, color: pureWhite),
                                 ),
                                 child: Center(
-                                  child: CircleAvatar(
-                                    radius: 140,
-                                    child: Image.network(serviceLocator
-                                            .userImageUrl ??
-                                        "https://image.movieglu.com/7772/GBR_007772h0.jpg"), // Image
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(1000),
+                                    child: CircleAvatar(
+                                      radius: 140,
+                                      child: Image.network(
+                                          fit: BoxFit.cover,
+                                          serviceLocator.userImageUrl == ""
+                                              ? "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
+                                              : serviceLocator
+                                                  .userImageUrl), // Image
+                                    ),
                                   ),
                                 ),
                               ),
@@ -158,8 +164,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           TextProfile(
                             title: AppLocale.phoneNumber.getString(context),
-                            data:
-                                state.user.phoneNumber ?? "0500500505",
+                            data: state.user.phoneNumber ?? "0500500505",
                             icon: FontAwesomeIcons.phone,
                           ),
                           height26,
@@ -176,11 +181,12 @@ class ProfileView extends StatelessWidget {
             });
           } else {
             //TODO: filed to display Prfile
-             return Center(
+            return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset("assets/icons/Computer troubleshooting-pana.svg"),
+                  SvgPicture.asset(
+                      "assets/icons/Computer troubleshooting-pana.svg"),
                   height16,
                   Text(
                     'Filed to Display Profile Page',
@@ -195,4 +201,3 @@ class ProfileView extends StatelessWidget {
     );
   }
 }
-

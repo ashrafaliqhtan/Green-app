@@ -80,7 +80,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> login(LoginEvent event, Emitter<AuthState> emit) async {
-    emit(AuthLoadingState());
     if (event.email.trim().isNotEmpty && event.password.trim().isNotEmpty) {
       if ((RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
           .hasMatch(event.email))) {
@@ -244,8 +243,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoadProfileEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     try {
-      serviceLocator.userImageUrl =
-          await serviceLocator.urlImage("avatar", serviceLocator.userID);
+      print(serviceLocator.userID);
+      try {
+        serviceLocator.userImageUrl =
+            await serviceLocator.urlImage("avatar", serviceLocator.userID);
+      } catch (e) {
+        serviceLocator.userImageUrl = "";
+        print(e);
+      }
       serviceLocator.user =
           await serviceLocator.getUser(id: serviceLocator.userID);
       emit(AuthLoadProfileState(user: serviceLocator.user));
