@@ -100,6 +100,7 @@ class EventsAdminPage extends StatelessWidget {
                     },
                   ),
                 ),
+                
                 floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     context.push(view: const AddEvent(), isPush: false);

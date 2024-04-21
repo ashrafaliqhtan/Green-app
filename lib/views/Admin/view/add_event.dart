@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart';
@@ -10,7 +9,6 @@ import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Admin/view/events_admin_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/date_pic.dart';

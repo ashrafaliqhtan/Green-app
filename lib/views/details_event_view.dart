@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
@@ -11,7 +10,6 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 
 class EventDetailsView extends StatelessWidget {
@@ -76,7 +74,8 @@ class EventDetailsView extends StatelessWidget {
                       SizedBox(
                         height: 425,
                         child: Image.network(
-                          event.imageUrl  ?? 'assets/images/action-4.jpg',
+                          event.imageUrl  ??
+                           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -194,6 +193,19 @@ class EventDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
+                //  FloatingActionButton(
+                //   onPressed: () async {
+                //           if (await canLaunchUrl(urlYoutub)) {
+                //             await launchUrl(urlYoutub,
+                //                 mode: LaunchMode.inAppWebView);
+                //           }
+                //         },
+                //   backgroundColor: green, // Set your desired background color
+                //   child: const Icon(
+                //     Icons.add,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 // Button
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -213,6 +225,7 @@ class EventDetailsView extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
+                        
                       ),
                       child: Container(
                         height: 60,
