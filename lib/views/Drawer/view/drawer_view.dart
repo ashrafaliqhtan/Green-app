@@ -53,9 +53,10 @@ class DrawerScreen extends StatelessWidget {
                             backgroundImage:
                                 FileImage(serviceLocator.userImageFile),
                           )
-                        : const CircleAvatar(
+                        :  CircleAvatar(
+                          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                             radius: 25,
-                            backgroundImage: NetworkImage( 
+                            backgroundImage: const NetworkImage( 
                                 "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
                           ),
                     width16,
