@@ -7,10 +7,10 @@ class AppearanceServices {
 
   Future<void> changeTheme() async {
     if (currentTheme == 'Dark') {
-      await box.write('theme', 'Light');
+      await box.write('mode', 'Light');
       currentTheme = 'Light';
     } else {
-      await box.write('theme', 'Dark');
+      await box.write('mode', 'Dark');
       currentTheme = 'Dark';
     }
     box.save();

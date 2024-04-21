@@ -41,14 +41,14 @@ class EventModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    data['event_id'] = this.id;
     data['name'] = this.title;
     data['content'] = this.description;
     data['location'] = this.location;
-    data['startDate'] = this.startDate;
-    data['startTime'] = this.startTime;
-    data['endDate'] = this.endDate;
-    data['endTime'] = this.endTime;
+    data['date_start'] = this.startDate;
+    data['time_start'] = this.startTime;
+    data['end_date'] = this.endDate;
+    data['time_end'] = this.endTime;
     data['imageUrl'] = this.imageUrl;
     data['maximam_number_of']=this.maximumCapacity;
     return data;

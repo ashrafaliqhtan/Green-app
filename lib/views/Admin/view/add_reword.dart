@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
+import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
@@ -11,6 +13,7 @@ import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/view/rewards_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
+import 'package:uuid/uuid.dart';
 
 class AddReword extends StatelessWidget {
   const AddReword({super.key});
@@ -169,7 +172,10 @@ class AddReword extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () async{String imageId=Uuid().v4();
+                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("reward_poster",imageId));
+                    RewardModel reward =RewardModel(rewardCompanyLogo:  await serviceLocator.urlImage("reward_poster", imageId),rewardCompanyName: companyNameController.text,rewardName: rewordNameController.text,rewardContent: rewordDescriptionController.text,rewardId: imageId );
+                    await GetIt.I.get<DBServices>().createReward(reward: reward);},
                     child: Text(
                       AppLocale.addIt.getString(context),
                       style: TextStyle(
