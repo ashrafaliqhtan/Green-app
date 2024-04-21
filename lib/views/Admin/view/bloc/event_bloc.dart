@@ -68,7 +68,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
 
       emit(RegisterEventSuccessState(msg: "msg"));
     } catch (e) {
-
       emit(RegisterEventErrorState(msg: "msg"));
     }
   }

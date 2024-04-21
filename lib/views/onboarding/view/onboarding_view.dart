@@ -7,12 +7,11 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
-import 'package:green_saudi_app/views/Authentication/view/signup_view.dart';
 import 'package:green_saudi_app/views/onboarding/bloc/onboarding_bloc.dart';
 
 
 class OnboardingView extends StatelessWidget {
-  const OnboardingView({Key? key}) : super(key: key);
+  const OnboardingView({super.key});
 
   @override
   Widget build(BuildContext context) {
