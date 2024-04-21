@@ -3,7 +3,6 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/theme/theme.dart';
-import 'package:green_saudi_app/resources/utils/colors.dart';
 
 // ignore: must_be_immutable
 class TimePickerWidget extends StatefulWidget {

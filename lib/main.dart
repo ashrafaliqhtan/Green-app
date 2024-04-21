@@ -12,6 +12,7 @@ import 'package:green_saudi_app/resources/theme/theme.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/service/appearence_service.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
+import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -75,6 +76,9 @@ class _MainAppState extends State<MainApp> {
         ),
         BlocProvider(
           create: (context) => EventBloc()..add(EventLoadEvent()),
+        ),
+        BlocProvider(
+          create: (context) => RewardBloc(),
         ),
       ],
       child: Builder(builder: (context) {

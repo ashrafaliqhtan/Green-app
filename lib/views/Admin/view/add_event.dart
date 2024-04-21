@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart';
@@ -18,21 +17,40 @@ import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
 import 'package:green_saudi_app/views/Admin/widgets/time_pic.dart';
 import 'package:uuid/uuid.dart';
 
-class AddEvent extends StatelessWidget {
+class AddEvent extends StatefulWidget {
   const AddEvent({super.key});
 
   @override
+  State<AddEvent> createState() => _AddEventState();
+}
+
+class _AddEventState extends State<AddEvent> {
+  TextEditingController nameEventController = TextEditingController();
+  TextEditingController descriptionEventController = TextEditingController();
+  TextEditingController locationEventController = TextEditingController();
+  TextEditingController locationUrlEventController = TextEditingController();
+  TextEditingController capacityEventController =
+      TextEditingController(text: "0");
+  @override
+  void dispose() {
+    nameEventController.dispose();
+    descriptionEventController.dispose();
+    locationEventController.dispose();
+    locationUrlEventController.dispose();
+    capacityEventController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController nameEventController = TextEditingController();
-    TextEditingController descriptionEventController = TextEditingController();
-    TextEditingController locationEventController = TextEditingController();
+    final serviceLocator = DataInjection().locator.get<DBServices>();
     TimeOfDay startTimeEvent = TimeOfDay.now();
     DateTime startDateEvent = DateTime.now();
     TimeOfDay endTimeEvent = TimeOfDay.now();
     DateTime endDateEvent = DateTime.now();
-    final serviceLocator = DataInjection().locator.get<DBServices>();
-
-    TextEditingController capacityEventController = TextEditingController();
+    String imageUrl = "";
+    String imageID = const Uuid().v4();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -56,11 +74,12 @@ class AddEvent extends StatelessWidget {
       body: BlocListener<EventBloc, EventState>(
         listener: (context, state) {
           if (state is EventSuccessState) {
-                context.getMessagesBar(msg: state.msg, color: green);
-                Navigator.pop(context);
-              } else if (state is EventErrorState) {
-                context.getMessagesBar(msg: state.msg, color: red);
-              }
+            context.getMessagesBar(msg: state.msg, color: green);
+            //TODO: pop when add is not working
+            Navigator.pop(context);
+          } else if (state is EventErrorState) {
+            context.getMessagesBar(msg: state.msg, color: red);
+          }
         },
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -85,24 +104,12 @@ class AddEvent extends StatelessWidget {
                         builder: (context, state) {
                           if (state is ImageState) {
                             return SizedBox(
-                              height: 150,
-                              width: 150,
-                              child:
-                                  serviceLocator.ImageFileFromDatabase.path !=
-                                          ""
-                                      ? Container(
-                                          child: Center(
-                                            child: Image.file(serviceLocator
-                                                .ImageFileFromDatabase),
-                                          ),
-                                        )
-                                      : Container(
-                                          child: Center(
-                                            child: Image.network(
-                                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                                          ),
-                                        ),
-                            );
+                                height: 150,
+                                width: 150,
+                                child: Center(
+                                  child: Image.file(
+                                      serviceLocator.ImageFileFromDatabase),
+                                ));
                           } else {
                             return Container(
                               height: 100,
@@ -111,8 +118,10 @@ class AddEvent extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 color: Theme.of(context).primaryColor,
                               ),
-                              child: Image.network(
-                                  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                              child: const Icon(
+                                Icons.add,
+                                size: 100,
+                              ),
                             );
                           }
                         },
@@ -121,7 +130,6 @@ class AddEvent extends StatelessWidget {
                   ],
                 ),
               ),
-
               NameRow(
                 rowName: AppLocale.eventName.getString(context),
               ),
@@ -262,9 +270,10 @@ class AddEvent extends StatelessWidget {
                 rowName: AppLocale.location.getString(context),
               ),
               height16,
+              //TODO: location Url Event
               TextfieldContainer(
                 hintText: AppLocale.location.getString(context),
-                controller: locationEventController,
+                controller: locationUrlEventController,
                 keyboardType: TextInputType.text,
               ),
               height26,
@@ -306,13 +315,12 @@ class AddEvent extends StatelessWidget {
                         color: green, borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                       onPressed: () async {
-                        String imageId = const Uuid().v4();
                         context.read<ImagePicBloc>().add(
-                            UpdateImageToDatabase("event_poster", imageId));
-                        String imageUrl = await serviceLocator.urlImage(
-                            "event_poster", imageId);
+                            UpdateImageToDatabase("event_poster", imageID));
+                        imageUrl = await serviceLocator.urlImage(
+                            "event_poster", imageID);
                         EventModel event = EventModel(
-                          id: imageId,
+                          id: imageID,
                           title: nameEventController.text,
                           description: descriptionEventController.text,
                           startDate: startDateEvent.toString(),
@@ -320,6 +328,7 @@ class AddEvent extends StatelessWidget {
                           endDate: endDateEvent.toString(),
                           endTime: endTimeEvent.toString(),
                           location: locationEventController.text,
+                          locationUrl: locationUrlEventController.text,
                           maximumCapacity:
                               int.parse(capacityEventController.text),
                           imageUrl: imageUrl,

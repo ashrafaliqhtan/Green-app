@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
+import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/add_reword.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
@@ -72,7 +74,19 @@ class RewardsAdminPage extends StatelessWidget {
                 },
               );
             } else {
-              return Center(child: Text("no Reward added"));
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset("assets/icons/Insert block-rafiki.svg"),
+                    height16,
+                    Text(
+                      'No Reward added',
+                      style: TextStyle(fontSize: 30, color: green),
+                    )
+                  ],
+                ),
+              );
             }
           },
         ),

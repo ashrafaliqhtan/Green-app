@@ -36,13 +36,29 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   }
 
   Future<void> addEvent(EventAdded event, Emitter<EventState> emit) async {
-    if (event.event.title!.trim().isNotEmpty) {
-      try {
-        await locator.createEvent(event: event.event);
-        emit(EventLoadedState(list: listOfEvent));
-        emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
-      } catch (e) {
-        emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
+    if (event.event.title!.trim().isNotEmpty &&
+        event.event.description!.trim().isNotEmpty &&
+        event.event.location!.trim().isNotEmpty &&
+        event.event.locationUrl!.trim().isNotEmpty) {
+      if (event.event.maximumCapacity != null &&
+          event.event.maximumCapacity != 0) {
+        if (event.event.startDate!.isNotEmpty &&
+            event.event.endDate!.isNotEmpty) {
+          if (event.event.imageUrl!.trim().isNotEmpty) {
+            try {
+              await locator.createEvent(event: event.event);
+              emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
+            } catch (e) {
+              emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
+            }
+          } else {
+            emit(EventErrorState(msg: "الرجاء إدخال صوره الغلاف"));
+          }
+        } else {
+          emit(EventErrorState(msg: "الرجاء إدخال ناريخ البدأ و الانهاء"));
+        }
+      } else {
+        emit(EventErrorState(msg: "الرجاء إدخال القدرة الإستيعابية"));
       }
     } else {
       emit(EventErrorState(msg: "يرجى ملء جميع الحقول المطلوبة."));

@@ -13,7 +13,8 @@ class DBServices {
   String email = "";
   String userID = "";
   String otpToken = "";
-  String userImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
+  String userImageUrl =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
   File userImageFile = File("");
   File ImageFileFromDatabase = File("");
 
@@ -129,7 +130,7 @@ class DBServices {
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
     await supabase.from('org_event').insert({
-      "event_id":event.id,
+      "event_id": event.id,
       "name": event.title,
       "content": event.description,
       "location": event.location,
@@ -138,6 +139,8 @@ class DBServices {
       "end_date": event.endDate,
       "time_end": event.endTime,
       "maximam_number_of": event.maximumCapacity,
+      "location_url": event.locationUrl,
+      "image_url":event.imageUrl
     });
   }
 
@@ -169,15 +172,18 @@ class DBServices {
   }
 
   /////////////////file crud
-  Future<void> uploadImage(File imageFile,String bucket,String nameFile) async {
-    await supabase.storage
-        .from(bucket) // Replace with your storage bucket name
-        .upload("${nameFile}", imageFile,fileOptions: FileOptions(upsert: true));
-    await urlImage(bucket,nameFile);
+  Future<void> uploadImage(
+      File imageFile, String bucket, String nameFile) async {
+      await supabase.storage
+          .from(bucket) // Replace with your storage bucket name
+          .upload("${nameFile}", imageFile,
+              fileOptions: FileOptions(upsert: true));
+      await urlImage(bucket, nameFile);
     print("done");
   }
 
-  Future<void> updateImage(File imageFile,String bucket,String nameFile) async {
+  Future<void> updateImage(
+      File imageFile, String bucket, String nameFile) async {
     await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .update("${nameFile}", imageFile);
@@ -185,14 +191,14 @@ class DBServices {
     print("done add");
   }
 
-  Future<void> deleteImage(String bucket,String nameFile) async {
+  Future<void> deleteImage(String bucket, String nameFile) async {
     await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .remove(["${nameFile}"]);
     print("done remove");
   }
 
-  Future<String> urlImage(String bucket,String nameFile) async {
+  Future<String> urlImage(String bucket, String nameFile) async {
     final response = await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .getPublicUrl("${nameFile}");

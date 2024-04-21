@@ -12,11 +12,11 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
   List<RewardModel> listOfReward = [];
   RewardBloc() : super(RewardInitial()) {
     on<RewardEvent>((event, emit) {});
-    on<RewardLoadEvent>(loadEventData);
-    on<RewardAdded>(addEvent);
-  //on<EventDeleted>(deleteEvent);
+    on<RewardLoadEvent>(loadRewardData);
+    on<RewardAdded>(addReward);
+    //on<EventDeleted>(deleteEvent);
   }
-  Future<void> loadEventData(
+  Future<void> loadRewardData(
       RewardLoadEvent event, Emitter<RewardState> emit) async {
     emit(RewardLoadingState());
     try {
@@ -28,15 +28,19 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
     }
   }
 
-  Future<void> addEvent(
-      RewardAdded event, Emitter<RewardState> emit) async {
-    if (event.reward.rewardId!.trim().isNotEmpty) {
-      try {
-        await locator.createReward(reward: event.reward);
-        emit(RewardLoadedState(list: listOfReward));
-        emit(RewardSuccessState(msg: "تمت إضافة الدواء بنجاح"));
-      } catch (e) {
-        emit(RewardErrorState(msg: "حدث خطأ أثناء إضافة الدواء"));
+  Future<void> addReward(RewardAdded event, Emitter<RewardState> emit) async {
+    if (event.reward.rewardCompanyName!.trim().isNotEmpty &&
+        event.reward.rewardContent!.trim().isNotEmpty &&
+        event.reward.rewardName!.isNotEmpty) {
+      if (event.reward.rewardCompanyLogo!.trim().isNotEmpty) {
+        try {
+          await locator.createReward(reward: event.reward);
+          emit(RewardSuccessState(msg: "تمت إضافة الدواء بنجاح"));
+        } catch (e) {
+          emit(RewardErrorState(msg: "حدث خطأ أثناء إضافة الدواء"));
+        }
+      }else{
+        emit(RewardErrorState(msg: "الرجاء إدخال صوره الغلاف"));
       }
     } else {
       emit(RewardErrorState(msg: "يرجى ملء جميع الحقول المطلوبة."));

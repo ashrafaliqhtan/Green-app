@@ -3,6 +3,7 @@ class EventModel {
   String? title;
   String? description;
   String? location;
+  String? locationUrl;
   String? startDate;
   String? startTime;
   String? endDate;
@@ -22,8 +23,8 @@ class EventModel {
       this.endTime,
       this.state,
       this.maximumCapacity,
-      this.imageUrl
-      });
+      this.locationUrl,
+      this.imageUrl});
 
   EventModel.fromJson(Map<String, dynamic> json) {
     id = json['event_id'];
@@ -34,23 +35,25 @@ class EventModel {
     startTime = json['time_end'];
     endDate = json['end_date'];
     endTime = json['time_end'];
-    imageUrl = json['imageUrl'];
+    imageUrl = json['image_url'];
     state = json['state'];
-    maximumCapacity=json["maximam_number_of"];
+    locationUrl = json['location_url'];
+    maximumCapacity = json["maximam_number_of"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['event_id'] = this.id;
-    data['name'] = this.title;
-    data['content'] = this.description;
-    data['location'] = this.location;
-    data['date_start'] = this.startDate;
-    data['time_start'] = this.startTime;
-    data['end_date'] = this.endDate;
-    data['time_end'] = this.endTime;
-    data['imageUrl'] = this.imageUrl;
-    data['maximam_number_of']=this.maximumCapacity;
+    data['event_id'] = id;
+    data['name'] = title;
+    data['content'] = description;
+    data['location'] = location;
+    data['location_url'] = locationUrl;
+    data['date_start'] = startDate;
+    data['time_start'] = startTime;
+    data['end_date'] = endDate;
+    data['time_end'] = endTime;
+    data['image_url'] = imageUrl;
+    data['maximam_number_of'] = maximumCapacity;
     return data;
   }
 }
