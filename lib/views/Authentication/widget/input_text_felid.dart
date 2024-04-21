@@ -54,13 +54,15 @@ class InputTextFelid extends StatelessWidget {
               ],
             ),
             child: TextField(
-              controller: controller,
+              focusNode: FocusNode(),
+              controller: controller,style: const TextStyle(color:Colors.black,),
               cursorColor: green,
               obscureText: isPassword,
               maxLines: 1,
               keyboardType: type,
               decoration: InputDecoration(
                 hintText: hintText,
+                hintStyle: const TextStyle(color:  Colors.black54,),
                 suffixIcon: isPassword
                     ? IconButton(
                         onPressed: () {
@@ -70,9 +72,8 @@ class InputTextFelid extends StatelessWidget {
                             isObscureText = true;
                           }
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.remove_red_eye_outlined,
-                          color: black,
                           size: 24,
                         ),
                       )

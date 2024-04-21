@@ -39,9 +39,11 @@ class OfferWidget extends StatelessWidget {
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(10)),
                     //TODO: Reward img
-                    child: Image.asset(
-                          'assets/images/HalfMillionLogo-Black-croppped-extras.jpg',
-                      fit: BoxFit.cover,
+                    child: Image.network(
+                          reward.rewardCompanyLogo!,
+                          height: 100,
+                          width: context.getWidth(),
+                      fit: BoxFit.fill,
                     )),
                 height10,
                 Divider(

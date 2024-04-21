@@ -129,6 +129,7 @@ mixin AppLocale {
   static const String chooseLanguage = 'chooseLanguage';
   static const String listCity = "listCity";
   static const String addEvent = "AddEvent";
+  static const String changeLanguage = 'ChangeLanguage';
 
   static const Map<String, dynamic> EN = {
     // Onboarding
@@ -191,6 +192,7 @@ mixin AppLocale {
     languageButton: 'Language',
     logoutButton: 'Logout',
     editProfile: 'Edit Profile',
+    changeLanguage : 'Change Language',
 
     // USER
     homePage: 'Home',
@@ -325,6 +327,7 @@ mixin AppLocale {
     languageButton: 'اللغة',
     logoutButton: 'تسجيل الخروج',
     editProfile: 'تعديل الملف الشخصي',
+    changeLanguage : 'تغيير اللغة',
 
     // User
     homePage: 'الرئيسية',

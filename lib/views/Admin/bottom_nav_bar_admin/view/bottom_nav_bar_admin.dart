@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/cubit/nav_bar_cubit.dart';
@@ -9,15 +11,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 class BottomNavBarAdmin extends StatelessWidget {
   BottomNavBarAdmin({super.key});
 
-  final List<Map<String, dynamic>> navItems = [
-    {"icon": 'assets/icons/home1.svg', "label": "Home"},
-    {"icon": 'assets/icons/event.svg', "label": "Event"},
-    {"icon": 'assets/icons/reward.svg', "label": "Reward"},
-    {"icon": 'assets/icons/history.svg', "label": "supervisors"},
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> navItems = [
+    {"icon": 'assets/icons/home1.svg', "label": AppLocale.homePage.getString(context)},
+    {"icon": 'assets/icons/event.svg', "label": AppLocale.eventsAdmin.getString(context)},
+    {"icon": 'assets/icons/reward.svg', "label": AppLocale.rewordAdmin.getString(context)},
+    {"icon": 'assets/icons/history.svg', "label": AppLocale.supervisors.getString(context)},
+  ];
     return BlocProvider(
       create: (context) => NavBarAdminCubit(),
       child: BlocBuilder<NavBarAdminCubit, NavBarAdminState>(
@@ -81,7 +84,9 @@ class BottomNavBarAdmin extends StatelessWidget {
                           height: context.getWidth() * .056,
                           color: index == navAdminCubit.selectIndex
                               ? green
-                              : Theme.of(context).colorScheme.onSecondaryContainer,
+                              : Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                         ),
                         Text(
                           navItems[index]['label'],
@@ -89,7 +94,9 @@ class BottomNavBarAdmin extends StatelessWidget {
                             fontSize: 12,
                             color: index == navAdminCubit.selectIndex
                                 ? green
-                                : Theme.of(context).colorScheme.onSecondaryContainer,
+                                : Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
                           ),
                         ),
                         height10,

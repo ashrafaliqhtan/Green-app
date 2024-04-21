@@ -10,7 +10,7 @@ part 'nav_bar_state.dart';
 
 class NavBarAdminCubit extends Cubit<NavBarAdminState> {
   List<Widget> pages = <Widget>[
-     const ControlPanel(),
+    const ControlPanel(),
     const EventsAdminPage(),
     const RewardsAdminPage(),
     const SupervisorsPage(),

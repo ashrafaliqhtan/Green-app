@@ -2,7 +2,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/resources/utils/colors.dart';
 
 class TextfieldContainer extends StatelessWidget {
    TextfieldContainer({
@@ -20,7 +19,7 @@ TextInputType? keyboardType;
     return SizedBox(
       width: 350,
       height: 60,
-      child: TextField(controller: controller,style: TextStyle(color: black),keyboardType:keyboardType,
+      child: TextField(controller: controller,keyboardType:keyboardType,
         decoration: InputDecoration(hintText: hintText,
         filled: true,
         fillColor: Theme.of(context).primaryColor,

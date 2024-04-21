@@ -10,6 +10,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/views/Admin/view/rewards_admin_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
@@ -136,7 +137,7 @@ class AddReword extends StatelessWidget {
               height: 180,
               decoration: BoxDecoration(
                   border: Border.all(color: black),
-                  color:Theme.of(context).primaryColor,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(40)),
               child: TextField(
                 controller: rewordDescriptionController,
@@ -160,7 +161,8 @@ class AddReword extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () {
-                      context.push(view: const RewardsAdminPage(), isPush: false);
+                      context.push(
+                          view: const RewardsAdminPage(), isPush: false);
                     },
                     child: Text(
                       AppLocale.cancel.getString(context),
@@ -177,10 +179,22 @@ class AddReword extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
-                    onPressed: () async{String imageId=Uuid().v4();
-                    context.read<ImagePicBloc>().add(UpdateImageToDatabase("reward_poster",imageId));
-                    RewardModel reward =RewardModel(rewardCompanyLogo:  await serviceLocator.urlImage("reward_poster", imageId),rewardCompanyName: companyNameController.text,rewardName: rewordNameController.text,rewardContent: rewordDescriptionController.text,rewardId: imageId );
-                    await GetIt.I.get<DBServices>().createReward(reward: reward);},
+                    onPressed: () async {
+                      String imageId = Uuid().v4();
+                      context
+                          .read<ImagePicBloc>()
+                          .add(UpdateImageToDatabase("reward_poster", imageId));
+                      RewardModel reward = RewardModel(
+                          rewardCompanyLogo: await serviceLocator.urlImage(
+                              "reward_poster", imageId),
+                          rewardCompanyName: companyNameController.text,
+                          rewardName: rewordNameController.text,
+                          rewardContent: rewordDescriptionController.text,
+                          rewardId: imageId);
+                      context
+                          .read<RewardBloc>()
+                          .add(RewardAdded(reward: reward));
+                    },
                     child: Text(
                       AppLocale.addIt.getString(context),
                       style: TextStyle(

@@ -128,16 +128,15 @@ class SettingsUser extends StatelessWidget {
                   showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      title: const Text('AlertDialog Title'),
-                      content: const Text('AlertDialog description'),
+                      title:  Text( AppLocale.changeLanguage.getString(context),),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => cubit.changeLanguage("ar"),
-                          child: const Text('العربية'),
+                          child:  Text('العربية',style: TextStyle(color: Theme.of(context).unselectedWidgetColor),),
                         ),
                         TextButton(
                           onPressed: () => cubit.changeLanguage("en"),
-                          child: const Text('english'),
+                          child:  Text('english',style: TextStyle(color: Theme.of(context).unselectedWidgetColor),),
                         ),
                       ],
                     ),
