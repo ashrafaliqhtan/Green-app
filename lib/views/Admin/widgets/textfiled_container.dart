@@ -22,8 +22,8 @@ TextInputType? keyboardType;
       height: 60,
       child: TextField(controller: controller,style: TextStyle(color: black),keyboardType:keyboardType,
         decoration: InputDecoration(hintText: hintText,
-            filled: true,
-            fillColor: pureWhite,
+        filled: true,
+        fillColor: Theme.of(context).primaryColor,
             
             focusedBorder:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(40)),

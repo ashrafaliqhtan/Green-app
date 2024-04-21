@@ -51,7 +51,7 @@ class ProfileView extends StatelessWidget {
                 color: pureWhite,
               )),
         ],
-        backgroundColor: Colors.transparent,
+        backgroundColor: green,
         automaticallyImplyLeading: true,
         title: Text(
           AppLocale.account.getString(context),
@@ -105,12 +105,11 @@ class ProfileView extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(1000),
                                     child: CircleAvatar(
                                       radius: 140,
-                                      child: Image.network(
+                                      child: Image.network(errorBuilder: (context, error, stackTrace) {
+                                        return Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png");
+                                      },
                                           fit: BoxFit.cover,
-                                          serviceLocator.userImageUrl == ""
-                                              ? "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
-                                              : serviceLocator
-                                                  .userImageUrl), // Image
+                                          serviceLocator.userImageUrl), // Image
                                     ),
                                   ),
                                 ),
@@ -141,7 +140,8 @@ class ProfileView extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               context.push(
-                                  view: HoursHistoryView(), isPush: false);
+                                  view: const HoursHistoryView(),
+                                  isPush: false);
                             },
                             child: TextProfile(
                               title:
@@ -168,9 +168,15 @@ class ProfileView extends StatelessWidget {
                             icon: FontAwesomeIcons.phone,
                           ),
                           height26,
-                          QrImageView(
-                            data: serviceLocator.userID,
-                            size: 200,
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: pureWhite,
+                            ),
+                            child: QrImageView(
+                              data: serviceLocator.userID,
+                              size: 200,
+                            ),
                           ),
                         ],
                       ),

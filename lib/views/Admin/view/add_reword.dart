@@ -10,7 +10,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:green_saudi_app/views/Admin/view/rewards_page.dart';
+import 'package:green_saudi_app/views/Admin/view/rewards_admin_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
 import 'package:green_saudi_app/views/Admin/widgets/textfiled_container.dart';
 import 'package:uuid/uuid.dart';
@@ -60,37 +60,45 @@ class AddReword extends StatelessWidget {
                       )),
                   const Spacer(),
                   InkWell(
-                onTap: () {
-                  context.read<ImagePicBloc>().add(SelectImage());
-                },
-                child: BlocBuilder<ImagePicBloc, ImagePicState>(
-                  builder: (context, state) {
-                    if (state is ImageState) {
-                      return SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: serviceLocator.ImageFileFromDatabase.path != ""
-                              ? CircleAvatar(
-                                  radius: 100,
-                                  backgroundImage:
-                                      FileImage(serviceLocator.ImageFileFromDatabase),
-                                )
-                              : const CircleAvatar(
-                                  radius: 100,
-                                  backgroundImage: NetworkImage(
-                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                                ));
-                    } else {
-                      return const CircleAvatar(
-                        radius: 100,
-                        backgroundImage: NetworkImage(
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
-                      );
-                    }
-                  },
-                ),
-              ),
-                  const Spacer(),
+                    onTap: () {
+                      context.read<ImagePicBloc>().add(SelectImage());
+                    },
+                    child: BlocBuilder<ImagePicBloc, ImagePicState>(
+                      builder: (context, state) {
+                        if (state is ImageState) {
+                          return SizedBox(
+                            height: 150,
+                            width: 150,
+                            child: serviceLocator.ImageFileFromDatabase.path !=
+                                    ""
+                                ? Container(
+                                    child: Center(
+                                      child: Image.file(
+                                          serviceLocator.ImageFileFromDatabase),
+                                    ),
+                                  )
+                                : Container(
+                                    child: Center(
+                                      child: Image.network(
+                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                                    ),
+                                  ),
+                          );
+                        } else {
+                          return Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            child: Image.network(
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -104,7 +112,6 @@ class AddReword extends StatelessWidget {
                 hintText: "",
                 controller: companyNameController,
                 keyboardType: TextInputType.text,
-                
               ),
             ),
             NameRow(
@@ -117,7 +124,6 @@ class AddReword extends StatelessWidget {
                 hintText: "",
                 controller: rewordNameController,
                 keyboardType: TextInputType.text,
-                
               ),
             ),
             height26,
@@ -130,9 +136,9 @@ class AddReword extends StatelessWidget {
               height: 180,
               decoration: BoxDecoration(
                   border: Border.all(color: black),
-                  color: pureWhite,
+                  color:Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(40)),
-              child:  TextField(
+              child: TextField(
                 controller: rewordDescriptionController,
                 style: TextStyle(color: black),
                 maxLines: 5,
@@ -140,7 +146,6 @@ class AddReword extends StatelessWidget {
                 decoration: const InputDecoration(
                   counterText: "",
                   border: OutlineInputBorder(borderSide: BorderSide.none),
-                  
                 ),
               ),
             ),
@@ -155,7 +160,7 @@ class AddReword extends StatelessWidget {
                       color: green, borderRadius: BorderRadius.circular(30)),
                   child: TextButton(
                     onPressed: () {
-                      context.push(view: const RewardsPage(), isPush: false);
+                      context.push(view: const RewardsAdminPage(), isPush: false);
                     },
                     child: Text(
                       AppLocale.cancel.getString(context),

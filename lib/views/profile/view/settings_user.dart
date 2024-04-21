@@ -63,12 +63,12 @@ class SettingsUser extends StatelessWidget {
                       height: 72,
                       width: 72,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(200),
-                        child: Image.network(serviceLocator.userImageUrl??
-                          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(200),
+                          child: Image.network(
+                              errorBuilder: (context, error, stackTrace) {
+                            return Image.network(
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png");
+                          }, fit: BoxFit.cover, serviceLocator.userImageUrl)),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -112,11 +112,12 @@ class SettingsUser extends StatelessWidget {
             ),
             height16,
             SettingsSwitch(
-              title: 
-              GetIt.I.get<AppearanceServices>().currentTheme == 'Light' ?AppLocale.lightMode.getString(context):
-              AppLocale.darkMode.getString(context),
-              
-              icon: GetIt.I.get<AppearanceServices>().currentTheme == 'Light' ?Icons.sunny:Icons.nightlight_round,
+              title: GetIt.I.get<AppearanceServices>().currentTheme == 'Light'
+                  ? AppLocale.lightMode.getString(context)
+                  : AppLocale.darkMode.getString(context),
+              icon: GetIt.I.get<AppearanceServices>().currentTheme == 'Light'
+                  ? Icons.sunny
+                  : Icons.nightlight_round,
               isDarkMode: true,
             ),
             height16,

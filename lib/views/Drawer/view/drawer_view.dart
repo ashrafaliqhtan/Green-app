@@ -66,10 +66,12 @@ class DrawerScreen extends StatelessWidget {
                             backgroundImage:
                                 FileImage(serviceLocator.userImageFile),
                           )
-                        : const CircleAvatar(
+                        : CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
                             radius: 25,
-                            backgroundImage: NetworkImage(
-                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                            backgroundImage:
+                                NetworkImage(serviceLocator.userImageUrl),
                           ),
                     width16,
                     Text(
@@ -92,7 +94,7 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     DrawerItem(
                       icon: Icons.info,
-                      title: AppLocale.aboutUS.getString(context),   
+                      title: AppLocale.aboutUS.getString(context),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -105,7 +107,7 @@ class DrawerScreen extends StatelessWidget {
                     DrawerItem(
                       icon: Icons.eco,
                       title: AppLocale.saudi.getString(context),
-                       onTap: () async {
+                      onTap: () async {
                         if (await canLaunchUrl(url)) {
                           await launchUrl(url, mode: LaunchMode.inAppWebView);
                         }
@@ -114,7 +116,7 @@ class DrawerScreen extends StatelessWidget {
                     DrawerItem(
                       icon: Icons.nature,
                       title: AppLocale.vision.getString(context),
-                       onTap: () async {
+                      onTap: () async {
                         if (await canLaunchUrl(url1)) {
                           await launchUrl(url1, mode: LaunchMode.inAppWebView);
                         }
@@ -187,42 +189,44 @@ class DrawerScreen extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                        onPressed: ()async {  
-                    if (await canLaunchUrl(urlFacebook)) {
-                      await launchUrl(urlFacebook, mode: LaunchMode.inAppWebView);
-                    } 
-                      },
+                        onPressed: () async {
+                          if (await canLaunchUrl(urlFacebook)) {
+                            await launchUrl(urlFacebook,
+                                mode: LaunchMode.inAppWebView);
+                          }
+                        },
                         icon: Icon(
                           Icons.facebook_outlined,
                           color: pureWhite,
                         )),
                     IconButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           if (await canLaunchUrl(urlInstagram)) {
-                      await launchUrl(urlInstagram, mode: LaunchMode.inAppWebView);
-                    } 
+                            await launchUrl(urlInstagram,
+                                mode: LaunchMode.inAppWebView);
+                          }
                         },
                         icon: Icon(
                           FontAwesomeIcons.instagram,
                           color: pureWhite,
                         )),
                     IconButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           if (await canLaunchUrl(urlYoutub)) {
                             await launchUrl(urlYoutub,
                                 mode: LaunchMode.inAppWebView);
-                          } 
+                          }
                         },
                         icon: Icon(
                           FontAwesomeIcons.youtube,
                           color: pureWhite,
                         )),
                     IconButton(
-                        onPressed: ()async {
-                           if (await canLaunchUrl(urlTwiter)) {
+                        onPressed: () async {
+                          if (await canLaunchUrl(urlTwiter)) {
                             await launchUrl(urlTwiter,
                                 mode: LaunchMode.inAppWebView);
-                          } 
+                          }
                         },
                         icon: Icon(
                           FontAwesomeIcons.twitter,

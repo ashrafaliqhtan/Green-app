@@ -257,7 +257,7 @@ mixin AppLocale {
     addEvent: "Add Event",
     addReword: 'Add Reword',
     rewordAdmin: 'Reword',
-    companyName: 'companyName',
+    companyName: 'Company Name',
     ok :'Ok',
     lightMode : 'Light Mode',
   };

@@ -8,8 +8,8 @@ import 'package:green_saudi_app/views/Admin/view/add_reword.dart';
 // import 'package:green_saudi_app/widgets/offers_widget.dart';
 
 
-class RewardsPage extends StatelessWidget {
-  const RewardsPage({super.key});
+class RewardsAdminPage extends StatelessWidget {
+  const RewardsAdminPage({super.key});
 
   @override
   Widget build(BuildContext context) {

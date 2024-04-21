@@ -12,6 +12,7 @@ Map<String, ThemeData> appThemes={
     brightness: Brightness.light,
     primaryColor:pureWhite,
     unselectedWidgetColor: green,
+    
   ),
   'Dark':ThemeData(
     scaffoldBackgroundColor: darkBackground,
