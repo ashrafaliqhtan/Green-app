@@ -153,7 +153,7 @@ class ProfileView extends StatelessWidget {
                           TextProfile(
                             title: AppLocale.phoneNumber.getString(context),
                             data:
-                                serviceLocator.user.phoneNumber ?? "0500500505",
+                                state.user.phoneNumber ?? "0500500505",
                             icon: FontAwesomeIcons.phone,
                           ),
                           height26,
