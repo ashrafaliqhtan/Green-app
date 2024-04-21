@@ -55,116 +55,118 @@ class OnboardingView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final currentIndex =
                     state is OnboardingLoadedState ? state.currentIndex : 0;
-                return Container(
-                  width: context.getWidth(),
-                  height: context.getHeight(),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(onboardingItems[currentIndex].image),
-                      fit: BoxFit.cover,
+                return SafeArea(
+                  child: Container(
+                    width: context.getWidth(),
+                    height: context.getHeight(),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(onboardingItems[currentIndex].image),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: context.getWidth() * .3,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.transparent,
-                                border: Border.all(width: 2, color: grey),
-                              ),
-                              child: TextButton(
-                                onPressed: () {
-                                  context.push(
-                                      view: LoginView(), isPush: false);
-                                },
-                                child: Text(
-                                  AppLocale.skip.getString(context),
-                                  style: TextStyle(color: white),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                width: context.getWidth() * .3,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Colors.transparent,
+                                  border: Border.all(width: 2, color: grey),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {
+                                    context.push(
+                                        view: LoginView(), isPush: false);
+                                  },
+                                  child: Text(
+                                    AppLocale.skip.getString(context),
+                                    style: TextStyle(color: white),
+                                  ),
                                 ),
                               ),
+                            ],
+                          ),
+                        ),
+                        height100,
+                        //Titles
+                        Text(
+                          onboardingItems[currentIndex].title,
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        height100,
+                        //Description
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          child: SizedBox(
+                            width: context.getWidth(),
+                            height: context.getHeight() * .16,
+                            child: Text(
+                              onboardingItems[currentIndex].description,
+                              style: TextStyle(color: grey, fontSize: 16),
+                              textAlign: TextAlign.center,
                             ),
-                          ],
-                        ),
-                      ),
-                      height100,
-                      //Titles
-                      Text(
-                        onboardingItems[currentIndex].title,
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      height100,
-                      //Description
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: SizedBox(
-                          width: context.getWidth(),
-                          height: context.getHeight() * .16,
-                          child: Text(
-                            onboardingItems[currentIndex].description,
-                            style: TextStyle(color: grey, fontSize: 16),
-                            textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
-                      height100,
-                      // dots
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          onboardingItems.length,
-                          (index) => AnimatedContainer(
-                            margin: const EdgeInsets.symmetric(horizontal: 2),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: currentIndex == index ? green : grey,
+                        height100,
+                        // dots
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            onboardingItems.length,
+                            (index) => AnimatedContainer(
+                              margin: const EdgeInsets.symmetric(horizontal: 2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: currentIndex == index ? green : grey,
+                              ),
+                              height: 7,
+                              width: currentIndex == index ? 30 : 7,
+                              duration: const Duration(milliseconds: 1000),
                             ),
-                            height: 7,
-                            width: currentIndex == index ? 30 : 7,
-                            duration: const Duration(milliseconds: 1000),
                           ),
                         ),
-                      ),
-                      height40,
-                      // button
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 20),
-                        width: context.getWidth() * .9,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: green,
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            if (currentIndex == onboardingItems.length - 1) {
-                              context.push(
-                                  view: const SignUpView(), isPush: false);
-                            } else {
-                              onboardingBloc.add(NextViewEvent());
-                            }
-                          },
-                          child: Text(
-                            currentIndex == onboardingItems.length - 1
-                                ? AppLocale.start.getString(context)
-                                : AppLocale.move.getString(context),
-                            style: TextStyle(color: pureWhite, fontSize: 24),
+                        height40,
+                        // button
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 20),
+                          width: context.getWidth() * .9,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: green,
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              if (currentIndex == onboardingItems.length - 1) {
+                                context.push(
+                                    view: const LoginView(), isPush: false);
+                              } else {
+                                onboardingBloc.add(NextViewEvent());
+                              }
+                            },
+                            child: Text(
+                              currentIndex == onboardingItems.length - 1
+                                  ? AppLocale.start.getString(context)
+                                  : AppLocale.move.getString(context),
+                              style: TextStyle(color: pureWhite, fontSize: 24),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

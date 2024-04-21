@@ -62,7 +62,7 @@ class OTPView extends StatelessWidget {
                     showCursor: true,
                     margin: const EdgeInsets.all(4),
                     fieldWidth: context.getWidth() * .11,
-                    fieldHeight: context.getHeight() * .075,
+                    fieldHeight: context.getHeight() * .125,
                     borderColor: pureWhite,
                     showFieldAsBox: true,
                     fillColor: pureWhite,

@@ -17,7 +17,7 @@ class Disconnect extends StatelessWidget {
             children: [
               //TODO: fix offline-concept-illustration_114360-7063 add it in the image file
               SvgPicture.asset(
-                  "assets/icons/No_connection-pana.svg",),
+                  "assets/icons/No connection-pana (1).svg"),
               height16,
               Text(
                 'No internet connection',

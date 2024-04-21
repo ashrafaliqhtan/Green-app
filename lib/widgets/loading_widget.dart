@@ -25,7 +25,7 @@ class _FutureDelayedWidgetState extends State<FutureDelayedWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Lottie.asset('assets/icons/Animation1713616803149.json')
+       child: Lottie.asset('assets/icons/Animation1713616803149.json')
       ),
     );
   }

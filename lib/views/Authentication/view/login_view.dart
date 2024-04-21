@@ -39,8 +39,9 @@ class _LoginViewState extends State<LoginView> {
       child: Builder(builder: (context) {
         final bloc = context.read<AuthBloc>();
         return Scaffold(
+          resizeToAvoidBottomInset: true,
             body: BlocConsumer<AuthBloc, AuthState>(
-          listener: (context, state) {
+                      listener: (context, state) {
             if (state is AuthLoginSuccessState) {
               context.getMessagesBar(msg: state.message, color: green);
               bloc.add(CheckSessionAvailability());
@@ -49,8 +50,8 @@ class _LoginViewState extends State<LoginView> {
             } else if (state is AuthLoginErrorState) {
               context.getMessagesBar(msg: state.message, color: red);
             }
-          },
-          builder: (context, state) {
+                      },
+                      builder: (context, state) {
             if (state is AuthLoadingState) {
               return FutureDelayedWidget();
             }
@@ -166,8 +167,8 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
             );
-          },
-        ));
+                      },
+                    ));
       }),
     );
   }

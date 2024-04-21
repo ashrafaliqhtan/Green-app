@@ -31,7 +31,7 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
       listener: (context, state) {
         if (state is AuthCheckEmailVerificationState) {
           context.getMessagesBar(msg: state.message, color: green);
-          context.push(view: OTPView(), isPush: false);
+          context.push(view: OTPView(), isPush: true);
         } else if (state is AuthCheckEmailVerificationErrorState) {
           context.getMessagesBar(msg: state.message, color: red);
         }
@@ -63,7 +63,7 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
                     Text(
                       AppLocale.instruction.getString(context),
                       style: TextStyle(
-                          color: white,
+                          color: green,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),

@@ -155,7 +155,20 @@ class EventView extends StatelessWidget {
                       });
                 }else{
                   //TODO: NO Event img or messge
-                  return Text("No Event added");
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                            "assets/icons/Insert block-rafiki.svg"),
+                        height16,
+                        Text(
+                          'No histroy added',
+                          style: TextStyle(fontSize: 30, color: green),
+                        ),
+                      ],
+                    ),
+                  );
                 }
               },
             ),
