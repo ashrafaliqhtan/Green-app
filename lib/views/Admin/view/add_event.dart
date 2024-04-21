@@ -131,9 +131,10 @@ class AddEvent extends StatelessWidget {
               width: 350,
               height: 180,
               decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
                   border: Border.all(color: black),
-                  color: pureWhite,
                   borderRadius: BorderRadius.circular(40)),
+                  
               child: TextField(
                 controller: descriptionEventController,
                 maxLines: 5,
@@ -170,7 +171,7 @@ class AddEvent extends StatelessWidget {
                       height: 60,
                       decoration: BoxDecoration(
                           border: Border.all(color: black),
-                          color: pureWhite,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(40)),
                       child: const Center(
                         child: DatePickerWidget(),
@@ -182,7 +183,7 @@ class AddEvent extends StatelessWidget {
                     height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(color: black),
-                        color: pureWhite,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(40)),
                     child: const DatePickerWidget(),
                   ),

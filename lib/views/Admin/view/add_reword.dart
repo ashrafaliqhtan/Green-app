@@ -133,7 +133,7 @@ class AddReword extends StatelessWidget {
               height: 180,
               decoration: BoxDecoration(
                   border: Border.all(color: black),
-                  color: pureWhite,
+                  color:Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(40)),
               child: TextField(
                 controller: rewordDescriptionController,

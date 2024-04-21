@@ -32,18 +32,18 @@ class TimePickerWidgetState extends State<TimePickerWidget> {
       child: Container(
         width: context.getWidth(),
         height: 48,
-        decoration: const BoxDecoration(
-          borderRadius:  BorderRadius.all(Radius.circular(14)),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: const BorderRadius.all(Radius.circular(30)),
         ),
         child: Row(
           children: [
             const SizedBox(width: 8),
             Text(
               selectedTime.format(context),
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 17,
-                color: black,
               ),
             ),
           ],

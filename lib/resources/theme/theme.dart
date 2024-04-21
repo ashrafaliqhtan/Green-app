@@ -12,6 +12,7 @@ Map<String, ThemeData> appThemes={
     brightness: Brightness.light,
     primaryColor:pureWhite,
     unselectedWidgetColor: green,
+    
   ),
   'Dark':ThemeData(
     scaffoldBackgroundColor: darkBackground,
@@ -20,7 +21,7 @@ Map<String, ThemeData> appThemes={
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: darkTextF),
     brightness: Brightness.dark,
-    primaryColor:pureWhite ,
+    primaryColor:darkTextF ,
         unselectedWidgetColor: grey,
 
   ),

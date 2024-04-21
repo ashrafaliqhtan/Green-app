@@ -25,8 +25,7 @@ class TextProfile extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
-                color: black,
+              style: const TextStyle(
                 fontSize: 25,
               ),
             ),
@@ -63,8 +62,7 @@ class TextProfile extends StatelessWidget {
               width30,
               Text(
                 data,
-                style: TextStyle(
-                  color: black,
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),

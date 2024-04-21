@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:intl/intl.dart';
 
 class DatePickerWidget extends StatelessWidget {
@@ -10,8 +9,10 @@ class DatePickerWidget extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     return TextField(
       controller: controller,
+      
       decoration: const InputDecoration(
-        border: OutlineInputBorder(borderSide: BorderSide.none),
+        // fillColor: Theme.of(context).primaryColor,
+        border:  OutlineInputBorder(borderSide: BorderSide.none),
         hintText: "Enter date",
         
       ),
