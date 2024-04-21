@@ -9,7 +9,7 @@ import 'package:green_saudi_app/views/Admin/view/add_event.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 
 class EventsAdminPage extends StatelessWidget {
-  const EventsAdminPage({super.key});
+  const EventsAdminPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,98 +19,102 @@ class EventsAdminPage extends StatelessWidget {
         listener: (context, state) {
           if (state is EventErrorState) {
             context.getMessages(msg: state.msg, color: red);
-          }       
-           },
+          }
+        },
         builder: (context, state) {
-                    if (state is EventLoadingState) {
-            return const Center(child:CircularProgressIndicator()); //shimmerEffect();
+          if (state is EventLoadingState) {
+            return const Center(
+                child: CircularProgressIndicator()); //shimmerEffect();
           }
           if (state is EventLoadedState) {
             if (state.list.isNotEmpty) {
-              return    Scaffold(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            appBar: AppBar(
-              actions: [
-                IconButton(
+              return Scaffold(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                appBar: AppBar(
+                  actions: [
+                    IconButton(
+                      onPressed: () {
+                        context.push(view: BottomNavBarAdmin(), isPush: false);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                  backgroundColor: green,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocale.eventsAdmin.getString(context),
+                        style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                body: SizedBox(
+                  height: context.getHeight(),
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: state.list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: green,
+                              borderRadius: BorderRadius.circular(14)),
+                          height: 60,
+                          width: context.getWidth(),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(right: 2),
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage("assets/images/adminlogo.png"),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right:20),
+                                child: Container(
+                                  width: 310,
+                                  child: Text(
+                                    "${AppLocale.addressAdminEvent.getString(context)} : ${state.list[index].title}",
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                    overflow: TextOverflow
+                                        .ellipsis, 
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     context.push(view: const AddEvent(), isPush: false);
                   },
-                  icon: const Icon(
+                  backgroundColor: green, // Set your desired background color
+                  child: const Icon(
                     Icons.add,
                     color: Colors.white,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    context.push(view: BottomNavBarAdmin(), isPush: false);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-              backgroundColor: green,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    AppLocale.eventsAdmin.getString(context),
-                    style: const TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            body: SizedBox(
-              height: context.getHeight(),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: state.list.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: green,
-                          borderRadius: BorderRadius.circular(14)),
-                      height: 60,
-                      width: 356,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(right: 10),
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage("assets/images/adminlogo.png"),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: Text(
-                              "${AppLocale.addressAdminEvent.getString(context)} : ${state.list[index].title}",
-                              style: const TextStyle(
-                                  fontSize: 20, color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-              
-
-
+              );
             }
           }
 
-        return Text("hi");
+          return Text("hi");
         },
       ),
     );

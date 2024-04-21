@@ -23,15 +23,6 @@ class RewardsAdminPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                context.push(view: const AddReword(), isPush: false);
-              },
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
                 context.push(view: BottomNavBarAdmin(), isPush: false);
               },
               icon: const Icon(
@@ -54,27 +45,39 @@ class RewardsAdminPage extends StatelessWidget {
             ],
           ),
         ),
-        body: BlocBuilder<RewardBloc, RewardState>(
-          builder: (context, state) {
-            if (state is RewardLoadedState) {
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 5,
-                  childAspectRatio: 1,
-                ),
-                itemCount: state.list.length,
-                itemBuilder: (context, index) {
-                  return OfferWidget(
-                    reward: state.list[index],
-                  );
-                },
-              );
-            } else {
-              return Center(child: Text("no Reward added"));
-            }
+        body: SizedBox(
+          child: BlocBuilder<RewardBloc, RewardState>(
+            builder: (context, state) {
+              if (state is RewardLoadedState) {
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 5,
+                    childAspectRatio: 1,
+                  ),
+                  itemCount: state.list.length,
+                  itemBuilder: (context, index) {
+                    return OfferWidget(
+                      reward: state.list[index],
+                    );
+                  },
+                );
+              } else {
+                return const Center(child: Text("no Reward added"));
+              }
+            },
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.push(view: const AddReword(), isPush: false);
           },
+          backgroundColor: green, // Set your desired background color
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
       ),
     );
