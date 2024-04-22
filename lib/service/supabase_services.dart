@@ -204,7 +204,7 @@ print(point);
   }
 
   Future<List<EventModel>> getAllEvent() async {
-    final eventsListData = await supabase.from('org_event').select('*');
+    final eventsListData = await supabase.from('org_event').select('*').order("created_at",ascending: true);
     List<EventModel> listOfEvents = [];
     for (var element in eventsListData) {
       listOfEvents.add(EventModel.fromJson(element));
@@ -221,6 +221,9 @@ print(point);
     return listOfReward;
   }
   
+  void scheduleTask() async{
+  
+  }
 
   /////////////////file crud
   Future<void> uploadImage(

@@ -1,3 +1,4 @@
+import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -16,6 +17,7 @@ import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/splash_view.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'views/disconnect.dart';
 
 void main() async {
@@ -27,6 +29,7 @@ void main() async {
 
   InternetConnection().onStatusChange.listen((status) async {
     if (status == InternetStatus.connected) {
+
       runApp(
         const MainApp(),
       );
