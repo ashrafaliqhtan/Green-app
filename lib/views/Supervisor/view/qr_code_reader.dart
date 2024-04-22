@@ -44,7 +44,7 @@ class ScanView extends StatelessWidget {
                           children: [
                             Image.asset(
                               //TODO: change image
-                              'assets/images/logo.jpg',
+                              'assets/images/logo_2.png',
                               width: 175,
                               height: 175,
                             ),
@@ -64,10 +64,9 @@ class ScanView extends StatelessWidget {
                           actions: [
                             ElevatedButton(
                                 onPressed: () {
-                                  GetIt.I
-                                      .get<DBServices>()
-                                      .addVolunteerHours(addVolunteerHour: 8);
-                                      Navigator.pop(context);
+                                  GetIt.I.get<DBServices>().addVolunteerHours(
+                                      addVolunteerHour: 8,
+                                      volunteerID: state.qrString);
                                 },
                                 child: Text("ممتاز"))
                           ],
@@ -78,7 +77,7 @@ class ScanView extends StatelessWidget {
                           children: [
                             Image.asset(
                               //TODO: change image
-                              'assets/images/logo.jpg',
+                              'assets/images/logo_2.png',
                               width: 175,
                               height: 175,
                             ),
@@ -97,7 +96,7 @@ class ScanView extends StatelessWidget {
                           children: [
                             Image.asset(
                               //TODO: change image
-                              'assets/images/logo.jpg',
+                              'assets/images/logo_2.png',
                               width: 175,
                               height: 175,
                             ),

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:meta/meta.dart';
 
 part 'supervisor_event.dart';
@@ -20,6 +22,7 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
         if (qrResult == '-1') {
           emit(SupervisorScanCanceled());
         } else {
+          GetIt.I.get<DBServices>().addVolunteerHours(addVolunteerHour: 8,volunteerID: qrResult);
           emit(SupervisorScanSuccess(qrResult));
         }
       } catch (e) {
