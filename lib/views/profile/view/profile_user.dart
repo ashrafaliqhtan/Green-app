@@ -103,13 +103,14 @@ class ProfileView extends StatelessWidget {
                                 child: Center(
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(1000),
-                                    child: CircleAvatar(
-                                      radius: 140,
-                                      child: Image.network(errorBuilder: (context, error, stackTrace) {
-                                        return Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png");
+                                    child: Image.network(
+                                      serviceLocator.userImageUrl, 
+                                      fit: BoxFit.cover, 
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.network(
+                                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"); 
                                       },
-                                          fit: BoxFit.cover,
-                                          serviceLocator.userImageUrl), // Image
                                     ),
                                   ),
                                 ),
@@ -126,7 +127,7 @@ class ProfileView extends StatelessWidget {
                           height40,
                           Text(
                             state.user.name ?? "Name",
-                            style: TextStyle(height: 0.1, fontSize: 20),
+                            style: const TextStyle(height: 0.1, fontSize: 20),
                           ), // name
                           height16,
                           Divider(

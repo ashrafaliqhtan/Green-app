@@ -62,7 +62,7 @@ class BottomNavBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: ListView.builder(
-                  itemCount: serviceLocator.user.typeRole == "admin" ? navItems.length +1:navItems.length,
+                  itemCount: serviceLocator.user.typeRole == "supervisor" ? navItems.length +1:navItems.length,
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(
                       horizontal: context.getWidth() * .024),

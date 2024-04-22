@@ -21,7 +21,10 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
     emit(RewardLoadingState());
     try {
       listOfReward = await locator.getAllReward();
-      emit(RewardLoadedState(list: listOfReward));
+      if (listOfReward.isNotEmpty) {
+        emit(RewardLoadedState(list: listOfReward));
+      }
+      emit(RewardErrorState(msg: ""));
     } catch (e) {
       emit(RewardErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
@@ -39,7 +42,7 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
         } catch (e) {
           emit(RewardErrorState(msg: "حدث خطأ أثناء إضافة المكافاة"));
         }
-      }else{
+      } else {
         emit(RewardErrorState(msg: "الرجاء إدخال صوره الغلاف"));
       }
     } else {

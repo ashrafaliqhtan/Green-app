@@ -26,15 +26,6 @@ class RewardsAdminPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                context.push(view: const AddReword(), isPush: false);
-              },
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
                 context.push(view: BottomNavBarAdmin(), isPush: false);
               },
               icon: const Icon(
@@ -60,7 +51,7 @@ class RewardsAdminPage extends StatelessWidget {
         body: BlocBuilder<RewardBloc, RewardState>(
           builder: (context, state) {
             if (state is RewardLoadingState) {
-              return buildShimmerEffect();
+              return const Center(child: CircularProgressIndicator());
             } else if (state is RewardLoadedState) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -92,6 +83,16 @@ class RewardsAdminPage extends StatelessWidget {
               );
             }
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.push(view: const AddReword(), isPush: false);
+          },
+          backgroundColor: green, // Set your desired background color
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
       ),
     );

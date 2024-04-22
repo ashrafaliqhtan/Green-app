@@ -88,12 +88,16 @@ class EventWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Center(
-                      child: Text(
-                        eventTitle,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: pureWhite,
-                          fontSize: 22,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Text(
+                          eventTitle,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: pureWhite,
+                            fontSize: 22,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),

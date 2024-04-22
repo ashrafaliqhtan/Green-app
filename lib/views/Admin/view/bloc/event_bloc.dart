@@ -27,8 +27,10 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     emit(EventLoadingState());
     try {
       listOfEvent = await locator.getAllEvent();
-
-      emit(EventLoadedState(list: listOfEvent));
+      if (listOfEvent.isNotEmpty) {
+        emit(EventLoadedState(list: listOfEvent));
+      }
+      emit(EventErrorState(msg: ""));
     } catch (e) {
       emit(EventErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));

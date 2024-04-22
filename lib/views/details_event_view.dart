@@ -15,6 +15,8 @@ import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 class EventDetailsView extends StatelessWidget {
   const EventDetailsView({super.key, required this.event});
   final EventModel event;
+   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +48,9 @@ class EventDetailsView extends StatelessWidget {
               'زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.'),
           translatorFunction(event.title ?? 'زراعة الاشجار'),
           translatorFunction(event.location ?? 'الرياض - حي الرمال'),
-          translatorFunction('١٢م الى ٤م'),
-          translatorFunction('٤ أبريل ٢٠٢٤'),
+          translatorFunction(event.startTime ?? '١٢م الى ٤م'),
+          translatorFunction(event.startDate ??'٤ أبريل ٢٠٢٤'),
+
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -70,20 +73,24 @@ class EventDetailsView extends StatelessWidget {
                     children: [
                       SizedBox(
                         height: 425,
-                        child: Image.asset(
-                          'assets/images/action-4.jpg',
+                        child: Image.network(
+                          event.imageUrl  ??
+                           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
                           fit: BoxFit.cover,
                         ),
                       ),
                       height56,
                       // Description
+                      height32,
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: Text(
                           description,
                           style: TextStyle(
                             color: Colors.blueGrey[300],
                           ),
+                          maxLines: 5,
+                          overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -98,7 +105,7 @@ class EventDetailsView extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                      height: 120,
+                      height: 160,
                       width: context.getWidth(),
                       margin: const EdgeInsets.symmetric(horizontal: 6),
                       decoration: BoxDecoration(
@@ -125,11 +132,14 @@ class EventDetailsView extends StatelessWidget {
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                 ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                                width24,
                                 Icon(
                                   Icons.location_on_outlined,
                                   color: pureWhite,
@@ -144,39 +154,36 @@ class EventDetailsView extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.access_time,
-                                      color: pureWhite,
-                                    ),
-                                    width16,
-                                    Text(
-                                      eventTime,
-                                      style: TextStyle(
-                                        color: pureWhite,
-                                      ),
-                                    ),
-                                  ],
+                                width24,
+                                Icon(
+                                  Icons.access_time,
+                                  color: pureWhite,
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.calendar_month_outlined,
-                                      color: pureWhite,
-                                    ),
-                                    width16,
-                                    Text(
-                                      eventDate,
-                                      style: TextStyle(
-                                        color: pureWhite,
-                                      ),
-                                    ),
-                                  ],
+                                width16,
+                                Text(
+                                  eventTime,
+                                  style: TextStyle(
+                                    color: pureWhite,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                width24,
+                                Icon(
+                                  Icons.calendar_month_outlined,
+                                  color: pureWhite,
+                                ),
+                                width16,
+                                Text(
+                                  eventDate,
+                                  style: TextStyle(
+                                    color: pureWhite,
+                                  ),
                                 ),
                               ],
                             ),
@@ -186,6 +193,19 @@ class EventDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
+                //  FloatingActionButton(
+                //   onPressed: () async {
+                //           if (await canLaunchUrl(urlYoutub)) {
+                //             await launchUrl(urlYoutub,
+                //                 mode: LaunchMode.inAppWebView);
+                //           }
+                //         },
+                //   backgroundColor: green, // Set your desired background color
+                //   child: const Icon(
+                //     Icons.add,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 // Button
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -205,6 +225,7 @@ class EventDetailsView extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
+                        
                       ),
                       child: Container(
                         height: 60,

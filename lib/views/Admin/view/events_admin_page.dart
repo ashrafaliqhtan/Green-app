@@ -12,7 +12,7 @@ import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 
 class EventsAdminPage extends StatelessWidget {
-  const EventsAdminPage({super.key});
+  const EventsAdminPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +22,6 @@ class EventsAdminPage extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           actions: [
-            IconButton(
-              onPressed: () {
-                context.push(view: const AddEvent(), isPush: false);
-              },
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            ),
             IconButton(
               onPressed: () {
                 context.push(view: BottomNavBarAdmin(), isPush: false);
@@ -60,7 +51,7 @@ class EventsAdminPage extends StatelessWidget {
           child: BlocBuilder<EventBloc, EventState>(
             builder: (context, state) {
               if (state is EventLoadingState) {
-                return shimmerEffectPoint();
+                return const Center(child: CircularProgressIndicator());
               } else if (state is EventLoadedState) {
                 return ListView.builder(
                   scrollDirection: Axis.vertical,
@@ -98,21 +89,32 @@ class EventsAdminPage extends StatelessWidget {
                     );
                   },
                 );
+              } else {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset("assets/icons/Insert block-rafiki.svg"),
+                      height16,
+                      Text(
+                        'No Event added',
+                        style: TextStyle(fontSize: 30, color: green),
+                      )
+                    ],
+                  ),
+                );
               }
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset("assets/icons/Insert block-rafiki.svg"),
-                    height16,
-                    Text(
-                      'No Event added',
-                      style: TextStyle(fontSize: 30, color: green),
-                    )
-                  ],
-                ),
-              );
             },
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.push(view: const AddEvent(), isPush: false);
+          },
+          backgroundColor: green, // Set your desired background color
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
           ),
         ),
       ),
