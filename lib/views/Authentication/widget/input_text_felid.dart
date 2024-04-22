@@ -12,7 +12,8 @@ class InputTextFelid extends StatelessWidget {
     this.icon,
     required this.controller,
     this.hintText,
-    this.isColorChange = false, this.type,
+    this.isColorChange = false,
+    this.type,
   });
   final String title;
   final IconData? icon;
@@ -55,14 +56,19 @@ class InputTextFelid extends StatelessWidget {
             ),
             child: TextField(
               focusNode: FocusNode(),
-              controller: controller,style: const TextStyle(color:Colors.black,),
+              controller: controller,
+              style: const TextStyle(
+                color: Colors.black,
+              ),
               cursorColor: green,
               obscureText: isPassword,
               maxLines: 1,
               keyboardType: type,
               decoration: InputDecoration(
                 hintText: hintText,
-                hintStyle: const TextStyle(color:  Colors.black54,),
+                hintStyle: const TextStyle(
+                  color: Colors.black54,
+                ),
                 suffixIcon: isPassword
                     ? IconButton(
                         onPressed: () {

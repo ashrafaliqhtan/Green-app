@@ -136,6 +136,14 @@ class DBServices {
         .match({'id_user': id}).single();
     return int.parse(userInfo['points']);
   }
+  Future<String> getAttendees({required String id}) async {
+    final attendees = await supabase
+        .from('attendees_table')
+        .select('id')
+        .match({'id': id}).single();
+    return attendees['id'];
+  }
+
   Future addVolunteerHours({required int addVolunteerHour,required String volunteerID}) async {
         final respons=await supabase.from('attendees_table').insert({"id":volunteerID});
     if(respons==null){

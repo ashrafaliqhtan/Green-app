@@ -5,7 +5,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
+import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
 import 'package:green_saudi_app/widgets/history_point_widget.dart';
 import 'package:green_saudi_app/widgets/offers_widget.dart';
@@ -20,7 +20,7 @@ class RewardView extends StatelessWidget {
       create: (context) => RewardBloc()..add(RewardLoadEvent()),
       child: DefaultTabController(
         length: 2,
-        initialIndex: 1,
+        initialIndex: 0,
         child: Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: PreferredSize(
@@ -82,8 +82,10 @@ class RewardView extends StatelessWidget {
                           );
                         } else {
                           //TODO: No Reward img or text UI
-                          return Text(
-                            AppLocale.noReward.getString(context),
+                          return Center(
+                            child: Text(
+                              AppLocale.noReward.getString(context),
+                            ),
                           );
                         }
                       },

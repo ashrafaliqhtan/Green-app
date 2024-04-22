@@ -37,7 +37,7 @@ class OfferWidget extends StatelessWidget {
                 ClipRRect(
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
-                        topRight: Radius.circular(10)),
+                        topRight: Radius.circular(20)),
                     //TODO: Reward img
                     child: Image.network(
                           reward.rewardCompanyLogo!,
@@ -45,12 +45,6 @@ class OfferWidget extends StatelessWidget {
                           width: context.getWidth(),
                       fit: BoxFit.fill,
                     )),
-                height10,
-                Divider(
-                  height: 3,
-                  thickness: 4,
-                  color: green,
-                ),
                 height10,
                 Text(
                   reward.rewardCompanyName ?? "company",

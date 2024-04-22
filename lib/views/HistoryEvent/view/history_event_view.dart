@@ -6,7 +6,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
+import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/shimmer_history.dart';
@@ -63,16 +63,18 @@ class HistoryEventView extends StatelessWidget {
                           return HistoryShimmer();
                         });
                   } else if (state is HistoryLoadedState) {
-                    return ListView.builder(
-                        itemCount: 4,
-                       // state.history.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                           return HistoryHoursWidget();
-                         /* return HistoryWidget(
-                            personalEvent: state.history[index],
-                          );*/
-                        });
+                    return Expanded(
+                      child: ListView.builder(
+                          itemCount: 4,
+                         // state.history.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                             return HistoryHoursWidget();
+                           /* return HistoryWidget(
+                              personalEvent: state.history[index],
+                            );*/
+                          }),
+                    );
                   } else {
                     //TODO: NO histroy img or messge
                     return Center(

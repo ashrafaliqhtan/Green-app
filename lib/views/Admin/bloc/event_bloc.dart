@@ -75,9 +75,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   //   try {
   //     await locator.deleteEventData(event.event.id!);
   //     emit(EventLoadedState(list: listOfEvent));
-  //     emit(EventSuccessState(msg: "تم حذف الدواء بنجاح"));
+  //     emit(EventSuccessState(msg: "تم حذف الحدث بنجاح"));
   //   } catch (e) {
-  //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الدواء"));
+  //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الحدث"));
   //   }
   // }
 

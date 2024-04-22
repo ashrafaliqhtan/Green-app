@@ -30,7 +30,7 @@ class DrawerScreen extends StatelessWidget {
         Uri.parse('https://www.facebook.com/SaudiGreenInitiative');
     final Uri urlInstagram = Uri.parse('https://www.instagram.com/gi_saudi/');
     final Uri urlYoutub =
-        Uri.parse('hhttps://www.greeninitiatives.gov.sa/ar-sa/about-sgi/#');
+        Uri.parse('hhttps://www.greeninitiatives.gov.sa/ar-sa/about-sgi/');
     final serviceLocator = DataInjection().locator.get<DBServices>();
     final user = serviceLocator.user;
     return BlocProvider(

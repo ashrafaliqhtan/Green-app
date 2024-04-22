@@ -82,7 +82,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     height32,
                     CustomButton(
                       title: AppLocale.confirmEmail.getString(context),
-                      backgroundColor: greenLight2,
+                      backgroundColor: green,
                       onPressed: () {
                         context.read<AuthBloc>().add(ChangePasswordEvent(
                             password: passwordController.text,

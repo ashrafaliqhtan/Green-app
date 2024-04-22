@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
-import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
+import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 
 class RewordContainer extends StatelessWidget {
   const RewordContainer({super.key});

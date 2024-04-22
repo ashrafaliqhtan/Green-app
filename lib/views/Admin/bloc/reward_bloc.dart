@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/model/history_point_model.dart';
 import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:meta/meta.dart';
@@ -14,7 +17,7 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
     on<RewardEvent>((event, emit) {});
     on<RewardLoadEvent>(loadRewardData);
     on<RewardAdded>(addReward);
-    //on<EventDeleted>(deleteEvent);
+    on<RewardPointsLoad>(loadPointHistory);
   }
   Future<void> loadRewardData(
       RewardLoadEvent event, Emitter<RewardState> emit) async {
@@ -51,14 +54,14 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
     }
   }
 
-  // Future<void> deleteEvent(
-  //     EventDeleted event, Emitter<EventState> emit) async {
-  //   try {
-  //     await locator.deleteEventData(event.event.id!);
-  //     emit(EventLoadedState(list: listOfEvent));
-  //     emit(EventSuccessState(msg: "تم حذف الدواء بنجاح"));
-  //   } catch (e) {
-  //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الدواء"));
-  //   }
-  // }
+  FutureOr<void> loadPointHistory(
+      RewardPointsLoad event, Emitter<RewardState> emit) async {
+    try {
+      var totalPoint = await locator.getUserPoint(id: locator.userID);
+      var historyPoint = await locator.getHistoryPoint(id: locator.userID);
+      emit(RewardLoadState(historyPoints: historyPoint, point: totalPoint));
+    } catch (e) {
+      print(e);
+    }
+  }
 }

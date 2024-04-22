@@ -15,7 +15,6 @@ class ScanView extends StatelessWidget {
       create: (context) => SupervisorBloc(),
       child: Builder(builder: (context) {
         return Scaffold(
-          
           appBar: AppBar(
             actionsIconTheme: IconThemeData(color: white),
             backgroundColor: green,
@@ -48,7 +47,7 @@ class ScanView extends StatelessWidget {
                           children: [
                             Image.asset(
                               //TODO: change image
-                              'assets/images/logo_2.png',
+                              'assets/images/logo.jpg',
                               width: 175,
                               height: 175,
                             ),
@@ -81,7 +80,7 @@ class ScanView extends StatelessWidget {
                           children: [
                             Image.asset(
                               //TODO: change image
-                              'assets/images/logo_2.png',
+                              'assets/images/logo.jpg',
                               width: 175,
                               height: 175,
                             ),
@@ -100,13 +99,51 @@ class ScanView extends StatelessWidget {
                           children: [
                             Image.asset(
                               //TODO: change image
-                              'assets/images/logo_2.png',
+                              'assets/images/logo.jpg',
                               width: 175,
                               height: 175,
                             ),
                             Text(
                               //TODO: localizition
                               'تم إلغاء مسح الباركود',
+                              style: TextStyle(
+                                color: green,
+                                fontSize: 30,
+                              ),
+                            ),
+                          ],
+                        );
+                      } else if (state is SupervisorScanError) {
+                        return Column(
+                          children: [
+                            Image.asset(
+                              //TODO: change image
+                              'assets/images/logo.jpg',
+                              width: 175,
+                              height: 175,
+                            ),
+                            Text(
+                              //TODO: localizition
+                              'الرجاء التحقق من الباركود',
+                              style: TextStyle(
+                                color: green,
+                                fontSize: 30,
+                              ),
+                            ),
+                          ],
+                        );
+                      } else if (state is SupervisorScanErrorUser) {
+                        return Column(
+                          children: [
+                            Image.asset(
+                              //TODO: change image
+                              'assets/images/logo.jpg',
+                              width: 175,
+                              height: 175,
+                            ),
+                            Text(
+                              //TODO: localizition
+                              "تم تسجيل حضورك مسبقا",
                               style: TextStyle(
                                 color: green,
                                 fontSize: 30,
