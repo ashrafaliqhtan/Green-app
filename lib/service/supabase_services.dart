@@ -233,15 +233,6 @@ print(point);
     print("done");
   }
 
-  Future<void> updateImage(
-      File imageFile, String bucket, String nameFile) async {
-    await supabase.storage
-        .from(bucket) // Replace with your storage bucket name
-        .update("${nameFile}", imageFile);
-    await urlImage(bucket, nameFile);
-    print("done add");
-  }
-
   Future<void> deleteImage(String bucket, String nameFile) async {
     await supabase.storage
         .from(bucket) // Replace with your storage bucket name

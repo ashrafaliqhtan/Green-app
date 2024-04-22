@@ -15,12 +15,16 @@ class ScanView extends StatelessWidget {
       create: (context) => SupervisorBloc(),
       child: Builder(builder: (context) {
         return Scaffold(
+          
           appBar: AppBar(
+            actionsIconTheme: IconThemeData(color: white),
             backgroundColor: green,
-            leading: Icon(
-              Icons.qr_code_scanner,
-              color: white,
-            ),
+            actions: [
+              Icon(
+                Icons.qr_code_scanner,
+                color: white,
+              ),
+            ],
             title: Text(
               //TODO: localizition
               'مسح الباركود',

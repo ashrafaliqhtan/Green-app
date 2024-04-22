@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/model/onboarding_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
+import 'package:green_saudi_app/views/Supervisor/view/qr_code_reader.dart';
 import 'package:green_saudi_app/views/onboarding/bloc/onboarding_bloc.dart';
-
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+
     List<Onboarding> onboardingItems = [
       Onboarding(
         title: AppLocale.onBoardingTitle1.getString(context),
@@ -43,8 +47,8 @@ class OnboardingView extends StatelessWidget {
           for (final item in onboardingItems) {
             precacheImage(AssetImage(item.image), context);
           }
-          precacheImage( AssetImage(
-          "assets/images/background_img_1.png"), context);
+          precacheImage(
+              AssetImage("assets/images/background_img_1.png"), context);
           return Scaffold(
             body: PageView.builder(
               onPageChanged: (index) {
@@ -172,6 +176,11 @@ class OnboardingView extends StatelessWidget {
                 );
               },
             ),
+            floatingActionButton: serviceLocator.user.typeRole == "supervisor"
+                ? FloatingActionButton(onPressed: () {
+                    context.push(view: const ScanView(), isPush: true);
+                  })
+                : const SizedBox(),
           );
         },
       ),
