@@ -29,18 +29,25 @@ class SettingsUser extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text(
-          AppLocale.settingsTitle.getString(context),
-          style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+        actions: [
+          IconButton(
+              onPressed: () {
+                context.push(view: const BottomNavBar(), isPush: false);
+              },
+              icon:  Icon(Icons.arrow_forward,color: pureWhite)),
+        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              AppLocale.settingsTitle.getString(context),
+              style: TextStyle(
+                  fontSize: 32, fontWeight: FontWeight.bold, color: pureWhite),
+            ),
+          ],
         ),
         backgroundColor: green,
         automaticallyImplyLeading: false,
-        leading: IconButton(
-            onPressed: () {
-              context.push(view: const BottomNavBar(), isPush: false);
-            },
-            icon: const Icon(Icons.arrow_back)),
       ),
       body: Center(
         child: Column(
@@ -49,43 +56,49 @@ class SettingsUser extends StatelessWidget {
               onTap: () {
                 context.push(view: const EditProfileUser(), isPush: true);
               },
-              child: Container(
-                height: 100,
-                width: 430,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(14),
-                        bottomRight: Radius.circular(14))),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 72,
-                      width: 72,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: Image.network(
-                              errorBuilder: (context, error, stackTrace) {
-                            return Image.network(
-                                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png");
-                          }, fit: BoxFit.cover, serviceLocator.userImageUrl)),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          user.name ?? "Name",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 22),
-                        ),
-                        Text(
-                          AppLocale.editProfile.getString(context),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        )
-                      ],
-                    )
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.only(right: 30),
+                child: Container(
+                  height: 100,
+                  width: 430,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(14),
+                          bottomRight: Radius.circular(14))),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 72,
+                        width: 72,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(200),
+                            child: Image.network(
+                                errorBuilder: (context, error, stackTrace) {
+                              return Image.network(
+                                  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png");
+                            }, fit: BoxFit.cover, serviceLocator.userImageUrl)),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            user.name ?? "Name",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 22),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Text(
+                              AppLocale.editProfile.getString(context),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -128,15 +141,25 @@ class SettingsUser extends StatelessWidget {
                   showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      title:  Text( AppLocale.changeLanguage.getString(context),),
+                      title: Text(
+                        AppLocale.changeLanguage.getString(context),
+                      ),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => cubit.changeLanguage("ar"),
-                          child:  Text('العربية',style: TextStyle(color: Theme.of(context).unselectedWidgetColor),),
+                          child: Text(
+                            'العربية',
+                            style: TextStyle(
+                                color: Theme.of(context).unselectedWidgetColor),
+                          ),
                         ),
                         TextButton(
                           onPressed: () => cubit.changeLanguage("en"),
-                          child:  Text('english',style: TextStyle(color: Theme.of(context).unselectedWidgetColor),),
+                          child: Text(
+                            'english',
+                            style: TextStyle(
+                                color: Theme.of(context).unselectedWidgetColor),
+                          ),
                         ),
                       ],
                     ),
