@@ -6,6 +6,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/views/Supervisor/view/qr_code_reader.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +16,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final serviceLocator = DataInjection().locator.get<DBServices>();
+    final serviceLocator = DataInjection().locator.get<DBServices>();
 
     final List<Map<String, dynamic>> navItems = [
       {
@@ -29,10 +30,6 @@ class BottomNavBar extends StatelessWidget {
       {
         "icon": 'assets/icons/reward.svg',
         "label": AppLocale.pointPage.getString(context)
-      },
-      {
-        "icon": 'assets/icons/history.svg',
-        "label": AppLocale.myEventPage.getString(context)
       },
       {
         "icon": 'assets/icons/history.svg',
@@ -62,7 +59,7 @@ class BottomNavBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: ListView.builder(
-                  itemCount: serviceLocator.user.typeRole == "supervisor" ? navItems.length +1:navItems.length,
+                  itemCount: navItems.length,
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(
                       horizontal: context.getWidth() * .024),
@@ -102,7 +99,9 @@ class BottomNavBar extends StatelessWidget {
                           height: context.getWidth() * .056,
                           color: index == navCubit.selectIndex
                               ? green
-                              : Theme.of(context).colorScheme.onSecondaryContainer,
+                              : Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                         ),
                         Text(
                           navItems[index]['label'],
@@ -110,7 +109,9 @@ class BottomNavBar extends StatelessWidget {
                             fontSize: 12,
                             color: index == navCubit.selectIndex
                                 ? green
-                                : Theme.of(context).colorScheme.onSecondaryContainer,
+                                : Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
                           ),
                         ),
                         height10,
@@ -119,6 +120,11 @@ class BottomNavBar extends StatelessWidget {
                   ),
                 ),
               ),
+              floatingActionButton: serviceLocator.user.typeRole == "supervisor"
+                  ? FloatingActionButton(onPressed: () {
+                      context.push(view: const ScanView(), isPush: false) ;
+                    } , child: Icon(Icons.qr_code),)
+                  : SizedBox(),
             );
           });
         },

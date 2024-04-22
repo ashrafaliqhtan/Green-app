@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:green_saudi_app/resources/qr_code_reader/bloc/scan_bloc.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/views/Supervisor/bloc/supervisor_bloc.dart';
 
 class ScanView extends StatelessWidget {
   const ScanView({super.key});
@@ -12,7 +12,7 @@ class ScanView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ScanBloc(),
+      create: (context) => SupervisorBloc(),
       child: Builder(
         builder: (context) {
           return Scaffold(
@@ -37,9 +37,9 @@ class ScanView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    BlocBuilder<ScanBloc, ScanState>(
+                    BlocBuilder<SupervisorBloc, SupervisorState>(
                       builder: (context, state) {
-                        if (state is ScanInitial) {
+                        if (state is SupervisorInitial) {
                           return Column(
                             children: [
                               Image.asset(
@@ -58,10 +58,10 @@ class ScanView extends StatelessWidget {
                               ),
                             ],
                           );
-                        } else if (state is ScanSuccess) { //TODO: localizition
+                        } else if (state is SupervisorScanSuccess) { //TODO: localizition
                           return AlertDialog(actions: [ElevatedButton(onPressed:(){GetIt.I.get<DBServices>().addVolunteerHours(addVolunteerHour: 8);
                           } , child: Text("ممتاز"))],title:Text("تم تسجيل الحضور") ,) ;
-                        } else if (state is ScanFailure) {
+                        } else if (state is SupervisorScanFailure) {
                           return Column(
                             children: [
                               Image.asset(
@@ -81,7 +81,7 @@ class ScanView extends StatelessWidget {
                               ),
                             ],
                           );
-                        } else if (state is ScanCanceled) {
+                        } else if (state is SupervisorScanCanceled) {
                           return Column(
                             children: [
                               Image.asset(
@@ -108,7 +108,7 @@ class ScanView extends StatelessWidget {
                     height100,
                     TextButton(
                       onPressed: () {
-                        BlocProvider.of<ScanBloc>(context).add(ScanQR());
+                        BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
                       }, //TODO: localizition
                       child: Text("امسح الباركود"),
                     ),

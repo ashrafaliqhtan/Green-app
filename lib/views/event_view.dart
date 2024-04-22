@@ -9,7 +9,6 @@ import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
-import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
 import 'package:green_saudi_app/widgets/regions_widget.dart';
 import 'package:green_saudi_app/widgets/shimmer_widget.dart';
@@ -174,6 +173,7 @@ class EventView extends StatelessWidget {
           ),
         ],
       ),
+      
     );
   }
 }

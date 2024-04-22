@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/model/event_model.dart';
+import 'package:green_saudi_app/model/history_point_model.dart';
 import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -129,17 +130,40 @@ class DBServices {
 
 ///////////////////////superviser
   Future addVolunteerHours({required int addVolunteerHour}) async {
-    await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
+        final respons=await supabase.from('attendees_table').insert({"id":userID});
+    if(respons["error"]==null){
+      await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
       "points":(user.points!+addVolunteerHour*10)
     }).match({'id_user': userID,});
+        await supabase.from('history_point').insert({
+      "point":(addVolunteerHour*10),
+      "state":"plus"
+    });}
+    
   }
 
   Future usePoint({required int usedPoint}) async {
+    if(user.points! >= usedPoint){
     await supabase.from('user_green_sa_app').update({
       "points":(user.points!-usedPoint)
     }).match({'id_user': userID,});
-  }
+    await supabase.from('history_point').insert({
+      "point":(usedPoint),
+      "state":"minus"
+    });}
 
+  }
+  Future<List<HistoryPointModel>> getHistoryPoint({required String id}) async {
+    final historyPointListData = await supabase
+        .from('history_point')
+        .select('*')
+        .match({'user_id': id});
+    List<HistoryPointModel> listOfHistoryPoints = [];
+    for (var element in historyPointListData) {
+      listOfHistoryPoints.add(HistoryPointModel.fromMap(element));
+    }
+    return listOfHistoryPoints;
+  }
 
 
   //----------------------------- Admin --------------------------------
