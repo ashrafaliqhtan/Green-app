@@ -59,7 +59,7 @@ class ScanView extends StatelessWidget {
                             ],
                           );
                         } else if (state is SupervisorScanSuccess) { //TODO: localizition
-                          return AlertDialog(actions: [ElevatedButton(onPressed:(){GetIt.I.get<DBServices>().addVolunteerHours(addVolunteerHour: 8);
+                          return AlertDialog(actions: [ElevatedButton(onPressed:(){GetIt.I.get<DBServices>().addVolunteerHours(addVolunteerHour: 8,volunteerID: "cd3572c2-dd94-4c03-8fc4-b7ace57311d3");
                           } , child: Text("ممتاز"))],title:Text("تم تسجيل الحضور") ,) ;
                         } else if (state is SupervisorScanFailure) {
                           return Column(
@@ -108,7 +108,9 @@ class ScanView extends StatelessWidget {
                     height100,
                     TextButton(
                       onPressed: () {
-                        BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
+                          //GetIt.I.get<DBServices>().addVolunteerHours(addVolunteerHour: 8,volunteerID: "cd3572c2-dd94-4c03-8fc4-b7ace57311d3");
+                          GetIt.I.get<DBServices>().usePoint(usedPoint: 8,volunteerID: "cd3572c2-dd94-4c03-8fc4-b7ace57311d3");
+                        //BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
                       }, //TODO: localizition
                       child: Text("امسح الباركود"),
                     ),

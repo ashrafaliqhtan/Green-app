@@ -129,25 +129,36 @@ class DBServices {
   //display List redeem history
 
 ///////////////////////superviser
-  Future addVolunteerHours({required int addVolunteerHour}) async {
-        final respons=await supabase.from('attendees_table').insert({"id":userID});
-    if(respons["error"]==null){
+  Future<int> getUserPoint({required String id}) async {
+    final userInfo = await supabase
+        .from('user_green_sa_app')
+        .select('points')
+        .match({'id_user': id}).single();
+    return int.parse(userInfo['points']);
+  }
+  Future addVolunteerHours({required int addVolunteerHour,required String volunteerID}) async {
+        final respons=await supabase.from('attendees_table').insert({"id":volunteerID});
+    if(respons==null){
       await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
       "points":(user.points!+addVolunteerHour*10)
-    }).match({'id_user': userID,});
+    }).match({'id_user': volunteerID,});
         await supabase.from('history_point').insert({
+      "user_id":volunteerID,
       "point":(addVolunteerHour*10),
       "state":"plus"
     });}
     
   }
 
-  Future usePoint({required int usedPoint}) async {
-    if(user.points! >= usedPoint){
+  Future usePoint({required int usedPoint,required String volunteerID}) async {
+     final point = await getUserPoint(id:volunteerID);
+print(point);
+    if(point >= usedPoint){
     await supabase.from('user_green_sa_app').update({
-      "points":(user.points!-usedPoint)
-    }).match({'id_user': userID,});
+      "points":(point-usedPoint)
+    }).match({'id_user': volunteerID,});
     await supabase.from('history_point').insert({
+      "user_id":volunteerID,
       "point":(usedPoint),
       "state":"minus"
     });}
