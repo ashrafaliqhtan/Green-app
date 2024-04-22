@@ -45,18 +45,22 @@ class EventWidget extends StatelessWidget {
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Positioned(
-                    top: -20,
+                 Positioned(
+                    top: -40,
                     right: 60,
                     left: 60,
                     child: Container(
                       width: context.getWidth() * .640,
-                      height: context.getHeight() * .058,
+                      height: context.getHeight() * .1,
                       decoration: BoxDecoration(
-                        image: const DecorationImage(
-                          //TODO: Event Image
-                          image: AssetImage('assets/images/Rectangle 104.jpg'),
-                          fit: BoxFit.fitWidth,
+                        image:  DecorationImage(
+                          
+                          image: NetworkImage(event.imageUrl  ??
+                          
+                           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
+                          
+                        ),
+                          fit: BoxFit.cover,
                         ),
                         color: pureWhite,
                         borderRadius: BorderRadius.circular(40),

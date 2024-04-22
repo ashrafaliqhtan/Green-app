@@ -14,7 +14,7 @@ class NavBarCubit extends Cubit<NavBarState> {
     const EventView(),
     const RewardView(),
     const HistoryEventView(),
-     ScanView(),
+   
   ];
 
   int selectIndex = 0;

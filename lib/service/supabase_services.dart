@@ -153,7 +153,6 @@ class DBServices {
       "time_start": event.startTime,
       "end_date": event.endDate,
       "time_end": event.endTime,
-      "imageUrl":event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
       "location_url": event.locationUrl,
       "image_url":event.imageUrl

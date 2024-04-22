@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/qr_code_reader/bloc/scan_bloc.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
@@ -109,8 +111,9 @@ class ScanView extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         BlocProvider.of<ScanBloc>(context).add(ScanQR());
-                      }, //TODO: localizition
-                      child: Text("امسح الباركود"),
+                      }, 
+                      child: Text(AppLocale.deleteQrCode.getString(context),),
+                      // AppLocale.DeleteQr.getString(context),
                     ),
                   ],
                 ),
