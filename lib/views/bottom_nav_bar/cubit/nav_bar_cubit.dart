@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:green_saudi_app/views/Supervisor/view/qr_code_reader.dart';
 import 'package:green_saudi_app/views/event_view.dart';
 import 'package:green_saudi_app/views/HistoryEvent/view/history_event_view.dart';
 import 'package:green_saudi_app/views/home_view.dart';

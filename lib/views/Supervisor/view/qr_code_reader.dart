@@ -13,112 +13,122 @@ class ScanView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SupervisorBloc(),
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: green,
-              leading: Icon(
-                Icons.qr_code_scanner,
+      child: Builder(builder: (context) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: green,
+            leading: Icon(
+              Icons.qr_code_scanner,
+              color: white,
+            ),
+            title: Text(
+              //TODO: localizition
+              'مسح الباركود',
+              style: TextStyle(
                 color: white,
               ),
-              title: Text( //TODO: localizition
-                'مسح الباركود',
-                style: TextStyle(
-                  color: white,
-                ),
-              ),
-              centerTitle: true,
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    BlocBuilder<SupervisorBloc, SupervisorState>(
-                      builder: (context, state) {
-                        if (state is SupervisorInitial) {
-                          return Column(
-                            children: [
-                              Image.asset(
-                                //TODO: change image
-                                'assets/images/logo_2.png',
-                                width: 175,
-                                height: 175,
+            centerTitle: true,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BlocBuilder<SupervisorBloc, SupervisorState>(
+                    builder: (context, state) {
+                      if (state is SupervisorInitial) {
+                        return Column(
+                          children: [
+                            Image.asset(
+                              //TODO: change image
+                              'assets/images/logo.jpg',
+                              width: 175,
+                              height: 175,
+                            ),
+                            Text(
+                              //TODO: localizition
+                              "لنقم بالمسح",
+                              style: TextStyle(
+                                color: green,
+                                fontSize: 30,
                               ),
-                              Text( //TODO: localizition
-                                "لنقم بالمسح",
-                                style: TextStyle(
-                                  color: green,
-                                  fontSize: 30,
-
-                                ),
+                            ),
+                          ],
+                        );
+                      } else if (state is SupervisorScanSuccess) {
+                        //TODO: localizition
+                        return AlertDialog(
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  GetIt.I
+                                      .get<DBServices>()
+                                      .addVolunteerHours(addVolunteerHour: 8);
+                                      Navigator.pop(context);
+                                },
+                                child: Text("ممتاز"))
+                          ],
+                          title: Text("تم تسجيل الحضور"),
+                        );
+                      } else if (state is SupervisorScanFailure) {
+                        return Column(
+                          children: [
+                            Image.asset(
+                              //TODO: change image
+                              'assets/images/logo.jpg',
+                              width: 175,
+                              height: 175,
+                            ),
+                            const Text(
+                              //TODO: localizition
+                              'عذرًا، لم نتمكن من قراءة الباركود. يرجى المحاولة مرة أخرى.',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 30,
                               ),
-                            ],
-                          );
-                        } else if (state is SupervisorScanSuccess) { //TODO: localizition
-                          return AlertDialog(actions: [ElevatedButton(onPressed:(){GetIt.I.get<DBServices>().addVolunteerHours(addVolunteerHour: 8);
-                          } , child: Text("ممتاز"))],title:Text("تم تسجيل الحضور") ,) ;
-                        } else if (state is SupervisorScanFailure) {
-                          return Column(
-                            children: [
-                              Image.asset(
-                                //TODO: change image
-                                'assets/images/logo_2.png',
-                                width: 175,
-                                height: 175,
+                            ),
+                          ],
+                        );
+                      } else if (state is SupervisorScanCanceled) {
+                        return Column(
+                          children: [
+                            Image.asset(
+                              //TODO: change image
+                              'assets/images/logo.jpg',
+                              width: 175,
+                              height: 175,
+                            ),
+                            Text(
+                              //TODO: localizition
+                              'تم إلغاء مسح الباركود',
+                              style: TextStyle(
+                                color: green,
+                                fontSize: 30,
                               ),
-                              const Text(
-                                //TODO: localizition
-                                'عذرًا، لم نتمكن من قراءة الباركود. يرجى المحاولة مرة أخرى.',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 30,
-
-                                ),
-                              ),
-                            ],
-                          );
-                        } else if (state is SupervisorScanCanceled) {
-                          return Column(
-                            children: [
-                              Image.asset(
-                                //TODO: change image
-                                'assets/images/logo_2.png',
-                                width: 175,
-                                height: 175,
-                              ),
-                              Text( //TODO: localizition
-                                'تم إلغاء مسح الباركود',
-                                style: TextStyle(
-                                  color: green,
-                                  fontSize: 30,
-
-                                ),
-                              ),
-                            ],
-                          );
-                        } else {
-                          return Container();
-                        }
-                      },
-                    ),
-                    height100,
-                    TextButton(
-                      onPressed: () {
-                        BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
-                      }, //TODO: localizition
-                      child: Text("امسح الباركود"),
-                    ),
-                  ],
-                ),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
+                  height100,
+                  TextButton(
+                    onPressed: () {
+                      BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
+                    }, //TODO: localizition
+                    child: Text("امسح الباركود"),
+                  ),
+                ],
               ),
             ),
-          );
-        }
-      ),
+          ),
+        );
+      }),
     );
   }
 }
