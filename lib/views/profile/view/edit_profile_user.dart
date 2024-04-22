@@ -53,23 +53,28 @@ class _EditProfileUserState extends State<EditProfileUser> {
           resizeToAvoidBottomInset: false,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                context.push(view: const SettingsUser(), isPush: true);
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: pureWhite,
-              ),
-            ),
             actions: [
-              Text(
-                AppLocale.editTitle.getString(context),
-                style: TextStyle(color: pureWhite, fontSize: 25),
-              )
+              IconButton(
+                onPressed: () {
+                  context.push(view: const SettingsUser(), isPush: true);
+                },
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color: pureWhite,
+                ),
+              ),
             ],
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocale.editTitle.getString(context),
+                  style: TextStyle(color: pureWhite, fontSize: 25),
+                )
+              ],
+            ),
             backgroundColor: green,
-            automaticallyImplyLeading: true,
+            automaticallyImplyLeading: false,
           ),
           body: Center(
             child: Column(
