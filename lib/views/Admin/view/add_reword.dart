@@ -9,6 +9,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/views/Admin/view/rewards_admin_page.dart';
 import 'package:green_saudi_app/views/Admin/widgets/name_of_row.dart';
@@ -39,7 +40,7 @@ class _AddRewordState extends State<AddReword> {
   Widget build(BuildContext context) {
     final serviceLocator = DataInjection().locator.get<DBServices>();
     String imageId = const Uuid().v4();
-
+    String rewardCompanyLogoUrl = "";
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -64,6 +65,7 @@ class _AddRewordState extends State<AddReword> {
           if (state is RewardSuccessState) {
             context.getMessagesBar(msg: state.msg, color: green);
             //TODO: pop when add is not working
+            context.push(view: BottomNavBarAdmin(), isPush: false);
           } else if (state is RewardErrorState) {
             context.getMessagesBar(msg: state.msg, color: red);
           }
@@ -197,11 +199,15 @@ class _AddRewordState extends State<AddReword> {
                         color: green, borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                       onPressed: () async {
-                        context.read<ImagePicBloc>().add(
-                            UpdateImageToDatabase("reward_poster", imageId));
+                        if (serviceLocator
+                            .ImageFileFromDatabase.path.isNotEmpty) {
+                          context.read<ImagePicBloc>().add(
+                              UpdateImageToDatabase("reward_poster", imageId));
+                          rewardCompanyLogoUrl = await serviceLocator.urlImage(
+                              "reward_poster", imageId);
+                        }
                         RewardModel reward = RewardModel(
-                            rewardCompanyLogo: await serviceLocator.urlImage(
-                                "reward_poster", imageId),
+                            rewardCompanyLogo: rewardCompanyLogoUrl,
                             rewardCompanyName: companyNameController.text,
                             rewardName: rewordNameController.text,
                             rewardContent: rewordDescriptionController.text,

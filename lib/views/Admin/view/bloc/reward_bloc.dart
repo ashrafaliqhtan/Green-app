@@ -35,9 +35,9 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
       if (event.reward.rewardCompanyLogo!.trim().isNotEmpty) {
         try {
           await locator.createReward(reward: event.reward);
-          emit(RewardSuccessState(msg: "تمت إضافة الدواء بنجاح"));
+          emit(RewardSuccessState(msg: "تمت إضافة  المكافاة بنجاح"));
         } catch (e) {
-          emit(RewardErrorState(msg: "حدث خطأ أثناء إضافة الدواء"));
+          emit(RewardErrorState(msg: "حدث خطأ أثناء إضافة المكافاة"));
         }
       }else{
         emit(RewardErrorState(msg: "الرجاء إدخال صوره الغلاف"));

@@ -75,8 +75,8 @@ class _AddEventState extends State<AddEvent> {
         listener: (context, state) {
           if (state is EventSuccessState) {
             context.getMessagesBar(msg: state.msg, color: green);
+            context.push(view: BottomNavBarAdmin(), isPush: false);
             //TODO: pop when add is not working
-            Navigator.pop(context);
           } else if (state is EventErrorState) {
             context.getMessagesBar(msg: state.msg, color: red);
           }
@@ -315,10 +315,13 @@ class _AddEventState extends State<AddEvent> {
                         color: green, borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                       onPressed: () async {
-                        context.read<ImagePicBloc>().add(
-                            UpdateImageToDatabase("event_poster", imageID));
-                        imageUrl = await serviceLocator.urlImage(
-                            "event_poster", imageID);
+                        if (serviceLocator
+                            .ImageFileFromDatabase.path.isNotEmpty) {
+                          context.read<ImagePicBloc>().add(
+                              UpdateImageToDatabase("event_poster", imageID));
+                          imageUrl = await serviceLocator.urlImage(
+                              "event_poster", imageID);
+                        }
                         EventModel event = EventModel(
                           id: imageID,
                           title: nameEventController.text,

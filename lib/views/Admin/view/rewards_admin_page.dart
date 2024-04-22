@@ -10,6 +10,7 @@ import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav
 import 'package:green_saudi_app/views/Admin/view/add_reword.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/widgets/offers_widget.dart';
+import 'package:green_saudi_app/widgets/shimmer_widget.dart';
 // import 'package:green_saudi_app/widgets/offers_widget.dart';
 
 class RewardsAdminPage extends StatelessWidget {
@@ -58,6 +59,9 @@ class RewardsAdminPage extends StatelessWidget {
         ),
         body: BlocBuilder<RewardBloc, RewardState>(
           builder: (context, state) {
+            if (state is RewardLoadingState) {
+              return buildShimmerEffect();
+            }
             if (state is RewardLoadedState) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
