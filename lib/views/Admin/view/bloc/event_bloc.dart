@@ -29,8 +29,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       listOfEvent = await locator.getAllEvent();
       if (listOfEvent.isNotEmpty) {
         emit(EventLoadedState(list: listOfEvent));
+      } else {
+        emit(EventInitial());
       }
-      emit(EventErrorState(msg: ""));
     } catch (e) {
       emit(EventErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
@@ -51,6 +52,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
               await locator.createEvent(event: event.event);
               emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
             } catch (e) {
+              print(e);
               emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
             }
           } else {

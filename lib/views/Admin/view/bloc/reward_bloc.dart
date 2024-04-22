@@ -23,8 +23,9 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
       listOfReward = await locator.getAllReward();
       if (listOfReward.isNotEmpty) {
         emit(RewardLoadedState(list: listOfReward));
+      } else {
+        emit(RewardInitial());
       }
-      emit(RewardErrorState(msg: ""));
     } catch (e) {
       emit(RewardErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
