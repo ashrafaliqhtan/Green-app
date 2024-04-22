@@ -61,8 +61,7 @@ class RewardsAdminPage extends StatelessWidget {
           builder: (context, state) {
             if (state is RewardLoadingState) {
               return buildShimmerEffect();
-            }
-            if (state is RewardLoadedState) {
+            } else if (state is RewardLoadedState) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
