@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,6 +12,7 @@ import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EventDetailsView extends StatelessWidget {
   const EventDetailsView({super.key, required this.event});
@@ -94,9 +96,31 @@ class EventDetailsView extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       ),
+                      
+                      
                     ],
+                    
                   ),
+                  
+                  
                 ),
+                Positioned(
+                  bottom: 115,
+                  right: 20,
+                  child: FloatingActionButton(
+                        mini: false,
+                  onPressed: () async {
+                          if (await canLaunchUrl( Uri.parse(event.locationUrl!))) {
+                            await launchUrl( Uri.parse(event.locationUrl!),
+                                mode: LaunchMode.inAppWebView);
+                          }
+                        },
+                  backgroundColor: green, // Set your desired background color
+                  child: const Icon(
+                    Icons.location_on,
+                    color: Colors.white,
+                  ),
+                ),),
                 // Header Info Section (Location - Time - Date)
                 Positioned(
                   top: 375,
@@ -193,19 +217,7 @@ class EventDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
-                //  FloatingActionButton(
-                //   onPressed: () async {
-                //           if (await canLaunchUrl(urlYoutub)) {
-                //             await launchUrl(urlYoutub,
-                //                 mode: LaunchMode.inAppWebView);
-                //           }
-                //         },
-                //   backgroundColor: green, // Set your desired background color
-                //   child: const Icon(
-                //     Icons.add,
-                //     color: Colors.white,
-                //   ),
-                // ),
+                 
                 // Button
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -243,9 +255,11 @@ class EventDetailsView extends StatelessWidget {
                 ),
               ],
             );
+            
           }
         },
       ),
+      
     );
   }
 }

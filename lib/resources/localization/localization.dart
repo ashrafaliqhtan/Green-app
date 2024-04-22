@@ -113,6 +113,9 @@ mixin AppLocale {
   static const String time = 'Time';
   static const String addReword = 'addReword';
   static const String ok ='ok';
+  static const String deleteQrCode ='DeleteQr';
+          
+
 
   //profile
   static const String userName = 'jj';
@@ -274,6 +277,8 @@ mixin AppLocale {
     companyName: 'Company Name',
     ok :'Ok',
     lightMode : 'Light Mode',
+        deleteQrCode :'Delete Qr Code',
+
   };
   static const Map<String, dynamic> AR = {
     // Onboarding and Auth
@@ -410,5 +415,6 @@ mixin AppLocale {
     signOutMsg: 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
     yes: 'تسجيل الخروج',
     no: 'إلغاء',
+    deleteQrCode :'امسح الباركود',
   };
 }

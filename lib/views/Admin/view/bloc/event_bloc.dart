@@ -53,6 +53,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
               emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
             } catch (e) {
               print(e);
+              print(e);
               emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
             }
           } else {
@@ -100,7 +101,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       if (listOfPersonalEvents.isNotEmpty) {
         emit(HistoryLoadedState(history: listOfPersonalEvents));
       }
-      emit(EventErrorState(msg: ""));
+      emit(EventInitial());
     } catch (_) {}
   }
 }

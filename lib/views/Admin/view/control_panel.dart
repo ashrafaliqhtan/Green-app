@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
@@ -18,63 +19,71 @@ class ControlPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      appBar: AppBar(
-      actions: [
-        IconButton(onPressed: (){
-          context.read<AuthBloc>().add(LogoutEvent());
-                context.push(view: const LoginView(), isPush: false);
-              }, icon: const Icon(Icons.logout,color: Colors.white,),
-              
-              ),
-              IconButton(onPressed: (){
-            context.push(view: const BottomNavBar(), isPush: false);
-          }, icon: const Icon(Icons.remove_red_eye_outlined,color: Colors.white,),),
-      ],
+    return Container(
+      decoration:const BoxDecoration(
+        image:DecorationImage(image: AssetImage('assets/images/Environmentadmin.png'),
+      fit: BoxFit.cover,)
+         
         
-        backgroundColor: green,
-        title:  Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+      ) ,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){
+            context.read<AuthBloc>().add(LogoutEvent());
+                  context.push(view: const LoginView(), isPush: false);
+                }, icon: const Icon(Icons.logout,color: Colors.white,),
+                
+                ),
+                IconButton(onPressed: (){
+              context.push(view: const BottomNavBar(), isPush: false);
+            }, icon: const Icon(Icons.remove_red_eye_outlined,color: Colors.white,),),
+        ],
+          
+          backgroundColor: green,
+          title:  Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                AppLocale.controlPanel.getString(context),
+                style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+        
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              AppLocale.controlPanel.getString(context),
-              style: const TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+            AdminPanel(
+              address: AppLocale.eventsAdmin.getString(context),
+              panelIcon: 'assets/icons/adminedit.svg',
+              onTap: () {
+                context.push(view: const EventsAdminPage(), isPush: false);
+              },
+            ),
+            height16,
+            AdminPanel(
+              address: AppLocale.supervisors.getString(context),
+              panelIcon: 'assets/icons/adminsupervisor.svg',
+              onTap: () {
+                context.push(view: const SupervisorsPage(), isPush: false);
+              },
+            ),
+            height16,
+            AdminPanel(
+              address: AppLocale.rewardsPageAdmin.getString(context),
+              panelIcon: 'assets/icons/adminreword.svg',
+              onTap: () {
+                context.push(view: const RewardsAdminPage(), isPush: false);
+              },
             ),
           ],
         ),
-      ),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AdminPanel(
-            address: AppLocale.eventsAdmin.getString(context),
-            panelIcon: 'assets/icons/adminedit.svg',
-            onTap: () {
-              context.push(view: const EventsAdminPage(), isPush: false);
-            },
-          ),
-          height16,
-          AdminPanel(
-            address: AppLocale.supervisors.getString(context),
-            panelIcon: 'assets/icons/adminsupervisor.svg',
-            onTap: () {
-              context.push(view: const SupervisorsPage(), isPush: false);
-            },
-          ),
-          height16,
-          AdminPanel(
-            address: AppLocale.rewardsPageAdmin.getString(context),
-            panelIcon: 'assets/icons/adminreword.svg',
-            onTap: () {
-              context.push(view: const RewardsAdminPage(), isPush: false);
-            },
-          ),
-        ],
       ),
     );
   }
