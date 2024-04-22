@@ -3,7 +3,7 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
-import 'package:green_saudi_app/views/HoursHistory/widget/history_hours_widget.dart';
+import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/views/Profile/view/profile_user.dart';
 
 class HoursHistoryView extends StatelessWidget {

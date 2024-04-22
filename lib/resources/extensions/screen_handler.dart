@@ -16,25 +16,37 @@ extension Screen on BuildContext {
     return MediaQuery.of(this).size.height;
   }
 
-  getMessagesBar({required String msg, required Color color}) {
-    return ScaffoldMessenger.of(this).showSnackBar(
+  getMessagesBar({required String msg, required Color color,  bool success = true}) {
+   return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
-        content: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            msg,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+        content: Row(
+          children: [
+            Expanded(
+              child: Text(
+                msg,
+                textAlign:TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
             ),
-          ),
+            Icon(
+              success ? Icons.check_circle : Icons.error,
+              color: Colors.white,
+            ),
+          ],
         ),
         backgroundColor: color,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+        ),
       ),
     );
   }
-
+  
   getMessages({required String msg, required Color color, int duration = 2}) {
     showDialog(
       context: this,

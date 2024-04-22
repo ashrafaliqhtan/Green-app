@@ -9,6 +9,7 @@ import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
 
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
+import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
 import 'package:green_saudi_app/widgets/regions_widget.dart';
 import 'package:green_saudi_app/widgets/shimmer_widget.dart';
@@ -124,24 +125,15 @@ class EventView extends StatelessWidget {
                 }),
           ),
           height32,
-          /* Expanded(
-            child: ListView.builder(
-                itemCount: 4,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return buildShimmerEffect();
-                }),
-          ), */
-
           // Event ListView
           Expanded(
             child: BlocConsumer<EventBloc, EventState>(
               listener: (context, state) {
                 if (state is RegisterEventSuccessState) {
-              context.getMessagesBar(msg: state.msg, color: green);
-            }else if (state is RegisterEventErrorState ) {
-              context.getMessagesBar(msg: state.msg, color: red);
-            }
+                  context.getMessagesBar(msg: state.msg, color: green);
+                } else if (state is RegisterEventErrorState) {
+                  context.getMessagesBar(msg: state.msg, color: red);
+                }
               },
               builder: (context, state) {
                 if (state is EventLoadingState) {
@@ -156,21 +148,21 @@ class EventView extends StatelessWidget {
                       itemCount: state.list.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return EventWidget(
+                         return EventWidget(
                           event: state.list[index],
                         );
                       });
-                }else{
+                } else {
                   //TODO: NO Event img or messge
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                            "assets/icons/Insert block-rafiki.svg"),
+                            "assets/icons/Insert block-rafiki.svg",height: 200,),
                         height16,
                         Text(
-                          'No histroy added',
+                          AppLocale.noHistory.getString(context),
                           style: TextStyle(fontSize: 30, color: green),
                         ),
                       ],

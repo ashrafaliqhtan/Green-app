@@ -6,8 +6,10 @@ import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
+import 'package:green_saudi_app/views/Authentication/widget/loading_admin.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
-import 'package:green_saudi_app/widgets/loading_widget.dart';
+import 'package:green_saudi_app/views/Authentication/widget/loading_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'auth_event.dart';
@@ -112,7 +114,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> getSession(
       CheckSessionAvailability event, Emitter<AuthState> emit) async {
-    await Future.delayed(const Duration(seconds: 2));
     try {
       final sessionData = await serviceLocator.getCurrentSession();
       if (sessionData != null) {
@@ -123,7 +124,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print(serviceLocator.user.typeRole);
         print("------------------");
         if (serviceLocator.user.typeRole == 'admin') {
-          emit(SessionAvailabilityState(page:  BottomNavBarAdmin()));
+          emit(SessionAvailabilityState(page: FutureDelayedAdmin()));
         } else {
           emit(SessionAvailabilityState(page: FutureDelayedWidget()));
         }
@@ -248,7 +249,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         serviceLocator.userImageUrl =
             await serviceLocator.urlImage("avatar", serviceLocator.userID);
       } catch (e) {
-        serviceLocator.userImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
+        serviceLocator.userImageUrl =
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
         print(e);
       }
       serviceLocator.user =

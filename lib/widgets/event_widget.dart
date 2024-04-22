@@ -18,7 +18,7 @@ class EventWidget extends StatelessWidget {
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return shimmerEffectPoint();
+          return SizedBox();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {

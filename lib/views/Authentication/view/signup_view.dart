@@ -49,7 +49,7 @@ class _SignUpViewState extends State<SignUpView> {
                   context.getMessagesBar(msg: state.message, color: green);
                   context.push(view: const LoginView(), isPush: false);
                 } else if (state is AuthSignUpErrorState) {
-                  context.getMessagesBar(msg: state.message, color: red);
+                  context.getMessagesBar(msg: state.message, color: red, success: false);
                 }
               },
               builder: (context, state) {

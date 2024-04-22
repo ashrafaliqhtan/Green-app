@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
@@ -33,117 +34,124 @@ class OTPView extends StatelessWidget {
             color: green,
           );
         } else if (state is AuthResendOTPErrorState) {
-          context.getMessagesBar(msg: state.message, color: red);
+          context.getMessagesBar(msg: state.message, color: red, success: false);
         } else if (state is AuthCheckOTPVerificationErrorState) {
-          context.getMessagesBar(msg: state.message, color: red);
+          context.getMessagesBar(msg: state.message, color: red, success: false);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: white,
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  height40,
-                  Image.asset('assets/images/Data security.png'),
-                  height40,
-                  Text(
-                    AppLocale.sendOTP.getString(context),
-                    style: TextStyle(color: green, fontSize: 25),
-                  ),
-                  height20,
-                  // Custom widget
-                  OtpTextField(
-                    numberOfFields: 6,
-                    showCursor: true,
-                    margin: const EdgeInsets.all(4),
-                    fieldWidth: context.getWidth() * .11,
-                    fieldHeight: context.getHeight() * .125,
-                    borderColor: pureWhite,
-                    showFieldAsBox: true,
-                    fillColor: pureWhite,
-                    filled: true,
-                    borderRadius: BorderRadius.circular(20),
-                    textStyle: TextStyle(
-                        fontSize: 25,
-                        color: green,
-                        fontWeight: FontWeight.bold),
-                    cursorColor: green,
-                    focusedBorderColor: pureWhite,
-                    // clearText: true,
-                    onCodeChanged: (value) {
-                    serviceLocator.otpToken = value;
-                  },
-                  onSubmit: (value) {
-                    serviceLocator.otpToken = value;
-                  },
-                  ),
-                  height20,
-                  Row(
-                    children: [
-                      Countdown(
-                        seconds: 60,
-                        build: (BuildContext context, double time) => Expanded(
-                          child: Text(
-                            '${AppLocale.timer.getString(context)} ${time.toInt()} ${AppLocale.second.getString(context)}',
-                            // 'إعادة رمز التحقق بعد ${time.toInt()} ثانية',
-                            style: TextStyle(fontSize: 14, color: green),
-                          ),
-                        ),
-                        interval: const Duration(seconds: 1),
-                        onFinished: () {
-                          (context as Element).markNeedsBuild();
-                          isButtonEnabled = true;
-                        },
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: white,
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    height40,
+                    Image.asset('assets/images/Data security.png'),
+                    height40,
+                    Text(
+                      AppLocale.sendOTP.getString(context),
+                      style: TextStyle(color: green, fontSize: 25),
+                    ),
+                    height20,
+                    // Custom widget
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: OtpTextField(
+                        numberOfFields: 6,
+                        showCursor: true,
+                        margin: const EdgeInsets.all(4),
+                        fieldWidth: context.getWidth() * .11,
+                        fieldHeight: context.getHeight() * .125,
+                        borderColor: pureWhite,
+                        showFieldAsBox: true,
+                        fillColor: pureWhite,
+                        filled: true,
+                        borderRadius: BorderRadius.circular(20),
+                        textStyle: TextStyle(
+                            fontSize: 25,
+                            color: green,
+                            fontWeight: FontWeight.bold),
+                        cursorColor: green,
+                        focusedBorderColor: pureWhite,
+                        // clearText: true,
+                        onCodeChanged: (value) {
+                        serviceLocator.otpToken = value;
+                      },
+                      onSubmit: (value) {
+                        serviceLocator.otpToken = value;
+                      },
                       ),
-                      TextButton(
-                          onPressed: isButtonEnabled
-                              ? () {
-                                  context.read<AuthBloc>().add(
-                                  ResendOtpEvent(email: serviceLocator.email));
-                                }
-                              : null,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: green,
-                                ),
-                              ),
-                            ),
+                    ),
+                    height20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Countdown(
+                          seconds: 60,
+                          build: (BuildContext context, double time) => Expanded(
                             child: Text(
-                              AppLocale.resend.getString(context),
-                              style: TextStyle(
-                                fontSize: 14,
+                              '${AppLocale.timer.getString(context)} ${time.toInt()} ${AppLocale.second.getString(context)}',
+                              // 'إعادة رمز التحقق بعد ${time.toInt()} ثانية',
+                              style: TextStyle(fontSize: 14, color: green),
+                            ),
+                          ),
+                          interval: const Duration(seconds: 1),
+                          onFinished: () {
+                            (context as Element).markNeedsBuild();
+                            isButtonEnabled = true;
+                          },
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                        onPressed: isButtonEnabled
+                            ? () {
+                                context.read<AuthBloc>().add(ResendOtpEvent(
+                                    email: serviceLocator.email));
+                              }
+                            : null,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
                                 color: green,
                               ),
                             ),
-                          )),
-                    ],
-                  ),
-                  height40,
-                  ElevatedButton(
-                    onPressed: () {
-                    print("=========================");
-                    print(serviceLocator.otpToken);
-                    print("=========================");
-                    context
-                        .read<AuthBloc>()
-                        .add(VerifyOtpEvent(otpToken: serviceLocator.otpToken));
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: green,
-                        minimumSize: Size(context.getWidth(), 55)),
-                    child: Text(
-                      AppLocale.verification.getString(context),
-                      style: TextStyle(color: pureWhite, fontSize: 30),
+                          ),
+                          child: Text(
+                            AppLocale.resend.getString(context),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: green,
+                            ),
+                          ),
+                        )),
+                    height40,
+                    ElevatedButton(
+                      onPressed: () {
+                      print("=========================");
+                      print(serviceLocator.otpToken);
+                      print("=========================");
+                      context
+                          .read<AuthBloc>()
+                          .add(VerifyOtpEvent(otpToken: serviceLocator.otpToken));
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: green,
+                          minimumSize: Size(context.getWidth(), 55)),
+                      child: Text(
+                        AppLocale.verification.getString(context),
+                        style: TextStyle(color: pureWhite, fontSize: 30),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

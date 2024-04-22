@@ -30,7 +30,7 @@ class SettingsUser extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
-          AppLocale.SettingsTitle.getString(context),
+          AppLocale.settingsTitle.getString(context),
           style: const TextStyle(
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
         ),

@@ -82,7 +82,9 @@ class RewardView extends StatelessWidget {
                           );
                         } else {
                           //TODO: No Reward img or text UI
-                          return Text("No Reward");
+                          return Text(
+                            AppLocale.noReward.getString(context),
+                          );
                         }
                       },
                     ),

@@ -56,10 +56,10 @@ class AddEvent extends StatelessWidget {
       body: BlocListener<EventBloc, EventState>(
         listener: (context, state) {
           if (state is EventSuccessState) {
-                context.getMessagesBar(msg: state.msg, color: green);
+                context.getMessagesBar(msg: state.msg, color: green, success: true);
                 Navigator.pop(context);
               } else if (state is EventErrorState) {
-                context.getMessagesBar(msg: state.msg, color: red);
+                context.getMessagesBar(msg: state.msg, color: red, success: false);
               }
         },
         child: SingleChildScrollView(
