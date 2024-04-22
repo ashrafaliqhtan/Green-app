@@ -21,3 +21,20 @@ final class RewardErrorState extends RewardState {
   final String msg;
   RewardErrorState({required this.msg});
 }
+
+//Points
+final class RewardLoadState extends RewardState {
+  final List<HistoryPointModel> historyPoints;
+  final int point;
+  RewardLoadState({required this.historyPoints, required this.point});
+}
+
+final class RewardPointSuccessState extends RewardState {
+  final String msg;
+  RewardPointSuccessState({required this.msg});
+}
+
+final class RewardPointErrorState extends RewardState {
+  final String msg;
+  RewardPointErrorState({required this.msg});
+}

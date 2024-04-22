@@ -5,7 +5,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/views/Admin/view/bloc/reward_bloc.dart';
+import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
 import 'package:green_saudi_app/widgets/history_point_widget.dart';
 import 'package:green_saudi_app/widgets/offers_widget.dart';

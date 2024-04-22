@@ -22,3 +22,8 @@ class RewardUpdated extends RewardEvent {
   final String id;
   RewardUpdated({required this.reward, required this.id});
 }
+
+//Points
+class RewardPointsLoad extends RewardEvent {}
+
+class RewardRedeemPoint extends RewardEvent {}

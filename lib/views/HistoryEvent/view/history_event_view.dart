@@ -6,7 +6,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/views/Admin/view/bloc/event_bloc.dart';
+import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/shimmer_history.dart';

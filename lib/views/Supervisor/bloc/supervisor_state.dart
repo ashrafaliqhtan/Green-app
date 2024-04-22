@@ -10,6 +10,10 @@ class SupervisorScanSuccess extends SupervisorState {
   SupervisorScanSuccess(this.qrString);
 }
 
+class SupervisorScanError extends SupervisorState {}
+
+class SupervisorScanErrorUser extends SupervisorState {}
+
 class SupervisorScanFailure extends SupervisorState {}
 
 class SupervisorScanCanceled extends SupervisorState {}
