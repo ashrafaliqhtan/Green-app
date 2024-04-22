@@ -113,25 +113,6 @@ class ScanView extends StatelessWidget {
                             ),
                           ],
                         );
-                      } else if (state is SupervisorScanError) {
-                        return Column(
-                          children: [
-                            Image.asset(
-                              //TODO: change image
-                              'assets/images/logo.jpg',
-                              width: 175,
-                              height: 175,
-                            ),
-                            Text(
-                              //TODO: localizition
-                              'الرجاء التحقق من الباركود',
-                              style: TextStyle(
-                                color: green,
-                                fontSize: 30,
-                              ),
-                            ),
-                          ],
-                        );
                       } else if (state is SupervisorScanErrorUser) {
                         return Column(
                           children: [
