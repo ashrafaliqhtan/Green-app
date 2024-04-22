@@ -78,10 +78,13 @@ class SettingsUser extends StatelessWidget {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 22),
                         ),
-                        Text(
-                          AppLocale.editProfile.getString(context),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Text(
+                            AppLocale.editProfile.getString(context),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
                         )
                       ],
                     )
