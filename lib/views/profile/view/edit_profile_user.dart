@@ -69,7 +69,7 @@ class _EditProfileUserState extends State<EditProfileUser> {
               children: [
                 Text(
                   AppLocale.editTitle.getString(context),
-                  style: TextStyle(color: pureWhite, fontSize: 25),
+                  style: TextStyle(color: pureWhite,fontWeight: FontWeight.bold, fontSize: 32),
                 )
               ],
             ),
