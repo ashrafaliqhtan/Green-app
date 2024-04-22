@@ -9,7 +9,10 @@ final class RewardLoadingState extends RewardState {}
 
 final class RewardLoadedState extends RewardState {
   final List<RewardModel> list;
-  RewardLoadedState({required this.list});
+  final List<HistoryPointModel> historyPoints;
+  final int point;
+  RewardLoadedState(
+      {required this.list, required this.historyPoints, required this.point});
 }
 
 final class RewardSuccessState extends RewardState {
@@ -23,11 +26,6 @@ final class RewardErrorState extends RewardState {
 }
 
 //Points
-final class RewardLoadState extends RewardState {
-  final List<HistoryPointModel> historyPoints;
-  final int point;
-  RewardLoadState({required this.historyPoints, required this.point});
-}
 
 final class RewardPointSuccessState extends RewardState {
   final String msg;

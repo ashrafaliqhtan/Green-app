@@ -160,8 +160,6 @@ class DBServices {
 
   Future usePoint({required int usedPoint,required String volunteerID}) async {
      final point = await getUserPoint(id:volunteerID);
-print(point);
-    if(point >= usedPoint){
     await supabase.from('user_green_sa_app').update({
       "points":(point-usedPoint)
     }).match({'id_user': volunteerID,});
@@ -169,7 +167,7 @@ print(point);
       "user_id":volunteerID,
       "point":(usedPoint),
       "state":"minus"
-    });}
+    });
 
   }
   Future<List<HistoryPointModel>> getHistoryPoint({required String id}) async {
@@ -181,6 +179,7 @@ print(point);
     for (var element in historyPointListData) {
       listOfHistoryPoints.add(HistoryPointModel.fromMap(element));
     }
+    print(listOfHistoryPoints);
     return listOfHistoryPoints;
   }
 

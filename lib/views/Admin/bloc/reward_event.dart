@@ -24,6 +24,4 @@ class RewardUpdated extends RewardEvent {
 }
 
 //Points
-class RewardPointsLoad extends RewardEvent {}
-
 class RewardRedeemPoint extends RewardEvent {}

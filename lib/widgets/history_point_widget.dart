@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/model/history_point_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
@@ -6,15 +7,16 @@ import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 
 class PointWidget extends StatelessWidget {
-  const PointWidget({Key? key});
-
+  const PointWidget({super.key, required this.points});
+  final HistoryPointModel points;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        translatorFunction("تم الحصول على 12 نقطة"),
-        translatorFunction("10/04/2024"),
-        translatorFunction("5:04 PM"),
+        translatorFunction(
+            "تم ${points.state == "plus" ? "الحصول" : "خصم"} على ${points.point} نقطة"),
+        translatorFunction(formatDate(points.createdAt)),
+        translatorFunction(formatDateTime(points.createdAt)),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -47,7 +49,7 @@ class PointWidget extends StatelessWidget {
                           Container(
                             width: 3,
                             height: context.getHeight() * .07,
-                            color: green,
+                            color: points.state == "plus" ? green : Colors.red,
                           ),
                         ],
                       ),

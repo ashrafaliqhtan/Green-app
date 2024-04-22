@@ -17,15 +17,20 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
     on<RewardEvent>((event, emit) {});
     on<RewardLoadEvent>(loadRewardData);
     on<RewardAdded>(addReward);
-    on<RewardPointsLoad>(loadPointHistory);
+    on<RewardRedeemPoint>(redeemReward);
   }
   Future<void> loadRewardData(
       RewardLoadEvent event, Emitter<RewardState> emit) async {
     emit(RewardLoadingState());
     try {
+      var totalPoint = await locator.getUserPoint(id: locator.userID);
+      var historyPoint = await locator.getHistoryPoint(id: locator.userID);
       listOfReward = await locator.getAllReward();
-      if (listOfReward.isNotEmpty) {
-        emit(RewardLoadedState(list: listOfReward));
+      if (listOfReward.isNotEmpty || historyPoint.isNotEmpty) {
+        emit(RewardLoadedState(
+            list: listOfReward,
+            historyPoints: historyPoint,
+            point: totalPoint));
       } else {
         emit(RewardInitial());
       }
@@ -54,13 +59,19 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
     }
   }
 
-  FutureOr<void> loadPointHistory(
-      RewardPointsLoad event, Emitter<RewardState> emit) async {
+  FutureOr<void> redeemReward(
+      RewardRedeemPoint event, Emitter<RewardState> emit) async {
+    emit(RewardLoadingState());
     try {
-      var totalPoint = await locator.getUserPoint(id: locator.userID);
-      var historyPoint = await locator.getHistoryPoint(id: locator.userID);
-      emit(RewardLoadState(historyPoints: historyPoint, point: totalPoint));
+      final point = await locator.getUserPoint(id: locator.userID);
+      if (point >= 80) {
+        locator.usePoint(usedPoint: 80, volunteerID: locator.userID);
+        emit(RewardPointSuccessState(msg: "تم استبدال النقاط بنجاح"));
+      } else {
+        emit(RewardPointErrorState(msg: "النقاط لا تاكفي لاستبدال"));
+      }
     } catch (e) {
+      emit(RewardPointErrorState(msg: "حدث خطأ في استبدال النقاط"));
       print(e);
     }
   }

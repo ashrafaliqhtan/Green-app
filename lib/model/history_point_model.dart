@@ -15,8 +15,8 @@ class HistoryPointModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'created_at': createdAt.toIso8601String(),
+      'register_id': id,
+      'created_at': createdAt.toString(),
       'point': point,
       'state': state,
       'user_id': userId,
@@ -25,7 +25,7 @@ class HistoryPointModel {
 
   static HistoryPointModel fromMap(Map<String, dynamic> map) {
     return HistoryPointModel(
-      id: map['id'],
+      id: map['register_id'],
       createdAt: DateTime.parse(map['created_at']),
       point: map['point'],
       state: map['state'],
@@ -33,3 +33,5 @@ class HistoryPointModel {
     );
   }
 }
+
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 extension Screen on BuildContext {
   getWidth() {
@@ -16,15 +17,16 @@ extension Screen on BuildContext {
     return MediaQuery.of(this).size.height;
   }
 
-  getMessagesBar({required String msg, required Color color,  bool success = true}) {
-   return ScaffoldMessenger.of(this).showSnackBar(
+  getMessagesBar(
+      {required String msg, required Color color, bool success = true}) {
+    return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Row(
           children: [
             Expanded(
               child: Text(
                 msg,
-                textAlign:TextAlign.center,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -46,7 +48,7 @@ extension Screen on BuildContext {
       ),
     );
   }
-  
+
   getMessages({required String msg, required Color color, int duration = 2}) {
     showDialog(
       context: this,
@@ -73,4 +75,14 @@ extension Screen on BuildContext {
       },
     );
   }
+}
+
+String formatDate(DateTime date) {
+  return DateFormat('yyyy-MM-dd').format(date);
+}
+String formatDateTime(DateTime date) {
+  return DateFormat('HH:mm').format(date);
+}
+String formatDateYMMMd(DateTime date) {
+  return DateFormat.yMMMd().format(date);
 }

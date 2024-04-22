@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
@@ -9,6 +10,7 @@ import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
 import 'package:green_saudi_app/widgets/history_point_widget.dart';
 import 'package:green_saudi_app/widgets/offers_widget.dart';
+import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 import 'package:green_saudi_app/widgets/shimmer_widget.dart';
 
 class RewardView extends StatelessWidget {
@@ -30,7 +32,20 @@ class RewardView extends StatelessWidget {
                 children: [
                   height32,
                   // Point Container
-                  const HeaderPoint(),
+                  BlocBuilder<RewardBloc, RewardState>(
+                    builder: (context, state) {
+                      if (state is RewardLoadingState) {
+                        return shimmerEffectPoint();
+                      } else if (state is RewardLoadedState) {
+                        return HeaderPoint(
+                          totalHours: state.point,
+                        );
+                      }
+                      return const HeaderPoint(
+                        totalHours: 0,
+                      );
+                    },
+                  ),
                   height10,
                   TabBar(
                     labelColor: green,
@@ -91,11 +106,35 @@ class RewardView extends StatelessWidget {
                       },
                     ),
                     // History Point
-                    ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return const PointWidget();
-                        }),
+                    BlocBuilder<RewardBloc, RewardState>(
+                      builder: (context, state) {
+                        if (state is RewardLoadedState) {
+                          return ListView.builder(
+                              itemCount: state.historyPoints.length,
+                              itemBuilder: (context, index) {
+                                return PointWidget(
+                                  points: state.historyPoints[index],
+                                );
+                              });
+                        }
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                "assets/icons/Insert block-rafiki.svg",
+                                height: 200,
+                              ),
+                              height16,
+                              Text(
+                                AppLocale.noHistory.getString(context),
+                                style: TextStyle(fontSize: 30, color: green),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),

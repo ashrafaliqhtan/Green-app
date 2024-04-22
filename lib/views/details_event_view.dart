@@ -1,7 +1,4 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/model/event_model.dart';
@@ -17,7 +14,6 @@ import 'package:url_launcher/url_launcher.dart';
 class EventDetailsView extends StatelessWidget {
   const EventDetailsView({super.key, required this.event});
   final EventModel event;
-   
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +47,7 @@ class EventDetailsView extends StatelessWidget {
           translatorFunction(event.title ?? 'زراعة الاشجار'),
           translatorFunction(event.location ?? 'الرياض - حي الرمال'),
           translatorFunction(event.startTime ?? '١٢م الى ٤م'),
-          translatorFunction(event.startDate ??'٤ أبريل ٢٠٢٤'),
-
+          translatorFunction(event.startDate ?? '٤ أبريل ٢٠٢٤'),
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -76,8 +71,8 @@ class EventDetailsView extends StatelessWidget {
                       SizedBox(
                         height: 425,
                         child: Image.network(
-                          event.imageUrl  ??
-                           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
+                          event.imageUrl ??
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -96,31 +91,27 @@ class EventDetailsView extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      
-                      
                     ],
-                    
                   ),
-                  
-                  
                 ),
                 Positioned(
                   bottom: 115,
                   right: 20,
                   child: FloatingActionButton(
-                        mini: false,
-                  onPressed: () async {
-                          if (await canLaunchUrl( Uri.parse(event.locationUrl!))) {
-                            await launchUrl( Uri.parse(event.locationUrl!),
-                                mode: LaunchMode.inAppWebView);
-                          }
-                        },
-                  backgroundColor: green, // Set your desired background color
-                  child: const Icon(
-                    Icons.location_on,
-                    color: Colors.white,
+                    mini: false,
+                    onPressed: () async {
+                      if (await canLaunchUrl(Uri.parse(event.locationUrl!))) {
+                        await launchUrl(Uri.parse(event.locationUrl!),
+                            mode: LaunchMode.inAppWebView);
+                      }
+                    },
+                    backgroundColor: green, // Set your desired background color
+                    child: const Icon(
+                      Icons.location_on,
+                      color: Colors.white,
+                    ),
                   ),
-                ),),
+                ),
                 // Header Info Section (Location - Time - Date)
                 Positioned(
                   top: 375,
@@ -217,7 +208,6 @@ class EventDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
-                 
                 // Button
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -237,7 +227,6 @@ class EventDetailsView extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        
                       ),
                       child: Container(
                         height: 60,
@@ -255,11 +244,9 @@ class EventDetailsView extends StatelessWidget {
                 ),
               ],
             );
-            
           }
         },
       ),
-      
     );
   }
 }

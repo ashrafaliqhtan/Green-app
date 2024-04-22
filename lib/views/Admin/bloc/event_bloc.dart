@@ -53,7 +53,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
               emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
             } catch (e) {
               print(e);
-              print(e);
+
               emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
             }
           } else {
@@ -75,9 +75,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   //   try {
   //     await locator.deleteEventData(event.event.id!);
   //     emit(EventLoadedState(list: listOfEvent));
-  //     emit(EventSuccessState(msg: "تم حذف الحدث بنجاح"));
+  //     emit(EventSuccessState(msg: "تم حذف الدواء بنجاح"));
   //   } catch (e) {
-  //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الحدث"));
+  //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الدواء"));
   //   }
   // }
 

@@ -6,8 +6,8 @@ import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 
 class HeaderPoint extends StatelessWidget {
-  const HeaderPoint({super.key});
-
+  const HeaderPoint({super.key, required this.totalHours});
+  final int totalHours;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,7 +56,7 @@ class HeaderPoint extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "123",
+                      "$totalHours",
                       style: TextStyle(
                         color: pureWhite,
                         fontSize: 25,
