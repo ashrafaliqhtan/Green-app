@@ -13,6 +13,7 @@ class SplashView extends StatelessWidget {
       listener: (context, state) {
         if (state is SessionAvailabilityState) {
           context.push(view: state.page, isPush: false);
+          
         }
       },
       child: Scaffold(

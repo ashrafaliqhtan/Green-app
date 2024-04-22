@@ -9,6 +9,7 @@ import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EventDetailsView extends StatelessWidget {
@@ -28,7 +29,7 @@ class EventDetailsView extends StatelessWidget {
             color: pureWhite,
           ),
           onPressed: () {
-            context.read<EventBloc>().add(EventLoadEvent());
+            context.read<EventBloc>().add(EventLoadEvent(order: true));
             Navigator.pop(context);
           },
         ),
@@ -46,8 +47,10 @@ class EventDetailsView extends StatelessWidget {
               'زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.'),
           translatorFunction(event.title ?? 'زراعة الاشجار'),
           translatorFunction(event.location ?? 'الرياض - حي الرمال'),
-          translatorFunction(event.startTime ?? '١٢م الى ٤م'),
-          translatorFunction(event.startDate ?? '٤ أبريل ٢٠٢٤'),
+          translatorFunction(event.getTimeWithAmPm(event.startTime!)),
+          translatorFunction(event.getTimeWithAmPm(event.endTime!)),
+          translatorFunction(event.startDate ??'٤ أبريل ٢٠٢٤'),
+
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -59,8 +62,8 @@ class EventDetailsView extends StatelessWidget {
             final String description = translatedTexts[0];
             final String eventName = translatedTexts[1];
             final String eventLocation = translatedTexts[2];
-            final String eventTime = translatedTexts[3];
-            final String eventDate = translatedTexts[4];
+            final String eventTime = "${translatedTexts[3]}-${translatedTexts[4]}";
+            final String eventDate = translatedTexts[5];
             return Stack(
               children: [
                 // Image and Description Section
@@ -250,3 +253,12 @@ class EventDetailsView extends StatelessWidget {
     );
   }
 }
+String formatDate(DateTime date) {
+  return DateFormat('yyyy-MM-dd').format(date);
+}
+String formatDateTime(DateTime date) {
+  return DateFormat('HH:mm').format(date);
+}
+// String formatDateYMMMd(DateTime date) {
+//   return DateFormat.yMMMd().format(date);
+// }

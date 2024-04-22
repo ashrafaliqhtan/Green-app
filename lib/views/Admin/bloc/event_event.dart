@@ -3,7 +3,10 @@ part of 'event_bloc.dart';
 @immutable
 sealed class EventEvent {}
 
-class EventLoadEvent extends EventEvent {}
+class EventLoadEvent extends EventEvent {
+  final bool order;
+  EventLoadEvent({required this.order});
+}
 class HistoryLoadEvent extends EventEvent {}
 
 class EventAdded extends EventEvent {

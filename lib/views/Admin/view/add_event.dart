@@ -32,6 +32,9 @@ class _AddEventState extends State<AddEvent> {
   TextEditingController locationUrlEventController = TextEditingController();
   TextEditingController capacityEventController =
       TextEditingController(text: "0");
+
+
+
   @override
   void dispose() {
     nameEventController.dispose();
@@ -46,10 +49,7 @@ class _AddEventState extends State<AddEvent> {
   @override
   Widget build(BuildContext context) {
     final serviceLocator = DataInjection().locator.get<DBServices>();
-    TimeOfDay startTimeEvent = TimeOfDay.now();
-    DateTime startDateEvent = DateTime.now();
-    TimeOfDay endTimeEvent = TimeOfDay.now();
-    DateTime endDateEvent = DateTime.now();
+
     String imageUrl = "";
     String imageID = const Uuid().v4();
     return Scaffold(
@@ -186,7 +186,7 @@ class _AddEventState extends State<AddEvent> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 30),
+                      padding: EdgeInsets.only(left: 30),
                       child: Container(
                         width: 150,
                         height: 60,
@@ -194,8 +194,8 @@ class _AddEventState extends State<AddEvent> {
                             border: Border.all(color: black),
                             color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(40)),
-                        child: const Center(
-                          child: DatePickerWidget(),
+                        child:  Center(
+                          child: DatePickerWidget(time:serviceLocator.startDateEvent,isFires: true,),
                         ),
                       ),
                     ),
@@ -206,7 +206,7 @@ class _AddEventState extends State<AddEvent> {
                           border: Border.all(color: black),
                           color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(40)),
-                      child: const DatePickerWidget(),
+                      child:  DatePickerWidget(time: serviceLocator.endDateEvent,isFires: false,),
                     ),
                   ],
                 ),
@@ -239,7 +239,7 @@ class _AddEventState extends State<AddEvent> {
                             color: pureWhite,
                             borderRadius: BorderRadius.circular(40)),
                         child: TimePickerWidget(
-                          time: startTimeEvent,
+                          time:serviceLocator.startTimeEvent,isFires: true,
                         ),
                       ),
                     ),
@@ -250,8 +250,8 @@ class _AddEventState extends State<AddEvent> {
                           border: Border.all(color: black),
                           color: pureWhite,
                           borderRadius: BorderRadius.circular(40)),
-                      child: TimePickerWidget(
-                        time: endTimeEvent,
+                      child: TimePickerWidget(isFires: false,
+                        time: serviceLocator.endTimeEvent,
                       ),
                     ),
                   ],
@@ -316,6 +316,13 @@ class _AddEventState extends State<AddEvent> {
                         color: green, borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                       onPressed: () async {
+                        print("=============");
+                        print(serviceLocator.startDateEvent);
+                        print(serviceLocator.endDateEvent);
+                        print(serviceLocator.startTimeEvent);
+                        print(serviceLocator.endTimeEvent);
+                        print("=============");
+
                         if (serviceLocator
                             .ImageFileFromDatabase.path.isNotEmpty) {
                           context.read<ImagePicBloc>().add(
@@ -327,16 +334,17 @@ class _AddEventState extends State<AddEvent> {
                           id: imageID,
                           title: nameEventController.text,
                           description: descriptionEventController.text,
-                          startDate: startDateEvent.toString(),
-                          startTime: startTimeEvent.toString(),
-                          endDate: endDateEvent.toString(),
-                          endTime: endTimeEvent.toString(),
+                          startDate: serviceLocator.startDateEvent,
+                          startTime:serviceLocator.startTimeEvent,
+                          endDate: serviceLocator.endDateEvent,
+                          endTime: serviceLocator.endTimeEvent,
                           location: locationEventController.text,
                           locationUrl: locationUrlEventController.text,
                           maximumCapacity:
                               int.parse(capacityEventController.text),
                           imageUrl: imageUrl,
                         );
+                        print("object");
                         context.read<EventBloc>().add(EventAdded(event: event));
                       },
                       child: Text(

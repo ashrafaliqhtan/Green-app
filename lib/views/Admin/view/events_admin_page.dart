@@ -11,12 +11,12 @@ import 'package:green_saudi_app/views/Admin/view/add_event.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 
 class EventsAdminPage extends StatelessWidget {
-  const EventsAdminPage({Key? key});
+  const EventsAdminPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EventBloc()..add(EventLoadEvent()),
+      create: (context) => EventBloc()..add(EventLoadEvent(order: true)),
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(

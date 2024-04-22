@@ -63,6 +63,7 @@ class _SettingsSwitchState extends State<SettingsSwitch> {
                     onChanged: (value) {
                       setState(() {
                         isSwitchedTo = value;
+
                       });
                     },
                   )

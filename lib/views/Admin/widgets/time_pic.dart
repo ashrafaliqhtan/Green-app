@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/theme/theme.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 
 // ignore: must_be_immutable
 class TimePickerWidget extends StatefulWidget {
-  TimePickerWidget({required this.time, super.key});
-  late TimeOfDay time;
+  TimePickerWidget({required this.time, required this.isFires, super.key});
+  String time;
+  bool isFires;
 
   @override
   TimePickerWidgetState createState() => TimePickerWidgetState();
@@ -69,8 +72,18 @@ class TimePickerWidgetState extends State<TimePickerWidget> {
     );
     if (picked != null && picked != selectedTime) {
       setState(() {
+        String formatDateTime(TimeOfDay date) {
+  return date.format(context);
+}
         selectedTime = picked;
-        widget.time = selectedTime;
+        widget.time = formatDateTime(selectedTime);
+        if(widget.isFires){
+          GetIt.I.get<DBServices>().startTimeEvent=widget.time;
+        }
+        else{
+          GetIt.I.get<DBServices>().endTimeEvent=widget.time;
+        }
+        print(widget.time);
       });
     }
   }

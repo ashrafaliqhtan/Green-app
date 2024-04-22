@@ -18,7 +18,7 @@ class EventView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<EventBloc>().add(EventLoadEvent());
+    context.read<EventBloc>().add(EventLoadEvent(order: true));
     final TextEditingController controller = TextEditingController();
     // All 13 Regions
     final List<String> regionsList = [
@@ -97,31 +97,42 @@ class EventView extends StatelessWidget {
                   ),
                   width16,
                   Container(
-        width: 68,
-        height: 58,
-        decoration: BoxDecoration(
-            color: green, borderRadius: BorderRadius.circular(20)),
-        child: Center(
-          child: PopupMenuButton(
-            itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(
-                  value: 'الأحدث',
-                  child: Text('الأحدث'),
-                ),
-                PopupMenuItem(
-                  value: 'الأقدم',
-                  child: Text('الأقدم'),
-                ),
-              ];
-            },
-            child: SvgPicture.asset(
-              'assets/icons/search.svg',
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+                    width: 68,
+                    height: 58,
+                    decoration: BoxDecoration(
+                        color: green, borderRadius: BorderRadius.circular(20)),
+                    child: Center(
+                      child: PopupMenuButton(
+                        onSelected: (value) {
+                          if (value) {
+                            context
+                                .read<EventBloc>()
+                                .add(EventLoadEvent(order: true));
+                          } else {
+                            context
+                                .read<EventBloc>()
+                                .add(EventLoadEvent(order: false));
+                          }
+                        },
+                        itemBuilder: (BuildContext context) {
+                          return [
+                            const PopupMenuItem(
+                              value: true,
+                              child: Text('الأحدث'),
+                            ),
+                            const PopupMenuItem(
+                              value: false,
+                              child: Text('الأقدم'),
+                            ),
+                          ];
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/search.svg',
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -163,7 +174,7 @@ class EventView extends StatelessWidget {
                         itemCount: state.list.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                           return EventWidget(
+                          return EventWidget(
                             event: state.list[index],
                           );
                         });
@@ -174,7 +185,9 @@ class EventView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
-                              "assets/icons/Insert block-rafiki.svg",height: 200,),
+                            "assets/icons/Insert block-rafiki.svg",
+                            height: 200,
+                          ),
                           height16,
                           Text(
                             AppLocale.noHistory.getString(context),
@@ -190,7 +203,6 @@ class EventView extends StatelessWidget {
           ],
         ),
       ),
-      
     );
   }
 }

@@ -26,7 +26,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       EventLoadEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
     try {
-      listOfEvent = await locator.getAllEvent();
+      listOfEvent = await locator.getAllEvent(event.order);
       if (listOfEvent.isNotEmpty) {
         emit(EventLoadedState(list: listOfEvent));
       } else {

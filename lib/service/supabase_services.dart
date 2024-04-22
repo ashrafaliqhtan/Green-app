@@ -18,9 +18,11 @@ class DBServices {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
   File userImageFile = File("");
   File ImageFileFromDatabase = File("");
-
   GSIUser user = GSIUser();
-
+    String startTimeEvent ="";
+    String startDateEvent ="";
+    String endTimeEvent ="";
+    String endDateEvent ="";
   //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
@@ -194,13 +196,12 @@ class DBServices {
       "date_start": event.startDate,
       "time_start": event.startTime,
       "end_date": event.endDate,
-      "time_end": event.endTime,
+      "time_end": event.endTime!,
       "image_url":event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
       "location_url": event.locationUrl,
     });
   }
-
   Future createReward({required RewardModel reward}) async {
     await supabase.from('reward_table').insert({
       "reward_name": reward.rewardName,
@@ -210,8 +211,8 @@ class DBServices {
     });
   }
 
-  Future<List<EventModel>> getAllEvent() async {
-    final eventsListData = await supabase.from('org_event').select('*');
+  Future<List<EventModel>> getAllEvent(bool isOrder) async {
+    final eventsListData = await supabase.from('org_event').select('*').order("created_at",ascending: isOrder);
     List<EventModel> listOfEvents = [];
     for (var element in eventsListData) {
       listOfEvents.add(EventModel.fromJson(element));
@@ -228,6 +229,9 @@ class DBServices {
     return listOfReward;
   }
   
+  void scheduleTask() async{
+  
+  }
 
   /////////////////file crud
   Future<void> uploadImage(
