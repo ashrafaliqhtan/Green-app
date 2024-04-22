@@ -59,8 +59,8 @@ class ProfileView extends StatelessWidget {
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return  Center(
+              child: CircularProgressIndicator(color: green,),
             );
           }
           if (state is AuthLoadProfileState) {
