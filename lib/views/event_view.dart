@@ -1,24 +1,29 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 
 import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/widgets/event_widget.dart';
 import 'package:green_saudi_app/widgets/regions_widget.dart';
 import 'package:green_saudi_app/widgets/shimmer_widget.dart';
+import 'package:intl/intl.dart';
 
 class EventView extends StatelessWidget {
   const EventView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    context.read<EventBloc>().add(EventLoadEvent());
+    context.read<EventBloc>().add(EventLoadEvent(order: true));
     final TextEditingController controller = TextEditingController();
     // All 13 Regions
     final List<String> regionsList = [
@@ -102,15 +107,21 @@ class EventView extends StatelessWidget {
         decoration: BoxDecoration(
             color: green, borderRadius: BorderRadius.circular(20)),
         child: Center(
-          child: PopupMenuButton(
+          child: PopupMenuButton(onSelected: (value) {
+            if (value) {
+              context.read<EventBloc>().add(EventLoadEvent(order: true));
+            } else {
+              context.read<EventBloc>().add(EventLoadEvent(order: false));
+            }
+          },
             itemBuilder: (BuildContext context) {
               return [
-                PopupMenuItem(
-                  value: 'الأحدث',
+                const PopupMenuItem(
+                  value: true,
                   child: Text('الأحدث'),
                 ),
-                PopupMenuItem(
-                  value: 'الأقدم',
+                const PopupMenuItem(
+                  value: false,
                   child: Text('الأقدم'),
                 ),
               ];
@@ -194,3 +205,4 @@ class EventView extends StatelessWidget {
     );
   }
 }
+

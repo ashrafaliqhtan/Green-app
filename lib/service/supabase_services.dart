@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/history_point_model.dart';
@@ -18,9 +19,11 @@ class DBServices {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
   File userImageFile = File("");
   File ImageFileFromDatabase = File("");
-
   GSIUser user = GSIUser();
-
+    String startTimeEvent ="";
+    String startDateEvent ="";
+    String endTimeEvent ="";
+    String endDateEvent ="";
   //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
@@ -195,13 +198,12 @@ print(point);
       "date_start": event.startDate,
       "time_start": event.startTime,
       "end_date": event.endDate,
-      "time_end": event.endTime,
+      "time_end": event.endTime!,
       "image_url":event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
       "location_url": event.locationUrl,
     });
   }
-
   Future createReward({required RewardModel reward}) async {
     await supabase.from('reward_table').insert({
       "reward_name": reward.rewardName,
@@ -211,8 +213,8 @@ print(point);
     });
   }
 
-  Future<List<EventModel>> getAllEvent() async {
-    final eventsListData = await supabase.from('org_event').select('*').order("created_at",ascending: true);
+  Future<List<EventModel>> getAllEvent(bool isOrder) async {
+    final eventsListData = await supabase.from('org_event').select('*').order("created_at",ascending: isOrder);
     List<EventModel> listOfEvents = [];
     for (var element in eventsListData) {
       listOfEvents.add(EventModel.fromJson(element));

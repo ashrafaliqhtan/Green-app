@@ -1,15 +1,12 @@
-import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/appearence_service.dart';
 import 'package:green_saudi_app/resources/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 
 import 'package:green_saudi_app/views/Profile/widget/custom_switch_darkmode.dart';
 import 'package:green_saudi_app/views/Profile/widget/custom_switch_notfcation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SettingsSwitch extends StatefulWidget {
   const SettingsSwitch({

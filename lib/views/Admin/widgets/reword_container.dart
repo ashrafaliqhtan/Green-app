@@ -10,7 +10,7 @@ class RewordContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EventBloc()..add(EventLoadEvent()),
+      create: (context) => EventBloc()..add(EventLoadEvent(order:true)),
       child: BlocConsumer<EventBloc, EventState>(
         listener: (context, state) {
           if (state is EventErrorState) {

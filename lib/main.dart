@@ -78,7 +78,7 @@ class _MainAppState extends State<MainApp> {
           create: (context) => ImagePicBloc(),
         ),
         BlocProvider(
-          create: (context) => EventBloc()..add(EventLoadEvent()),
+          create: (context) => EventBloc()..add(EventLoadEvent(order: true)),
         ),
         BlocProvider(
           create: (context) => RewardBloc(),
