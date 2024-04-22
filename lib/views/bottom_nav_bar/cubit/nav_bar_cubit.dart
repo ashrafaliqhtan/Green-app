@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:green_saudi_app/resources/qr_code_reader/bloc/scan_bloc.dart';
+import 'package:green_saudi_app/resources/qr_code_reader/qr_code_reader.dart';
 import 'package:green_saudi_app/views/event_view.dart';
 import 'package:green_saudi_app/views/history_event_view.dart';
 import 'package:green_saudi_app/views/home_view.dart';
@@ -13,6 +15,7 @@ class NavBarCubit extends Cubit<NavBarState> {
     const EventView(),
     const RewardView(),
     const HistoryEventView(),
+     ScanView(),
   ];
 
   int selectIndex = 0;

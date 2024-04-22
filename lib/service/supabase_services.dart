@@ -127,6 +127,21 @@ class DBServices {
   //redeem
   //display List redeem history
 
+///////////////////////superviser
+  Future addVolunteerHours({required int addVolunteerHour}) async {
+    await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
+      "points":(user.points!+addVolunteerHour*10)
+    }).match({'id_user': userID,});
+  }
+
+  Future usePoint({required int usedPoint}) async {
+    await supabase.from('user_green_sa_app').update({
+      "points":(user.points!-usedPoint)
+    }).match({'id_user': userID,});
+  }
+
+
+
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
     await supabase.from('org_event').insert({
@@ -138,6 +153,7 @@ class DBServices {
       "time_start": event.startTime,
       "end_date": event.endDate,
       "time_end": event.endTime,
+      "imageUrl":event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
       "location_url": event.locationUrl,
       "image_url":event.imageUrl
@@ -170,6 +186,7 @@ class DBServices {
     }
     return listOfReward;
   }
+  
 
   /////////////////file crud
   Future<void> uploadImage(
