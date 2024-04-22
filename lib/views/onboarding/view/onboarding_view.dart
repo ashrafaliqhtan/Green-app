@@ -43,6 +43,8 @@ class OnboardingView extends StatelessWidget {
           for (final item in onboardingItems) {
             precacheImage(AssetImage(item.image), context);
           }
+          precacheImage( AssetImage(
+          "assets/images/background_img_1.png"), context);
           return Scaffold(
             body: PageView.builder(
               onPageChanged: (index) {

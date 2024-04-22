@@ -33,60 +33,63 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
           context.getMessagesBar(msg: state.message, color: green);
           context.push(view: OTPView(), isPush: true);
         } else if (state is AuthCheckEmailVerificationErrorState) {
-          context.getMessagesBar(msg: state.message, color: red);
+          context.getMessagesBar(msg: state.message, color: red, success: false);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            actionsIconTheme: IconThemeData(color: green),
-          ),
-          backgroundColor: pureWhite,
-          body: SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    Container(
-                      width: context.getWidth(),
-                      height: context.getHeight() * 0.5,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/secure_login.png"),
-                          fit: BoxFit.cover,
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              actionsIconTheme: IconThemeData(color: green),
+            ),
+            backgroundColor: pureWhite,
+            body: SingleChildScrollView(
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: context.getWidth(),
+                        height: context.getHeight() * 0.5,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/secure_login.png"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    height8,
-                    Text(
-                      AppLocale.instruction.getString(context),
-                      style: TextStyle(
-                          color: green,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    height10,
-                    InputTextFelid(
-                      controller: emailController,
-                      title: AppLocale.emailTitle.getString(context),
-                      hintText: "example@gmail.com",
-                      icon: Icons.email,
-                      isPassword: false,
-                      isColorChange: true,
-                    ),
-                    height32,
-                    CustomButton(
-                      title: AppLocale.verification.getString(context),
-                      backgroundColor: green,
-                      onPressed: () {
-                        context
-                            .read<AuthBloc>()
-                            .add(SendOtpEvent(email: emailController.text));
-                      },
-                    )
-                  ],
+                      height8,
+                      Text(
+                        AppLocale.instruction.getString(context),
+                        style: TextStyle(
+                            color: green,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      height10,
+                      InputTextFelid(
+                        controller: emailController,
+                        title: AppLocale.emailTitle.getString(context),
+                        hintText: "example@gmail.com",
+                        icon: Icons.email,
+                        isPassword: false,
+                        isColorChange: true,
+                      ),
+                      height32,
+                      CustomButton(
+                        title: AppLocale.verification.getString(context),
+                        backgroundColor: green,
+                        onPressed: () {
+                          context
+                              .read<AuthBloc>()
+                              .add(SendOtpEvent(email: emailController.text));
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -142,7 +142,7 @@ class DrawerScreen extends StatelessWidget {
                     ),
                     width8,
                     Text(
-                      AppLocale.SettingsTitle.getString(context),
+                      AppLocale.settingsTitle.getString(context),
                       style: TextStyle(
                           color: pureWhite, fontWeight: FontWeight.bold),
                     ),
@@ -151,7 +151,40 @@ class DrawerScreen extends StatelessWidget {
                     width8,
                     InkWell(
                       onTap: () {
-                        context.read<AuthBloc>().add(LogoutEvent());
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: Text(
+                              AppLocale.signOutMsg.getString(context),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  AppLocale.no.getString(context),
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .unselectedWidgetColor),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  context.read<AuthBloc>().add(LogoutEvent());
+                                  context.push(
+                                      view: const LoginView(), isPush: false);
+                                },
+                                child: Text(
+                                  AppLocale.yes.getString(context),
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .unselectedWidgetColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                       child: Text(
                         AppLocale.logoutButton.getString(context),

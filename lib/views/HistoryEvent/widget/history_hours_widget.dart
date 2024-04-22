@@ -20,7 +20,7 @@ class HistoryHoursWidget extends StatelessWidget {
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(color: green));
+          return SizedBox();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {

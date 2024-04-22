@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/locators/data_injection.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:lottie/lottie.dart';
 
 
 
 class FutureDelayedWidget extends StatefulWidget {
+  const FutureDelayedWidget({super.key});
+
   @override
   _FutureDelayedWidgetState createState() => _FutureDelayedWidgetState();
 }
 
 class _FutureDelayedWidgetState extends State<FutureDelayedWidget> {
+    final serviceLocator = DataInjection().locator.get<DBServices>();
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const BottomNavBar()),

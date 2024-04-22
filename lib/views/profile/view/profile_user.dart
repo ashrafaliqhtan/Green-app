@@ -10,11 +10,8 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
-import 'package:green_saudi_app/views/HoursHistory/view/Hours_history.dart';
-
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/profile/view/settings_user.dart';
 import 'package:green_saudi_app/views/profile/widget/text_profile.dart';
@@ -138,20 +135,12 @@ class ProfileView extends StatelessWidget {
                             height: 0.2,
                           ),
                           height32,
-                          InkWell(
-                            onTap: () {
-                              context.push(
-                                  view: const HoursHistoryView(),
-                                  isPush: false);
-                            },
-                            child: TextProfile(
-                              title:
-                                  AppLocale.volunteerHours.getString(context),
-                              data:
-                                  "${user.volunteerHours ?? "0"} ${AppLocale.hours.getString(context)}",
-                              icon: FontAwesomeIcons.userClock,
-                              isClickable: true,
-                            ),
+                          TextProfile(
+                            title:
+                                AppLocale.volunteerHours.getString(context),
+                            data:
+                                "${user.volunteerHours ?? "0"} ${AppLocale.hours.getString(context)}",
+                            icon: FontAwesomeIcons.userClock,
                           ),
                           TextProfile(
                             title: AppLocale.email.getString(context),

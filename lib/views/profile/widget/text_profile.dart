@@ -55,15 +55,21 @@ class TextProfile extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(width: 2, color: grey)),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(
                 icon,
               ),
-              width30,
-              Text(
-                data,
-                style: const TextStyle(
-                  fontSize: 20,
+              width16,
+              Container(
+                width: 250,
+                child: Text(
+                  data,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],

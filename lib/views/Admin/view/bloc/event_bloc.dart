@@ -84,9 +84,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     try {
       await locator.participateEvent(event: event.personalEvent);
 
-      emit(RegisterEventSuccessState(msg: "msg"));
+      emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
     } catch (e) {
-      emit(RegisterEventErrorState(msg: "msg"));
+      emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
     }
   }
 
@@ -95,7 +95,10 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     emit(EventLoadingState());
     try {
       listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
-      emit(HistoryLoadedState(history: listOfPersonalEvents));
+      if (listOfPersonalEvents.isNotEmpty) {
+        emit(HistoryLoadedState(history: listOfPersonalEvents));
+      }
+      emit(EventErrorState(msg: ""));
     } catch (_) {}
   }
 }

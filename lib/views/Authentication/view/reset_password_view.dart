@@ -35,57 +35,62 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           context.getMessagesBar(msg: state.message, color: green);
           context.push(view: const LoginView(), isPush: false);
         } else if (state is AuthChangePasswordErrorState) {
-          context.getMessagesBar(msg: state.message, color: red);
+          context.getMessagesBar(msg: state.message, color: red, success: false);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            actionsIconTheme: IconThemeData(color: white),
-          ),
-          backgroundColor: white,
-          body: SingleChildScrollView(
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Container(
-                    width: context.getWidth(),
-                    height: context.getHeight() * 0.45,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/reset_password.png"),
-                        fit: BoxFit.cover,
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              actionsIconTheme: IconThemeData(color: white),
+            ),
+            backgroundColor: white,
+            body: SingleChildScrollView(
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Container(
+                      width: context.getWidth(),
+                      height: context.getHeight() * 0.45,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/reset_password.png"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  height10,
-                  InputTextFelid(
-                    controller: passwordController,
-                    title: AppLocale.newPassword.getString(context),
-                    icon: Icons.lock,
-                    isPassword: true,
-                    isColorChange: true,
-                  ),
-                  InputTextFelid(
-                    controller: confirmPasswordController,
-                    title: AppLocale.confirmTitle.getString(context),
-                    icon: Icons.lock,
-                    isPassword: true,
-                    isColorChange: true,
-                  ),
-                  height32,
-                  CustomButton(
-                    title: AppLocale.confirmEmail.getString(context),
-                    backgroundColor: greenLight2,
-                    onPressed: () {
-                      context.read<AuthBloc>().add(ChangePasswordEvent(
-                          password: passwordController.text,
-                          confirmPassword: confirmPasswordController.text));
-                    },
-                  )
-                ],
+                    height10,
+                    InputTextFelid(
+                      controller: passwordController,
+                      title: AppLocale.newPassword.getString(context),
+                      hintText: AppLocale.resetPasswordHint.getString(context),
+                      icon: Icons.lock,
+                      isPassword: true,
+                      isColorChange: true,
+                    ),
+                    InputTextFelid(
+                      controller: confirmPasswordController,
+                      title: AppLocale.confirmTitle.getString(context),
+                      hintText: AppLocale.confirmPasswordHint.getString(context),
+                      icon: Icons.lock,
+                      isPassword: true,
+                      isColorChange: true,
+                    ),
+                    height32,
+                    CustomButton(
+                      title: AppLocale.confirmEmail.getString(context),
+                      backgroundColor: greenLight2,
+                      onPressed: () {
+                        context.read<AuthBloc>().add(ChangePasswordEvent(
+                            password: passwordController.text,
+                            confirmPassword: confirmPasswordController.text));
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),

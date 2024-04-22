@@ -38,6 +38,8 @@ mixin AppLocale {
   static const String second = 'second';
   static const String resend = 'resend';
   static const String sendOTP = 'sendOTP';
+  static const String resetPasswordHint = "Enter New Password";
+  
   //sultan
   static const String homePage = 'homePage';
   static const String pointPage = 'pointPage';
@@ -81,6 +83,11 @@ mixin AppLocale {
   static const String region13 = 'region13';
   static const String vision = 'Our Vision';
   static const String saudi = 'Green Saudi';
+  static const String signOutMsg = 'sign Out';
+  static const String yes = 'Yes';
+  static const String no = 'no'; 
+  static const String noReward = 'No Reward'; 
+  static const String noHistory = 'No History';
   //Admin
   static const String controlPanel = 'ControlPanel';
   static const String eventsAdmin = 'Events';
@@ -117,7 +124,7 @@ mixin AppLocale {
   static const String phoneNumber = 'kkk';
   static const String saveButton = 'save';
   static const String editTitle = 'edit';
-  static const String SettingsTitle = 'Settings';
+  static const String settingsTitle = 'Settings';
   static const String changePassword = 'changePassword';
   static const String changeEmail = 'changeEmail';
   static const String notification = 'notification';
@@ -129,7 +136,7 @@ mixin AppLocale {
   static const String chooseLanguage = 'chooseLanguage';
   static const String listCity = "listCity";
   static const String addEvent = "AddEvent";
-  static const String changeLanguage = 'ChangeLanguage';
+  static const String changeLanguage = 'ChangeLanguage'; 
 
   static const Map<String, dynamic> EN = {
     // Onboarding
@@ -173,6 +180,7 @@ mixin AppLocale {
     second: 'second',
     resend: 'Resend',
     sendOTP: 'Enter Verification Code',
+    resetPasswordHint: 'Enter New Password',
     // Profile
     chooseLanguage: 'Choose Language',
     userName: 'User name',
@@ -184,7 +192,7 @@ mixin AppLocale {
     phoneNumber: 'Phone Number',
     saveButton: 'Save',
     editTitle: 'Edit',
-    SettingsTitle: 'Settings',
+    settingsTitle: 'Settings',
     changePassword: 'Change Password',
     changeEmail: 'Change Email',
     notification: 'Notification',
@@ -193,7 +201,7 @@ mixin AppLocale {
     logoutButton: 'Logout',
     editProfile: 'Edit Profile',
     changeLanguage : 'Change Language',
-
+    
     // USER
     homePage: 'Home',
     pointPage: 'Reward',
@@ -234,7 +242,11 @@ mixin AppLocale {
     region13: 'Jazan',
     vision :'Our Vision',
     saudi :'Green Saudi',
-
+    signOutMsg :'Are you sure you want to log out?',
+    yes : 'Log Out',
+    no : 'Cancel',
+    noHistory: 'No Data',
+    noReward :'No Reward',
     //Admin
     controlPanel: 'Control Panel',
     eventsAdmin: 'Events',
@@ -305,7 +317,9 @@ mixin AppLocale {
     second: 'ثانية',
     resend: 'أعد الارسال',
     sendOTP: 'أدخل رمز التحقق',
-
+    resetPasswordHint: 'أدخل كلمة المرور الجديدة',
+    noHistory: 'لا توجد بيانات',
+    noReward: 'لا توجد مكأفات حاليا',
     // Profile
     chooseLanguage: 'اختر اللغة',
     userName: "اسم المستخدم",
@@ -319,7 +333,7 @@ mixin AppLocale {
     phoneNumber: 'رقم الهاتف',
     saveButton: 'حفظ',
     editTitle: 'تعديل',
-    SettingsTitle: 'الإعدادات',
+    settingsTitle: 'الإعدادات',
     changePassword: 'تغيير كلمة المرور',
     changeEmail: 'تغيير البريد الإلكتروني',
     notification: 'الإشعارات',
@@ -380,7 +394,6 @@ mixin AppLocale {
     rewordAdmin: 'المكافآت',
     vision: 'رؤيتنا',
     saudi: 'السعودية الخضراء',
-
     date: 'التاريخ',
     from: 'من',
     to: 'الى',
@@ -394,5 +407,8 @@ mixin AppLocale {
     companyName: 'إسم الشركة',
     ok :'تأكيد',
     lightMode : 'الوضع الفاتح',
+    signOutMsg: 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+    yes: 'تسجيل الخروج',
+    no: 'إلغاء',
   };
 }
