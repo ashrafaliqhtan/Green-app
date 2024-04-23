@@ -6,6 +6,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/add_event.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
@@ -50,7 +51,10 @@ class EventsAdminPage extends StatelessWidget {
           child: BlocBuilder<EventBloc, EventState>(
             builder: (context, state) {
               if (state is EventLoadingState) {
-                return const Center(child: CircularProgressIndicator());
+                return Center(
+                    child: CircularProgressIndicator(
+                  color: green,
+                ));
               } else if (state is EventLoadedState) {
                 return ListView.builder(
                   scrollDirection: Axis.vertical,
@@ -76,10 +80,30 @@ class EventsAdminPage extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 10),
-                              child: Text(
-                                "${AppLocale.addressAdminEvent.getString(context)} : ${state.list[index].title}",
-                                style: const TextStyle(
-                                    fontSize: 20, color: Colors.white),
+                              child: FutureBuilder(
+                                future: translatorFunction(
+                                  state.list[index].title ?? "No Content",
+                                ),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const SizedBox();
+                                  } else if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  } else {
+                                    return SizedBox(
+                                      width: 300,
+                                      child: Text(
+                                        snapshot.data.toString(),
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
                             ),
                           ],
@@ -93,7 +117,11 @@ class EventsAdminPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset("assets/icons/Insert block-rafiki.svg"),
+                      SvgPicture.asset(
+                        "assets/icons/Insert block-rafiki.svg",
+                        width: 200,
+                        height: 200,
+                      ),
                       height16,
                       Text(
                         'No Event added',
@@ -110,7 +138,7 @@ class EventsAdminPage extends StatelessWidget {
           onPressed: () {
             context.push(view: const AddEvent(), isPush: false);
           },
-          backgroundColor: green, // Set your desired background color
+          backgroundColor: green,
           child: const Icon(
             Icons.add,
             color: Colors.white,

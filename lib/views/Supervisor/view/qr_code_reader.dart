@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Supervisor/bloc/supervisor_bloc.dart';
+import 'package:green_saudi_app/views/Supervisor/widget/state_widget.dart';
+import 'package:green_saudi_app/views/home_view.dart';
 
 class ScanView extends StatelessWidget {
   const ScanView({super.key});
@@ -18,15 +23,28 @@ class ScanView extends StatelessWidget {
           appBar: AppBar(
             actionsIconTheme: IconThemeData(color: white),
             backgroundColor: green,
+            leading: IconButton(
+                onPressed: () {
+                  context.push(view: const HomeView(), isPush: false);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: pureWhite,
+                )),
             actions: [
-              Icon(
-                Icons.qr_code_scanner,
-                color: white,
+              IconButton(
+                  onPressed: () {
+                    context.push(view: const HomeView(), isPush: false);
+                  },
+                  icon: Icon(
+                  Icons.qr_code_scanner,
+                  color: white,
+                ),
               ),
             ],
             title: Text(
               //TODO: localizition
-              'مسح الباركود',
+              AppLocale.deleteQrCode.getString(context),
               style: TextStyle(
                 color: white,
               ),
@@ -45,15 +63,10 @@ class ScanView extends StatelessWidget {
                       if (state is SupervisorInitial) {
                         return Column(
                           children: [
-                            Image.asset(
-                              //TODO: change image
-                              'assets/images/logo.jpg',
-                              width: 175,
-                              height: 175,
-                            ),
+                            IconDisplay(isSuccess: true),
                             Text(
                               //TODO: localizition
-                              "لنقم بالمسح",
+                              AppLocale.scanQR.getString(context),
                               style: TextStyle(
                                 color: green,
                                 fontSize: 30,
@@ -71,23 +84,23 @@ class ScanView extends StatelessWidget {
                                       addVolunteerHour: 8,
                                       volunteerID: state.qrString);
                                 },
-                                child: Text("ممتاز"))
+                                child: Text(AppLocale.great.getString(context)))
                           ],
-                          title: Text("تم تسجيل الحضور"),
+                          title: Column(
+                            children: [
+                              IconDisplay(isSuccess: true),
+                              Text(AppLocale.attendance.getString(context)),
+                            ],
+                          ),
                         );
                       } else if (state is SupervisorScanFailure) {
                         return Column(
                           children: [
-                            Image.asset(
-                              //TODO: change image
-                              'assets/images/logo.jpg',
-                              width: 175,
-                              height: 175,
-                            ),
-                            const Text(
+                            const IconDisplay(isSuccess: false),
+                            Text(
                               //TODO: localizition
-                              'عذرًا، لم نتمكن من قراءة الباركود. يرجى المحاولة مرة أخرى.',
-                              style: TextStyle(
+                              AppLocale.failScan.getString(context),
+                              style: const TextStyle(
                                 color: Colors.red,
                                 fontSize: 30,
                               ),
@@ -97,15 +110,10 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanCanceled) {
                         return Column(
                           children: [
-                            Image.asset(
-                              //TODO: change image
-                              'assets/images/logo.jpg',
-                              width: 175,
-                              height: 175,
-                            ),
+                            IconDisplay(isSuccess: null),
                             Text(
                               //TODO: localizition
-                              'تم إلغاء مسح الباركود',
+                              AppLocale.cancelSAcan.getString(context),
                               style: TextStyle(
                                 color: green,
                                 fontSize: 30,
@@ -116,15 +124,10 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanErrorUser) {
                         return Column(
                           children: [
-                            Image.asset(
-                              //TODO: change image
-                              'assets/images/logo.jpg',
-                              width: 175,
-                              height: 175,
-                            ),
+                            IconDisplay(isSuccess: false),
                             Text(
                               //TODO: localizition
-                              "تم تسجيل حضورك مسبقا",
+                              AppLocale.attendanceAlready.getString(context),
                               style: TextStyle(
                                 color: green,
                                 fontSize: 30,
@@ -142,7 +145,22 @@ class ScanView extends StatelessWidget {
                     onPressed: () {
                       BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
                     }, //TODO: localizition
-                    child: Text("امسح الباركود"),
+                    child: Column(
+                      children: [
+                        Text(
+                          AppLocale.deleteQrCode.getString(context),
+                          style: TextStyle(color: green, fontSize: 25),
+                        ),
+                              Container(
+                                width: 170,
+                          margin: EdgeInsets.only(
+                              top: 5), 
+                          height: 2,
+                          color: green, 
+                        ),
+
+                      ],
+                    ),
                   ),
                 ],
               ),

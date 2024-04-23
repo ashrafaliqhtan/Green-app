@@ -15,6 +15,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
