@@ -35,8 +35,7 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
             emit(SupervisorScanErrorUser());
           }
         } on PostgrestException catch (e) {
-          print(e);
-          emit(SupervisorScanError());
+          emit(SupervisorScanFailure());
         }
       }
     } catch (e) {

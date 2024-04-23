@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class DatePickerWidget extends StatelessWidget {
    DatePickerWidget({super.key,required this.time,required this.isFires});
    String time;

@@ -118,13 +118,13 @@ class EventDetailsView extends StatelessWidget {
                 ),
                 // Header Info Section (Location - Time - Date)
                 Positioned(
-                  top: 375,
+                  top: 300,
                   left: 35,
                   right: 35,
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                      height: 160,
+                      height: context.getHeight() *0.25,
                       width: context.getWidth(),
                       margin: const EdgeInsets.symmetric(horizontal: 6),
                       decoration: BoxDecoration(
@@ -148,7 +148,7 @@ class EventDetailsView extends StatelessWidget {
                                 eventName,
                                 style: TextStyle(
                                   color: pureWhite,
-                                  fontSize: 25,
+                                  fontSize: 23,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 maxLines: 2,

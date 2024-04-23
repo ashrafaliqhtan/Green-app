@@ -9,6 +9,7 @@ import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Supervisor/bloc/supervisor_bloc.dart';
 import 'package:green_saudi_app/views/Supervisor/widget/state_widget.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/views/home_view.dart';
 
 class ScanView extends StatelessWidget {
@@ -25,7 +26,7 @@ class ScanView extends StatelessWidget {
             backgroundColor: green,
             leading: IconButton(
                 onPressed: () {
-                  context.push(view: const HomeView(), isPush: false);
+                  context.push(view: const BottomNavBar(), isPush: false);
                 },
                 icon: Icon(
                   Icons.arrow_back,
@@ -100,8 +101,10 @@ class ScanView extends StatelessWidget {
                             Text(
                               //TODO: localizition
                               AppLocale.failScan.getString(context),
+                              textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.red,
+
                                 fontSize: 30,
                               ),
                             ),

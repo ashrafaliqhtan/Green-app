@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:green_saudi_app/model/event_model.dart';
+import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
@@ -11,7 +13,7 @@ import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/shimmer_history.dart';
 
-
+//TODO: history
 class HistoryEventView extends StatelessWidget {
   const HistoryEventView({super.key});
 
@@ -60,19 +62,17 @@ class HistoryEventView extends StatelessWidget {
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return HistoryShimmer();
+                          return const HistoryShimmer();
                         });
                   } else if (state is HistoryLoadedState) {
                     return Expanded(
                       child: ListView.builder(
-                          itemCount: 4,
-                         // state.history.length,
+                          itemCount: state.history.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                             return HistoryHoursWidget();
-                           /* return HistoryWidget(
-                              personalEvent: state.history[index],
-                            );*/
+                            return HistoryHoursWidget(
+                              event: state.history[index],
+                            );
                           }),
                     );
                   } else {
@@ -81,10 +81,14 @@ class HistoryEventView extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         SvgPicture.asset(
-                              "assets/icons/No data-pana.svg",height: 200, width: 200,),
+                          SvgPicture.asset(
+                            "assets/icons/No data-pana.svg",
+                            height: 200,
+                            width: 200,
+                          ),
                           height16,
-                            Text(AppLocale.noHistory.getString(context),
+                          Text(
+                            AppLocale.noHistory.getString(context),
                             style: TextStyle(fontSize: 30, color: green),
                           ),
                         ],
