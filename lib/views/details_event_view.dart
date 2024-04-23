@@ -9,7 +9,6 @@ import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EventDetailsView extends StatelessWidget {
@@ -18,7 +17,6 @@ class EventDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(event.startTime!);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -48,8 +46,7 @@ class EventDetailsView extends StatelessWidget {
               'زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.'),
           translatorFunction(event.title ?? 'زراعة الاشجار'),
           translatorFunction(event.location ?? 'الرياض - حي الرمال'),
-          translatorFunction(event.startDate ??'٤ أبريل ٢٠٢٤'),
-
+          translatorFunction(event.startDate ?? '٤ أبريل ٢٠٢٤'),
         ]),
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -61,8 +58,10 @@ class EventDetailsView extends StatelessWidget {
             final String description = translatedTexts[0];
             final String eventName = translatedTexts[1];
             final String eventLocation = translatedTexts[2];
-            final String eventTime = "${event.getTimeWithAmPm(event.startTime!)}   ${AppLocale.to.getString(context)}   ${event.getTimeWithAmPm(event.endTime!)}";
-            final String eventDate = "${event.startDate!}   ${AppLocale.to.getString(context)}   ${event.endDate!}";
+            final String eventTime =
+                "${event.getTimeWithAmPm(event.startTime!)}   ${AppLocale.to.getString(context)}   ${event.getTimeWithAmPm(event.endTime!)}";
+            final String eventDate =
+                "${event.startDate!}   ${AppLocale.to.getString(context)}   ${event.endDate!}";
             return Stack(
               children: [
                 // Image and Description Section
@@ -122,7 +121,7 @@ class EventDetailsView extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                      height: context.getHeight() *0.25,
+                      height: context.getHeight() * 0.25,
                       width: context.getWidth(),
                       margin: const EdgeInsets.symmetric(horizontal: 6),
                       decoration: BoxDecoration(
@@ -211,39 +210,8 @@ class EventDetailsView extends StatelessWidget {
                   ),
                 ),
                 // Button
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        //TODO: Register in Event for user
-                        context.read<EventBloc>().add(RegisterEvent(
-                            personalEvent: PersonalEvent(
-                                name: eventName,
-                                stats: event.state,
-                                eventId: event.id)));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: Container(
-                        height: 60,
-                        alignment: Alignment.center,
-                        child: Text(
-                          AppLocale.signEvent.getString(context),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                RegisterButtonWidget(
+                    eventName: eventName, event: event),
               ],
             );
           }
@@ -252,12 +220,48 @@ class EventDetailsView extends StatelessWidget {
     );
   }
 }
-String formatDate(DateTime date) {
-  return DateFormat('yyyy-MM-dd').format(date);
+
+class RegisterButtonWidget extends StatelessWidget {
+  const RegisterButtonWidget({
+    super.key,
+    required this.eventName,
+    required this.event,
+  });
+
+  final String eventName;
+  final EventModel event;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: ElevatedButton(
+          onPressed: () {
+            context.read<EventBloc>().add(RegisterEvent(
+                personalEvent: PersonalEvent(
+                    name: eventName, stats: event.state, eventId: event.id)));
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: green,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          child: Container(
+            height: 60,
+            alignment: Alignment.center,
+            child: Text(
+              AppLocale.signEvent.getString(context),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
-String formatDateTime(DateTime date) {
-  return DateFormat('HH:mm').format(date);
-}
-// String formatDateYMMMd(DateTime date) {
-//   return DateFormat.yMMMd().format(date);
-// }

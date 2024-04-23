@@ -106,14 +106,34 @@ class DBServices {
 
   //-----------------------------User----------------------------------
   //Register Event
-  Future participateEvent({required PersonalEvent event}) async {
-    await supabase.from('personal_event').insert({
-      "user_id": userID,
-      "name": event.name,
-      "event_id": event.eventId,
-      "stats": event.stats,
-      "days": event.days
-    });
+  Future<PersonalEvent> participateEvent({required PersonalEvent event}) async {
+    final response = await supabase
+        .from('personal_event')
+        .insert({
+          "user_id": userID,
+          "name": event.name,
+          "event_id": event.eventId,
+          "stats": event.stats,
+          "days": event.days
+        })
+        .select()
+        .single();
+    return PersonalEvent.fromJson(response);
+  }
+
+  Future<bool> checkRegister({required String eventId}) async {
+    try {
+      final response = await supabase
+          .from('personal_event')
+          .select()
+          .eq('user_id', userID)
+          .eq('event_id', eventId)
+          .single();
+      // Check if any rows are returned
+      return response != null && response.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
   }
 
   //display List Event history

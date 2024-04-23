@@ -2,7 +2,7 @@ class PersonalEvent {
   String? name;
   String? eventId;
   String? stats;
-  String? days;
+  int? days;
 
   PersonalEvent({this.name, this.eventId, this.stats, this.days});
 

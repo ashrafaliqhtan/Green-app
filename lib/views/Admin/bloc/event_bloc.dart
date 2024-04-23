@@ -86,9 +86,15 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       RegisterEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
     try {
-      await locator.participateEvent(event: event.personalEvent);
-
-      emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
+      bool check =
+          await locator.checkRegister(eventId: event.personalEvent.eventId!);
+      if (check) {
+        await locator.participateEvent(event: event.personalEvent);
+        emit(RegisterEventSuccessState(
+            msg: "تم تسجيل الحدث بنجاح"));
+      } else {
+        emit(RegisterEventErrorState(msg: "مسجل مسبقا"));
+      }
     } catch (e) {
       emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
     }
@@ -100,18 +106,16 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     try {
       listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
       List<EventModel> listOfEvents = await locator.getAllEvent(true);
-      List<EventModel> listOfEvent=[];
-for (var element in listOfEvents) {
-  for (var index = 0; index < listOfPersonalEvents.length; index++) {
-    if(element.id ==listOfPersonalEvents[index].eventId){
-      listOfEvent.add(element);
-    }
-  }
-  
-}
-      print(listOfEvent);
+      List<EventModel> listOfEvent = [];
+      for (var element in listOfEvents) {
+        for (var index = 0; index < listOfPersonalEvents.length; index++) {
+          if (element.id == listOfPersonalEvents[index].eventId) {
+            listOfEvent.add(element);
+          }
+        }
+      }
       if (listOfEvent.isNotEmpty) {
-        emit(HistoryLoadedState(event:listOfEvent));
+        emit(HistoryLoadedState(event: listOfEvent));
       } else {
         emit(EventInitial());
       }

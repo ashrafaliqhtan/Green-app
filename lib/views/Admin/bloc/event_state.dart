@@ -6,12 +6,14 @@ sealed class EventState {}
 final class EventInitial extends EventState {}
 
 final class EventLoadingState extends EventState {}
+
 final class HistoryLoadingState extends EventState {}
 
 final class EventLoadedState extends EventState {
   final List<EventModel> list;
   EventLoadedState({required this.list});
 }
+
 final class HistoryLoadedState extends EventState {
   final List<EventModel> event;
   HistoryLoadedState({required this.event});
@@ -29,7 +31,8 @@ final class EventErrorState extends EventState {
 
 final class RegisterEventSuccessState extends EventState {
   final String msg;
-  RegisterEventSuccessState({required this.msg});
+  final bool? check;
+  RegisterEventSuccessState({required this.msg, this.check});
 }
 
 final class RegisterEventErrorState extends EventState {
