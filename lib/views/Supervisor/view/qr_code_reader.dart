@@ -10,7 +10,6 @@ import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Supervisor/bloc/supervisor_bloc.dart';
 import 'package:green_saudi_app/views/Supervisor/widget/state_widget.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
-import 'package:green_saudi_app/views/home_view.dart';
 
 class ScanView extends StatelessWidget {
   const ScanView({super.key});
@@ -34,10 +33,8 @@ class ScanView extends StatelessWidget {
                 )),
             actions: [
               IconButton(
-                  onPressed: () {
-                    context.push(view: const HomeView(), isPush: false);
-                  },
-                  icon: Icon(
+                onPressed: () {},
+                icon: Icon(
                   Icons.qr_code_scanner,
                   color: white,
                 ),
@@ -64,7 +61,7 @@ class ScanView extends StatelessWidget {
                       if (state is SupervisorInitial) {
                         return Column(
                           children: [
-                            IconDisplay(isSuccess: true),
+                            const IconDisplay(isSuccess: true),
                             Text(
                               //TODO: localizition
                               AppLocale.scanQR.getString(context),
@@ -89,7 +86,7 @@ class ScanView extends StatelessWidget {
                           ],
                           title: Column(
                             children: [
-                              IconDisplay(isSuccess: true),
+                              const IconDisplay(isSuccess: true),
                               Text(AppLocale.attendance.getString(context)),
                             ],
                           ),
@@ -104,7 +101,6 @@ class ScanView extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.red,
-
                                 fontSize: 30,
                               ),
                             ),
@@ -113,7 +109,7 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanCanceled) {
                         return Column(
                           children: [
-                            IconDisplay(isSuccess: null),
+                            const IconDisplay(isSuccess: null),
                             Text(
                               //TODO: localizition
                               AppLocale.cancelSAcan.getString(context),
@@ -127,7 +123,7 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanErrorUser) {
                         return Column(
                           children: [
-                            IconDisplay(isSuccess: false),
+                            const IconDisplay(isSuccess: false),
                             Text(
                               //TODO: localizition
                               AppLocale.attendanceAlready.getString(context),
@@ -154,14 +150,12 @@ class ScanView extends StatelessWidget {
                           AppLocale.deleteQrCode.getString(context),
                           style: TextStyle(color: green, fontSize: 25),
                         ),
-                              Container(
-                                width: 170,
-                          margin: EdgeInsets.only(
-                              top: 5), 
+                        Container(
+                          width: 170,
+                          margin: const EdgeInsets.only(top: 5),
                           height: 2,
-                          color: green, 
+                          color: green,
                         ),
-
                       ],
                     ),
                   ),

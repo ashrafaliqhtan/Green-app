@@ -4,3 +4,5 @@ part of 'supervisor_bloc.dart';
 sealed class SupervisorEvent {}
 
 class ScanQR extends SupervisorEvent {}
+
+class LoadSupervisors extends SupervisorEvent{}

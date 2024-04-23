@@ -10,6 +10,13 @@ class SupervisorScanSuccess extends SupervisorState {
   SupervisorScanSuccess(this.qrString);
 }
 
+class SupervisorLoad extends SupervisorState {
+  final List<GSIUser> supervisor;
+  SupervisorLoad({required this.supervisor});
+}
+
+class SupervisorLoading extends SupervisorState {}
+
 class SupervisorScanError extends SupervisorState {}
 
 class SupervisorScanErrorUser extends SupervisorState {}

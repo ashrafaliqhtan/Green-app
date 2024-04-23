@@ -19,10 +19,10 @@ class DBServices {
   File userImageFile = File("");
   File ImageFileFromDatabase = File("");
   GSIUser user = GSIUser();
-    String startTimeEvent ="";
-    String startDateEvent ="";
-    String endTimeEvent ="";
-    String endDateEvent ="";
+  String startTimeEvent = "";
+  String startDateEvent = "";
+  String endTimeEvent = "";
+  String endDateEvent = "";
   //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
@@ -125,12 +125,19 @@ class DBServices {
     return listOfPersonalEvents;
   }
 
-  //points
-  //balance
-  //redeem
-  //display List redeem history
-
 ///////////////////////superviser
+  Future<List<GSIUser>> getSupervisors() async {
+    final supervisorListData = await supabase
+        .from('user_green_sa_app')
+        .select('*')
+        .match({'type_role': 'supervisor'});
+    List<GSIUser> supervisorList = [];
+    for (var element in supervisorListData) {
+      supervisorList.add(GSIUser.fromJson(element));
+    }
+    return supervisorList;
+  }
+
   Future<int> getUserPoint({required String id}) async {
     final userInfo = await supabase
         .from('user_green_sa_app')
@@ -138,45 +145,52 @@ class DBServices {
         .match({'id_user': id}).single();
     return int.parse(userInfo['points']);
   }
+
   Future<String> getAttendees({required String id}) async {
-    final attendees = await supabase
-        .from('attendees_table')
-        .select('id')
-        .match({'id': id}).single();
-    return attendees['id'];
+    try {
+      final attendees = await supabase
+          .from('attendees_table')
+          .select('id')
+          .match({'id': id}).single();
+      return attendees['id'];
+    } catch (e) {
+      return "";
+    }
   }
 
-  Future addVolunteerHours({required int addVolunteerHour,required String volunteerID}) async {
-        final respons=await supabase.from('attendees_table').insert({"id":volunteerID});
-    if(respons==null){
-      await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
-      "points":(user.points!+addVolunteerHour*10)
-    }).match({'id_user': volunteerID,});
-        await supabase.from('history_point').insert({
-      "user_id":volunteerID,
-      "point":(addVolunteerHour*10),
-      "state":"plus"
-    });}
-    
+  Future addVolunteerHours(
+      {required int addVolunteerHour, required String volunteerID}) async {
+    final respons =
+        await supabase.from('attendees_table').insert({"id": volunteerID});
+    if (respons == null) {
+      await supabase.from('user_green_sa_app').update({
+        "volunteer_hours": (user.volunteerHours! + addVolunteerHour),
+        "points": (user.points! + addVolunteerHour * 10)
+      }).match({
+        'id_user': volunteerID,
+      });
+      await supabase.from('history_point').insert({
+        "user_id": volunteerID,
+        "point": (addVolunteerHour * 10),
+        "state": "plus"
+      });
+    }
   }
 
-  Future usePoint({required int usedPoint,required String volunteerID}) async {
-     final point = await getUserPoint(id:volunteerID);
-    await supabase.from('user_green_sa_app').update({
-      "points":(point-usedPoint)
-    }).match({'id_user': volunteerID,});
-    await supabase.from('history_point').insert({
-      "user_id":volunteerID,
-      "point":(usedPoint),
-      "state":"minus"
+  Future usePoint({required int usedPoint, required String volunteerID}) async {
+    final point = await getUserPoint(id: volunteerID);
+    await supabase
+        .from('user_green_sa_app')
+        .update({"points": (point - usedPoint)}).match({
+      'id_user': volunteerID,
     });
-
+    await supabase.from('history_point').insert(
+        {"user_id": volunteerID, "point": (usedPoint), "state": "minus"});
   }
+
   Future<List<HistoryPointModel>> getHistoryPoint({required String id}) async {
-    final historyPointListData = await supabase
-        .from('history_point')
-        .select('*')
-        .match({'user_id': id});
+    final historyPointListData =
+        await supabase.from('history_point').select('*').match({'user_id': id});
     List<HistoryPointModel> listOfHistoryPoints = [];
     for (var element in historyPointListData) {
       listOfHistoryPoints.add(HistoryPointModel.fromMap(element));
@@ -184,7 +198,6 @@ class DBServices {
     print(listOfHistoryPoints);
     return listOfHistoryPoints;
   }
-
 
   //----------------------------- Admin --------------------------------
   Future createEvent({required EventModel event}) async {
@@ -197,11 +210,12 @@ class DBServices {
       "time_start": event.startTime,
       "end_date": event.endDate,
       "time_end": event.endTime!,
-      "image_url":event.imageUrl,
+      "image_url": event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
       "location_url": event.locationUrl,
     });
   }
+
   Future createReward({required RewardModel reward}) async {
     await supabase.from('reward_table').insert({
       "reward_name": reward.rewardName,
@@ -212,7 +226,10 @@ class DBServices {
   }
 
   Future<List<EventModel>> getAllEvent(bool isOrder) async {
-    final eventsListData = await supabase.from('org_event').select('*').order("created_at",ascending: isOrder);
+    final eventsListData = await supabase
+        .from('org_event')
+        .select('*')
+        .order("created_at", ascending: isOrder);
     List<EventModel> listOfEvents = [];
     for (var element in eventsListData) {
       listOfEvents.add(EventModel.fromJson(element));
@@ -228,19 +245,17 @@ class DBServices {
     }
     return listOfReward;
   }
-  
-  void scheduleTask() async{
-  
-  }
+
+  void scheduleTask() async {}
 
   /////////////////file crud
   Future<void> uploadImage(
       File imageFile, String bucket, String nameFile) async {
-      await supabase.storage
-          .from(bucket) // Replace with your storage bucket name
-          .upload("${nameFile}", imageFile,
-              fileOptions: FileOptions(upsert: true));
-      await urlImage(bucket, nameFile);
+    await supabase.storage
+        .from(bucket) // Replace with your storage bucket name
+        .upload("${nameFile}", imageFile,
+            fileOptions: FileOptions(upsert: true));
+    await urlImage(bucket, nameFile);
     print("done");
   }
 
