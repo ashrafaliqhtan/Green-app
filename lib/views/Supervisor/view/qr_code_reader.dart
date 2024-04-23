@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
@@ -10,10 +11,11 @@ import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Supervisor/bloc/supervisor_bloc.dart';
 import 'package:green_saudi_app/views/Supervisor/widget/state_widget.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
+import 'package:green_saudi_app/views/home_view.dart';
 
 class ScanView extends StatelessWidget {
-  const ScanView({super.key});
-
+   ScanView({super.key,required this.eventModel});
+  EventModel eventModel;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -33,8 +35,10 @@ class ScanView extends StatelessWidget {
                 )),
             actions: [
               IconButton(
-                onPressed: () {},
-                icon: Icon(
+                  onPressed: () {
+                    context.push(view: const HomeView(), isPush: false);
+                  },
+                  icon: Icon(
                   Icons.qr_code_scanner,
                   color: white,
                 ),
@@ -61,7 +65,7 @@ class ScanView extends StatelessWidget {
                       if (state is SupervisorInitial) {
                         return Column(
                           children: [
-                            const IconDisplay(isSuccess: true),
+                            IconDisplay(isSuccess: true),
                             Text(
                               //TODO: localizition
                               AppLocale.scanQR.getString(context),
@@ -78,15 +82,17 @@ class ScanView extends StatelessWidget {
                           actions: [
                             ElevatedButton(
                                 onPressed: () {
+                                  print(state.qrString);
+                                  print(eventModel.id!);
                                   GetIt.I.get<DBServices>().addVolunteerHours(
                                       addVolunteerHour: 8,
-                                      volunteerID: state.qrString);
+                                      volunteerID: state.qrString,eventID:eventModel.id!);
                                 },
                                 child: Text(AppLocale.great.getString(context)))
                           ],
                           title: Column(
                             children: [
-                              const IconDisplay(isSuccess: true),
+                              IconDisplay(isSuccess: true),
                               Text(AppLocale.attendance.getString(context)),
                             ],
                           ),
@@ -101,6 +107,7 @@ class ScanView extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.red,
+
                                 fontSize: 30,
                               ),
                             ),
@@ -109,7 +116,7 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanCanceled) {
                         return Column(
                           children: [
-                            const IconDisplay(isSuccess: null),
+                            IconDisplay(isSuccess: null),
                             Text(
                               //TODO: localizition
                               AppLocale.cancelSAcan.getString(context),
@@ -123,7 +130,7 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanErrorUser) {
                         return Column(
                           children: [
-                            const IconDisplay(isSuccess: false),
+                            IconDisplay(isSuccess: false),
                             Text(
                               //TODO: localizition
                               AppLocale.attendanceAlready.getString(context),
@@ -150,12 +157,14 @@ class ScanView extends StatelessWidget {
                           AppLocale.deleteQrCode.getString(context),
                           style: TextStyle(color: green, fontSize: 25),
                         ),
-                        Container(
-                          width: 170,
-                          margin: const EdgeInsets.only(top: 5),
+                              Container(
+                                width: 170,
+                          margin: EdgeInsets.only(
+                              top: 5), 
                           height: 2,
-                          color: green,
+                          color: green, 
                         ),
+
                       ],
                     ),
                   ),
