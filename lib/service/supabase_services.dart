@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
+import 'dart:ui';
 
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/model/event_model.dart';
@@ -212,7 +214,9 @@ class DBServices {
       "location": event.location,
       "date_start": event.startDate,
       "time_start": event.startTime!.substring(9,15),
+      "time_start": event.startTime!.substring(9,15),
       "end_date": event.endDate,
+      "time_end": event.endTime!.substring(9,15),
       "time_end": event.endTime!.substring(9,15),
       "image_url":event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
