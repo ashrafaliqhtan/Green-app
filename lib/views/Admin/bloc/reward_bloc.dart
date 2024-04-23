@@ -35,6 +35,8 @@ class RewardBloc extends Bloc<RewardEvent, RewardState> {
         emit(RewardInitial());
       }
     } catch (e) {
+      print(e);
+
       emit(RewardErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
     }

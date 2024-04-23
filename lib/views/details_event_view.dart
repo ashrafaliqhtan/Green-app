@@ -18,6 +18,7 @@ class EventDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(event.startTime!);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

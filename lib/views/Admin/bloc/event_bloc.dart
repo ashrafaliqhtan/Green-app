@@ -33,6 +33,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
         emit(EventInitial());
       }
     } catch (e) {
+      print(e);
       emit(EventErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
     }
