@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:ui';
 
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/history_point_model.dart';
@@ -23,6 +25,8 @@ class DBServices {
     String startDateEvent ="";
     String endTimeEvent ="";
     String endDateEvent ="";
+    Locale? language = FlutterLocalization.instance.currentLocale;
+
   //----------------------------- Auth --------------------------------
   Future signUp({
     required String name,
@@ -194,9 +198,9 @@ class DBServices {
       "content": event.description,
       "location": event.location,
       "date_start": event.startDate,
-      "time_start": event.startTime,
+      "time_start": event.startTime!.substring(9,15),
       "end_date": event.endDate,
-      "time_end": event.endTime!,
+      "time_end": event.endTime!.substring(9,15),
       "image_url":event.imageUrl,
       "maximam_number_of": event.maximumCapacity,
       "location_url": event.locationUrl,
@@ -229,10 +233,6 @@ class DBServices {
     return listOfReward;
   }
   
-  void scheduleTask() async{
-  
-  }
-
   /////////////////file crud
   Future<void> uploadImage(
       File imageFile, String bucket, String nameFile) async {

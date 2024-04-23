@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
@@ -8,9 +9,10 @@ import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 class HistoryWidget extends StatelessWidget {
   const HistoryWidget({
     super.key,
-    required this.personalEvent,
+    required this.personalEvent, required this.eventModel,
   });
   final PersonalEvent personalEvent;
+  final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

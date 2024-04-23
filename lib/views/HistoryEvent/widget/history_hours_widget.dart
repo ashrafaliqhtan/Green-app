@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
@@ -7,13 +8,13 @@ import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 
 class HistoryHoursWidget extends StatelessWidget {
-  const HistoryHoursWidget({super.key, required this.event});
-  final PersonalEvent event;
+  const HistoryHoursWidget({super.key, required this.eventModel});
+  final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        translatorFunction(event.name!),
+        translatorFunction(eventModel.title!),
         translatorFunction('تم الحصول على (٨) ساعة من عمل التطوع'),
       ]),
       builder: (context, snapshot) {
@@ -24,9 +25,9 @@ class HistoryHoursWidget extends StatelessWidget {
         } else {
           final List<String> translatedTexts = snapshot.data as List<String>;
           final String eventName = translatedTexts[0];
-          // final String eventLocation = translatedTexts[1];
-          // final String timeText = "${event.startTime!}-${event.endTime!}";
-          // final String dateText = "${event.startDate!}-${event.endDate!}";
+           final String eventLocation = eventModel.location!;
+           final String timeText = "${eventModel.startTime!}-${eventModel.endTime!}";
+           final String dateText = "${eventModel.startDate!}-${eventModel.endDate!}";
           final String hoursWorkedText = translatedTexts[1];
           return Container(
             width: context.getWidth(),
@@ -54,29 +55,29 @@ class HistoryHoursWidget extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      // Text(
-                      //   eventLocation,
-                      //   style: const TextStyle(
-                      //     color: Color.fromRGBO(240, 248, 255, 0.691),
-                      //     fontWeight: FontWeight.normal,
-                      //     fontSize: 12,
-                      //   ),
-                      // ),
+                      Text(
+                        eventLocation,
+                        style: const TextStyle(
+                          color: Color.fromRGBO(240, 248, 255, 0.691),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                        ),
+                      ),
                       height20,
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.end,
-                      //   children: [
-                      //     Text(
-                      //       dateText,
-                      //       style: TextStyle(height: 0.1, color: pureWhite),
-                      //     ),
-                      //     width4,
-                      //     Text(
-                      //       timeText,
-                      //       style: TextStyle(height: 0.1, color: pureWhite),
-                      //     ),
-                      //   ],
-                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            dateText,
+                            style: TextStyle(height: 0.1, color: pureWhite),
+                          ),
+                          width4,
+                          Text(
+                            timeText,
+                            style: TextStyle(height: 0.1, color: pureWhite),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -112,7 +113,6 @@ class HistoryHoursWidget extends StatelessWidget {
             ),
           );
         }
-      },
-    );
+      },);
   }
 }

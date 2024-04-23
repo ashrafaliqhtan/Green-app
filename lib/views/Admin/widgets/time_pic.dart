@@ -77,11 +77,13 @@ class TimePickerWidgetState extends State<TimePickerWidget> {
 }
         selectedTime = picked;
         widget.time = formatDateTime(selectedTime);
+        print("format: ${widget.time}");
+        print("no format: ${selectedTime}");
         if(widget.isFires){
-          GetIt.I.get<DBServices>().startTimeEvent=widget.time;
+          GetIt.I.get<DBServices>().startTimeEvent=selectedTime.toString();//widget.time;
         }
         else{
-          GetIt.I.get<DBServices>().endTimeEvent=widget.time;
+          GetIt.I.get<DBServices>().endTimeEvent=selectedTime.toString();//widget.time;
         }
         print(widget.time);
       });

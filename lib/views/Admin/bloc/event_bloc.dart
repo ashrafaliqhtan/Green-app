@@ -99,9 +99,19 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     emit(EventLoadingState());
     try {
       listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
-      print(listOfPersonalEvents);
-      if (listOfPersonalEvents.isNotEmpty) {
-        emit(HistoryLoadedState(history: listOfPersonalEvents));
+      List<EventModel> listOfEvents = await locator.getAllEvent(true);
+      List<EventModel> listOfEvent=[];
+for (var element in listOfEvents) {
+  for (var index = 0; index < listOfPersonalEvents.length; index++) {
+    if(element.id ==listOfPersonalEvents[index].eventId){
+      listOfEvent.add(element);
+    }
+  }
+  
+}
+      print(listOfEvent);
+      if (listOfEvent.isNotEmpty) {
+        emit(HistoryLoadedState(event:listOfEvent));
       } else {
         emit(EventInitial());
       }
