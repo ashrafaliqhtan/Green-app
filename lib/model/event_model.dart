@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:intl/intl.dart';
 
 class EventModel {
@@ -70,7 +71,7 @@ class EventModel {
         DateTime.now().day, hour, minute);
 
     // Format the DateTime object to include AM/PM
-    DateFormat format = DateFormat.jm(); // Use 'jm' format for AM/PM in Arabic
+    DateFormat format = DateFormat.jm(GetIt.I.get<DBServices>().language!.languageCode); // Use 'jm' format for AM/PM in Arabic
     return format.format(dateTime);
   }
 
@@ -88,8 +89,5 @@ class EventModel {
     DateFormat format = DateFormat.Hm();
     return format.format(dateTime);
   }
-TimeOfDay stringToTimeOfDay(String tod) {
-  final format = DateFormat.Hm();
-  return TimeOfDay.fromDateTime(format.parse(tod));
-}
+
 }

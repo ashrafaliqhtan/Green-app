@@ -65,11 +65,11 @@ class HistoryEventView extends StatelessWidget {
                   } else if (state is HistoryLoadedState) {
                     return Expanded(
                       child: ListView.builder(
-                          itemCount: state.history.length,
+                          itemCount: state.event.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return HistoryHoursWidget(
-                              event: state.history[index],
+                              eventModel: state.event[index],
                             );
                           }),
                     );

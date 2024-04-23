@@ -13,8 +13,8 @@ final class EventLoadedState extends EventState {
   EventLoadedState({required this.list});
 }
 final class HistoryLoadedState extends EventState {
-  final List<PersonalEvent> history;
-  HistoryLoadedState({ required this.history});
+  final List<EventModel> event;
+  HistoryLoadedState({required this.event});
 }
 
 final class EventSuccessState extends EventState {
