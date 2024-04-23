@@ -10,7 +10,7 @@ class AdminPanel extends StatelessWidget {
     required this.onTap,
   }) ;
 
-  final String address;
+  final String address; 
   final String panelIcon;
   final VoidCallback onTap;
 
