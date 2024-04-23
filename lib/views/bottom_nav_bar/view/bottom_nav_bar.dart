@@ -121,10 +121,16 @@ class BottomNavBar extends StatelessWidget {
                 ),
               ),
               floatingActionButton: serviceLocator.user.typeRole == "supervisor"
-                  ? FloatingActionButton(onPressed: () {
-                      context.push(view: const ScanView(), isPush: true) ;
-                    } , child:  Icon(Icons.qr_code, color: white,),
-                    backgroundColor: green,)
+                  ? FloatingActionButton(
+                      onPressed: () {
+                        context.push(view: const ScanView(), isPush: true);
+                      },
+                      backgroundColor: green,
+                      child: Icon(
+                        Icons.qr_code,
+                        color: white,
+                      ),
+                    )
                   : const SizedBox(),
             );
           });

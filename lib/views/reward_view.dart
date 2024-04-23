@@ -86,7 +86,7 @@ class RewardView extends StatelessWidget {
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 5,
-                              childAspectRatio: 0.80,
+                              childAspectRatio: 0.78,
                             ),
                             itemCount: state.list.length,
                             itemBuilder: (context, index) {
