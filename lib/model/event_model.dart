@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:green_saudi_app/resources/localization/cubit/language_cubit.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:intl/intl.dart';
 
