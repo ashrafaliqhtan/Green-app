@@ -13,7 +13,7 @@ final class EventLoadedState extends EventState {
   EventLoadedState({required this.list});
 }
 final class HistoryLoadedState extends EventState {
-  final List<EventModel> event;
+  final List<Map<String, dynamic>> event;
   HistoryLoadedState({required this.event});
 }
 
@@ -36,3 +36,4 @@ final class RegisterEventErrorState extends EventState {
   final String msg;
   RegisterEventErrorState({required this.msg});
 }
+

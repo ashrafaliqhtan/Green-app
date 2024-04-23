@@ -6,7 +6,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:green_saudi_app/views/Supervisor/view/qr_code_reader.dart';
+import 'package:green_saudi_app/views/Supervisor/view/event_supervisor_page.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -123,7 +123,7 @@ class BottomNavBar extends StatelessWidget {
               floatingActionButton: serviceLocator.user.typeRole == "supervisor"
                   ? FloatingActionButton(
                       onPressed: () {
-                        context.push(view: const ScanView(), isPush: true);
+                        context.push(view:  EventsSupervisorPage(), isPush: true);
                       },
                       backgroundColor: green,
                       child: Icon(

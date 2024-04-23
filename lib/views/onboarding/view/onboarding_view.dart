@@ -9,7 +9,7 @@ import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
-import 'package:green_saudi_app/views/Supervisor/view/qr_code_reader.dart';
+import 'package:green_saudi_app/views/Supervisor/view/event_supervisor_page.dart';
 import 'package:green_saudi_app/views/onboarding/bloc/onboarding_bloc.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -178,7 +178,7 @@ class OnboardingView extends StatelessWidget {
             ),
             floatingActionButton: serviceLocator.user.typeRole == "supervisor"
                 ? FloatingActionButton(onPressed: () {
-                    context.push(view: const ScanView(), isPush: true);
+                    context.push(view: EventsSupervisorPage(), isPush: true);
                   })
                 : const SizedBox(),
           );

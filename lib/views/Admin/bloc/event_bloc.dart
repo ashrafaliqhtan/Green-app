@@ -100,11 +100,11 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     try {
       listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
       List<EventModel> listOfEvents = await locator.getAllEvent(true);
-      List<EventModel> listOfEvent=[];
+      List<Map<String,dynamic>> listOfEvent=[];
 for (var element in listOfEvents) {
   for (var index = 0; index < listOfPersonalEvents.length; index++) {
     if(element.id ==listOfPersonalEvents[index].eventId){
-      listOfEvent.add(element);
+      listOfEvent.add({"event": element,"personalEvent":listOfPersonalEvents[index]});
     }
   }
   

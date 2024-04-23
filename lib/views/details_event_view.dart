@@ -61,7 +61,7 @@ class EventDetailsView extends StatelessWidget {
             final String description = translatedTexts[0];
             final String eventName = translatedTexts[1];
             final String eventLocation = translatedTexts[2];
-            final String eventTime = "${event.getTimeWithAmPm(event.startTime!)}   ${AppLocale.to.getString(context)}   ${event.getTimeWithAmPm(event.endTime!)}";
+            final String eventTime = "${getTimeWithAmPm(event.startTime!)}   ${AppLocale.to.getString(context)}   ${getTimeWithAmPm(event.endTime!)}";
             final String eventDate = "${event.startDate!}   ${AppLocale.to.getString(context)}   ${event.endDate!}";
             return Stack(
               children: [
