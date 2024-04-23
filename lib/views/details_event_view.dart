@@ -48,8 +48,8 @@ class EventDetailsView extends StatelessWidget {
               'زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.'),
           translatorFunction(event.title ?? 'زراعة الاشجار'),
           translatorFunction(event.location ?? 'الرياض - حي الرمال'),
-          translatorFunction(event.getTimeWithAmPm(event.startTime!)),
-          translatorFunction(event.getTimeWithAmPm(event.endTime!)),
+          translatorFunction(event.startTime!),
+          translatorFunction(event.endTime!),
           translatorFunction(event.startDate ??'٤ أبريل ٢٠٢٤'),
 
         ]),
