@@ -97,7 +97,6 @@ class OTPView extends StatelessWidget {
                           build: (BuildContext context, double time) => Expanded(
                             child: Text(
                               '${AppLocale.timer.getString(context)} ${time.toInt()} ${AppLocale.second.getString(context)}',
-                              // 'إعادة رمز التحقق بعد ${time.toInt()} ثانية',
                               style: TextStyle(fontSize: 14, color: green),
                             ),
                           ),

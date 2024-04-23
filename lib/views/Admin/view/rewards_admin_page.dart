@@ -73,7 +73,7 @@ class RewardsAdminPage extends StatelessWidget {
                     SvgPicture.asset("assets/icons/Insert block-rafiki.svg", width: 200, height: 200,),
                     height16,
                     Text(
-                      'No Reward added',
+                      AppLocale.noReward.getString(context),
                       style: TextStyle(fontSize: 30, color: green),
                     )
                   ],
@@ -86,7 +86,7 @@ class RewardsAdminPage extends StatelessWidget {
           onPressed: () {
             context.push(view: const AddReword(), isPush: false);
           },
-          backgroundColor: green, // Set your desired background color
+          backgroundColor: green, 
           child: const Icon(
             Icons.add,
             color: Colors.white,

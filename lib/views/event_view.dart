@@ -116,13 +116,13 @@ class EventView extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context) {
                           return [
-                            const PopupMenuItem(
+                             PopupMenuItem(
                               value: true,
-                              child: Text('الأحدث'),
+                              child: Text(AppLocale.newest.getString(context),),
                             ),
-                            const PopupMenuItem(
+                             PopupMenuItem(
                               value: false,
-                              child: Text('الأقدم'),
+                              child: Text(AppLocale.oldest.getString(context),),
                             ),
                           ];
                         },
@@ -179,7 +179,6 @@ class EventView extends StatelessWidget {
                           );
                         });
                   } else {
-                    //TODO: NO Event img or messge
                     return Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

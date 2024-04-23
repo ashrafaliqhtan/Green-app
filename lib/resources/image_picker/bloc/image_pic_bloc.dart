@@ -26,7 +26,6 @@ class ImagePicBloc extends Bloc<ImagePicEvent, ImagePicState> {
             print(e);
           }
         }
-        //emit(ImageState(fileImage:GetIt.I.get<DBServices>().ImageFileFromDatabase));
       },
     );
     on<SelectImage>((event, emit) async {

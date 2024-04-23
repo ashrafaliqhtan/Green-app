@@ -96,7 +96,6 @@ class RewardView extends StatelessWidget {
                             },
                           );
                         } else {
-                          //TODO: No Reward img or text UI
                           return Center(
                             child: Text(
                               AppLocale.noReward.getString(context),style: TextStyle(color: green, fontSize: 25),

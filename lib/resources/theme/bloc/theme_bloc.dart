@@ -19,14 +19,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
 
     on<ThemeEvent>((event, emit) {});
 
-    //Get theme event
     on<GetThemeEvent>(getAppTheme);
 
     on<UpdateThemeEvent>(updateTheme);
   }
 
   FutureOr<void> getAppTheme(event, emit) {
-    // locator.getTheme();
     themeInfo = appThemes[locator.currentTheme]!;
     emit(ShowThemeState(locator.currentTheme, themeInfo));
   }

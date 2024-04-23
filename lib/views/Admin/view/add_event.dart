@@ -175,10 +175,13 @@ class _AddEventState extends State<AddEvent> {
                 ),
                 height16,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    width30,
                     Text(AppLocale.from.getString(context),
                         style: const TextStyle(fontSize: 20)),
+                        width100,
+                        width80,
                     Text(AppLocale.to.getString(context),
                         style: const TextStyle(fontSize: 20)),
                   ],
@@ -219,10 +222,13 @@ class _AddEventState extends State<AddEvent> {
                 ),
                 height16,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    width30,
                     Text(AppLocale.from.getString(context),
                         style: const TextStyle(fontSize: 20)),
+                        width100,
+                        width80,
                     Text(AppLocale.to.getString(context),
                         style: const TextStyle(fontSize: 20)),
                   ],
@@ -270,12 +276,11 @@ class _AddEventState extends State<AddEvent> {
                   keyboardType: TextInputType.text,
                 ),
                 NameRow(
-                  rowName: AppLocale.location.getString(context),
+                  rowName: AppLocale.locationUrl.getString(context),
                 ),
                 height16,
-                //TODO: location Url Event
                 TextfieldContainer(
-                  hintText: AppLocale.location.getString(context),
+                  hintText: AppLocale.locationUrl.getString(context),
                   controller: locationUrlEventController,
                   keyboardType: TextInputType.text,
                 ),
@@ -346,7 +351,6 @@ class _AddEventState extends State<AddEvent> {
                                 int.parse(capacityEventController.text),
                             imageUrl: imageUrl,
                           );
-                          print("object");
                           context.read<EventBloc>().add(EventAdded(event: event));
                         },
                         child: Text(

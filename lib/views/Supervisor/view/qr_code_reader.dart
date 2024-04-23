@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -46,7 +48,7 @@ class ScanView extends StatelessWidget {
             ],
             title: Text(
               //TODO: localizition
-              AppLocale.deleteQrCode.getString(context),
+              AppLocale.scanQrCode.getString(context),
               style: TextStyle(
                 color: white,
               ),
@@ -154,7 +156,7 @@ class ScanView extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          AppLocale.deleteQrCode.getString(context),
+                          AppLocale.scanQrCode.getString(context),
                           style: TextStyle(color: green, fontSize: 25),
                         ),
                               Container(

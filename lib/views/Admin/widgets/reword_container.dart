@@ -19,7 +19,7 @@ class RewordContainer extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is EventLoadingState) {
-            return const CircularProgressIndicator(); //shimmerEffect();
+            return const CircularProgressIndicator();
           }
           if (state is EventLoadedState) {
             if (state.list.isNotEmpty) {

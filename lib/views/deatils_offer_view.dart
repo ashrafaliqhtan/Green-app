@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
@@ -117,8 +119,8 @@ class DetailsOfferView extends StatelessWidget {
                               child: Container(
                                 height: 60,
                                 alignment: Alignment.center,
-                                child: Text(
-                                  "Reedem",
+                                child:  Text(
+                                  AppLocale.redeem.getString(context),
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 24,

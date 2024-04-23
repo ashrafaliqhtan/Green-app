@@ -99,12 +99,14 @@ mixin AppLocale {
 
   //Admin
   static const String controlPanel = 'ControlPanel';
+  static const String noSupervisor = 'noSupervisor';
   static const String eventsAdmin = 'Events';
   static const String rewordAdmin = 'Reword';
   static const String supervisors = 'Supervisors';
   static const String rewardsPageAdmin = 'Rewards';
   static const String addressAdminEvent = 'Address';
   static const String supervisorsName = 'Name';
+  static const String redeem = 'redeem';
   static const String addImageEvent = 'AddImage';
   static const String eventName = 'EventName';
   static const String addDescription = 'AddDescription';
@@ -112,6 +114,7 @@ mixin AppLocale {
   static const String from = 'From';
   static const String to = 'To';
   static const String location = 'location';
+  static const String locationUrl = 'locationUrl';
   static const String maximumCapacity = 'maximumCapacity';
   static const String addIt = 'Add';
   static const String cancel = 'Cancel';
@@ -122,7 +125,13 @@ mixin AppLocale {
   static const String time = 'Time';
   static const String addReword = 'addReword';
   static const String ok = 'ok';
-  static const String deleteQrCode = 'DeleteQr';
+  static const String scanQrCode = 'scanQrCode';
+  static const String addDate = 'addDate';
+  static const String newest = 'newest';
+  static const String oldest = 'oldest';
+  static const String noEvent = 'noEvent';
+  static const String noReword = 'No Reword added';
+  static const String backToControlP = 'backToControlP';
 
   //profile
   static const String userName = 'jj';
@@ -290,7 +299,17 @@ mixin AppLocale {
     companyName: 'Company Name',
     ok: 'Ok',
     lightMode: 'Light Mode',
-    deleteQrCode: 'Delete Qr Code',
+    scanQrCode: 'Scan Qr Code',
+    locationUrl: 'location Url',
+    noSupervisor: 'No Supervisor',
+    addDate: 'Enter Date',
+    redeem: 'Redeem',
+    newest: 'Newest',
+    oldest: 'Oldest',
+    noEvent: 'No Event added',
+    noReword: 'No Reword added',
+      backToControlP : 'back To Control Panel',
+
   };
   static const Map<String, dynamic> AR = {
     // Onboarding and Auth
@@ -427,12 +446,22 @@ mixin AppLocale {
     signOutMsg: 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
     yes: 'تسجيل الخروج',
     no: 'إلغاء',
-    deleteQrCode: 'امسح الباركود',
+    scanQrCode: 'امسح الباركود',
     scanQR: 'لنقم بالمسح',
     great: 'ممتاز',
     failScan: "نعتذر, لم نستطيع التعرف على الكود حاليا حاول مرة أخرى",
     cancelSAcan: 'مسح الكود تم إلغاه',
     attendanceAlready: "لقد تم تسجيل الحضور مسبقا",
     attendance: 'لقد تم التسجيل الحضور بنجاح',
+    locationUrl: 'رابط الموقع',
+    noSupervisor: 'لا يوجد مشرفين',
+    addDate: 'أدخل التاريخ',
+    redeem: 'استرداد',
+    newest: 'الأحدث',
+    oldest: 'الأقدم',
+    noEvent: 'لايوجد حدث',
+    noReword: 'توجد مكافآت',
+      backToControlP : 'الرجوع الى لوحة التحكم',
+
   };
 }

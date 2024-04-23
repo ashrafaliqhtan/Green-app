@@ -97,8 +97,12 @@ class SupervisorsPage extends StatelessWidget {
                     );
                   },
                 );
-              }else {
-                return Center(child: Text("No Supervisor"),);
+              } else {
+                return Center(
+                  child: Text(
+                    AppLocale.noSupervisor.getString(context),
+                  ),
+                );
               }
             },
           ),

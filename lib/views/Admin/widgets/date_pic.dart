@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:intl/intl.dart';
@@ -15,9 +17,9 @@ class DatePickerWidget extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     return TextField(
       controller: controller,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(borderSide: BorderSide.none),
-        hintText: "Enter date",
+      decoration:  InputDecoration(
+        border: const OutlineInputBorder(borderSide: BorderSide.none),
+        hintText: AppLocale.addDate.getString(context),
       ),
       readOnly: true,
       onTap: () async {

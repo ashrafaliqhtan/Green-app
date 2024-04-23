@@ -32,7 +32,6 @@ class _AddRewordState extends State<AddReword> {
     rewordNameController.dispose();
     rewordDescriptionController.dispose();
     companyNameController.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -66,17 +65,16 @@ class _AddRewordState extends State<AddReword> {
           listener: (context, state) {
             if (state is RewardSuccessState) {
               context.getMessagesBar(msg: state.msg, color: green);
-              //TODO: pop when add is not working
               context.push(view: BottomNavBarAdmin(), isPush: false);
             } else if (state is RewardErrorState) {
-              context.getMessagesBar(msg: state.msg, color: red, success: false);
+              context.getMessagesBar(
+                  msg: state.msg, color: red, success: false);
             }
           },
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                // First row
                 Padding(
                   padding: const EdgeInsets.all(30),
                   child: Row(
@@ -101,8 +99,8 @@ class _AddRewordState extends State<AddReword> {
                                       height: 150,
                                       width: 150,
                                       child: Center(
-                                        child: Image.file(
-                                            serviceLocator.ImageFileFromDatabase),
+                                        child: Image.file(serviceLocator
+                                            .ImageFileFromDatabase),
                                       )));
                             } else {
                               return Container(
@@ -179,7 +177,8 @@ class _AddRewordState extends State<AddReword> {
                       width: 175,
                       height: 60,
                       decoration: BoxDecoration(
-                          color: green, borderRadius: BorderRadius.circular(30)),
+                          color: green,
+                          borderRadius: BorderRadius.circular(30)),
                       child: TextButton(
                         onPressed: () {
                           context.push(
@@ -198,15 +197,17 @@ class _AddRewordState extends State<AddReword> {
                       width: 175,
                       height: 60,
                       decoration: BoxDecoration(
-                          color: green, borderRadius: BorderRadius.circular(30)),
+                          color: green,
+                          borderRadius: BorderRadius.circular(30)),
                       child: TextButton(
                         onPressed: () async {
                           if (serviceLocator
                               .ImageFileFromDatabase.path.isNotEmpty) {
                             context.read<ImagePicBloc>().add(
-                                UpdateImageToDatabase("reward_poster", imageId));
-                            rewardCompanyLogoUrl = await serviceLocator.urlImage(
-                                "reward_poster", imageId);
+                                UpdateImageToDatabase(
+                                    "reward_poster", imageId));
+                            rewardCompanyLogoUrl = await serviceLocator
+                                .urlImage("reward_poster", imageId);
                           }
                           RewardModel reward = RewardModel(
                               rewardCompanyLogo: rewardCompanyLogoUrl,

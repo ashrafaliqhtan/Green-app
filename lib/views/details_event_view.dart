@@ -39,7 +39,6 @@ class EventDetailsView extends StatelessWidget {
           ),
         ],
       ),
-      //TODO: Time Format here
       body: FutureBuilder(
         future: Future.wait([
           translatorFunction(event.description ??

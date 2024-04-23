@@ -69,7 +69,10 @@ class _EditProfileUserState extends State<EditProfileUser> {
               children: [
                 Text(
                   AppLocale.editTitle.getString(context),
-                  style: TextStyle(color: pureWhite,fontWeight: FontWeight.bold, fontSize: 32),
+                  style: TextStyle(
+                      color: pureWhite,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32),
                 )
               ],
             ),
@@ -243,7 +246,7 @@ class _EditProfileUserState extends State<EditProfileUser> {
                         color: green, borderRadius: BorderRadius.circular(30)),
                     child: Center(
                         child: Text(
-                      "حفظ",
+                      AppLocale.saveButton.getString(context),
                       style: TextStyle(
                           color: pureWhite,
                           fontWeight: FontWeight.bold,

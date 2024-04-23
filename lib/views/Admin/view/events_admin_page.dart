@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -124,7 +126,7 @@ class EventsAdminPage extends StatelessWidget {
                       ),
                       height16,
                       Text(
-                        'No Event added',
+                        AppLocale.noEvent.getString(context),
                         style: TextStyle(fontSize: 30, color: green),
                       )
                     ],
