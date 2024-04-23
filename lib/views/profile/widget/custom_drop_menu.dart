@@ -19,20 +19,21 @@ class DropMenuState extends State<DropMenu> {
     final user = DataInjection().locator.get<DBServices>().user;
 
     List<String> listCityDropMenu = [
-      AppLocale.region1.getString(context),
-      AppLocale.region2.getString(context),
-      AppLocale.region3.getString(context),
-      AppLocale.region4.getString(context),
-      AppLocale.region5.getString(context),
-      AppLocale.region6.getString(context),
-      AppLocale.region7.getString(context),
-      AppLocale.region8.getString(context),
-      AppLocale.region9.getString(context),
-      AppLocale.region10.getString(context),
-      AppLocale.region11.getString(context),
-      AppLocale.region12.getString(context),
-      AppLocale.region13.getString(context),
+      'Eastern -الشرقية',
+      'Riyadh  - الرياض',
+      'Makkah - مكة المكرمة',
+      'Al-Madinah - المدينة',
+      'Al-Qassim - القصيم',
+      'Asir - عسير',
+      'Tabuk - تبوك',
+      'Hail - حائل',
+      'Northern - الشمالية',
+      'Najran - نجران',
+      'Al-Baha - الباحة',
+      'Al-Jawf - الجوف',
+      'Jazan - جازان',
     ];
+
     return FutureBuilder(
       future: Future(() => translatorFunction(user.city ?? "لايوجد محتوى")),
       builder: (context, snapshot) {
