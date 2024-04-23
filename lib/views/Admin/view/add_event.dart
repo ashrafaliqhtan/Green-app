@@ -188,7 +188,7 @@ class _AddEventState extends State<AddEvent> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 30),
+                        padding: const EdgeInsets.only(left: 30),
                         child: Container(
                           width: 150,
                           height: 60,
