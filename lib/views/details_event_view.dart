@@ -48,8 +48,6 @@ class EventDetailsView extends StatelessWidget {
               'زراعة أشجار المانجروف للمساهمة في تنظيف مياه البحر، وإثراء التنوع البيولوجي، واستعادة الحياة المائية.'),
           translatorFunction(event.title ?? 'زراعة الاشجار'),
           translatorFunction(event.location ?? 'الرياض - حي الرمال'),
-          translatorFunction(event.startTime!),
-          translatorFunction(event.endTime!),
           translatorFunction(event.startDate ??'٤ أبريل ٢٠٢٤'),
 
         ]),
@@ -63,8 +61,8 @@ class EventDetailsView extends StatelessWidget {
             final String description = translatedTexts[0];
             final String eventName = translatedTexts[1];
             final String eventLocation = translatedTexts[2];
-            final String eventTime = "${translatedTexts[3]}-${translatedTexts[4]}";
-            final String eventDate = translatedTexts[5];
+            final String eventTime = "${event.getTimeWithAmPm(event.startTime!)}   ${AppLocale.to.getString(context)}   ${event.getTimeWithAmPm(event.endTime!)}";
+            final String eventDate = "${event.startDate!}   ${AppLocale.to.getString(context)}   ${event.endDate!}";
             return Stack(
               children: [
                 // Image and Description Section
