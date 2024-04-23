@@ -50,7 +50,7 @@ class RewardsAdminPage extends StatelessWidget {
         body: BlocBuilder<RewardBloc, RewardState>(
           builder: (context, state) {
             if (state is RewardLoadingState) {
-              return const Center(child: CircularProgressIndicator());
+              return  Center(child: CircularProgressIndicator(color: green,));
             } else if (state is RewardLoadedState) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -71,7 +71,7 @@ class RewardsAdminPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset("assets/icons/Insert block-rafiki.svg"),
+                    SvgPicture.asset("assets/icons/Insert block-rafiki.svg", width: 200, height: 200,),
                     height16,
                     Text(
                       'No Reward added',
