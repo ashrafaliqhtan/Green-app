@@ -104,6 +104,7 @@ class DBServices {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
 
+  
   //-----------------------------User----------------------------------
   //Register Event
   Future<PersonalEvent> participateEvent({required PersonalEvent event}) async {
@@ -130,7 +131,7 @@ class DBServices {
           .eq('event_id', eventId)
           .single();
       // Check if any rows are returned
-      return response != null && response.isNotEmpty;
+      return response.isNotEmpty;
     } catch (e) {
       return false;
     }
