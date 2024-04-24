@@ -71,32 +71,29 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     }
   }
 
-  // Future<void> deleteEvent(
-  //     EventDeleted event, Emitter<EventState> emit) async {
-  //   try {
-  //     await locator.deleteEventData(event.event.id!);
-  //     emit(EventLoadedState(list: listOfEvent));
-  //     emit(EventSuccessState(msg: "تم حذف الدواء بنجاح"));
-  //   } catch (e) {
-  //     emit(EventErrorState(msg: "حدث خطأ أثناء حذف الدواء"));
-  //   }
-  // }
 
-  FutureOr<void> registerEvent(
+
+FutureOr<void> registerEvent(
       RegisterEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
+    print(event.personalEvent.eventId!);
     try {
-      bool check =
+      var checkRegister =
           await locator.checkRegister(eventId: event.personalEvent.eventId!);
-      if (check) {
-        await locator.participateEvent(event: event.personalEvent);
-        emit(RegisterEventSuccessState(
-            msg: "تم تسجيل الحدث بنجاح"));
-      } else {
+      if (checkRegister["event_id"] == event.personalEvent.eventId!) {
         emit(RegisterEventErrorState(msg: "مسجل مسبقا"));
+      } else {
+        try {
+          await locator.participateEvent(event: event.personalEvent);
+          emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
+        } catch (e) {
+          print(e);
+          emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
+        }
       }
     } catch (e) {
-      emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
+      await locator.participateEvent(event: event.personalEvent);
+      emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
     }
   }
 

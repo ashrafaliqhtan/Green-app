@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:green_saudi_app/model/event_model.dart';
@@ -32,12 +33,6 @@ class EventDetailsView extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share, color: pureWhite),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: FutureBuilder(
         future: Future.wait([
@@ -74,19 +69,22 @@ class EventDetailsView extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      height56,
+                      height70,
                       // Description
-                      height32,
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Text(
-                          description,
-                          style: TextStyle(
-                            color: Colors.blueGrey[300],
+                      SingleChildScrollView(
+                        child: SizedBox(
+                          child: Padding(
+                            padding: const EdgeInsets.all(30.0),
+                            child: Text(
+                              description,
+                              style: TextStyle(
+                                color: Colors.blueGrey[300],
+                              ),
+                              maxLines: 5,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],

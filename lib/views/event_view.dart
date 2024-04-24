@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -57,6 +58,7 @@ class EventView extends StatelessWidget {
             ),
           ],
         ),
+        
         drawer: const DrawerScreen(),
         body: Column(
           children: [
@@ -162,6 +164,7 @@ class EventView extends StatelessWidget {
                 builder: (context, state) {
                   if (state is EventLoadingState) {
                     return ListView.builder(
+                      
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {

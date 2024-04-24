@@ -49,7 +49,7 @@ class InputTextFelid extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: greenCalm,
-                  blurRadius: 4,
+                  blurRadius: 2,
                   offset: const Offset(0, 4),
                 ),
               ],

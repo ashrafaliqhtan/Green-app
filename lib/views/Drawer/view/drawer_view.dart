@@ -134,18 +134,22 @@ class DrawerScreen extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {
+                     InkWell(
+                      onTap:(){
                         context.push(view: const SettingsUser(), isPush: true);
                       },
-                      icon: Icon(Icons.settings, color: pureWhite),
-                    ),
-                    width8,
-                    Text(
-                      AppLocale.settingsTitle.getString(context),
-                      style: TextStyle(
-                          color: pureWhite, fontWeight: FontWeight.bold),
-                    ),
+                       child: Row(
+                         children: [
+                           Icon(Icons.settings, color: pureWhite),
+                           width8,
+                                           Text(
+                        AppLocale.settingsTitle.getString(context),
+                        style: TextStyle(
+                            color: pureWhite, fontWeight: FontWeight.bold),
+                                           ),
+                         ],
+                       ),
+                     ),
                     width8,
                     Container(width: 2, height: 20, color: pureWhite),
                     width8,

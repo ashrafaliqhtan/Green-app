@@ -54,7 +54,7 @@ class _AddRewordState extends State<AddReword> {
               Text(
                 AppLocale.addReword.getString(context),
                 style: const TextStyle(
-                    fontSize: 32,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
@@ -80,10 +80,13 @@ class _AddRewordState extends State<AddReword> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(AppLocale.addImageEvent.getString(context),
-                          style: const TextStyle(
-                            fontSize: 24,
-                          )),
+                      SizedBox(
+                        width: 120,
+                        child: Text(AppLocale.addImageEvent.getString(context),
+                            style: const TextStyle(
+                              fontSize: 24,
+                            ),textAlign: TextAlign.center,),
+                      ),
                       const Spacer(),
                       InkWell(
                         onTap: () {

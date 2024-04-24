@@ -62,16 +62,14 @@ class HistoryEventView extends StatelessWidget {
                           return const HistoryShimmer();
                         });
                   } else if (state is HistoryLoadedState) {
-                    return Expanded(
-                      child: ListView.builder(
-                          itemCount: state.event.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return HistoryHoursWidget(
-                              eventModel: state.event[index],
-                            );
-                          }),
-                    );
+                    return ListView.builder(
+                        itemCount: state.event.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return HistoryHoursWidget(
+                            eventModel: state.event[index],
+                          );
+                        });
                   } else {
                     return Center(
                       child: Column(

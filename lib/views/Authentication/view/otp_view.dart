@@ -10,6 +10,7 @@ import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/view/reset_password_view.dart';
+import 'package:green_saudi_app/views/Authentication/view/validation_email_view.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 // ignore: must_be_immutable
@@ -44,6 +45,10 @@ class OTPView extends StatelessWidget {
           child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: white,
+            appBar: AppBar(
+              leading: IconButton(onPressed: (){context.push(view: const ValidationEmailView(), isPush: false);}, icon:  Icon(Icons.arrow_back,color: green,)),
+              backgroundColor: Colors.transparent,
+            ),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

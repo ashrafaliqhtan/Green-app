@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -30,7 +31,11 @@ void main() async {
     if (status == InternetStatus.connected) {
 
       runApp(
-        const MainApp(),
+        DevicePreview(
+    //enabled: !kReleaseMode,
+    builder: (context) => MainApp(), // Wrap your app
+  ),
+      //  const MainApp(),
       );
     } else {
       runApp(const Disconnect());
@@ -91,7 +96,10 @@ class _MainAppState extends State<MainApp> {
               builder: (context, state) {
                 GetIt.I.get<DBServices>().language=localization.currentLocale!;
                 return MaterialApp(
-                  locale: localization.currentLocale,
+                  useInheritedMediaQuery: true,
+                  locale: DevicePreview.locale(context),
+                  builder: DevicePreview.appBuilder,
+                 // locale: localization.currentLocale,
                   debugShowCheckedModeBanner: false,
                   theme: appThemes[ GetIt.I.get<AppearanceServices>().currentTheme],
                   supportedLocales: localization.supportedLocales,

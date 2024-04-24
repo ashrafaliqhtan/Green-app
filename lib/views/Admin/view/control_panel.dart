@@ -47,7 +47,7 @@ class ControlPanel extends StatelessWidget {
               Text(
                 AppLocale.controlPanel.getString(context),
                 style: const TextStyle(
-                    fontSize: 32,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),

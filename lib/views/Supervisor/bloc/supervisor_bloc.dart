@@ -12,9 +12,11 @@ part 'supervisor_event.dart';
 part 'supervisor_state.dart';
 
 class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
+  List <GSIUser>supervisor=[]; 
   SupervisorBloc() : super(SupervisorInitial()) {
     on<SupervisorEvent>((event, emit) {});
     on<ScanQR>(scanQR);
+    on<LoadSupervisors>(loadSupervisor);
   }
 
   FutureOr<void> scanQR(ScanQR event, Emitter<SupervisorState> emit) async {
@@ -41,6 +43,22 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
       }
     } catch (e) {
       emit(SupervisorScanFailure());
+    }
+  }
+
+
+  FutureOr<void> loadSupervisor(LoadSupervisors event, Emitter<SupervisorState> emit) async{
+
+    emit(SupervisorLoading());
+    try {
+      supervisor = await GetIt.I.get<DBServices>().getSupervisors();
+      if (supervisor.isNotEmpty) {
+        emit(SupervisorLoad(supervisor: supervisor));
+      } else {
+        emit(SupervisorInitial());
+      }
+    } catch (e) {
+      emit(SupervisorInitial());
     }
   }
 }

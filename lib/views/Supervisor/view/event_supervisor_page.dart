@@ -67,8 +67,8 @@ class EventsSupervisorPage extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: green,
                               borderRadius: BorderRadius.circular(14)),
-                          height: 60,
-                          width: 356,
+                          height: 100,
+                          width: context.getWidth(),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -79,21 +79,21 @@ class EventsSupervisorPage extends StatelessWidget {
                                       AssetImage("assets/images/adminlogo.png"),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: FutureBuilder(
-                                  future: translatorFunction(
-                                    state.list[index].title ?? "No Content",
-                                  ),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const SizedBox();
-                                    } else if (snapshot.hasError) {
-                                      return Text('Error: ${snapshot.error}');
-                                    } else {
-                                      return SizedBox(
-                                        width: 300,
+                              FutureBuilder(
+                                future: translatorFunction(
+                                  state.list[index].title ?? "No Content",
+                                ),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const SizedBox();
+                                  } else if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  } else {
+                                    return SizedBox(
+                                      width: 280,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
                                         child: Text(
                                           snapshot.data.toString(),
                                           style: const TextStyle(
@@ -101,11 +101,13 @@ class EventsSupervisorPage extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                           overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,
+                                         // textAlign: TextAlign.center,
                                         ),
-                                      );
-                                    }
-                                  },
-                                ),
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
                             ],
                           ),

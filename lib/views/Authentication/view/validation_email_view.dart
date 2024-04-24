@@ -7,6 +7,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';
+import 'package:green_saudi_app/views/Authentication/view/login_view.dart';
 import 'package:green_saudi_app/views/Authentication/view/otp_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/custom_button.dart';
 import 'package:green_saudi_app/views/Authentication/widget/input_text_felid.dart';
@@ -42,8 +43,8 @@ class _ValidationEmailViewState extends State<ValidationEmailView> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
             appBar: AppBar(
+              leading: IconButton(onPressed: (){context.push(view: const LoginView(), isPush: false);}, icon:  Icon(Icons.arrow_back,color: green,)),
               backgroundColor: Colors.transparent,
-              actionsIconTheme: IconThemeData(color: green),
             ),
             backgroundColor: pureWhite,
             body: SingleChildScrollView(

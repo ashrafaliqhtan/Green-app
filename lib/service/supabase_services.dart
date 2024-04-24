@@ -115,26 +115,20 @@ class DBServices {
           "name": event.name,
           "event_id": event.eventId,
           "stats": event.stats,
-          "days": event.days
+          "days": 0
         })
         .select()
         .single();
     return PersonalEvent.fromJson(response);
   }
 
-  Future<bool> checkRegister({required String eventId}) async {
-    try {
-      final response = await supabase
-          .from('personal_event')
-          .select()
-          .eq('user_id', userID)
-          .eq('event_id', eventId)
-          .single();
-      // Check if any rows are returned
-      return response.isNotEmpty;
-    } catch (e) {
-      return false;
-    }
+Future checkRegister({required String eventId}) async {
+    return await supabase
+        .from('personal_event')
+        .select()
+        .eq('user_id', userID)
+        .eq('event_id', eventId)
+        .single();
   }
 
   //display List Event history
@@ -184,7 +178,7 @@ class DBServices {
   }
 
   Future addVolunteerHours({required int addVolunteerHour,required String volunteerID,required String eventID}) async {
-        final respons=await supabase.from('attendees_table').insert({"id":volunteerID});
+        final respons=await supabase.from('attendees_table').insert({"id":volunteerID,"event_id":eventID});
     if(respons==null){
             await supabase.from('personal_event').update({
       "stats":"present",

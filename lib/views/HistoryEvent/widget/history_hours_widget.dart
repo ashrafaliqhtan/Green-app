@@ -30,88 +30,94 @@ class HistoryHoursWidget extends StatelessWidget {
            final String dateText = "${eventModel["event"].startDate!}-${eventModel["event"].endDate!}"; 
            if(eventModel["personalEvent"].days>0){hoursWorkedText ='${AppLocale.youGot.getString(context)} ${(8*eventModel["personalEvent"].days)}  ${AppLocale.volunteer.getString(context)}';}
           else{hoursWorkedText ='';}
-          return Container(
-            width: context.getWidth(),
-            height: context.getHeight() * .25,
-            margin: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: green,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  color: Colors.transparent,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        eventName,
-                        style: TextStyle(
-                          color: pureWhite,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        eventLocation,
-                        style: const TextStyle(
-                          color: Color.fromRGBO(240, 248, 255, 0.691),
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12,
-                        ),
-                      ),
-                      height20,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+          return Column(
+            children: [
+              Container(
+                width: context.getWidth(),
+                height: context.getHeight() * 0.1954,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                  color: green,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.transparent,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            dateText,
-                            style: TextStyle(height: 0.1, color: pureWhite),
+                            eventName,
+                            style: TextStyle(
+                              color: pureWhite,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
-                          width4,
                           Text(
-                            timeText,
-                            style: TextStyle(height: 0.1, color: pureWhite),
+                            eventLocation,
+                            style: const TextStyle(
+                              color: Color.fromRGBO(240, 248, 255, 0.691),
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12,
+                            ),
+                          ),
+                          height20,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                dateText,
+                                style: TextStyle(height: 0.1, color: pureWhite, fontSize: 10),
+                              ),
+                              width4,
+                              Text(
+                                timeText,
+                                style: TextStyle(height: 0.1, color: pureWhite, fontSize: 10),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 35,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: grey,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      width4,
-                      Icon(
-                        FontAwesomeIcons.clock,
-                        color: green,
-                      ),
-                      width16,
-                      Text(
-                        hoursWorkedText,
-                        style: TextStyle(
-                          color: green,
+                  ],
+                ),
+              ),
+              Container(
+                      height: 40,
+                      width: double.infinity,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        color: grey,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          width4,
+                          Icon(
+                            FontAwesomeIcons.clock,
+                            color: green,
+                          ),
+                          width16,
+                          Text(
+                            hoursWorkedText,
+                            style: TextStyle(
+                              color: green,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+            ],
           );
         }
       },);

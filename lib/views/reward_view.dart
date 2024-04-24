@@ -10,8 +10,8 @@ import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/widgets/header_point_widget.dart';
 import 'package:green_saudi_app/widgets/history_point_widget.dart';
 import 'package:green_saudi_app/widgets/offers_widget.dart';
+import 'package:green_saudi_app/widgets/shimmer_offer.dart';
 import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
-import 'package:green_saudi_app/widgets/shimmer_widget.dart';
 
 class RewardView extends StatelessWidget {
   const RewardView({super.key});
@@ -73,12 +73,19 @@ class RewardView extends StatelessWidget {
                     BlocBuilder<RewardBloc, RewardState>(
                       builder: (context, state) {
                         if (state is RewardLoadingState) {
-                          return ListView.builder(
-                              itemCount: 4,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return buildShimmerEffect();
-                              });
+                          return GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 5,
+                              childAspectRatio: 0.78,
+                            ),
+                            itemCount: 6,
+                            itemBuilder: (context, index) {
+                              return const ShimmerEffectOffer();
+                            },
+                          );
                         } else if (state is RewardLoadedState) {
                           return GridView.builder(
                             gridDelegate:

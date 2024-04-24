@@ -17,17 +17,15 @@ class SupervisorsPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                context.push(view: const BottomNavBarAdmin(), isPush: false);
-              },
-              icon: const Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-              ),
+          leading: IconButton(
+            onPressed: () {
+              context.push(view: const BottomNavBarAdmin(), isPush: false);
+            },
+            icon: Icon(
+              Icons.arrow_forward,
+              color: pureWhite,
             ),
-          ],
+          ),
           backgroundColor: green,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -42,70 +40,77 @@ class SupervisorsPage extends StatelessWidget {
             ],
           ),
         ),
-        body: SizedBox(
-          height: context.getHeight(),
-          child: BlocBuilder<SupervisorBloc, SupervisorState>(
-            builder: (context, state) {
-              if (state is SupervisorLoading) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: green,
-                  ),
-                );
-              } else if (state is SupervisorLoad) {
-                return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: state.supervisor.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: green,
-                            borderRadius: BorderRadius.circular(14)),
-                        height: 60,
-                        width: 356,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Text(
-                                "${AppLocale.supervisorsName.getString(context)}: ${state.supervisor[index].name}",
-                                style: const TextStyle(
-                                    fontSize: 20, color: Colors.white),
+        body: BlocBuilder<SupervisorBloc, SupervisorState>(
+          builder: (context, state) {
+            if (state is SupervisorLoading) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: green,
+                ),
+              );
+            } else if (state is SupervisorLoad) {
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: state.supervisor.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: green,
+                          borderRadius: BorderRadius.circular(14)),
+                      height: 100,
+                      width: context.getWidth(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Text(
+                                  "${AppLocale.supervisorsName.getString(context)}: ${state.supervisor[index].name}",
+                                  style: const TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Text(
-                                "${AppLocale.supervisorsCity.getString(context)}: ${state.supervisor[index].city}",
-                                style: const TextStyle(
-                                    fontSize: 20, color: Colors.white),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Text(
+                                  "${AppLocale.supervisorsCity.getString(context)}: ${state.supervisor[index].city}",
+                                  style: const TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
                               ),
+                            ],
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(right: 10),
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage("assets/images/adminlogo.png"),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                );
-              } else {
-                return Center(
-                  child: Text(
-                    AppLocale.noSupervisor.getString(context),
-                  ),
-                );
-              }
-            },
-          ),
+                    ),
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: Text(
+                  AppLocale.noSupervisor.getString(context),
+                ),
+              );
+            }
+          },
         ),
       ),
     );

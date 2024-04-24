@@ -124,7 +124,7 @@ class BottomNavBar extends StatelessWidget {
               floatingActionButton: serviceLocator.user.typeRole == "supervisor"
                   ? FloatingActionButton(
                       onPressed: () {
-                        context.push(view:  EventsSupervisorPage(), isPush: true);
+                        context.push(view:  EventsSupervisorPage(), isPush: false);
                       },
                       backgroundColor: green,
                       child: Icon(

@@ -66,7 +66,7 @@ class _AddEventState extends State<AddEvent> {
                 AppLocale.addEvent.getString(context),
                 style: TextStyle(
                   color: pureWhite,
-                  fontSize: 32,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -92,10 +92,14 @@ class _AddEventState extends State<AddEvent> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(AppLocale.addImageEvent.getString(context),
-                          style: const TextStyle(
-                            fontSize: 24,
-                          )),
+                      SizedBox(
+                        width: 120,
+                        child: Text(AppLocale.addImageEvent.getString(context),
+                            style: const TextStyle(
+                              fontSize: 24,
+                            ), 
+                            textAlign: TextAlign.center,),
+                      ),
                       const Spacer(),
                       InkWell(
                         onTap: () {

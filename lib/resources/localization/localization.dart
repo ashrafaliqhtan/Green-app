@@ -229,7 +229,7 @@ mixin AppLocale {
     homePage: 'Home',
     pointPage: 'Reward',
     eventPage: 'Event',
-    myEventPage: 'My Event',
+    myEventPage: 'History',
     currentEvent: 'Current Event',
     dutiesInitiatives: 'Duties of Initiatives',
     dutiesInitiatives1:
@@ -390,7 +390,7 @@ mixin AppLocale {
     homePage: 'الرئيسية',
     pointPage: 'النقاط',
     eventPage: 'الاحداث',
-    myEventPage: 'أحداثي',
+    myEventPage: 'السجل',
     currentEvent: 'الاحداث الجارية',
     dutiesInitiatives: 'مهام المبادرة',
     dutiesInitiatives1:
@@ -455,7 +455,7 @@ mixin AppLocale {
     no: 'إلغاء',
     scanQrCode: 'امسح الباركود',
     scanQR: 'لنقم بالمسح',
-    great: 'ممتاز',
+    great: 'تم',
     failScan: "نعتذر, لم نستطيع التعرف على الكود حاليا حاول مرة أخرى",
     cancelSAcan: 'مسح الكود تم إلغاه',
     attendanceAlready: "لقد تم تسجيل الحضور مسبقا",

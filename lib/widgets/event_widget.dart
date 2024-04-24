@@ -32,80 +32,83 @@ class EventWidget extends StatelessWidget {
                   ),
                   isPush: true);
             },
-            child: Container(
-              width: context.getWidth(),
-              height: context.getHeight() * .155,
-              margin: const EdgeInsets.only(
-                  bottom: 50, top: 20, right: 16, left: 16),
-              decoration: BoxDecoration(
-                color: green,
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                 Positioned(
-                    top: -40,
-                    right: 60,
-                    left: 60,
-                    child: Container(
-                      width: context.getWidth() * .640,
-                      height: context.getHeight() * .1,
-                      decoration: BoxDecoration(
-                        image:  DecorationImage(
-                          
-                          image: NetworkImage(event.imageUrl  ??
-                          
-                           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
-                          
+            child: Padding(
+              padding: const EdgeInsets.only(top: 18),
+              child: Container(
+                width: context.getWidth(),
+                height: context.getHeight() * .155,
+                margin: const EdgeInsets.only(
+                    bottom: 50, top: 20, right: 16, left: 16),
+                decoration: BoxDecoration(
+                  color: green,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                   Positioned(
+                      top: -40,
+                      right: 60,
+                      left: 60,
+                      child: Container(
+                        width: context.getWidth() * .640,
+                        height: context.getHeight() * .1,
+                        decoration: BoxDecoration(
+                          image:  DecorationImage(
+                            
+                            image: NetworkImage(event.imageUrl  ??
+                            
+                             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
+                            
+                          ),
+                            fit: BoxFit.cover,
+                          ),
+                          color: pureWhite,
+                          borderRadius: BorderRadius.circular(40),
                         ),
-                          fit: BoxFit.cover,
-                        ),
-                        color: pureWhite,
-                        borderRadius: BorderRadius.circular(40),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: -10,
-                    right: 100,
-                    left: 100,
-                    child: Container(
-                      width: context.getWidth() * .65,
-                      height: context.getHeight() * .048,
-                      decoration: BoxDecoration(
-                        color: pureWhite,
-                        borderRadius: BorderRadius.circular(40),
+                    Positioned(
+                      bottom: -10,
+                      right: 100,
+                      left: 100,
+                      child: Container(
+                        width: context.getWidth() * .65,
+                        height: context.getHeight() * .048,
+                        decoration: BoxDecoration(
+                          color: pureWhite,
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: Center(
+                          child: Text(
+                            location,
+                            style: TextStyle(
+                              color: green,
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
                       ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
                       child: Center(
-                        child: Text(
-                          location,
-                          style: TextStyle(
-                            color: green,
-                            fontSize: 17,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Text(
+                            eventTitle,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: pureWhite,
+                              fontSize: 22,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Text(
-                          eventTitle,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: pureWhite,
-                            fontSize: 22,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

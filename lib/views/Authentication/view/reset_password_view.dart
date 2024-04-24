@@ -50,42 +50,45 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             ),
             body: SingleChildScrollView(
               child: SafeArea(
-                child: Column(
-                  children: [
-                    SizedBox(
-                        width: context.getWidth(),
-                        height: context.getHeight() * 0.5,
-                        child: 
-                          Image.asset("assets/images/newpass.jpeg"),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                          width: context.getWidth(),
+                          height: context.getHeight() * 0.5,
+                          child: 
+                            Image.asset("assets/images/newpass.jpeg"),
+                        ),
+                      height10,
+                      InputTextFelid(
+                        controller: passwordController,
+                        title: AppLocale.newPassword.getString(context),
+                        hintText: AppLocale.resetPasswordHint.getString(context),
+                        icon: Icons.lock,
+                        isPassword: true,
+                        isColorChange: true,
                       ),
-                    height10,
-                    InputTextFelid(
-                      controller: passwordController,
-                      title: AppLocale.newPassword.getString(context),
-                      hintText: AppLocale.resetPasswordHint.getString(context),
-                      icon: Icons.lock,
-                      isPassword: true,
-                      isColorChange: true,
-                    ),
-                    InputTextFelid(
-                      controller: confirmPasswordController,
-                      title: AppLocale.confirmTitle.getString(context),
-                      hintText: AppLocale.confirmPasswordHint.getString(context),
-                      icon: Icons.lock,
-                      isPassword: true,
-                      isColorChange: true,
-                    ),
-                    height32,
-                    CustomButton(
-                      title: AppLocale.confirmEmail.getString(context),
-                      backgroundColor: green,
-                      onPressed: () {
-                        context.read<AuthBloc>().add(ChangePasswordEvent(
-                            password: passwordController.text,
-                            confirmPassword: confirmPasswordController.text));
-                      },
-                    )
-                  ],
+                      InputTextFelid(
+                        controller: confirmPasswordController,
+                        title: AppLocale.confirmTitle.getString(context),
+                        hintText: AppLocale.confirmPasswordHint.getString(context),
+                        icon: Icons.lock,
+                        isPassword: true,
+                        isColorChange: true,
+                      ),
+                      height32,
+                      CustomButton(
+                        title: AppLocale.confirmEmail.getString(context),
+                        backgroundColor: green,
+                        onPressed: () {
+                          context.read<AuthBloc>().add(ChangePasswordEvent(
+                              password: passwordController.text,
+                              confirmPassword: confirmPasswordController.text));
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
