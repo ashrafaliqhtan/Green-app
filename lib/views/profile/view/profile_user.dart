@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +23,6 @@ class ProfileView extends StatelessWidget {
     context.read<AuthBloc>().add(LoadProfileEvent());
 
     final serviceLocator = DataInjection().locator.get<DBServices>();
-    final user = serviceLocator.user;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBodyBehindAppBar: true,

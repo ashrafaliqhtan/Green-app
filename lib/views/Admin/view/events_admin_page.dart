@@ -8,7 +8,7 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/service/database_configuration.dart';
+import 'package:green_saudi_app/service/translator_function.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/view/add_event.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';

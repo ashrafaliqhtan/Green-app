@@ -3,9 +3,9 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
-import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/service/translator_function.dart';
 
 class HistoryHoursWidget extends StatelessWidget {
   const HistoryHoursWidget({super.key, required this.eventModel});

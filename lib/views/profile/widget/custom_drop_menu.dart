@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
-import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/translator_function.dart';
 
 class DropMenu extends StatefulWidget {
   const DropMenu({

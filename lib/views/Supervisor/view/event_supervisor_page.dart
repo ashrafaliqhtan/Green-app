@@ -6,13 +6,13 @@ import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/service/database_configuration.dart';
+import 'package:green_saudi_app/service/translator_function.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Supervisor/view/qr_code_reader.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 
 class EventsSupervisorPage extends StatelessWidget {
-  EventsSupervisorPage({super.key});
+  const EventsSupervisorPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,6 @@ class EventsSupervisorPage extends StatelessWidget {
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2,
-                                         // textAlign: TextAlign.center,
                                         ),
                                       ),
                                     );

@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
-import 'package:meta/meta.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'supervisor_event.dart';
@@ -38,7 +38,7 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
           } else {
             emit(SupervisorScanErrorUser());
           }
-        } on PostgrestException catch (e) {
+        } on PostgrestException catch (_) {
           emit(SupervisorScanFailure());
         }
       }

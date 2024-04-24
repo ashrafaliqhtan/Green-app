@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -32,7 +31,6 @@ void main() async {
 
       runApp(
         const MainApp(),
-      //  const MainApp(),
       );
     } else {
       runApp(const Disconnect());

@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,8 +13,8 @@ import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 
 
 class ScanView extends StatelessWidget {
-  ScanView({super.key, required this.eventModel});
-  EventModel eventModel;
+  const ScanView({super.key, required this.eventModel});
+  final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -86,30 +85,6 @@ class ScanView extends StatelessWidget {
                             ),
                           ],
                         );
-                        // return AlertDialog(
-                        //   surfaceTintColor:
-                        //       Theme.of(context).scaffoldBackgroundColor,
-                        //   actions: [
-                        //     ElevatedButton(
-                        //         onPressed: () {
-                        //           GetIt.I.get<DBServices>().addVolunteerHours(
-                        //               addVolunteerHour: 8,
-                        //               volunteerID: state.qrString,
-                        //               eventID: eventModel.id!);
-                        //         },
-                        //         child: Text(
-                        //           AppLocale.great.getString(context),
-                        //           style: TextStyle(color: pureWhite),
-                        //         ))
-                        //   ],
-                        //   title: Column(
-                        //     crossAxisAlignment: CrossAxisAlignment.center,
-                        //     children: [
-                        //       const IconDisplay(isSuccess: true),
-                        //       Text(AppLocale.attendance.getString(context)),
-                        //     ],
-                        //   ),
-                        // );
                       } else if (state is SupervisorScanFailure) {
                         return Column(
                           children: [

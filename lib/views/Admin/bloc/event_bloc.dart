@@ -24,7 +24,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     on<HistoryLoadEvent>(loadHistory);
     on<EventSearchEvent>(loadSearchEventData);
     on<EventRegionEvent>(loadSearchRegion);
-    //on<EventDeleted>(deleteEvent);
   }
   Future<void> loadEventData(
       EventLoadEvent event, Emitter<EventState> emit) async {
@@ -37,7 +36,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
         emit(EventInitial());
       }
     } catch (e) {
-      print(e);
       emit(EventErrorState(
           msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
     }
@@ -57,7 +55,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
               await locator.createEvent(event: event.event);
               emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
             } catch (e) {
-              print(e);
               emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
             }
           } else {
@@ -74,12 +71,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     }
   }
 
-
-
-FutureOr<void> registerEvent(
+  FutureOr<void> registerEvent(
       RegisterEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
-    print(event.personalEvent.eventId!);
     try {
       var checkRegister =
           await locator.checkRegister(eventId: event.personalEvent.eventId!);
@@ -90,7 +84,6 @@ FutureOr<void> registerEvent(
           await locator.participateEvent(event: event.personalEvent);
           emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
         } catch (e) {
-          print(e);
           emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
         }
       }

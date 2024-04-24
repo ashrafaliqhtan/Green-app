@@ -34,9 +34,11 @@ class OTPView extends StatelessWidget {
             color: green,
           );
         } else if (state is AuthResendOTPErrorState) {
-          context.getMessagesBar(msg: state.message, color: red, success: false);
+          context.getMessagesBar(
+              msg: state.message, color: red, success: false);
         } else if (state is AuthCheckOTPVerificationErrorState) {
-          context.getMessagesBar(msg: state.message, color: red, success: false);
+          context.getMessagesBar(
+              msg: state.message, color: red, success: false);
         }
       },
       builder: (context, state) {
@@ -46,7 +48,15 @@ class OTPView extends StatelessWidget {
             resizeToAvoidBottomInset: true,
             backgroundColor: white,
             appBar: AppBar(
-              leading: IconButton(onPressed: (){context.push(view: const ValidationEmailView(), isPush: false);}, icon:  Icon(Icons.arrow_back,color: green,)),
+              leading: IconButton(
+                  onPressed: () {
+                    context.push(
+                        view: const ValidationEmailView(), isPush: false);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: green,
+                  )),
               backgroundColor: Colors.transparent,
             ),
             body: SingleChildScrollView(
@@ -85,11 +95,11 @@ class OTPView extends StatelessWidget {
                         focusedBorderColor: pureWhite,
                         // clearText: true,
                         onCodeChanged: (value) {
-                        serviceLocator.otpToken = value;
-                      },
-                      onSubmit: (value) {
-                        serviceLocator.otpToken = value;
-                      },
+                          serviceLocator.otpToken = value;
+                        },
+                        onSubmit: (value) {
+                          serviceLocator.otpToken = value;
+                        },
                       ),
                     ),
                     height20,
@@ -98,7 +108,8 @@ class OTPView extends StatelessWidget {
                       children: [
                         Countdown(
                           seconds: 60,
-                          build: (BuildContext context, double time) => Expanded(
+                          build: (BuildContext context, double time) =>
+                              Expanded(
                             child: Center(
                               child: Text(
                                 '${AppLocale.timer.getString(context)} ${time.toInt()} ${AppLocale.second.getString(context)}',
@@ -140,12 +151,8 @@ class OTPView extends StatelessWidget {
                     height40,
                     ElevatedButton(
                       onPressed: () {
-                      print("=========================");
-                      print(serviceLocator.otpToken);
-                      print("=========================");
-                      context
-                          .read<AuthBloc>()
-                          .add(VerifyOtpEvent(otpToken: serviceLocator.otpToken));
+                        context.read<AuthBloc>().add(
+                            VerifyOtpEvent(otpToken: serviceLocator.otpToken));
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: green,

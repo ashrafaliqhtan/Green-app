@@ -22,9 +22,7 @@ class ImagePicBloc extends Bloc<ImagePicEvent, ImagePicState> {
             serviceLocator.deleteImage(event.bucketName, event.fileName);
             serviceLocator.uploadImage(serviceLocator.ImageFileFromDatabase,
                 event.bucketName, event.fileName);
-          } catch (e) {
-            print(e);
-          }
+          } catch (_) {}
         }
       },
     );
@@ -32,13 +30,8 @@ class ImagePicBloc extends Bloc<ImagePicEvent, ImagePicState> {
       try {
         File avatar1 = await imagePic();
         serviceLocator.ImageFileFromDatabase = avatar1;
-        print(avatar1.path);
-        print(serviceLocator.ImageFileFromDatabase.path);
-
         emit(ImageState(fileImage: avatar1));
-      } catch (e) {
-        print(e);
-      }
+      } catch (_) {}
     });
   }
 }

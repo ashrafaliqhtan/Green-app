@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
-import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
+import 'package:green_saudi_app/service/translator_function.dart';
 import 'package:green_saudi_app/views/details_event_view.dart';
 
 class EventWidget extends StatelessWidget {

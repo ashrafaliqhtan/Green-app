@@ -58,7 +58,6 @@ class EventView extends StatelessWidget {
             ),
           ],
         ),
-        
         drawer: const DrawerScreen(),
         body: Column(
           children: [
@@ -68,10 +67,12 @@ class EventView extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(onSubmitted: (value) {
-                      print(value);
-                      context.read<EventBloc>().add(EventSearchEvent(order: true, search: value));
-                    },
+                    child: TextField(
+                      onSubmitted: (value) {
+                        context
+                            .read<EventBloc>()
+                            .add(EventSearchEvent(order: true, search: value));
+                      },
                       controller: controller,
                       decoration: InputDecoration(
                         fillColor: Theme.of(context).scaffoldBackgroundColor,
@@ -119,13 +120,17 @@ class EventView extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context) {
                           return [
-                             PopupMenuItem(
+                            PopupMenuItem(
                               value: true,
-                              child: Text(AppLocale.newest.getString(context),),
+                              child: Text(
+                                AppLocale.newest.getString(context),
+                              ),
                             ),
-                             PopupMenuItem(
+                            PopupMenuItem(
                               value: false,
-                              child: Text(AppLocale.oldest.getString(context),),
+                              child: Text(
+                                AppLocale.oldest.getString(context),
+                              ),
                             ),
                           ];
                         },
@@ -167,7 +172,6 @@ class EventView extends StatelessWidget {
                 builder: (context, state) {
                   if (state is EventLoadingState) {
                     return ListView.builder(
-                      
                         itemCount: 4,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {

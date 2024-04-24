@@ -53,7 +53,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                   message:
                       "تم إنشاء الحساب بنجاح، الرجاء تأكيد الحساب عبر الإيميل الخاص بك"));
             } on AuthException catch (e) {
-              print(e);
               emit(AuthSignUpErrorState(
                 message:
                     "فشل في عملية التسجيل: ${e.statusCode}. يرجى التحقق من بريدك الإلكتروني وكلمة المرور",
@@ -89,10 +88,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
           emit(AuthLoginSuccessState(message: "تم تسجيل الدخول بنجاح"));
         } on AuthException catch (e) {
-          print("----------------");
-          print(e.message);
-          print(e.statusCode);
-          print("----------------");
           emit(AuthLoginErrorState(
               message:
                   "البريد الإلكتروني أو كلمة المرور غير صحيحة: ${e.statusCode}. يرجى التحقق من بيانات الاعتماد الخاصة بك والمحاولة مرة أخرى"));
@@ -249,8 +244,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       serviceLocator.user =
           await serviceLocator.getUser(id: serviceLocator.userID);
       emit(AuthLoadProfileState(user: serviceLocator.user));
-    } catch (e) {
-      print(e);
-    }
+    } catch (_) {}
   }
 }

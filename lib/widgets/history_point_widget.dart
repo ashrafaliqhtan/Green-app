@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/model/history_point_model.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
-import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
+import 'package:green_saudi_app/service/translator_function.dart';
 import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 
 class PointWidget extends StatelessWidget {

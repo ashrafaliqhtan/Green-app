@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 
-// ignore: must_be_immutable
 class SettingsButton extends StatelessWidget {
-   SettingsButton({
+   const SettingsButton({
     super.key,
     required this.title,
     required this.icons,
@@ -11,7 +10,7 @@ class SettingsButton extends StatelessWidget {
   });
   final String title;
   final IconData icons;
-  void Function()? onTap;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(

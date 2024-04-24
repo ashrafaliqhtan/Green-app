@@ -17,7 +17,7 @@ class DatePickerWidget extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     return TextField(
       controller: controller,
-      decoration:  InputDecoration(
+      decoration: InputDecoration(
         border: const OutlineInputBorder(borderSide: BorderSide.none),
         hintText: AppLocale.addDate.getString(context),
       ),
@@ -32,11 +32,11 @@ class DatePickerWidget extends StatelessWidget {
           builder: (BuildContext context, Widget? child) {
             return Theme(
               data: ThemeData.light().copyWith(
-                colorScheme:  ColorScheme.light(
-                  primary: green, 
+                colorScheme: ColorScheme.light(
+                  primary: green,
                 ),
-                textTheme:  TextTheme(
-                  titleMedium: TextStyle(color:green), 
+                textTheme: TextTheme(
+                  titleMedium: TextStyle(color: green),
                 ),
               ),
               child: child!,
@@ -52,9 +52,6 @@ class DatePickerWidget extends StatelessWidget {
           } else {
             GetIt.I.get<DBServices>().endDateEvent = time;
           }
-          print(time);
-        } else {
-          print("Date is not selected");
         }
       },
     );
