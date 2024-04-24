@@ -181,7 +181,7 @@ class DBServices {
       required String eventID}) async {
     final respons = await supabase
         .from('attendees_table')
-        .insert({"id": volunteerID, "event_id": eventID});
+        .insert({"id": volunteerID});
     if (respons == null) {
       await supabase.from('personal_event').update({
         "stats": "present",
@@ -198,34 +198,7 @@ class DBServices {
         "point": (addVolunteerHour * 10),
         "state": "plus"
       });
-    }
-
-    Future addVolunteerHours(
-        {required int addVolunteerHour,
-        required String volunteerID,
-        required String eventID}) async {
-      final respons =
-          await supabase.from('attendees_table').insert({"id": volunteerID});
-      if (respons == null) {
-        print(volunteerID);
-        print(eventID);
-        await supabase.from('personal_event').update({
-          "stats": "present",
-          "days": 1,
-        }).match({"user_id": volunteerID, "event_id": eventID});
-        await supabase.from('user_green_sa_app').update({
-          "volunteer_hours": (user.volunteerHours! + addVolunteerHour),
-          "points": (user.points! + addVolunteerHour * 10)
-        }).match({
-          'id_user': volunteerID,
-        });
-        await supabase.from('history_point').insert({
-          "user_id": volunteerID,
-          "point": (addVolunteerHour * 10),
-          "state": "plus"
-        });
-      }
-    }
+    }}
 
     Future usePoint(
         {required int usedPoint, required String volunteerID}) async {
@@ -324,7 +297,7 @@ class DBServices {
       return response;
     }
 
-////////////////Search
+    ////////////////Search
     Future<List<EventModel>> getAllEventSearch(
         bool isOrder, String search) async {
       final eventsListData = await supabase
@@ -352,5 +325,5 @@ class DBServices {
       }
       return regionsList;
     }
-  }
+  
 }

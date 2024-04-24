@@ -31,10 +31,7 @@ void main() async {
     if (status == InternetStatus.connected) {
 
       runApp(
-        DevicePreview(
-    //enabled: !kReleaseMode,
-    builder: (context) => MainApp(), // Wrap your app
-  ),
+        const MainApp(),
       //  const MainApp(),
       );
     } else {
@@ -96,10 +93,8 @@ class _MainAppState extends State<MainApp> {
               builder: (context, state) {
                 GetIt.I.get<DBServices>().language=localization.currentLocale!;
                 return MaterialApp(
-                  useInheritedMediaQuery: true,
-                  locale: DevicePreview.locale(context),
-                  builder: DevicePreview.appBuilder,
-                 // locale: localization.currentLocale,
+                  
+                 locale: localization.currentLocale,
                   debugShowCheckedModeBanner: false,
                   theme: appThemes[ GetIt.I.get<AppearanceServices>().currentTheme],
                   supportedLocales: localization.supportedLocales,

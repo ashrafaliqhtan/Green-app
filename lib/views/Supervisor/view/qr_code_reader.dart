@@ -158,7 +158,7 @@ class ScanView extends StatelessWidget {
                   height100,
                   TextButton(
                     onPressed: () {
-                      BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
+                      BlocProvider.of<SupervisorBloc>(context).add(ScanQR(event: eventModel));
                     },
                     child: Column(
                       children: [

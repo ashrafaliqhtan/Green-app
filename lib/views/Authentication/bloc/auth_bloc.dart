@@ -239,18 +239,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoadProfileEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     try {
-      print(serviceLocator.userID);
       try {
         serviceLocator.userImageUrl =
             await serviceLocator.urlImage("avatar", serviceLocator.userID);
       } catch (e) {
         serviceLocator.userImageUrl =
             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png";
-        print(e);
       }
       serviceLocator.user =
           await serviceLocator.getUser(id: serviceLocator.userID);
       emit(AuthLoadProfileState(user: serviceLocator.user));
-    } catch (_) {}
+    } catch (e) {
+      print(e);
+    }
   }
 }
