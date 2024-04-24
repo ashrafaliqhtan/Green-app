@@ -11,7 +11,7 @@ import 'package:green_saudi_app/resources/theme/bloc/theme_bloc.dart';
 import 'package:green_saudi_app/resources/theme/theme.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/service/appearence_service.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/bloc/event_bloc.dart';
 import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/views/Authentication/bloc/auth_bloc.dart';

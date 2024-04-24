@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/personal_event.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:meta/meta.dart';
 
 part 'event_event.dart';

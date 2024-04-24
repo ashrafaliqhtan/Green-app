@@ -1,6 +1,6 @@
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:intl/intl.dart';
 import 'package:translator/translator.dart';
 

@@ -8,7 +8,7 @@ import 'package:green_saudi_app/resources/image_picker/bloc/image_pic_bloc.dart'
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:green_saudi_app/views/Admin/bottom_nav_bar_admin/view/bottom_nav_bar_admin.dart';
 import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
 import 'package:green_saudi_app/views/Admin/view/rewards_admin_page.dart';

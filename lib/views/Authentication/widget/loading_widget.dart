@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:lottie/lottie.dart';
 

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/model/history_point_model.dart';
 import 'package:green_saudi_app/model/reward_model.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:meta/meta.dart';
 
 part 'reward_event.dart';

@@ -10,6 +10,7 @@ import 'package:green_saudi_app/model/personal_event.dart';
 import 'package:green_saudi_app/model/reward_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
 class DBServices {
   final supabase = Supabase.instance.client;
   String userRole = "";

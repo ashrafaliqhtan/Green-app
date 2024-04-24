@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
 import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/theme/theme.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 
 // ignore: must_be_immutable
 class TimePickerWidget extends StatefulWidget {

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
-import 'package:green_saudi_app/service/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 import 'package:green_saudi_app/views/Authentication/widget/loading_admin.dart';
 import 'package:green_saudi_app/views/onboarding/view/onboarding_view.dart';
 import 'package:green_saudi_app/views/Authentication/widget/loading_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 part 'auth_event.dart';
 part 'auth_state.dart';
