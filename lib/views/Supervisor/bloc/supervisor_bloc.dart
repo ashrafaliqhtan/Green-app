@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:meta/meta.dart';
@@ -12,7 +13,8 @@ part 'supervisor_event.dart';
 part 'supervisor_state.dart';
 
 class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
-  List <GSIUser>supervisor=[]; 
+  List<GSIUser> supervisor = [];
+
   SupervisorBloc() : super(SupervisorInitial()) {
     on<SupervisorEvent>((event, emit) {});
     on<ScanQR>(scanQR);
@@ -30,9 +32,8 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
           var userId =
               await GetIt.I.get<DBServices>().getAttendees(id: qrResult);
           if (userId != qrResult) {
-            GetIt.I
-                .get<DBServices>()
-                .addVolunteerHours(addVolunteerHour: 8, volunteerID: qrResult,eventID: userId);
+            GetIt.I.get<DBServices>().addVolunteerHours(
+                addVolunteerHour: 8, volunteerID: qrResult, eventID: event.event.id!);
             emit(SupervisorScanSuccess(qrResult));
           } else {
             emit(SupervisorScanErrorUser());
@@ -46,9 +47,10 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
     }
   }
 
+  
 
-  FutureOr<void> loadSupervisor(LoadSupervisors event, Emitter<SupervisorState> emit) async{
-
+  FutureOr<void> loadSupervisor(
+      LoadSupervisors event, Emitter<SupervisorState> emit) async {
     emit(SupervisorLoading());
     try {
       supervisor = await GetIt.I.get<DBServices>().getSupervisors();

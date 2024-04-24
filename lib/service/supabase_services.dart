@@ -104,7 +104,6 @@ class DBServices {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
 
-  
   //-----------------------------User----------------------------------
   //Register Event
   Future<PersonalEvent> participateEvent({required PersonalEvent event}) async {
@@ -114,7 +113,6 @@ class DBServices {
           "user_id": userID,
           "name": event.name,
           "event_id": event.eventId,
-          "stats": event.stats,
           "days": 0
         })
         .select()
@@ -122,7 +120,7 @@ class DBServices {
     return PersonalEvent.fromJson(response);
   }
 
-Future checkRegister({required String eventId}) async {
+  Future checkRegister({required String eventId}) async {
     return await supabase
         .from('personal_event')
         .select()
@@ -177,114 +175,182 @@ Future checkRegister({required String eventId}) async {
     }
   }
 
-  Future addVolunteerHours({required int addVolunteerHour,required String volunteerID,required String eventID}) async {
-        final respons=await supabase.from('attendees_table').insert({"id":volunteerID,"event_id":eventID});
-    if(respons==null){
-            await supabase.from('personal_event').update({
-      "stats":"present",
-      "days":1,
-    }).match({"user_id":volunteerID,"event_id":eventID});
-      await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
-      "points":(user.points!+addVolunteerHour*10)
-    }).match({'id_user': volunteerID,});
+  Future addVolunteerHours(
+      {required int addVolunteerHour,
+      required String volunteerID,
+      required String eventID}) async {
+    final respons = await supabase
+        .from('attendees_table')
+        .insert({"id": volunteerID, "event_id": eventID});
+    if (respons == null) {
+      await supabase.from('personal_event').update({
+        "stats": "present",
+        "days": 1,
+      }).match({"user_id": volunteerID, "event_id": eventID});
+      await supabase.from('user_green_sa_app').update({
+        "volunteer_hours": (user.volunteerHours! + addVolunteerHour),
+        "points": (user.points! + addVolunteerHour * 10)
+      }).match({
+        'id_user': volunteerID,
+      });
+      await supabase.from('history_point').insert({
+        "user_id": volunteerID,
+        "point": (addVolunteerHour * 10),
+        "state": "plus"
+      });
+    }
+
+    Future addVolunteerHours(
+        {required int addVolunteerHour,
+        required String volunteerID,
+        required String eventID}) async {
+      final respons =
+          await supabase.from('attendees_table').insert({"id": volunteerID});
+      if (respons == null) {
+        print(volunteerID);
+        print(eventID);
+        await supabase.from('personal_event').update({
+          "stats": "present",
+          "days": 1,
+        }).match({"user_id": volunteerID, "event_id": eventID});
+        await supabase.from('user_green_sa_app').update({
+          "volunteer_hours": (user.volunteerHours! + addVolunteerHour),
+          "points": (user.points! + addVolunteerHour * 10)
+        }).match({
+          'id_user': volunteerID,
+        });
         await supabase.from('history_point').insert({
-      "user_id":volunteerID,
-      "point":(addVolunteerHour*10),
-      "state":"plus"
-    });}
-    
-  }
-
-  Future usePoint({required int usedPoint, required String volunteerID}) async {
-    final point = await getUserPoint(id: volunteerID);
-    await supabase
-        .from('user_green_sa_app')
-        .update({"points": (point - usedPoint)}).match({
-      'id_user': volunteerID,
-    });
-    await supabase.from('history_point').insert(
-        {"user_id": volunteerID, "point": (usedPoint), "state": "minus"});
-  }
-
-  Future<List<HistoryPointModel>> getHistoryPoint({required String id}) async {
-    final historyPointListData =
-        await supabase.from('history_point').select('*').match({'user_id': id});
-    List<HistoryPointModel> listOfHistoryPoints = [];
-    for (var element in historyPointListData) {
-      listOfHistoryPoints.add(HistoryPointModel.fromMap(element));
+          "user_id": volunteerID,
+          "point": (addVolunteerHour * 10),
+          "state": "plus"
+        });
+      }
     }
-    return listOfHistoryPoints;
-  }
 
-  //----------------------------- Admin --------------------------------
-  Future createEvent({required EventModel event}) async {
-    await supabase.from('org_event').insert({
-      "event_id": event.id,
-      "name": event.title,
-      "content": event.description,
-      "location": event.location,
-      "date_start": event.startDate,
-      "time_start": event.startTime!.substring(9, 15),
-      "end_date": event.endDate,
-      "time_end": event.endTime!.substring(9, 15),
-      "image_url": event.imageUrl,
-      "maximam_number_of": event.maximumCapacity,
-      "location_url": event.locationUrl,
-    });
-  }
-
-  Future createReward({required RewardModel reward}) async {
-    await supabase.from('reward_table').insert({
-      "reward_name": reward.rewardName,
-      "reward_company_logo": reward.rewardCompanyLogo,
-      "reward_content": reward.rewardContent,
-      "reward_company_name": reward.rewardCompanyName,
-    });
-  }
-
-  Future<List<EventModel>> getAllEvent(bool isOrder) async {
-    final eventsListData = await supabase
-        .from('org_event')
-        .select('*')
-        .order("created_at", ascending: isOrder);
-    List<EventModel> listOfEvents = [];
-    for (var element in eventsListData) {
-      listOfEvents.add(EventModel.fromJson(element));
+    Future usePoint(
+        {required int usedPoint, required String volunteerID}) async {
+      final point = await getUserPoint(id: volunteerID);
+      await supabase
+          .from('user_green_sa_app')
+          .update({"points": (point - usedPoint)}).match({
+        'id_user': volunteerID,
+      });
+      await supabase.from('history_point').insert(
+          {"user_id": volunteerID, "point": (usedPoint), "state": "minus"});
     }
-    return listOfEvents;
-  }
 
-  Future<List<RewardModel>> getAllReward() async {
-    final rewardListData = await supabase.from('reward_table').select('*');
-    List<RewardModel> listOfReward = [];
-    for (var element in rewardListData) {
-      listOfReward.add(RewardModel.fromJson(element));
+    Future<List<HistoryPointModel>> getHistoryPoint(
+        {required String id}) async {
+      final historyPointListData = await supabase
+          .from('history_point')
+          .select('*')
+          .match({'user_id': id});
+      List<HistoryPointModel> listOfHistoryPoints = [];
+      for (var element in historyPointListData) {
+        listOfHistoryPoints.add(HistoryPointModel.fromMap(element));
+      }
+      return listOfHistoryPoints;
     }
-    return listOfReward;
-  }
 
-  /////////////////file crud
-  Future<void> uploadImage(
-      File imageFile, String bucket, String nameFile) async {
-    await supabase.storage
-        .from(bucket) // Replace with your storage bucket name
-        .upload("${nameFile}", imageFile,
-            fileOptions: const FileOptions(upsert: true));
-    await urlImage(bucket, nameFile);
-    print("done");
-  }
+    //----------------------------- Admin --------------------------------
+    Future createEvent({required EventModel event}) async {
+      await supabase.from('org_event').insert({
+        "event_id": event.id,
+        "name": event.title,
+        "content": event.description,
+        "location": event.location,
+        "date_start": event.startDate,
+        "time_start": event.startTime!.substring(9, 15),
+        "end_date": event.endDate,
+        "time_end": event.endTime!.substring(9, 15),
+        "image_url": event.imageUrl,
+        "maximam_number_of": event.maximumCapacity,
+        "location_url": event.locationUrl,
+      });
+    }
 
-  Future<void> deleteImage(String bucket, String nameFile) async {
-    await supabase.storage
-        .from(bucket) // Replace with your storage bucket name
-        .remove(["${nameFile}"]);
-    print("done remove");
-  }
+    Future createReward({required RewardModel reward}) async {
+      await supabase.from('reward_table').insert({
+        "reward_name": reward.rewardName,
+        "reward_company_logo": reward.rewardCompanyLogo,
+        "reward_content": reward.rewardContent,
+        "reward_company_name": reward.rewardCompanyName,
+      });
+    }
 
-  Future<String> urlImage(String bucket, String nameFile) async {
-    final response = await supabase.storage
-        .from(bucket) // Replace with your storage bucket name
-        .getPublicUrl("${nameFile}");
-    return response;
+    Future<List<EventModel>> getAllEvent(bool isOrder) async {
+      final eventsListData = await supabase
+          .from('org_event')
+          .select('*')
+          .order("created_at", ascending: isOrder);
+      List<EventModel> listOfEvents = [];
+      for (var element in eventsListData) {
+        listOfEvents.add(EventModel.fromJson(element));
+      }
+      return listOfEvents;
+    }
+
+    Future<List<RewardModel>> getAllReward() async {
+      final rewardListData = await supabase.from('reward_table').select('*');
+      List<RewardModel> listOfReward = [];
+      for (var element in rewardListData) {
+        listOfReward.add(RewardModel.fromJson(element));
+      }
+      return listOfReward;
+    }
+
+    /////////////////file crud
+    Future<void> uploadImage(
+        File imageFile, String bucket, String nameFile) async {
+      await supabase.storage
+          .from(bucket) // Replace with your storage bucket name
+          .upload("${nameFile}", imageFile,
+              fileOptions: const FileOptions(upsert: true));
+      await urlImage(bucket, nameFile);
+      print("done");
+    }
+
+    Future<void> deleteImage(String bucket, String nameFile) async {
+      await supabase.storage
+          .from(bucket) // Replace with your storage bucket name
+          .remove(["${nameFile}"]);
+      print("done remove");
+    }
+
+    Future<String> urlImage(String bucket, String nameFile) async {
+      final response = await supabase.storage
+          .from(bucket) // Replace with your storage bucket name
+          .getPublicUrl("${nameFile}");
+      return response;
+    }
+
+////////////////Search
+    Future<List<EventModel>> getAllEventSearch(
+        bool isOrder, String search) async {
+      final eventsListData = await supabase
+          .from('org_event')
+          .select('*')
+          .textSearch('name', search)
+          .order("created_at", ascending: isOrder);
+      List<EventModel> listOfEvents = [];
+      for (var element in eventsListData) {
+        listOfEvents.add(EventModel.fromJson(element));
+      }
+      return listOfEvents;
+    }
+
+    Future<List<EventModel>> getAllEventRegion(
+        bool isOrder, String search) async {
+      final regionsListData = await supabase
+          .from('org_event')
+          .select('*')
+          .textSearch('location', search)
+          .order("created_at", ascending: isOrder);
+      List<EventModel> regionsList = [];
+      for (var element in regionsListData) {
+        regionsList.add(EventModel.fromJson(element));
+      }
+      return regionsList;
+    }
   }
 }

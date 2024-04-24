@@ -7,6 +7,7 @@ class EventLoadEvent extends EventEvent {
   final bool order;
   EventLoadEvent({required this.order});
 }
+
 class HistoryLoadEvent extends EventEvent {}
 
 class EventAdded extends EventEvent {
@@ -25,6 +26,18 @@ class EventUpdated extends EventEvent {
   final EventModel event;
   final String id;
   EventUpdated({required this.event, required this.id});
+}
+
+class EventSearchEvent extends EventEvent {
+  final bool order;
+  final String search;
+  EventSearchEvent({required this.order, required this.search});
+}
+
+class EventRegionEvent extends EventEvent {
+  final bool order;
+  final String search;
+  EventRegionEvent({required this.order, required this.search});
 }
 
 class RegisterEvent extends EventEvent {

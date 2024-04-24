@@ -14,12 +14,16 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   final locator = GetIt.I.get<DBServices>();
   List<PersonalEvent> listOfPersonalEvents = [];
   List<EventModel> listOfEvent = [];
+  List<EventModel> listOfOrderEvent = [];
+
   EventBloc() : super(EventInitial()) {
     on<EventEvent>((event, emit) {});
     on<EventLoadEvent>(loadEventData);
     on<EventAdded>(addEvent);
     on<RegisterEvent>(registerEvent);
     on<HistoryLoadEvent>(loadHistory);
+    on<EventSearchEvent>(loadSearchEventData);
+    on<EventRegionEvent>(loadSearchRegion);
     //on<EventDeleted>(deleteEvent);
   }
   Future<void> loadEventData(
@@ -54,7 +58,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
               emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
             } catch (e) {
               print(e);
-
               emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
             }
           } else {
@@ -97,27 +100,70 @@ FutureOr<void> registerEvent(
     }
   }
 
+  Future<void> loadSearchEventData(
+      EventSearchEvent event, Emitter<EventState> emit) async {
+    emit(EventLoadingState());
+    try {
+      if (event.search.trim().isNotEmpty) {
+        listOfOrderEvent =
+            await locator.getAllEventSearch(event.order, event.search);
+        if (listOfOrderEvent.isNotEmpty) {
+          emit(EventLoadedState(list: listOfOrderEvent));
+        } else {
+          emit(EventInitial());
+        }
+      } else {
+        emit(EventLoadedState(list: listOfEvent));
+      }
+    } catch (e) {
+      emit(EventErrorState(
+          msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
+    }
+  }
+
   FutureOr<void> loadHistory(
       HistoryLoadEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
     try {
       listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
       List<EventModel> listOfEvents = await locator.getAllEvent(true);
-      List<Map<String,dynamic>> listOfEvent=[];
-for (var element in listOfEvents) {
-  for (var index = 0; index < listOfPersonalEvents.length; index++) {
-    if(element.id ==listOfPersonalEvents[index].eventId){
-      listOfEvent.add({"event": element,"personalEvent":listOfPersonalEvents[index]});
-    }
-  }
-  
-}
-      print(listOfEvent);
+      List<Map<String, dynamic>> listOfEvent = [];
+      for (var element in listOfEvents) {
+        for (var index = 0; index < listOfPersonalEvents.length; index++) {
+          if (element.id == listOfPersonalEvents[index].eventId) {
+            listOfEvent.add({
+              "event": element,
+              "personalEvent": listOfPersonalEvents[index]
+            });
+          }
+        }
+      }
       if (listOfEvent.isNotEmpty) {
         emit(HistoryLoadedState(event: listOfEvent));
       } else {
         emit(EventInitial());
       }
     } catch (_) {}
+  }
+
+  FutureOr<void> loadSearchRegion(
+      EventRegionEvent event, Emitter<EventState> emit) async {
+    emit(EventLoadingState());
+    try {
+      if (event.search.trim().isNotEmpty) {
+        listOfOrderEvent =
+            await locator.getAllEventRegion(event.order, event.search);
+        if (listOfOrderEvent.isNotEmpty) {
+          emit(EventLoadedState(list: listOfOrderEvent));
+        } else {
+          emit(EventInitial());
+        }
+      } else {
+        emit(EventLoadedState(list: listOfEvent));
+      }
+    } catch (e) {
+      emit(EventErrorState(
+          msg: "حدث خطأ أثناء تحميل البيانات من قاعدة البيانات"));
+    }
   }
 }
