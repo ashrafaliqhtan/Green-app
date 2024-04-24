@@ -463,7 +463,7 @@ mixin AppLocale {
     locationUrl: 'رابط الموقع',
     noSupervisor: 'لا يوجد مشرفين',
     addDate: 'أدخل التاريخ',
-    redeem: 'استرداد',
+    redeem: 'استبدال',
     newest: 'الأحدث',
     oldest: 'الأقدم',
     noEvent: 'لايوجد حدث',

@@ -217,7 +217,7 @@ class DBServices {
       final historyPointListData = await supabase
           .from('history_point')
           .select('*')
-          .match({'user_id': id});
+          .match({'user_id': id}).order('created_at',);
       List<HistoryPointModel> listOfHistoryPoints = [];
       for (var element in historyPointListData) {
         listOfHistoryPoints.add(HistoryPointModel.fromMap(element));

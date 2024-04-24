@@ -47,6 +47,7 @@ class _AddEventState extends State<AddEvent> {
 
   @override
   Widget build(BuildContext context) {
+    
     final serviceLocator = DataInjection().locator.get<DBServices>();
 
     String imageUrl = "";
@@ -292,6 +293,7 @@ class _AddEventState extends State<AddEvent> {
                 ),
                 height16,
                 TextfieldContainer(
+                  
                   hintText: AppLocale.maximumCapacity.getString(context),
                   controller: capacityEventController,
                   keyboardType: TextInputType.number,

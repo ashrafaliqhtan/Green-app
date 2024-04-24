@@ -7,6 +7,7 @@ import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
 import 'package:green_saudi_app/views/Admin/bloc/reward_bloc.dart';
+import 'package:green_saudi_app/views/bottom_nav_bar/view/bottom_nav_bar.dart';
 import 'package:green_saudi_app/widgets/shimmer_point_widget.dart';
 
 class DetailsOfferView extends StatelessWidget {
@@ -33,6 +34,7 @@ class DetailsOfferView extends StatelessWidget {
                 color: green,
               ),
               onPressed: () {
+                context.read<RewardBloc>().add(RewardLoadEvent());
                 Navigator.pop(context);
               },
             ),
@@ -42,6 +44,7 @@ class DetailsOfferView extends StatelessWidget {
               if (state is RewardPointSuccessState) {
                 context.getMessagesBar(
                     msg: state.msg, color: green, success: true);
+                    context.push(view: const BottomNavBar(), isPush: false);
               } else if (state is RewardPointErrorState) {
                 context.getMessagesBar(
                     msg: state.msg, color: red, success: false);
@@ -118,7 +121,7 @@ class DetailsOfferView extends StatelessWidget {
                               child: Container(
                                 height: 60,
                                 alignment: Alignment.center,
-                                child:  Text(
+                                child: Text(
                                   AppLocale.redeem.getString(context),
                                   style: const TextStyle(
                                     color: Colors.white,

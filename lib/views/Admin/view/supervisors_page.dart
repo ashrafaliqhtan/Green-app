@@ -62,41 +62,39 @@ class SupervisorsPage extends StatelessWidget {
                       height: 100,
                       width: context.getWidth(),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: Text(
+                          const Padding(
+                                padding: EdgeInsets.only(right: 10),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                            ),
+                          ),
+                          Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
                                   "${AppLocale.supervisorsName.getString(context)}: ${state.supervisor[index].name}",
                                   style: const TextStyle(
                                       fontSize: 20, color: Colors.white),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: Text(
+                                Text(
                                   "${AppLocale.supervisorsCity.getString(context)}: ${state.supervisor[index].city}",
                                   style: const TextStyle(
                                       fontSize: 20, color: Colors.white),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 10),
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
+                              ],
                             ),
                           ),
+                          
                         ],
                       ),
                     ),

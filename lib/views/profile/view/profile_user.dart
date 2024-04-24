@@ -140,7 +140,7 @@ class ProfileView extends StatelessWidget {
                           TextProfile(
                             title: AppLocale.volunteerHours.getString(context),
                             data:
-                                "${user.volunteerHours ?? "0"} ${AppLocale.hours.getString(context)}",
+                                "${state.user.volunteerHours ?? "0"} ${AppLocale.hours.getString(context)}",
                             icon: FontAwesomeIcons.userClock,
                           ),
                           TextProfile(
@@ -150,7 +150,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           TextProfile(
                             title: AppLocale.city.getString(context),
-                            data: serviceLocator.user.city ?? "الرياض",
+                            data: state.user.city ?? 'Riyadh  - الرياض',
                             icon: FontAwesomeIcons.city,
                           ),
                           TextProfile(
