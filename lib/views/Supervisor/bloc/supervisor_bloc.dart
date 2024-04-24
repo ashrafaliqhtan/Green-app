@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get_it/get_it.dart';
+import 'package:green_saudi_app/model/event_model.dart';
 import 'package:green_saudi_app/model/gsi_user.dart';
 import 'package:green_saudi_app/service/supabase_services.dart';
 import 'package:meta/meta.dart';
@@ -32,7 +33,7 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
               await GetIt.I.get<DBServices>().getAttendees(id: qrResult);
           if (userId != qrResult) {
             GetIt.I.get<DBServices>().addVolunteerHours(
-                addVolunteerHour: 8, volunteerID: qrResult, eventID: userId);
+                addVolunteerHour: 8, volunteerID: qrResult, eventID: event.event.id!);
             emit(SupervisorScanSuccess(qrResult));
           } else {
             emit(SupervisorScanErrorUser());

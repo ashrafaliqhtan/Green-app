@@ -78,24 +78,19 @@ class ScanView extends StatelessWidget {
                         );
                       } else if (state is SupervisorScanSuccess) {
                         //TODO: localizition
-                        return AlertDialog(
-                          actions: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  print(state.qrString);
-                                  print(eventModel.id!);
-                                  GetIt.I.get<DBServices>().addVolunteerHours(
-                                      addVolunteerHour: 8,
-                                      volunteerID: state.qrString,eventID:eventModel.id!);
-                                },
-                                child: Text(AppLocale.great.getString(context)))
+                        return Column(
+                          children: [
+                            const IconDisplay(isSuccess: true),
+                            Text(
+                              //TODO: localizition
+                              "تم التحضير",
+                              textAlign: TextAlign.center,
+                              style:  TextStyle(
+                                color: green,
+                                fontSize: 30,
+                              ),
+                            ),
                           ],
-                          title: Column(
-                            children: [
-                              IconDisplay(isSuccess: true),
-                              Text(AppLocale.attendance.getString(context)),
-                            ],
-                          ),
                         );
                       } else if (state is SupervisorScanFailure) {
                         return Column(
@@ -149,7 +144,7 @@ class ScanView extends StatelessWidget {
                   height100,
                   TextButton(
                     onPressed: () {
-                      BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
+                      BlocProvider.of<SupervisorBloc>(context).add(ScanQR(event:eventModel));
                     }, //TODO: localizition
                     child: Column(
                       children: [

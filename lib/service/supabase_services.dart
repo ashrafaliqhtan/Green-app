@@ -182,6 +182,8 @@ class DBServices {
     final respons =
         await supabase.from('attendees_table').insert({"id": volunteerID});
     if (respons == null) {
+      print(volunteerID);
+      print(eventID);
       await supabase.from('personal_event').update({
         "stats": "present",
         "days": 1,
