@@ -47,7 +47,6 @@ class ScanView extends StatelessWidget {
               ),
             ],
             title: Text(
-              //TODO: localizition
               AppLocale.scanQrCode.getString(context),
               style: TextStyle(
                 color: white,
@@ -67,9 +66,8 @@ class ScanView extends StatelessWidget {
                       if (state is SupervisorInitial) {
                         return Column(
                           children: [
-                            IconDisplay(isSuccess: true),
+                            const IconDisplay(isSuccess: true),
                             Text(
-                              //TODO: localizition
                               AppLocale.scanQR.getString(context),
                               style: TextStyle(
                                 color: green,
@@ -79,13 +77,10 @@ class ScanView extends StatelessWidget {
                           ],
                         );
                       } else if (state is SupervisorScanSuccess) {
-                        //TODO: localizition
                         return AlertDialog(
                           actions: [
                             ElevatedButton(
                                 onPressed: () {
-                                  print(state.qrString);
-                                  print(eventModel.id!);
                                   GetIt.I.get<DBServices>().addVolunteerHours(
                                       addVolunteerHour: 8,
                                       volunteerID: state.qrString,eventID:eventModel.id!);
@@ -94,7 +89,7 @@ class ScanView extends StatelessWidget {
                           ],
                           title: Column(
                             children: [
-                              IconDisplay(isSuccess: true),
+                              const IconDisplay(isSuccess: true),
                               Text(AppLocale.attendance.getString(context)),
                             ],
                           ),
@@ -104,7 +99,6 @@ class ScanView extends StatelessWidget {
                           children: [
                             const IconDisplay(isSuccess: false),
                             Text(
-                              //TODO: localizition
                               AppLocale.failScan.getString(context),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
@@ -118,9 +112,8 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanCanceled) {
                         return Column(
                           children: [
-                            IconDisplay(isSuccess: null),
+                            const IconDisplay(isSuccess: null),
                             Text(
-                              //TODO: localizition
                               AppLocale.cancelSAcan.getString(context),
                               style: TextStyle(
                                 color: green,
@@ -132,9 +125,8 @@ class ScanView extends StatelessWidget {
                       } else if (state is SupervisorScanErrorUser) {
                         return Column(
                           children: [
-                            IconDisplay(isSuccess: false),
+                            const IconDisplay(isSuccess: false),
                             Text(
-                              //TODO: localizition
                               AppLocale.attendanceAlready.getString(context),
                               style: TextStyle(
                                 color: green,
@@ -152,7 +144,7 @@ class ScanView extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       BlocProvider.of<SupervisorBloc>(context).add(ScanQR());
-                    }, //TODO: localizition
+                    }, 
                     child: Column(
                       children: [
                         Text(
@@ -161,7 +153,7 @@ class ScanView extends StatelessWidget {
                         ),
                               Container(
                                 width: 170,
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                               top: 5), 
                           height: 2,
                           color: green, 

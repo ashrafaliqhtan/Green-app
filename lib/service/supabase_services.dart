@@ -275,7 +275,7 @@ class DBServices {
     await supabase.storage
         .from(bucket) // Replace with your storage bucket name
         .upload("${nameFile}", imageFile,
-            fileOptions: FileOptions(upsert: true));
+            fileOptions: const FileOptions(upsert: true));
     await urlImage(bucket, nameFile);
     print("done");
   }

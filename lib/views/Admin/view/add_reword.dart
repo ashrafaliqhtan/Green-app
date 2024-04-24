@@ -65,7 +65,7 @@ class _AddRewordState extends State<AddReword> {
           listener: (context, state) {
             if (state is RewardSuccessState) {
               context.getMessagesBar(msg: state.msg, color: green);
-              context.push(view: BottomNavBarAdmin(), isPush: false);
+              context.push(view: const BottomNavBarAdmin(), isPush: false);
             } else if (state is RewardErrorState) {
               context.getMessagesBar(
                   msg: state.msg, color: red, success: false);
@@ -215,6 +215,7 @@ class _AddRewordState extends State<AddReword> {
                               rewardName: rewordNameController.text,
                               rewardContent: rewordDescriptionController.text,
                               rewardId: imageId);
+                          // ignore: use_build_context_synchronously
                           context
                               .read<RewardBloc>()
                               .add(RewardAdded(reward: reward));

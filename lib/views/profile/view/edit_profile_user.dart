@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
@@ -233,7 +232,7 @@ class _EditProfileUserState extends State<EditProfileUser> {
                 InkWell(
                   onTap: () {
                     context.read<AuthBloc>().add(UpdateProfileEvent(
-                        city: user.city ?? "الرياض",
+                        city: user.city ?? "Riyadh",
                         name: nameController.text,
                         phone: phoneController.text));
                     context.read<ImagePicBloc>().add(UpdateImageToDatabase(

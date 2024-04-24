@@ -38,7 +38,6 @@ class OfferWidget extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
-                    //TODO: Reward img
                     child: Image.network(
                           reward.rewardCompanyLogo!,
                           height: 100,

@@ -42,7 +42,6 @@ class _AddEventState extends State<AddEvent> {
     locationEventController.dispose();
     locationUrlEventController.dispose();
     capacityEventController.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -78,8 +77,7 @@ class _AddEventState extends State<AddEvent> {
           listener: (context, state) {
             if (state is EventSuccessState) {
               context.getMessagesBar(msg: state.msg, color: green);
-              context.push(view: BottomNavBarAdmin(), isPush: false);
-              //TODO: pop when add is not working
+              context.push(view: const BottomNavBarAdmin(), isPush: false);
             } else if (state is EventErrorState) {
               context.getMessagesBar(msg: state.msg, color: red, success: false);
             }
@@ -323,13 +321,6 @@ class _AddEventState extends State<AddEvent> {
                           color: green, borderRadius: BorderRadius.circular(30)),
                       child: TextButton(
                         onPressed: () async {
-                          print("=============");
-                          print(serviceLocator.startDateEvent);
-                          print(serviceLocator.endDateEvent);
-                          print(serviceLocator.startTimeEvent);
-                          print(serviceLocator.endTimeEvent);
-                          print("=============");
-      
                           if (serviceLocator
                               .ImageFileFromDatabase.path.isNotEmpty) {
                             context.read<ImagePicBloc>().add(

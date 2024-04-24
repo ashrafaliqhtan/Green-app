@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavBarAdmin extends StatelessWidget {
-  BottomNavBarAdmin({super.key});
+  const BottomNavBarAdmin({super.key});
 
   
 
@@ -82,6 +82,7 @@ class BottomNavBarAdmin extends StatelessWidget {
                           navItems[index]['icon'],
                           width: context.getWidth() * .056,
                           height: context.getWidth() * .056,
+                          // ignore: deprecated_member_use
                           color: index == navAdminCubit.selectIndex
                               ? green
                               : Theme.of(context)

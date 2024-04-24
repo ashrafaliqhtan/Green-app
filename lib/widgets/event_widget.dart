@@ -12,12 +12,12 @@ class EventWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        translatorFunction(event.title ?? "لايوجد محتوى"),
-        translatorFunction(event.location ?? "الرياض"),
+        translatorFunction(event.title ?? "No Content"),
+        translatorFunction(event.location ?? "Riyadh"),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SizedBox();
+          return const SizedBox();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {

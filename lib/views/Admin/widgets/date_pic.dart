@@ -36,7 +36,7 @@ class DatePickerWidget extends StatelessWidget {
                   primary: green, 
                 ),
                 textTheme:  TextTheme(
-                  subtitle1: TextStyle(color:green), 
+                  titleMedium: TextStyle(color:green), 
                 ),
               ),
               child: child!,

@@ -24,7 +24,7 @@ class EventsSupervisorPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                context.push(view: BottomNavBar(), isPush: false);
+                context.push(view: const BottomNavBar(), isPush: false);
               },
               icon: const Icon(
                 Icons.arrow_forward,
@@ -126,7 +126,7 @@ class EventsSupervisorPage extends StatelessWidget {
                       ),
                       height16,
                       Text(
-                        'No Event added',
+                        AppLocale.noEvent.getString(context),
                         style: TextStyle(fontSize: 30, color: green),
                       )
                     ],

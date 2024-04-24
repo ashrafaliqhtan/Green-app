@@ -17,7 +17,7 @@ class HistoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait([
-        translatorFunction(personalEvent.name ?? "لايوجد محتوى"),
+        translatorFunction(personalEvent.name ?? "No Content"),
       ]),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

@@ -105,7 +105,6 @@ class DetailsOfferView extends StatelessWidget {
                             alignment: Alignment.bottomCenter,
                             child: ElevatedButton(
                               onPressed: () {
-                                //TODO: Register in Event for user
                                 context
                                     .read<RewardBloc>()
                                     .add(RewardRedeemPoint());

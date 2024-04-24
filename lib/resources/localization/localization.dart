@@ -156,6 +156,8 @@ mixin AppLocale {
   static const String listCity = "listCity";
   static const String addEvent = "AddEvent";
   static const String changeLanguage = 'ChangeLanguage';
+  static const String noDisplayProfile = 'noDisplayProfile';
+
 
   static const Map<String, dynamic> EN = {
     // Onboarding
@@ -272,6 +274,7 @@ mixin AppLocale {
     cancelSAcan: 'Scan QR Code was Cancel',
     attendanceAlready: "Your attendance has already been registered",
     attendance: 'Your attendance has been registered',
+    noDisplayProfile : 'Filed to Display Profile Page',
     //Admin
     controlPanel: 'Control Panel',
     eventsAdmin: 'Events',
@@ -462,6 +465,8 @@ mixin AppLocale {
     noEvent: 'لايوجد حدث',
     noReword: 'توجد مكافآت',
       backToControlP : 'الرجوع الى لوحة التحكم',
+          noDisplayProfile : 'خطأ في تحميل الصفحة',
+
 
   };
 }

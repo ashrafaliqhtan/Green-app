@@ -24,7 +24,7 @@ class RewardsAdminPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                context.push(view: BottomNavBarAdmin(), isPush: false);
+                context.push(view: const BottomNavBarAdmin(), isPush: false);
               },
               icon: const Icon(
                 Icons.arrow_forward,

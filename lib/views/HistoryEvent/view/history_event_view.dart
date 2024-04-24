@@ -11,7 +11,6 @@ import 'package:green_saudi_app/views/Drawer/view/drawer_view.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/history_hours_widget.dart';
 import 'package:green_saudi_app/views/HistoryEvent/widget/shimmer_history.dart';
 
-//TODO: history
 class HistoryEventView extends StatelessWidget {
   const HistoryEventView({super.key});
 
@@ -74,7 +73,6 @@ class HistoryEventView extends StatelessWidget {
                           }),
                     );
                   } else {
-                    //TODO: NO histroy img or messge
                     return Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

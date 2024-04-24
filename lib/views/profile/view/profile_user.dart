@@ -32,7 +32,7 @@ class ProfileView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              context.push(view: BottomNavBar(), isPush: false);
+              context.push(view: const BottomNavBar(), isPush: false);
             },
             icon: Icon(
               Icons.arrow_back,
@@ -59,8 +59,10 @@ class ProfileView extends StatelessWidget {
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthLoadingState) {
-            return  Center(
-              child: CircularProgressIndicator(color: green,),
+            return Center(
+              child: CircularProgressIndicator(
+                color: green,
+              ),
             );
           }
           if (state is AuthLoadProfileState) {
@@ -101,12 +103,12 @@ class ProfileView extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(1000),
                                     child: Image.network(
-                                      serviceLocator.userImageUrl, 
-                                      fit: BoxFit.cover, 
+                                      serviceLocator.userImageUrl,
+                                      fit: BoxFit.cover,
                                       errorBuilder:
                                           (context, error, stackTrace) {
                                         return Image.network(
-                                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"); 
+                                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png");
                                       },
                                     ),
                                   ),
@@ -136,8 +138,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           height32,
                           TextProfile(
-                            title:
-                                AppLocale.volunteerHours.getString(context),
+                            title: AppLocale.volunteerHours.getString(context),
                             data:
                                 "${user.volunteerHours ?? "0"} ${AppLocale.hours.getString(context)}",
                             icon: FontAwesomeIcons.userClock,
@@ -185,7 +186,7 @@ class ProfileView extends StatelessWidget {
                       "assets/icons/Computer troubleshooting-pana.svg"),
                   height16,
                   Text(
-                    'Filed to Display Profile Page',
+                    AppLocale.noDisplayProfile.getString(context),
                     style: TextStyle(fontSize: 25, color: green),
                   ),
                 ],
