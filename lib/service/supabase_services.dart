@@ -113,8 +113,7 @@ class DBServices {
           "user_id": userID,
           "name": event.name,
           "event_id": event.eventId,
-          "stats": event.stats,
-          "days": event.days
+          "days": 0
         })
         .select()
         .single();

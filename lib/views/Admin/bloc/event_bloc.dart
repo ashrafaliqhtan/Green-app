@@ -54,7 +54,6 @@ class EventBloc extends Bloc<EventEvent, EventState> {
               emit(EventSuccessState(msg: "تمت إضافة الحدث بنجاح"));
             } catch (e) {
               print(e);
-
               emit(EventErrorState(msg: "حدث خطأ أثناء إضافة الحدث"));
             }
           } else {
