@@ -104,7 +104,6 @@ class DBServices {
     await supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
 
-  
   //-----------------------------User----------------------------------
   //Register Event
   Future<PersonalEvent> participateEvent({required PersonalEvent event}) async {
@@ -122,19 +121,13 @@ class DBServices {
     return PersonalEvent.fromJson(response);
   }
 
-  Future<bool> checkRegister({required String eventId}) async {
-    try {
-      final response = await supabase
-          .from('personal_event')
-          .select()
-          .eq('user_id', userID)
-          .eq('event_id', eventId)
-          .single();
-      // Check if any rows are returned
-      return response.isNotEmpty;
-    } catch (e) {
-      return false;
-    }
+  Future checkRegister({required String eventId}) async {
+    return await supabase
+        .from('personal_event')
+        .select()
+        .eq('user_id', userID)
+        .eq('event_id', eventId)
+        .single();
   }
 
   //display List Event history
@@ -183,22 +176,29 @@ class DBServices {
     }
   }
 
-  Future addVolunteerHours({required int addVolunteerHour,required String volunteerID,required String eventID}) async {
-        final respons=await supabase.from('attendees_table').insert({"id":volunteerID});
-    if(respons==null){
-            await supabase.from('personal_event').update({
-      "stats":"present",
-      "days":1,
-    }).match({"user_id":volunteerID,"event_id":eventID});
-      await supabase.from('user_green_sa_app').update({"volunteer_hours":(user.volunteerHours!+addVolunteerHour),
-      "points":(user.points!+addVolunteerHour*10)
-    }).match({'id_user': volunteerID,});
-        await supabase.from('history_point').insert({
-      "user_id":volunteerID,
-      "point":(addVolunteerHour*10),
-      "state":"plus"
-    });}
-    
+  Future addVolunteerHours(
+      {required int addVolunteerHour,
+      required String volunteerID,
+      required String eventID}) async {
+    final respons =
+        await supabase.from('attendees_table').insert({"id": volunteerID});
+    if (respons == null) {
+      await supabase.from('personal_event').update({
+        "stats": "present",
+        "days": 1,
+      }).match({"user_id": volunteerID, "event_id": eventID});
+      await supabase.from('user_green_sa_app').update({
+        "volunteer_hours": (user.volunteerHours! + addVolunteerHour),
+        "points": (user.points! + addVolunteerHour * 10)
+      }).match({
+        'id_user': volunteerID,
+      });
+      await supabase.from('history_point').insert({
+        "user_id": volunteerID,
+        "point": (addVolunteerHour * 10),
+        "state": "plus"
+      });
+    }
   }
 
   Future usePoint({required int usedPoint, required String volunteerID}) async {

@@ -86,17 +86,22 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       RegisterEvent event, Emitter<EventState> emit) async {
     emit(EventLoadingState());
     try {
-      bool check =
+      var checkRegister =
           await locator.checkRegister(eventId: event.personalEvent.eventId!);
-      if (check) {
-        await locator.participateEvent(event: event.personalEvent);
-        emit(RegisterEventSuccessState(
-            msg: "تم تسجيل الحدث بنجاح"));
-      } else {
+      if (checkRegister["event_id"] == event.personalEvent.eventId!) {
         emit(RegisterEventErrorState(msg: "مسجل مسبقا"));
+      } else {
+        try {
+          await locator.participateEvent(event: event.personalEvent);
+          emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
+        } catch (e) {
+          print(e);
+          emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
+        }
       }
     } catch (e) {
-      emit(RegisterEventErrorState(msg: "حدث خطأ في تسجيل الحدث"));
+      await locator.participateEvent(event: event.personalEvent);
+      emit(RegisterEventSuccessState(msg: "تم تسجيل الحدث بنجاح"));
     }
   }
 
@@ -106,15 +111,17 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     try {
       listOfPersonalEvents = await locator.getUserEvents(id: locator.userID);
       List<EventModel> listOfEvents = await locator.getAllEvent(true);
-      List<Map<String,dynamic>> listOfEvent=[];
-for (var element in listOfEvents) {
-  for (var index = 0; index < listOfPersonalEvents.length; index++) {
-    if(element.id ==listOfPersonalEvents[index].eventId){
-      listOfEvent.add({"event": element,"personalEvent":listOfPersonalEvents[index]});
-    }
-  }
-  
-}
+      List<Map<String, dynamic>> listOfEvent = [];
+      for (var element in listOfEvents) {
+        for (var index = 0; index < listOfPersonalEvents.length; index++) {
+          if (element.id == listOfPersonalEvents[index].eventId) {
+            listOfEvent.add({
+              "event": element,
+              "personalEvent": listOfPersonalEvents[index]
+            });
+          }
+        }
+      }
       print(listOfEvent);
       if (listOfEvent.isNotEmpty) {
         emit(HistoryLoadedState(event: listOfEvent));
