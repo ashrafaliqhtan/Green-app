@@ -42,26 +42,22 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
         return GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
+            backgroundColor: Colors.white,
             extendBodyBehindAppBar: true,
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               actionsIconTheme: IconThemeData(color: white),
             ),
-            backgroundColor: white,
             body: SingleChildScrollView(
               child: SafeArea(
                 child: Column(
                   children: [
-                    Container(
-                      width: context.getWidth(),
-                      height: context.getHeight() * 0.45,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/reset_password.png"),
-                          fit: BoxFit.cover,
-                        ),
+                    SizedBox(
+                        width: context.getWidth(),
+                        height: context.getHeight() * 0.5,
+                        child: 
+                          Image.asset("assets/images/newpass.jpeg"),
                       ),
-                    ),
                     height10,
                     InputTextFelid(
                       controller: passwordController,

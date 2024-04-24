@@ -177,7 +177,6 @@ class ProfileView extends StatelessWidget {
               );
             });
           } else {
-            //TODO: filed to display Prfile
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

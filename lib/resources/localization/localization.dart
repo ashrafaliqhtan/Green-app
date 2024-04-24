@@ -132,6 +132,9 @@ mixin AppLocale {
   static const String noEvent = 'noEvent';
   static const String noReword = 'No Reword added';
   static const String backToControlP = 'backToControlP';
+  static const String youGot = 'youGot';
+  static const String volunteer = 'hours of volunteer work';
+  
 
   //profile
   static const String userName = 'jj';
@@ -157,7 +160,6 @@ mixin AppLocale {
   static const String addEvent = "AddEvent";
   static const String changeLanguage = 'ChangeLanguage';
   static const String noDisplayProfile = 'noDisplayProfile';
-
 
   static const Map<String, dynamic> EN = {
     // Onboarding
@@ -274,7 +276,7 @@ mixin AppLocale {
     cancelSAcan: 'Scan QR Code was Cancel',
     attendanceAlready: "Your attendance has already been registered",
     attendance: 'Your attendance has been registered',
-    noDisplayProfile : 'Filed to Display Profile Page',
+    noDisplayProfile: 'Filed to Display Profile Page',
     //Admin
     controlPanel: 'Control Panel',
     eventsAdmin: 'Events',
@@ -311,8 +313,9 @@ mixin AppLocale {
     oldest: 'Oldest',
     noEvent: 'No Event added',
     noReword: 'No Reword added',
-      backToControlP : 'back To Control Panel',
-
+    backToControlP: 'back To Control Panel',
+    youGot : 'you Got',
+    volunteer : 'hours of volunteer work',
   };
   static const Map<String, dynamic> AR = {
     // Onboarding and Auth
@@ -381,6 +384,7 @@ mixin AppLocale {
     logoutButton: 'تسجيل الخروج',
     editProfile: 'تعديل الملف الشخصي',
     changeLanguage: 'تغيير اللغة',
+    volunteer : 'ساعات عمل تطوعي',
 
     // User
     homePage: 'الرئيسية',
@@ -463,10 +467,9 @@ mixin AppLocale {
     newest: 'الأحدث',
     oldest: 'الأقدم',
     noEvent: 'لايوجد حدث',
-    noReword: 'توجد مكافآت',
-      backToControlP : 'الرجوع الى لوحة التحكم',
-          noDisplayProfile : 'خطأ في تحميل الصفحة',
-
-
+    noReword: ' لا توجد مكافآت' ,
+    backToControlP: 'الرجوع الى لوحة التحكم',
+    noDisplayProfile: 'خطأ في تحميل الصفحة',
+    youGot : 'حصلت على ',
   };
 }

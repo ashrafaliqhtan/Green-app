@@ -94,9 +94,11 @@ class OTPView extends StatelessWidget {
                         Countdown(
                           seconds: 60,
                           build: (BuildContext context, double time) => Expanded(
-                            child: Text(
-                              '${AppLocale.timer.getString(context)} ${time.toInt()} ${AppLocale.second.getString(context)}',
-                              style: TextStyle(fontSize: 14, color: green),
+                            child: Center(
+                              child: Text(
+                                '${AppLocale.timer.getString(context)} ${time.toInt()} ${AppLocale.second.getString(context)}',
+                                style: TextStyle(fontSize: 14, color: green),
+                              ),
                             ),
                           ),
                           interval: const Duration(seconds: 1),

@@ -20,7 +20,7 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
   FutureOr<void> scanQR(ScanQR event, Emitter<SupervisorState> emit) async {
     try {
       String qrResult = await FlutterBarcodeScanner.scanBarcode(
-          '#2A99CF', 'إلغاء', true, ScanMode.BARCODE);
+          '#2A99CF', 'Cancel', true, ScanMode.BARCODE);
       if (qrResult == '-1') {
         emit(SupervisorScanCanceled());
       } else {

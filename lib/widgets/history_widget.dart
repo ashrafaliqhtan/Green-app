@@ -48,7 +48,6 @@ class HistoryWidget extends StatelessWidget {
                     height: context.getHeight() * .058,
                     decoration: BoxDecoration(
                       image: const DecorationImage(
-                        //TODO: Event Image
                         image: AssetImage('assets/images/Rectangle 104.jpg'),
                         fit: BoxFit.fitWidth,
                       ),

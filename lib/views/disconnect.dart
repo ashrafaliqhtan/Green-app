@@ -18,7 +18,6 @@ class Disconnect extends StatelessWidget {
               SvgPicture.asset("assets/icons/No connection-pana (1).svg"),
               height16,
               Text(
-                // AppLocale.co.getString(context),
                 'No internet connection',
                 style: TextStyle(fontSize: 30, color: green),
               ),

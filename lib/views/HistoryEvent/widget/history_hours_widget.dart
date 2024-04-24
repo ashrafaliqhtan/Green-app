@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:green_saudi_app/resources/extensions/screen_handler.dart';
+import 'package:green_saudi_app/resources/localization/localization.dart';
 import 'package:green_saudi_app/service/database_configuration.dart';
 import 'package:green_saudi_app/resources/utils/colors.dart';
 import 'package:green_saudi_app/resources/utils/spacing.dart';
@@ -25,9 +27,9 @@ class HistoryHoursWidget extends StatelessWidget {
           final String eventName = translatedTexts[0];
            final String eventLocation = eventModel["event"].location!;
            final String timeText = "${getTimeWithAmPm(eventModel["event"].startTime!)}-${getTimeWithAmPm(eventModel["event"].endTime!)}";
-           final String dateText = "${eventModel["event"].startDate!}-${eventModel["event"].endDate!}";
-           if(eventModel["personalEvent"].days>0){hoursWorkedText ='تم الحصول على ${(8*eventModel["personalEvent"].days)} ساعة من عمل التطوع';}
-          else{hoursWorkedText ='اسف تعال بكرا';}
+           final String dateText = "${eventModel["event"].startDate!}-${eventModel["event"].endDate!}"; 
+           if(eventModel["personalEvent"].days>0){hoursWorkedText ='${AppLocale.youGot.getString(context)} ${(8*eventModel["personalEvent"].days)}  ${AppLocale.volunteer.getString(context)}';}
+          else{hoursWorkedText ='';}
           return Container(
             width: context.getWidth(),
             height: context.getHeight() * .25,

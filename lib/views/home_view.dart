@@ -73,7 +73,6 @@ class HomeView extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           AppLocale.dutiesInitiatives.getString(context),
-                          // textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: 30,
                             color: green,

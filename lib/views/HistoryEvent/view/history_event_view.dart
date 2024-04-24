@@ -90,8 +90,6 @@ class HistoryEventView extends StatelessWidget {
                         ],
                       ),
                     );
-
-                    //");
                   }
                 },
               ),

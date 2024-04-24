@@ -68,12 +68,10 @@ class EventView extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       controller: controller,
-                      // textDirection: TextDirection.rtl,
                       decoration: InputDecoration(
                         fillColor: Theme.of(context).scaffoldBackgroundColor,
                         filled: true,
                         hintText: AppLocale.hintSearch.getString(context),
-                        // hintTextDirection: TextDirection.rtl,
                         prefixIcon: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: SvgPicture.asset(

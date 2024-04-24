@@ -96,7 +96,7 @@ class _MainAppState extends State<MainApp> {
                   theme: appThemes[ GetIt.I.get<AppearanceServices>().currentTheme],
                   supportedLocales: localization.supportedLocales,
                   localizationsDelegates: localization.localizationsDelegates,
-                  home:  SplashView(),
+                  home:  const SplashView(),
                 );
               },
             );

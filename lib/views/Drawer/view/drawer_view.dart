@@ -201,7 +201,7 @@ class DrawerScreen extends StatelessWidget {
                         ? IconButton(
                             onPressed: () {
                               context.push(
-                                  view: BottomNavBarAdmin(), isPush: false);
+                                  view: const BottomNavBarAdmin(), isPush: false);
                             },
                             icon: Icon(
                               Icons.border_color_rounded,
