@@ -4,7 +4,7 @@ part of 'supervisor_bloc.dart';
 sealed class SupervisorEvent {}
 
 class ScanQR extends SupervisorEvent {
-EventModel event;
+final EventModel event;
 ScanQR({required this.event});}
 
 class LoadSupervisors extends SupervisorEvent{}

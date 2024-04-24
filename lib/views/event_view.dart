@@ -66,7 +66,10 @@ class EventView extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: TextField(onSubmitted: (value) {
+                      print(value);
+                      context.read<EventBloc>().add(EventSearchEvent(order: true, search: value));
+                    },
                       controller: controller,
                       // textDirection: TextDirection.rtl,
                       decoration: InputDecoration(

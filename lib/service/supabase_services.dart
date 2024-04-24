@@ -175,6 +175,9 @@ class DBServices {
     }
   }
 
+
+
+
   Future addVolunteerHours(
       {required int addVolunteerHour,
       required String volunteerID,
@@ -294,4 +297,23 @@ class DBServices {
         .getPublicUrl("${nameFile}");
     return response;
   }
+
+////////////////Search
+Future<List<EventModel>> getAllEventSearch(bool isOrder,String search) async {
+    final eventsListData = await supabase.from('org_event').select('*').textSearch('name',search).order("created_at",ascending: isOrder);
+    List<EventModel> listOfEvents = [];
+    for (var element in eventsListData) {
+      listOfEvents.add(EventModel.fromJson(element));
+    }
+    return listOfEvents;
+  }
+Future<List<EventModel>> getAllEventRegion(bool isOrder,String search) async {
+    final regionsListData = await supabase.from('org_event').select('*').textSearch('location',search).order("created_at",ascending: isOrder);
+    List<EventModel> regionsList = [];
+    for (var element in regionsListData) {
+      regionsList.add(EventModel.fromJson(element));
+    }
+    return regionsList;
+  }
 }
+

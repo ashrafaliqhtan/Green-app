@@ -47,6 +47,8 @@ class SupervisorBloc extends Bloc<SupervisorEvent, SupervisorState> {
     }
   }
 
+  
+
   FutureOr<void> loadSupervisor(
       LoadSupervisors event, Emitter<SupervisorState> emit) async {
     emit(SupervisorLoading());
