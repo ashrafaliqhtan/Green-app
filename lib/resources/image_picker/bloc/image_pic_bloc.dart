@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_saudi_app/locators/data_injection.dart';
 import 'package:green_saudi_app/resources/image_picker/image_picker.dart';
-import 'package:green_saudi_app/service/supabase/Auth/supabase_services.dart';
+import 'package:green_saudi_app/service/supabase/supabase_services.dart';
 
 part 'image_pic_event.dart';
 part 'image_pic_state.dart';
