@@ -13,3 +13,4 @@ class DataInjection {
     locator.registerSingletonAsync<AppearanceServices>(() async=> AppearanceServices()..getMode());
   }
 }
+

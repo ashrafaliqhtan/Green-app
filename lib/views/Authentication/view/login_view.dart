@@ -20,9 +20,9 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   TextEditingController emailController =
-      TextEditingController(text: 'sulta7nx7@gmail.com');
+      TextEditingController();
   TextEditingController passwordController =
-      TextEditingController(text: '123456');
+      TextEditingController();
 
   @override
   void dispose() {
